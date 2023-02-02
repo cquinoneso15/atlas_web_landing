@@ -74,14 +74,15 @@ function handleJson(data) {
     legend.onAdd = function (map) {
 
         var div = L.DomUtil.create('div', 'info legend'),
-            grades = [quants["Q0"], quants["Q1"], quants["Q2"], quants["Q3"]],
+            grades = [quants["Q0"], quants["Q1"], quants["Q2"], quants["Q3"], quants["Q4"]],
             labels = [];
 
         // loop through our density intervals and generate a label with a colored square for each interval
-        for (var i = 0; i < grades.length; i++) {
+        for (var i = 0; i < grades.length - 1; i++) {
             div.innerHTML +=
                 '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
-                (grades[i].toFixed(2)) + (grades[i + 1] ? '&ndash;' + (grades[i + 1].toFixed(2)) + '<br>' : '+');
+                (grades[i].toFixed(2)) + '&ndash;' + (grades[i + 1].toFixed(2));
+            if (i < grades.length - 2) {div.innerHTML += '<br>';}
         }
 
         return div;
@@ -102,7 +103,7 @@ function sortedQuants(sortedArray, q){
     var pos = ((sortedArray.length) - 1) * q;
     var base = Math.floor(pos);
     var rest = pos - base;
-    if( (sortedArray[base+1]!==undefined) ) {
+    if( (sortedArray[base+1] !== undefined) ) {
         return sortedArray[base] + rest * (sortedArray[base+1] - sortedArray[base]);
     } else {
         return sortedArray[base];
