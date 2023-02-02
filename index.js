@@ -80,7 +80,7 @@ function handleJson(data) {
         // loop through our density intervals and generate a label with a colored square for each interval
         for (var i = 0; i < grades.length - 1; i++) {
             div.innerHTML +=
-                '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+                '<i style="background:' + getColor((grades[i] + grades[i + 1])/2.0) + '"></i> ' +
                 (grades[i].toFixed(2)) + '&ndash;' + (grades[i + 1].toFixed(2));
             if (i < grades.length - 2) {div.innerHTML += '<br>';}
         }
