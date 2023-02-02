@@ -37,16 +37,24 @@ btn.onclick = (event) => {
 };
 
 var polygonLayer;
+const download = document.querySelector('#download');
 var legend;
 // Function called by Ajax
 function handleJson(data) {
     // Remove layer if already displayed
     if (polygonLayer) { polygonLayer.remove(); }
+
+    // Add data to download button
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data));
+    download.setAttribute("href", dataStr);
+    download.setAttribute("download", "data.geojson");
+
     // If layer is empty, show error message and return
     if (data.features.length == 0) {
         alert('Error while querying, no features found.');
         return;
     }
+    
     // Generate quantiles
     var quants = getQuants(data);
     // Generate style from quantiles
@@ -92,6 +100,7 @@ function handleJson(data) {
 
     // Add layer to map
     polygonLayer = L.geoJson(data, {
+        attribution:'&copy; <a href="https://www.mos.ed.tum.de/en/sv/homepage/">TUM Chair of Urban Structure and Transport Planning</a>',
         style: style,
         onEachFeature: onEachFeature
         }).addTo(map);
