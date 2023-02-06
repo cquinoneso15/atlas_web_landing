@@ -37,12 +37,18 @@ btn.onclick = (event) => {
 };
 
 var polygonLayer;
+var poiLayer;
+var layerControl;
+
 const download = document.querySelector('#download');
 var legend;
 // Function called by Ajax
 function handleJson(data) {
     // Remove layer if already displayed
-    if (polygonLayer) { polygonLayer.remove(); }
+    if (polygonLayer) { 
+        polygonLayer.remove();
+        layerControl.remove();
+     }
 
     // Add data to download button
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data));
@@ -105,6 +111,12 @@ function handleJson(data) {
         onEachFeature: onEachFeature
         }).addTo(map);
     map.fitBounds(polygonLayer.getBounds());
+
+    // Add layer control to map
+    layerControl = L.control.layers(null, {
+        "Polygon": polygonLayer//, 
+        //"POIs": poiLayer
+    }).addTo(map)
 }
 
 // Generate quantiles
