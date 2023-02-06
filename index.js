@@ -18,6 +18,13 @@ btn.onclick = (event) => {
     event.preventDefault();
     info.update();
 
+    // Remove layers if already displayed
+    if (polygonLayer) { 
+        polygonLayer.remove();
+        poiLayer.remove();
+        layerControl.remove();
+    }
+
     //Connect to Geoserver WFS
     $.ajax('http://localhost:8080/geoserver/wfs',{
         type: 'GET',
@@ -34,6 +41,22 @@ btn.onclick = (event) => {
         jsonpCallback:'callback:handleJson',
         jsonp:'format_options'
     });
+
+    $.ajax('http://localhost:8080/geoserver/wfs',{
+        type: 'GET',
+        data: {
+            service: 'WFS',
+            version: '1.1.0',
+            request: 'GetFeature',
+            typename: 'MGeM:pois',
+            srsname: 'EPSG:4326',
+            outputFormat: 'text/javascript',
+            viewparams: 'amenity:'.concat(amenity.value)
+            },
+        dataType: 'jsonp',
+        jsonpCallback:'callback:handleJsonPOIs',
+        jsonp:'format_options'
+    });
 };
 
 var polygonLayer;
@@ -44,12 +67,6 @@ const download = document.querySelector('#download');
 var legend;
 // Function called by Ajax
 function handleJson(data) {
-    // Remove layer if already displayed
-    if (polygonLayer) { 
-        polygonLayer.remove();
-        layerControl.remove();
-     }
-
     // Add data to download button
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data));
     download.setAttribute("href", dataStr);
@@ -114,9 +131,15 @@ function handleJson(data) {
 
     // Add layer control to map
     layerControl = L.control.layers(null, {
-        "Polygon": polygonLayer//, 
-        //"POIs": poiLayer
+        "Polygon": polygonLayer, 
+        "POIs": poiLayer
     }).addTo(map)
+}
+
+function handleJsonPOIs(data) {
+    poiLayer = L.geoJson(data, {
+        attribution:'&copy; <a href="https://www.mos.ed.tum.de/en/sv/homepage/">TUM Chair of Urban Structure and Transport Planning</a>',
+        }).addTo(map);
 }
 
 // Generate quantiles
