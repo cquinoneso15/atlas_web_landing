@@ -113,7 +113,7 @@ function handleJson(data) {
             div.innerHTML +=
                 '<i style="background:' + getColor((grades[i] + grades[i + 1])/2.0) + '"></i> ' +
                 (grades[i].toFixed(2)) + '&ndash;' + (grades[i + 1].toFixed(2));
-            if (i < grades.length - 2) {div.innerHTML += '<br>';}
+            div.innerHTML += '<br>';
         }
 
         return div;
@@ -136,9 +136,21 @@ function handleJson(data) {
     }).addTo(map)
 }
 
+var geoJsonCircleStyle = {
+    radius: 2,
+    fillColor: "#91cf60",
+    color: "#000",
+    weight: 1,
+    opacity: 1,
+    fillOpacity: 0.8
+}
+
 function handleJsonPOIs(data) {
     poiLayer = L.geoJson(data, {
         attribution:'&copy; <a href="https://www.mos.ed.tum.de/en/sv/homepage/">TUM Chair of Urban Structure and Transport Planning</a>',
+        pointToLayer: function (feature, latlng) {
+            return L.circleMarker(latlng, geoJsonCircleStyle);
+        }
         }).addTo(map);
 }
 
