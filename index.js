@@ -113,7 +113,7 @@ function handleJson(data) {
             div.innerHTML +=
                 '<i style="background:' + getColor((grades[i] + grades[i + 1])/2.0) + '"></i> ' +
                 (grades[i].toFixed(2)) + '&ndash;' + (grades[i + 1].toFixed(2));
-            div.innerHTML += '<br>';
+            if (i < grades.length - 2) {div.innerHTML += '<br>';}
         }
 
         return div;
@@ -138,9 +138,9 @@ function handleJson(data) {
 
 var geoJsonCircleStyle = {
     radius: 2,
-    fillColor: "#91cf60",
+    fillColor: "#5ab4ac",
     color: "#000",
-    weight: 1,
+    weight: 0.25,
     opacity: 1,
     fillOpacity: 0.8
 }
