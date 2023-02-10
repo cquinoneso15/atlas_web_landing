@@ -130,19 +130,23 @@ function handleJson(data) {
     map.fitBounds(polygonLayer.getBounds());
 
     // Add layer control to map
-    layerControl = L.control.layers(null, {
+    layerControl = L.control.layers(null, {"Background": tiles,
         "Polygon": polygonLayer, 
         "POIs": poiLayer
     }).addTo(map)
+
+    if (poiLayer) {
+        poiLayer.bringToFront();
+    }
 }
 
 var geoJsonCircleStyle = {
-    radius: 2,
+    radius: 1.5,
     fillColor: "#5ab4ac",
     color: "#000",
     weight: 0.25,
-    opacity: 1,
-    fillOpacity: 0.8
+    opacity: 0.75,
+    fillOpacity: 1
 }
 
 function handleJsonPOIs(data) {
@@ -150,7 +154,10 @@ function handleJsonPOIs(data) {
         attribution:'&copy; <a href="https://www.mos.ed.tum.de/en/sv/homepage/">TUM Chair of Urban Structure and Transport Planning</a>',
         pointToLayer: function (feature, latlng) {
             return L.circleMarker(latlng, geoJsonCircleStyle);
-        }
+        },
+        onEachFeature: function (feature, layer) {
+            layer.bindPopup(String(feature.properties.name));
+          }
         }).addTo(map);
 }
 
@@ -197,6 +204,7 @@ function highlightFeature(e) {
     });
 
     layer.bringToFront();
+    poiLayer.bringToFront();
     info.update(layer.feature.properties);
 }
 
