@@ -1,0 +1,35 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    --tum-blue-brand:#3070B3;
+    --tum-blue-dark:#072140;
+    background-color: var(--tum-blue-dark);
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+.header {
+    height: 42px;
+    margin: 20px;
+    width: auto;
+}
+
+.header > * {
+    vertical-align: middle;
+}
+
+.selector {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: stretch;
+    gap: 10px;
+}
+
+.selectorButton {
+    background-color: var(--tum-blue-brand);
+    width: 100%;
+    text-align: center;
+}
