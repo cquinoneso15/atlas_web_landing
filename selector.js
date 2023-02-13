@@ -1,3 +1,5 @@
+const indicators = ["Accessibility", "Exposure", "Availability", "Behaviour"];
+
 class SelectorButton extends React.Component {
     render() {
         return (
@@ -29,10 +31,7 @@ class Selector extends React.Component {
     render() {
         return (
             <div className="selector">
-                <SelectorButton name="Accessibility" onClick={(e) => {this.updateIndicator(e);}} />
-                <SelectorButton name="Exposure" onClick={(e) => {this.updateIndicator(e);}} />
-                <SelectorButton name="Availability" onClick={(e) => {this.updateIndicator(e);}} />
-                <SelectorButton name="Behaviour" onClick={(e) => {this.updateIndicator(e);}} />
+                {indicators.map((name) => {return <SelectorButton key={name} name={name} onClick={(e) => {this.updateIndicator(e);}} />})}
             </div>
         );
     }
