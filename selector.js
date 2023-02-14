@@ -1,4 +1,6 @@
 const indicators = ["Accessibility", "Exposure", "Availability", "Behaviour"];
+const social_groups = ["Total population", "Under 18", "Over 65", "Non-germans"];
+const amenities = ["Health", "Education", "Food", "Sports", "Community centers"];
 
 class SelectorButton extends React.Component {
     render() {
@@ -26,14 +28,52 @@ class Selector extends React.Component {
             amenity: null,
             map_type: null
         });
+
+        this.render();
+    }
+
+    updateSocialGroup(e) {
+        this.setState((state) => ({
+            indicator: state.indicator,
+            social_group: e.target.value,
+            amenity: null,
+            map_type: null
+        }));
+
+        this.render();
+    }
+
+    updateAmenity(e) {
+        this.setState((state) => ({
+            indicator: state.indicator,
+            social_group: state.social_group,
+            amenity: e.target.value,
+            map_type: null
+        }));
+
+        this.render();
     }
     
     render() {
-        return (
-            <div className="selector">
-                {indicators.map((name) => {return <SelectorButton key={name} name={name} onClick={(e) => {this.updateIndicator(e);}} />})}
-            </div>
-        );
+        if (this.state.indicator == null) {
+            return (
+                <div className="selector">
+                    {indicators.map((name) => {return <SelectorButton key={name} name={name} onClick={(e) => {this.updateIndicator(e);}} />})}
+                </div>
+            );
+        } else if (this.state.social_group == null) {
+            return (
+                <div className="selector">
+                    {social_groups.map((name) => {return <SelectorButton key={name} name={name} onClick={(e) => {this.updateSocialGroup(e);}} />})}
+                </div>
+            );
+        } else {
+            return (
+                <div className="selector">
+                    {amenities.map((name) => {return <SelectorButton key={name} name={name} onClick={(e) => {this.updateAmenity(e);}} />})}
+                </div>
+            );
+        }
     }
 }
 

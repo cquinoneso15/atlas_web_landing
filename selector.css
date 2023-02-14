@@ -19,8 +19,6 @@ html, body {
 }
 
 .selector {
-    width: auto;
-    height: auto;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -31,5 +29,8 @@ html, body {
 .selectorButton {
     background-color: var(--tum-blue-brand);
     width: 100%;
-    text-align: center;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
 }
