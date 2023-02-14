@@ -22,6 +22,7 @@ btn.onclick = (event) => {
     if (polygonLayer) { 
         polygonLayer.remove();
         poiLayer.remove();
+        areaLayer.remove();
         layerControl.remove();
     }
 
@@ -57,10 +58,27 @@ btn.onclick = (event) => {
         jsonpCallback:'callback:handleJsonPOIs',
         jsonp:'format_options'
     });
+
+    $.ajax('http://localhost:8080/geoserver/wfs',{
+        type: 'GET',
+        data: {
+            service: 'WFS',
+            version: '1.1.0',
+            request: 'GetFeature',
+            typename: 'MGeM:service_areas',
+            srsname: 'EPSG:4326',
+            outputFormat: 'text/javascript',
+            viewparams: 'amenity:'.concat(amenity.value).concat(';mot:').concat(mot.value)
+            },
+        dataType: 'jsonp',
+        jsonpCallback:'callback:handleJsonAreas',
+        jsonp:'format_options'
+    });
 };
 
 var polygonLayer;
 var poiLayer;
+var areaLayer;
 var layerControl;
 
 const download = document.querySelector('#download');
@@ -131,13 +149,17 @@ function handleJson(data) {
 
     // Add layer control to map
     layerControl = L.control.layers(null, {"Background": tiles,
-        "Polygon": polygonLayer, 
-        "POIs": poiLayer
+        "Indicator": polygonLayer, 
+        "POIs": poiLayer,
+        "Service Areas": areaLayer
     }).addTo(map)
 
-    if (poiLayer) {
-        poiLayer.bringToFront();
-    }
+    if (areaLayer) {
+        areaLayer.bringToFront();
+        if (poiLayer) {
+            poiLayer.bringToFront();
+        }
+    }  
 }
 
 var geoJsonCircleStyle = {
@@ -159,6 +181,17 @@ function handleJsonPOIs(data) {
             layer.bindPopup(String(feature.properties.name));
           }
         }).addTo(map);
+}
+
+function handleJsonAreas(data) {
+    areaLayer = L.geoJson(data, {
+        attribution:'&copy; <a href="https://www.mos.ed.tum.de/en/sv/homepage/">TUM Chair of Urban Structure and Transport Planning</a>',
+        interactive: false
+    }).addTo(map);
+    
+    if (poiLayer) {
+        poiLayer.bringToFront();
+    }
 }
 
 // Generate quantiles
@@ -204,6 +237,7 @@ function highlightFeature(e) {
     });
 
     layer.bringToFront();
+    areaLayer.bringToFront();
     poiLayer.bringToFront();
     info.update(layer.feature.properties);
 }
