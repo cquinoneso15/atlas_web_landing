@@ -177,7 +177,7 @@ var poiCircleStyle = {
 
 function getLegendIFromCircleStyle(style) {
     let size = (style.radius * 2.0) + (style.weight * 2.0);
-    return '<i class="circle" style="background: ' + style.fillColor + percToHex(style.fillOpacity) + '; border: ' + style.weight + 'px solid #' + style.color + percToHex(style.opacity) + '; width:' + size + 'px; height:' + size + 'px;" ></i>';
+    return '<i class="circle" style="background: ' + style.fillColor + percToHex(style.fillOpacity) + '; border: ' + style.weight + 'px solid ' + style.color + percToHex(style.opacity) + '; width:' + size + 'px; height:' + size + 'px;" ></i>';
 }
 
 /**
@@ -446,10 +446,22 @@ function handleJsonPOIs(data) {
 }
 
 function handleJsonAreas(data) {
+    let style = {
+        fillColor: '#ffffff',
+        weight: 1,
+        opacity: 1,
+        color: '#483D8B',
+        fillOpacity: 0.2
+    };
     areaLayer = L.geoJson(data, {
         attribution:'&copy; <a href="https://www.mos.ed.tum.de/en/sv/homepage/">TUM Chair of Urban Structure and Transport Planning</a>',
-        interactive: false
+        interactive: false,
+        style: style
     }).addTo(map);
+
+    var legend_text = '<h4>POI catchment area</h4>';
+    legend_text += '<i class="square" style="background:' + style.fillColor + percToHex(style.fillOpacity) + '; border: ' + style.weight + 'px solid ' + style.color + percToHex(style.opacity) + '; width: 16px; height: 16px" ></i> '
+    generateLegend(legend_text, false)
     
     if (poiLayer) {
         poiLayer.bringToFront();
