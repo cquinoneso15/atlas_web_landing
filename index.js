@@ -46,6 +46,10 @@ function getQuants(data) {
     }
 }
 
+function percToHex(perc) {
+    return (Math.round(255*perc)).toString(16);
+}
+
 /*************
  * END UTILS *
  *************/
@@ -78,6 +82,8 @@ btn.onclick = (event) => {
         areaLayer.remove();
         layerControl.remove();
     }
+
+    generateLegend("", true);
 
     //Connect to Geoserver WFS
     if (map_type.value == "m1") {
@@ -160,17 +166,44 @@ var legend;
  * MAP DESIGN *
  **************/
 
-var geoJsonCircleStyle = {
+var poiCircleStyle = {
     radius: 1.5,
     fillColor: "#5ab4ac",
-    color: "#000",
+    color: "#000000",
     weight: 0.25,
     opacity: 0.75,
     fillOpacity: 1
 }
 
-function generateLegend() {
+function getLegendIFromCircleStyle(style) {
+    let size = (style.radius * 2.0) + (style.weight * 2.0);
+    return '<i class="circle" style="background: ' + style.fillColor + percToHex(style.fillOpacity) + '; border: ' + style.weight + 'px solid #' + style.color + percToHex(style.opacity) + '; width:' + size + 'px; height:' + size + 'px;" ></i>';
+}
 
+/**
+ * Adds info to the map legend
+ *
+ * @param {String} info The info to add
+ * @param {boolean} replace True: replace the current legend, False: append to the current legend
+ */
+function generateLegend(info, replace) {
+    if (replace) {
+        if (legend) { legend.remove(); }
+
+        legend = L.control({position: 'bottomright'});
+        legend.onAdd = function (map) {
+            var div = L.DomUtil.create('div', 'info legend');
+            div.innerHTML = info;
+            return div;
+        };
+
+        legend.addTo(map);
+    } else {
+        if (legend._container.innerHTML != '') {
+            legend._container.innerHTML += '<br>';
+        }
+        legend._container.innerHTML += info;
+    }
 }
 
 /******************
@@ -358,28 +391,20 @@ function handleJsonSeq(data) {
         };
     }
 
-    // Add legend
-    if (legend) { legend.remove(); }
-    legend = L.control({position: 'bottomright'});
+    // legend
+    let grades = [quants["Q0"], quants["Q1"], quants["Q2"], quants["Q3"], quants["Q4"]];
+    var legend_text = "<h4>Accessibility [%]</h4>";
 
-    legend.onAdd = function (map) {
+    // loop through our density intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < grades.length - 1; i++) {
+        legend_text +=
+            '<i class="square" style="background:' + getColor((grades[i] + grades[i + 1])/2.0) + '" ></i> ' +
+            (grades[i].toFixed(2)) + '&ndash;' + (grades[i + 1].toFixed(2));
+        if (i < grades.length - 2) {legend_text += '<br>';}
+    }
 
-        var div = L.DomUtil.create('div', 'info legend'),
-            grades = [quants["Q0"], quants["Q1"], quants["Q2"], quants["Q3"], quants["Q4"]],
-            labels = [];
-
-        // loop through our density intervals and generate a label with a colored square for each interval
-        for (var i = 0; i < grades.length - 1; i++) {
-            div.innerHTML +=
-                '<i style="background:' + getColor((grades[i] + grades[i + 1])/2.0) + '"></i> ' +
-                (grades[i].toFixed(2)) + '&ndash;' + (grades[i + 1].toFixed(2));
-            if (i < grades.length - 2) {div.innerHTML += '<br>';}
-        }
-
-        return div;
-    };
-
-    legend.addTo(map);
+    // add legend to map
+    generateLegend(legend_text, false);
 
     // Add layer to map
     polygonLayer = L.geoJson(data, {
@@ -408,12 +433,16 @@ function handleJsonPOIs(data) {
     poiLayer = L.geoJson(data, {
         attribution:'&copy; <a href="https://www.mos.ed.tum.de/en/sv/homepage/">TUM Chair of Urban Structure and Transport Planning</a>',
         pointToLayer: function (feature, latlng) {
-            return L.circleMarker(latlng, geoJsonCircleStyle);
+            return L.circleMarker(latlng, poiCircleStyle);
         },
         onEachFeature: function (feature, layer) {
             layer.bindPopup(String(feature.properties.name));
           }
         }).addTo(map);
+    
+    var legend_text = '<h4>Points of Interest (POIs)</h4>';
+    legend_text += getLegendIFromCircleStyle(poiCircleStyle);
+    generateLegend(legend_text, false)
 }
 
 function handleJsonAreas(data) {
