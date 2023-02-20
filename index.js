@@ -1,3 +1,55 @@
+/******************************
+ * index.js                   *
+ * Script file for index.html *
+ * Author: Héctor Ochoa Ortiz *
+ * Affil.: TUM SVP            *
+ ******************************/
+
+/*********
+ * UTILS *
+ *********/
+
+// Auxiliary function
+function sortedQuants(sortedArray, q){
+    var pos = ((sortedArray.length) - 1) * q;
+    var base = Math.floor(pos);
+    var rest = pos - base;
+    if( (sortedArray[base+1] !== undefined) ) {
+        return sortedArray[base] + rest * (sortedArray[base+1] - sortedArray[base]);
+    } else {
+        return sortedArray[base];
+    }
+}
+
+/**
+ * Returns the quantiles of data, value must be stored in properties.value for each feature of data.
+ *
+ * @param {object} data The data in a dictionary format, fetched from a geoJSON.
+ * @return {object} The quantiles in a dictionary, with keys "Q0" to "Q4"
+ */
+function getQuants(data) {
+    var dataArray = [];
+    for (let f in data.features) {
+        dataArray.push(data.features[f].properties.value);
+    }
+
+    var sortedArray=dataArray.sort(function(a, b) {
+        return a - b;
+    });
+    
+    return {
+        "Q0": sortedArray[0],
+        "Q1": sortedQuants(sortedArray, 0.25),
+        "Q2": sortedQuants(sortedArray, 0.5),
+        "Q3": sortedQuants(sortedArray, 0.75),
+        "Q4": sortedArray[sortedArray.length - 1],
+    }
+}
+
+/*************
+ * END UTILS *
+ *************/
+
 // Create map
 const map = L.map('map').setView([48.14, 11.57], 11);
 
@@ -41,7 +93,7 @@ btn.onclick = (event) => {
                 viewparams: 'user:'.concat(user.value).concat(';amenity:').concat(amenity.value).concat(';mot:').concat(mot.value)
                 },
             dataType: 'jsonp',
-            jsonpCallback:'callback:handleJson',
+            jsonpCallback:'callback:handleJsonSeq',
             jsonp:'format_options'
         });
     } else {
@@ -103,6 +155,98 @@ var biv;
 
 const download = document.querySelector('#download');
 var legend;
+
+/**************
+ * MAP DESIGN *
+ **************/
+
+var geoJsonCircleStyle = {
+    radius: 1.5,
+    fillColor: "#5ab4ac",
+    color: "#000",
+    weight: 0.25,
+    opacity: 0.75,
+    fillOpacity: 1
+}
+
+function generateLegend() {
+
+}
+
+/******************
+ * END MAP DESIGN *
+ ******************/
+
+/*********************
+ * MAP INTERACTIVITY *
+ *********************/
+
+// Add hovering functionality
+function highlightFeature(e) {
+    var layer = e.target;
+
+    layer.setStyle({
+        weight: 5,
+        color: '#666',
+        dashArray: '',
+        fillOpacity: 0.7
+    });
+
+    layer.bringToFront();
+    areaLayer.bringToFront();
+    poiLayer.bringToFront();
+    info.update(layer.feature.properties);
+}
+
+function resetHighlight(e) {
+    polygonLayer.resetStyle(e.target);
+    info.update();
+}
+
+function zoomToFeature(e) {
+    map.fitBounds(e.target.getBounds());
+}
+
+function onEachFeature(feature, layer) {
+    layer.on({
+        mouseover: highlightFeature,
+        mouseout: resetHighlight,
+        click: zoomToFeature
+    });
+}
+
+
+var info = L.control();
+
+info.onAdd = function (map) {
+    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+    this.update();
+    return this._div;
+};
+
+// method that we will use to update the control based on feature properties passed
+info.update = function (props) {
+    this._div.innerHTML = '<h4>' + user.options[user.selectedIndex].text + " / " + amenity.options[amenity.selectedIndex].text + " / " + mot.options[mot.selectedIndex].text +'</h4>';
+    if (biv) {
+        this._div.innerHTML +=  (props 
+            ? '<b>' + props.name + '</b><br /> Acc. ' + props.value_acc.toFixed(2) + ' % (' + props.hilo_acc + ') - Pop. ' + props.value_pop.toFixed(2) + ' % (' + props.hilo_pop + ')'
+            : 'Hover over a neighborhood');
+    } else {
+        this._div.innerHTML +=  (props 
+            ? '<b>' + props.name + '</b><br />' + props.value.toFixed(2) + ' %'
+            : 'Hover over a neighborhood');
+    }
+};
+
+info.addTo(map);
+
+/*************************
+ * END MAP INTERACTIVITY *
+ *************************/
+
+/******************
+ * AJAX CALLBACKS *
+ ******************/
 
 function handleJsonBiv(data) {
     biv = true;
@@ -180,8 +324,7 @@ function handleJsonBiv(data) {
     }  
 }
 
-// Function called by Ajax
-function handleJson(data) {
+function handleJsonSeq(data) {
     biv = false;
 
     // Add data to download button
@@ -261,15 +404,6 @@ function handleJson(data) {
     }  
 }
 
-var geoJsonCircleStyle = {
-    radius: 1.5,
-    fillColor: "#5ab4ac",
-    color: "#000",
-    weight: 0.25,
-    opacity: 0.75,
-    fillOpacity: 1
-}
-
 function handleJsonPOIs(data) {
     poiLayer = L.geoJson(data, {
         attribution:'&copy; <a href="https://www.mos.ed.tum.de/en/sv/homepage/">TUM Chair of Urban Structure and Transport Planning</a>',
@@ -293,91 +427,6 @@ function handleJsonAreas(data) {
     }
 }
 
-// Generate quantiles
-function sortedQuants(sortedArray, q){
-    var pos = ((sortedArray.length) - 1) * q;
-    var base = Math.floor(pos);
-    var rest = pos - base;
-    if( (sortedArray[base+1] !== undefined) ) {
-        return sortedArray[base] + rest * (sortedArray[base+1] - sortedArray[base]);
-    } else {
-        return sortedArray[base];
-    }
-}
-
-function getQuants(data) {
-    var dataArray = [];
-    for (let f in data.features) {
-        dataArray.push(data.features[f].properties.value);
-    }
-
-    var sortedArray=dataArray.sort(function(a, b) {
-        return a - b;
-    });
-    
-    return {
-        "Q0": sortedArray[0],
-        "Q1": sortedQuants(sortedArray, 0.25),
-        "Q2": sortedQuants(sortedArray, 0.5),
-        "Q3": sortedQuants(sortedArray, 0.75),
-        "Q4": sortedArray[sortedArray.length - 1],
-    }
-}
-
-// Add hovering functionality
-function highlightFeature(e) {
-    var layer = e.target;
-
-    layer.setStyle({
-        weight: 5,
-        color: '#666',
-        dashArray: '',
-        fillOpacity: 0.7
-    });
-
-    layer.bringToFront();
-    areaLayer.bringToFront();
-    poiLayer.bringToFront();
-    info.update(layer.feature.properties);
-}
-
-function resetHighlight(e) {
-    polygonLayer.resetStyle(e.target);
-    info.update();
-}
-
-function zoomToFeature(e) {
-    map.fitBounds(e.target.getBounds());
-}
-
-function onEachFeature(feature, layer) {
-    layer.on({
-        mouseover: highlightFeature,
-        mouseout: resetHighlight,
-        click: zoomToFeature
-    });
-}
-
-var info = L.control();
-
-info.onAdd = function (map) {
-    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
-    this.update();
-    return this._div;
-};
-
-// method that we will use to update the control based on feature properties passed
-info.update = function (props) {
-    this._div.innerHTML = '<h4>' + user.options[user.selectedIndex].text + " / " + amenity.options[amenity.selectedIndex].text + " / " + mot.options[mot.selectedIndex].text +'</h4>';
-    if (biv) {
-        this._div.innerHTML +=  (props 
-            ? '<b>' + props.name + '</b><br /> Acc. ' + props.value_acc.toFixed(2) + ' % (' + props.hilo_acc + ') - Pop. ' + props.value_pop.toFixed(2) + ' % (' + props.hilo_pop + ')'
-            : 'Hover over a neighborhood');
-    } else {
-        this._div.innerHTML +=  (props 
-            ? '<b>' + props.name + '</b><br />' + props.value.toFixed(2) + ' %'
-            : 'Hover over a neighborhood');
-    }
-};
-
-info.addTo(map);
+/**********************
+ * END AJAX CALLBACKS *
+ **********************/

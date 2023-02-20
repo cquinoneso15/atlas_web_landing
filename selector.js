@@ -92,7 +92,7 @@ class Header extends React.Component {
     render() {
         return (
             <div className="header">
-                <TUMLogo/> In(justice) Atlas
+                <TUMLogo/> Mobility (In)justice Atlas
             </div>
         );
     }
