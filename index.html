@@ -5,17 +5,19 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
-	<title>Quick Start - Leaflet</title>
+	<title id="title", i18n="title">(In)justice Atlas</title>
 	
 	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
 
-	<script
-          src="https://code.jquery.com/jquery-3.4.1.min.js"
-          integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-          crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+	<!-- i18n -->
+	<script src="https://cdn.jsdelivr.net/npm/i18next@22.4.10/i18next.min.js" integrity="sha256-HhbcQm9uCk1XKzYb8wgO1aAW+Wcdh14ITlBggCy7lDk=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/i18next-http-backend@2.1.1/i18nextHttpBackend.min.js" integrity="sha256-PEd69ii7lMPlO/bO8tpxaVjLXXkD+r9aejg8nFAcue4=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@7.0.1/i18nextBrowserLanguageDetector.min.js" integrity="sha256-5O8laLCvkg/QnkOa0yIzvZ7RcJgT4nSG6/gdbudcTGg=" crossorigin="anonymous"></script>
 
 	<link rel="stylesheet" href="index.css" />
 </head>
@@ -49,6 +51,12 @@
 <button id="btn">Update map</button>
 <br><br>
 <a href="#" id="download">📥 Download data (GeoJSON)</a>
+<br>
+<select data-i18n-switcher class="locale-switcher">
+	<option value="en">English</option>
+	<option value="de">Deutsch</option>
+	<option value="es">Español</option>
+</select>
 <script src="index.js"></script>
 </body>
 </html>

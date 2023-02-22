@@ -10,12 +10,12 @@
  *********/
 
 // Auxiliary function
-function sortedQuants(sortedArray, q){
+function sortedQuants(sortedArray, q) {
     var pos = ((sortedArray.length) - 1) * q;
     var base = Math.floor(pos);
     var rest = pos - base;
-    if( (sortedArray[base+1] !== undefined) ) {
-        return sortedArray[base] + rest * (sortedArray[base+1] - sortedArray[base]);
+    if ((sortedArray[base + 1] !== undefined)) {
+        return sortedArray[base] + rest * (sortedArray[base + 1] - sortedArray[base]);
     } else {
         return sortedArray[base];
     }
@@ -33,10 +33,10 @@ function getQuants(data) {
         dataArray.push(data.features[f].properties.value);
     }
 
-    var sortedArray=dataArray.sort(function(a, b) {
+    var sortedArray = dataArray.sort(function (a, b) {
         return a - b;
     });
-    
+
     return {
         "Q0": sortedArray[0],
         "Q1": sortedQuants(sortedArray, 0.25),
@@ -47,7 +47,7 @@ function getQuants(data) {
 }
 
 function percToHex(perc) {
-    return (Math.round(255*perc)).toString(16);
+    return (Math.round(255 * perc)).toString(16);
 }
 
 /*************
@@ -59,7 +59,7 @@ const map = L.map('map').setView([48.14, 11.57], 11);
 
 // Add background layer
 const tiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-    attribution:'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
     maxZoom: 20,
     minZoom: 0
@@ -76,7 +76,7 @@ btn.onclick = (event) => {
     info.update();
 
     // Remove layers if already displayed
-    if (polygonLayer) { 
+    if (polygonLayer) {
         polygonLayer.remove();
         poiLayer.remove();
         areaLayer.remove();
@@ -87,7 +87,7 @@ btn.onclick = (event) => {
 
     //Connect to Geoserver WFS
     if (map_type.value == "m1") {
-        $.ajax('http://localhost:8080/geoserver/wfs',{
+        $.ajax('http://localhost:8080/geoserver/wfs', {
             type: 'GET',
             data: {
                 service: 'WFS',
@@ -97,13 +97,13 @@ btn.onclick = (event) => {
                 srsname: 'EPSG:4326',
                 outputFormat: 'text/javascript',
                 viewparams: 'user:'.concat(user.value).concat(';amenity:').concat(amenity.value).concat(';mot:').concat(mot.value)
-                },
+            },
             dataType: 'jsonp',
-            jsonpCallback:'callback:handleJsonSeq',
-            jsonp:'format_options'
+            jsonpCallback: 'callback:handleJsonSeq',
+            jsonp: 'format_options'
         });
     } else {
-        $.ajax('http://localhost:8080/geoserver/wfs',{
+        $.ajax('http://localhost:8080/geoserver/wfs', {
             type: 'GET',
             data: {
                 service: 'WFS',
@@ -113,14 +113,14 @@ btn.onclick = (event) => {
                 srsname: 'EPSG:4326',
                 outputFormat: 'text/javascript',
                 viewparams: 'user:'.concat(user.value).concat(';amenity:').concat(amenity.value).concat(';mot:').concat(mot.value)
-                },
+            },
             dataType: 'jsonp',
-            jsonpCallback:'callback:handleJsonBiv',
-            jsonp:'format_options'
+            jsonpCallback: 'callback:handleJsonBiv',
+            jsonp: 'format_options'
         });
     }
 
-    $.ajax('http://localhost:8080/geoserver/wfs',{
+    $.ajax('http://localhost:8080/geoserver/wfs', {
         type: 'GET',
         data: {
             service: 'WFS',
@@ -130,13 +130,13 @@ btn.onclick = (event) => {
             srsname: 'EPSG:4326',
             outputFormat: 'text/javascript',
             viewparams: 'amenity:'.concat(amenity.value)
-            },
+        },
         dataType: 'jsonp',
-        jsonpCallback:'callback:handleJsonPOIs',
-        jsonp:'format_options'
+        jsonpCallback: 'callback:handleJsonPOIs',
+        jsonp: 'format_options'
     });
 
-    $.ajax('http://localhost:8080/geoserver/wfs',{
+    $.ajax('http://localhost:8080/geoserver/wfs', {
         type: 'GET',
         data: {
             service: 'WFS',
@@ -146,10 +146,10 @@ btn.onclick = (event) => {
             srsname: 'EPSG:4326',
             outputFormat: 'text/javascript',
             viewparams: 'amenity:'.concat(amenity.value).concat(';mot:').concat(mot.value)
-            },
+        },
         dataType: 'jsonp',
-        jsonpCallback:'callback:handleJsonAreas',
-        jsonp:'format_options'
+        jsonpCallback: 'callback:handleJsonAreas',
+        jsonp: 'format_options'
     });
 };
 
@@ -190,7 +190,7 @@ function generateLegend(info, replace) {
     if (replace) {
         if (legend) { legend.remove(); }
 
-        legend = L.control({position: 'bottomright'});
+        legend = L.control({ position: 'bottomright' });
         legend.onAdd = function (map) {
             var div = L.DomUtil.create('div', 'info legend');
             div.innerHTML = info;
@@ -259,19 +259,22 @@ info.onAdd = function (map) {
 
 // method that we will use to update the control based on feature properties passed
 info.update = function (props) {
-    this._div.innerHTML = '<h4>' + user.options[user.selectedIndex].text + " / " + amenity.options[amenity.selectedIndex].text + " / " + mot.options[mot.selectedIndex].text +'</h4>';
+    this._div.innerHTML = '<h4>' + user.options[user.selectedIndex].text + " / " + amenity.options[amenity.selectedIndex].text + " / " + mot.options[mot.selectedIndex].text + '</h4>';
     if (biv) {
-        this._div.innerHTML +=  (props 
+        this._div.innerHTML += (props
             ? '<b>' + props.name + '</b><br /> Acc. ' + props.value_acc.toFixed(2) + ' % (' + props.hilo_acc + ') - Pop. ' + props.value_pop.toFixed(2) + ' % (' + props.hilo_pop + ')'
             : 'Hover over a neighborhood');
     } else {
-        this._div.innerHTML +=  (props 
+        this._div.innerHTML += (props
             ? '<b>' + props.name + '</b><br />' + props.value.toFixed(2) + ' %'
             : 'Hover over a neighborhood');
     }
 };
 
 info.addTo(map);
+
+// Add scale
+var scale = L.control.scale({ metric: true, imperial: false }).addTo(map);
 
 /*************************
  * END MAP INTERACTIVITY *
@@ -323,7 +326,7 @@ function handleJsonBiv(data) {
 
     // Add legend
     if (legend) { legend.remove(); }
-    legend = L.control({position: 'bottomright'});
+    legend = L.control({ position: 'bottomright' });
 
     legend.onAdd = function (map) {
 
@@ -336,15 +339,16 @@ function handleJsonBiv(data) {
 
     // Add layer to map
     polygonLayer = L.geoJson(data, {
-        attribution:'&copy; <a href="https://www.mos.ed.tum.de/en/sv/homepage/">TUM Chair of Urban Structure and Transport Planning</a>',
+        attribution: '&copy; <a href="https://www.mos.ed.tum.de/en/sv/homepage/">TUM Chair of Urban Structure and Transport Planning</a>',
         style: style,
         onEachFeature: onEachFeature
-        }).addTo(map);
+    }).addTo(map);
     map.fitBounds(polygonLayer.getBounds());
 
     // Add layer control to map
-    layerControl = L.control.layers(null, {"Background": tiles,
-        "Indicator": polygonLayer, 
+    layerControl = L.control.layers(null, {
+        "Background": tiles,
+        "Indicator": polygonLayer,
         "POIs": poiLayer,
         "Service Areas": areaLayer
     }).addTo(map)
@@ -354,7 +358,7 @@ function handleJsonBiv(data) {
         if (poiLayer) {
             poiLayer.bringToFront();
         }
-    }  
+    }
 }
 
 function handleJsonSeq(data) {
@@ -370,15 +374,15 @@ function handleJsonSeq(data) {
         alert('Error while querying, no features found.');
         return;
     }
-    
+
     // Generate quantiles
     var quants = getQuants(data);
     // Generate style from quantiles
     function getColor(d) {
-        return  d > quants["Q3"]  ? '#d7301f' :
-                d > quants["Q2"]  ? '#fc8d59' :
-                d > quants["Q1"]  ? '#fdcc8a' :
-                                    '#fef0d9' ;
+        return d > quants["Q3"] ? '#d7301f' :
+            d > quants["Q2"] ? '#fc8d59' :
+                d > quants["Q1"] ? '#fdcc8a' :
+                    '#fef0d9';
     }
 
     function style(feature) {
@@ -398,9 +402,9 @@ function handleJsonSeq(data) {
     // loop through our density intervals and generate a label with a colored square for each interval
     for (var i = 0; i < grades.length - 1; i++) {
         legend_text +=
-            '<i class="square" style="background:' + getColor((grades[i] + grades[i + 1])/2.0) + '" ></i> ' +
+            '<i class="square" style="background:' + getColor((grades[i] + grades[i + 1]) / 2.0) + '" ></i> ' +
             (grades[i].toFixed(2)) + '&ndash;' + (grades[i + 1].toFixed(2));
-        if (i < grades.length - 2) {legend_text += '<br>';}
+        if (i < grades.length - 2) { legend_text += '<br>'; }
     }
 
     // add legend to map
@@ -408,15 +412,16 @@ function handleJsonSeq(data) {
 
     // Add layer to map
     polygonLayer = L.geoJson(data, {
-        attribution:'&copy; <a href="https://www.mos.ed.tum.de/en/sv/homepage/">TUM Chair of Urban Structure and Transport Planning</a>',
+        attribution: '&copy; <a href="https://www.mos.ed.tum.de/en/sv/homepage/">TUM Chair of Urban Structure and Transport Planning</a>',
         style: style,
         onEachFeature: onEachFeature
-        }).addTo(map);
+    }).addTo(map);
     map.fitBounds(polygonLayer.getBounds());
 
     // Add layer control to map
-    layerControl = L.control.layers(null, {"Background": tiles,
-        "Indicator": polygonLayer, 
+    layerControl = L.control.layers(null, {
+        "Background": tiles,
+        "Indicator": polygonLayer,
         "POIs": poiLayer,
         "Service Areas": areaLayer
     }).addTo(map)
@@ -426,20 +431,20 @@ function handleJsonSeq(data) {
         if (poiLayer) {
             poiLayer.bringToFront();
         }
-    }  
+    }
 }
 
 function handleJsonPOIs(data) {
     poiLayer = L.geoJson(data, {
-        attribution:'&copy; <a href="https://www.mos.ed.tum.de/en/sv/homepage/">TUM Chair of Urban Structure and Transport Planning</a>',
+        attribution: '&copy; <a href="https://www.mos.ed.tum.de/en/sv/homepage/">TUM Chair of Urban Structure and Transport Planning</a>',
         pointToLayer: function (feature, latlng) {
             return L.circleMarker(latlng, poiCircleStyle);
         },
         onEachFeature: function (feature, layer) {
             layer.bindPopup(String(feature.properties.name));
-          }
-        }).addTo(map);
-    
+        }
+    }).addTo(map);
+
     var legend_text = '<h4>Points of Interest (POIs)</h4>';
     legend_text += getLegendIFromCircleStyle(poiCircleStyle);
     generateLegend(legend_text, false)
@@ -454,7 +459,7 @@ function handleJsonAreas(data) {
         fillOpacity: 0.2
     };
     areaLayer = L.geoJson(data, {
-        attribution:'&copy; <a href="https://www.mos.ed.tum.de/en/sv/homepage/">TUM Chair of Urban Structure and Transport Planning</a>',
+        attribution: '&copy; <a href="https://www.mos.ed.tum.de/en/sv/homepage/">TUM Chair of Urban Structure and Transport Planning</a>',
         interactive: false,
         style: style
     }).addTo(map);
@@ -462,7 +467,7 @@ function handleJsonAreas(data) {
     var legend_text = '<h4>POI catchment area</h4>';
     legend_text += '<i class="square" style="background:' + style.fillColor + percToHex(style.fillOpacity) + '; border: ' + style.weight + 'px solid ' + style.color + percToHex(style.opacity) + '; width: 16px; height: 16px" ></i> '
     generateLegend(legend_text, false)
-    
+
     if (poiLayer) {
         poiLayer.bringToFront();
     }
@@ -471,3 +476,48 @@ function handleJsonAreas(data) {
 /**********************
  * END AJAX CALLBACKS *
  **********************/
+
+/********
+ * I18N *
+ ********/
+
+function translatePage() {
+    document
+        .querySelectorAll("[i18n]")
+        .forEach(translateElement);
+}
+
+function translateElement(element) {
+    const key = element.getAttribute("i18n");
+    element.innerText = i18next.t(key);
+}
+
+function bindLocaleSwitcher(initialValue) {
+    const switcher =
+        document.querySelector("[data-i18n-switcher]");
+    switcher.value = initialValue;
+    switcher.onchange = (e) => {
+        // Set the locale to the selected option[value]
+        i18next.changeLanguage(e.target.value);
+    };
+}
+
+i18next
+    .use(i18nextHttpBackend)
+    .use(i18nextBrowserLanguageDetector)
+    .init({
+        supportedLngs: ["en", "de", "es"],
+        fallbackLng: "en",
+        debug: true,
+        nonExplicitSupportedLngs: true,
+        backend: {
+            loadPath: 'i18n/{{lng}}.json'
+        }
+    }, function(err, t) {translatePage(); 
+        bindLocaleSwitcher(i18next.language);});
+
+i18next.on('languageChanged', () => {translatePage();});
+
+/************
+ * END I18N *
+ ************/
