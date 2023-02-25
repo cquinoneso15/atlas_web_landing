@@ -5,6 +5,8 @@
  * Affil.: TUM SVP            *
  ******************************/
 
+
+
 /*********
  * UTILS *
  *********/
@@ -67,10 +69,53 @@ const tiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y
 
 // Add selector and button
 const btn = document.querySelector('#btn');
+const justice = document.querySelector('#justice')
 const user = document.querySelector('#user')
 const amenity = document.querySelector('#amenity')
 const mot = document.querySelector('#mot')
 const map_type = document.querySelector('#map_type')
+
+var acc = {
+    "user": {
+        "tp": "Total population",
+	    "o65": "Over 65 y/o",
+	    "u18": "Under 18 y/o",
+	    "ng": "Non-germans"
+    },
+    "amenity": {
+        "h": "Health",
+        "e": "Education",
+        "f": "Food",
+        "s": "Sports",
+        "cc": "Community centers"
+    },
+    "mot": {
+        "w_700": "Walking, 700m",
+        "b_700": "Cycling, 10 min",
+        "wpt_700": "Walking + Public Transport"
+    }
+}
+
+function updateSelector(selector, name, justice_value) {
+    selector.options.length = 0;
+    selector.disabled = false;
+    try {
+        let selector_dict = window[justice_value][name];
+        for (var key in selector_dict) {
+            selector.add(new Option(selector_dict[key], key))
+        }
+    } catch (error){
+        selector.disabled = true;
+    }
+}
+
+justice.onchange = (e) => {
+    updateSelector(user, "user", e.target.value);
+    updateSelector(amenity, "amenity", e.target.value);
+    updateSelector(mot, "mot", e.target.value);
+};
+
+
 btn.onclick = (event) => {
     event.preventDefault();
     info.update();
@@ -86,71 +131,73 @@ btn.onclick = (event) => {
     generateLegend("", true);
 
     //Connect to Geoserver WFS
-    if (map_type.value == "m1") {
+    if (justice.value == "acc") {
+        if (map_type.value == "m1") {
+            $.ajax('http://localhost:8080/geoserver/wfs', {
+                type: 'GET',
+                data: {
+                    service: 'WFS',
+                    version: '1.1.0',
+                    request: 'GetFeature',
+                    typename: 'MGeM:Acc_all',
+                    srsname: 'EPSG:4326',
+                    outputFormat: 'text/javascript',
+                    viewparams: 'user:'.concat(user.value).concat(';amenity:').concat(amenity.value).concat(';mot:').concat(mot.value)
+                },
+                dataType: 'jsonp',
+                jsonpCallback: 'callback:handleJsonSeq',
+                jsonp: 'format_options'
+            });
+        } else {
+            $.ajax('http://localhost:8080/geoserver/wfs', {
+                type: 'GET',
+                data: {
+                    service: 'WFS',
+                    version: '1.1.0',
+                    request: 'GetFeature',
+                    typename: 'MGeM:Acc_hilo',
+                    srsname: 'EPSG:4326',
+                    outputFormat: 'text/javascript',
+                    viewparams: 'user:'.concat(user.value).concat(';amenity:').concat(amenity.value).concat(';mot:').concat(mot.value)
+                },
+                dataType: 'jsonp',
+                jsonpCallback: 'callback:handleJsonBiv',
+                jsonp: 'format_options'
+            });
+        }
+
         $.ajax('http://localhost:8080/geoserver/wfs', {
             type: 'GET',
             data: {
                 service: 'WFS',
                 version: '1.1.0',
                 request: 'GetFeature',
-                typename: 'MGeM:Acc_all',
+                typename: 'MGeM:pois',
                 srsname: 'EPSG:4326',
                 outputFormat: 'text/javascript',
-                viewparams: 'user:'.concat(user.value).concat(';amenity:').concat(amenity.value).concat(';mot:').concat(mot.value)
+                viewparams: 'amenity:'.concat(amenity.value)
             },
             dataType: 'jsonp',
-            jsonpCallback: 'callback:handleJsonSeq',
+            jsonpCallback: 'callback:handleJsonPOIs',
             jsonp: 'format_options'
         });
-    } else {
+
         $.ajax('http://localhost:8080/geoserver/wfs', {
             type: 'GET',
             data: {
                 service: 'WFS',
                 version: '1.1.0',
                 request: 'GetFeature',
-                typename: 'MGeM:Acc_hilo',
+                typename: 'MGeM:service_areas',
                 srsname: 'EPSG:4326',
                 outputFormat: 'text/javascript',
-                viewparams: 'user:'.concat(user.value).concat(';amenity:').concat(amenity.value).concat(';mot:').concat(mot.value)
+                viewparams: 'amenity:'.concat(amenity.value).concat(';mot:').concat(mot.value)
             },
             dataType: 'jsonp',
-            jsonpCallback: 'callback:handleJsonBiv',
+            jsonpCallback: 'callback:handleJsonAreas',
             jsonp: 'format_options'
         });
     }
-
-    $.ajax('http://localhost:8080/geoserver/wfs', {
-        type: 'GET',
-        data: {
-            service: 'WFS',
-            version: '1.1.0',
-            request: 'GetFeature',
-            typename: 'MGeM:pois',
-            srsname: 'EPSG:4326',
-            outputFormat: 'text/javascript',
-            viewparams: 'amenity:'.concat(amenity.value)
-        },
-        dataType: 'jsonp',
-        jsonpCallback: 'callback:handleJsonPOIs',
-        jsonp: 'format_options'
-    });
-
-    $.ajax('http://localhost:8080/geoserver/wfs', {
-        type: 'GET',
-        data: {
-            service: 'WFS',
-            version: '1.1.0',
-            request: 'GetFeature',
-            typename: 'MGeM:service_areas',
-            srsname: 'EPSG:4326',
-            outputFormat: 'text/javascript',
-            viewparams: 'amenity:'.concat(amenity.value).concat(';mot:').concat(mot.value)
-        },
-        dataType: 'jsonp',
-        jsonpCallback: 'callback:handleJsonAreas',
-        jsonp: 'format_options'
-    });
 };
 
 var polygonLayer;

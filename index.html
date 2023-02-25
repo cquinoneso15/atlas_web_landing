@@ -26,24 +26,21 @@
 
 
 <div id="map"></div>
-<select name="user" id="user">
-	<option value="tp">Total population</option>
-	<option value="o65">Over 65 y/o</option>
-	<option value="u18">Under 18 y/o</option>
-	<option value="ng">Non-germans</option>
+<select name="justice" id="justice">
+	<optgroup label="Environmental justice">
+		<option value="exp">Exposure</option>
+	</optgroup>
+	<optgroup label="Distribution justice">
+		<option value="acc">Accessibility</option>
+		<option value="ava">Availability</option>
+	</optgroup>
+	<optgroup label="Interactional justice">
+		<option value="beh">Behaviour</option>
+	</optgroup>
 </select>
-<select name="amenity" id="amenity">
-	<option value="h">Health</option>
-	<option value="e">Education</option>
-	<option value="f">Food</option>
-	<option value="s">Sports</option>
-	<option value="cc">Community centers</option>
-</select>
-<select name="mot" id="mot">
-	<option value="w_700">Walking, 700m</option>
-	<option value="b_700">Cycling, 700m</option>
-	<option value="wpt_700">Walking + Public Transport, 700m</option>
-</select>
+<select name="user" id="user" disabled="true"></select>
+<select name="amenity" id="amenity" disabled="true"></select>
+<select name="mot" id="mot" disabled="true"></select>
 <select name="map_type" id="map_type">
 	<option value="m1">Map 1</option>
 	<option value="m2">Map 2</option>
