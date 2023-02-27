@@ -54,6 +54,14 @@ var exp = {
     }
 }
 
+var ava = {
+    "v1": {
+        "acc_pt": "Accessibility to PT stop",
+        "cycleway_density": "Cycleway density",
+        "intersection_density": "Intersection density"
+    }
+}
+
 function updateSelector(selector, name, justice_value) {
     selector.options.length = 0;
     selector.disabled = false;
@@ -73,7 +81,6 @@ justice.onchange = (e) => {
     updateSelector(amenity, "amenity", e.target.value);
     updateSelector(mot, "mot", e.target.value);
 };
-
 
 btn.onclick = (event) => {
     event.preventDefault();
@@ -172,6 +179,23 @@ btn.onclick = (event) => {
                         version: '1.1.0',
                         request: 'GetFeature',
                         typename: 'MGeM:exposure',
+                        srsname: 'EPSG:4326',
+                        outputFormat: 'text/javascript',
+                        viewparams: 'type:'.concat(v1.value)
+                    },
+                    dataType: 'jsonp',
+                    jsonpCallback: 'callback:handleJsonSeq',
+                    jsonp: 'format_options'
+                });
+            break;
+        case "ava":
+            $.ajax('http://localhost:8080/geoserver/wfs', {
+                    type: 'GET',
+                    data: {
+                        service: 'WFS',
+                        version: '1.1.0',
+                        request: 'GetFeature',
+                        typename: 'MGeM:availability',
                         srsname: 'EPSG:4326',
                         outputFormat: 'text/javascript',
                         viewparams: 'type:'.concat(v1.value)
@@ -305,6 +329,7 @@ info.update = function (props) {
                     : '<span i18n="hover"></span>');
                 break;
             case "exp":
+            case "ava":
                 this._div.innerHTML += (props
                     ? '<b>' + props.name + '</b><br />' + props.value.toFixed(2)
                     : '<span i18n="hover"></span>');
@@ -446,8 +471,17 @@ function handleJsonSeq(data) {
     // legend
     let grades = [quants["Q0"], quants["Q1"], quants["Q2"], quants["Q3"], quants["Q4"]];
     var legend_text;
-    if (justice.value == "acc") {legend_text = "<h4>Accessibility [%]</h4>";}
-    else if (justice.value == "exp") {legend_text = "<h4>Exposure [" + data.features[0].properties.value_desc + "]</h4>";}
+    switch (justice.value) {
+        case "acc":
+            legend_text = "<h4>Accessibility [%]</h4>";
+            break;
+        case "exp":
+            legend_text = "<h4>Exposure [" + data.features[0].properties.value_desc + "]</h4>";
+            break;
+        case "ava":
+            legend_text = "<h4>Availability [" + data.features[0].properties.value_desc + "]</h4>";
+            break;
+    }
 
     // loop through our density intervals and generate a label with a colored square for each interval
     for (var i = 0; i < grades.length - 1; i++) {
