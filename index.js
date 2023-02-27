@@ -20,13 +20,13 @@ const tiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y
 // Add selector and button
 const btn = document.querySelector('#btn');
 const justice = document.querySelector('#justice')
-const user = document.querySelector('#user')
+const v1 = document.querySelector('#v1')
 const amenity = document.querySelector('#amenity')
 const mot = document.querySelector('#mot')
 const map_type = document.querySelector('#map_type')
 
 var acc = {
-    "user": {
+    "v1": {
         "tp": "Total population",
 	    "o65": "Over 65 y/o",
 	    "u18": "Under 18 y/o",
@@ -46,11 +46,20 @@ var acc = {
     }
 }
 
+var exp = {
+    "v1": {
+        "accidents": "Accidents",
+        "noise": "Noise",
+        "pollution": "Pollution"
+    }
+}
+
 function updateSelector(selector, name, justice_value) {
     selector.options.length = 0;
     selector.disabled = false;
     try {
         let selector_dict = window[justice_value][name];
+        if (selector_dict.length == 0) {throw EvalError;}
         for (var key in selector_dict) {
             selector.add(new Option(selector_dict[key], key))
         }
@@ -60,7 +69,7 @@ function updateSelector(selector, name, justice_value) {
 }
 
 justice.onchange = (e) => {
-    updateSelector(user, "user", e.target.value);
+    updateSelector(v1, "v1", e.target.value);
     updateSelector(amenity, "amenity", e.target.value);
     updateSelector(mot, "mot", e.target.value);
 };
@@ -73,80 +82,107 @@ btn.onclick = (event) => {
     // Remove layers if already displayed
     if (polygonLayer) {
         polygonLayer.remove();
-        poiLayer.remove();
-        areaLayer.remove();
-        layerControl.remove();
+        if (poiLayer) {
+            poiLayer.remove();
+        }
+        if (areaLayer) {
+            areaLayer.remove();
+        }
+        if (layerControl) {
+            layerControl.remove();
+        }
     }
 
     generateLegend("", true);
 
     //Connect to Geoserver WFS
-    if (justice.value == "acc") {
-        if (map_type.value == "m1") {
+    switch (justice.value) {
+        case "acc":
+            if (map_type.value == "m1") {
+                $.ajax('http://localhost:8080/geoserver/wfs', {
+                    type: 'GET',
+                    data: {
+                        service: 'WFS',
+                        version: '1.1.0',
+                        request: 'GetFeature',
+                        typename: 'MGeM:Acc_all',
+                        srsname: 'EPSG:4326',
+                        outputFormat: 'text/javascript',
+                        viewparams: 'user:'.concat(v1.value).concat(';amenity:').concat(amenity.value).concat(';mot:').concat(mot.value)
+                    },
+                    dataType: 'jsonp',
+                    jsonpCallback: 'callback:handleJsonSeq',
+                    jsonp: 'format_options'
+                });
+            } else {
+                $.ajax('http://localhost:8080/geoserver/wfs', {
+                    type: 'GET',
+                    data: {
+                        service: 'WFS',
+                        version: '1.1.0',
+                        request: 'GetFeature',
+                        typename: 'MGeM:Acc_hilo',
+                        srsname: 'EPSG:4326',
+                        outputFormat: 'text/javascript',
+                        viewparams: 'user:'.concat(v1.value).concat(';amenity:').concat(amenity.value).concat(';mot:').concat(mot.value)
+                    },
+                    dataType: 'jsonp',
+                    jsonpCallback: 'callback:handleJsonBiv',
+                    jsonp: 'format_options'
+                });
+            }
+
             $.ajax('http://localhost:8080/geoserver/wfs', {
                 type: 'GET',
                 data: {
                     service: 'WFS',
                     version: '1.1.0',
                     request: 'GetFeature',
-                    typename: 'MGeM:Acc_all',
+                    typename: 'MGeM:pois',
                     srsname: 'EPSG:4326',
                     outputFormat: 'text/javascript',
-                    viewparams: 'user:'.concat(user.value).concat(';amenity:').concat(amenity.value).concat(';mot:').concat(mot.value)
+                    viewparams: 'amenity:'.concat(amenity.value)
                 },
                 dataType: 'jsonp',
-                jsonpCallback: 'callback:handleJsonSeq',
+                jsonpCallback: 'callback:handleJsonPOIs',
                 jsonp: 'format_options'
             });
-        } else {
+
             $.ajax('http://localhost:8080/geoserver/wfs', {
                 type: 'GET',
                 data: {
                     service: 'WFS',
                     version: '1.1.0',
                     request: 'GetFeature',
-                    typename: 'MGeM:Acc_hilo',
+                    typename: 'MGeM:service_areas',
                     srsname: 'EPSG:4326',
                     outputFormat: 'text/javascript',
-                    viewparams: 'user:'.concat(user.value).concat(';amenity:').concat(amenity.value).concat(';mot:').concat(mot.value)
+                    viewparams: 'amenity:'.concat(amenity.value).concat(';mot:').concat(mot.value)
                 },
                 dataType: 'jsonp',
-                jsonpCallback: 'callback:handleJsonBiv',
+                jsonpCallback: 'callback:handleJsonAreas',
                 jsonp: 'format_options'
             });
-        }
-
-        $.ajax('http://localhost:8080/geoserver/wfs', {
-            type: 'GET',
-            data: {
-                service: 'WFS',
-                version: '1.1.0',
-                request: 'GetFeature',
-                typename: 'MGeM:pois',
-                srsname: 'EPSG:4326',
-                outputFormat: 'text/javascript',
-                viewparams: 'amenity:'.concat(amenity.value)
-            },
-            dataType: 'jsonp',
-            jsonpCallback: 'callback:handleJsonPOIs',
-            jsonp: 'format_options'
-        });
-
-        $.ajax('http://localhost:8080/geoserver/wfs', {
-            type: 'GET',
-            data: {
-                service: 'WFS',
-                version: '1.1.0',
-                request: 'GetFeature',
-                typename: 'MGeM:service_areas',
-                srsname: 'EPSG:4326',
-                outputFormat: 'text/javascript',
-                viewparams: 'amenity:'.concat(amenity.value).concat(';mot:').concat(mot.value)
-            },
-            dataType: 'jsonp',
-            jsonpCallback: 'callback:handleJsonAreas',
-            jsonp: 'format_options'
-        });
+            break;
+        case "exp":
+            $.ajax('http://localhost:8080/geoserver/wfs', {
+                    type: 'GET',
+                    data: {
+                        service: 'WFS',
+                        version: '1.1.0',
+                        request: 'GetFeature',
+                        typename: 'MGeM:exposure',
+                        srsname: 'EPSG:4326',
+                        outputFormat: 'text/javascript',
+                        viewparams: 'type:'.concat(v1.value)
+                    },
+                    dataType: 'jsonp',
+                    jsonpCallback: 'callback:handleJsonSeq',
+                    jsonp: 'format_options'
+                });
+            break;
+        default:
+            break;
     }
 };
 
@@ -223,8 +259,8 @@ function highlightFeature(e) {
     });
 
     layer.bringToFront();
-    areaLayer.bringToFront();
-    poiLayer.bringToFront();
+    if (areaLayer) {areaLayer.bringToFront();}
+    if (poiLayer) {poiLayer.bringToFront();}
     info.update(layer.feature.properties);
 }
 
@@ -256,15 +292,27 @@ info.onAdd = function (map) {
 
 // method that we will use to update the control based on feature properties passed
 info.update = function (props) {
-    this._div.innerHTML = '<h4>' + (user.options[user.selectedIndex] ? user.options[user.selectedIndex].text : '') + " / " + (amenity.options[amenity.selectedIndex] ? amenity.options[amenity.selectedIndex].text : '') + " / " + (mot.options[mot.selectedIndex] ? mot.options[mot.selectedIndex].text : '' ) + '</h4>';
+    this._div.innerHTML = '<h4>' + (v1.options[v1.selectedIndex] ? v1.options[v1.selectedIndex].text : '') + " / " + (amenity.options[amenity.selectedIndex] ? amenity.options[amenity.selectedIndex].text : '') + " / " + (mot.options[mot.selectedIndex] ? mot.options[mot.selectedIndex].text : '' ) + '</h4>';
     if (biv) {
         this._div.innerHTML += (props
             ? '<b>' + props.name + '</b><br /> Acc. ' + props.value_acc.toFixed(2) + ' % (' + props.hilo_acc + ') - Pop. ' + props.value_pop.toFixed(2) + ' % (' + props.hilo_pop + ')'
             : '<span i18n="hover"></span>');
     } else {
-        this._div.innerHTML += (props
-            ? '<b>' + props.name + '</b><br />' + props.value.toFixed(2) + ' %'
-            : '<span i18n="hover"></span>');
+        switch (justice.value) {
+            case "acc":
+                this._div.innerHTML += (props
+                    ? '<b>' + props.name + '</b><br />' + props.value.toFixed(2) + ' %'
+                    : '<span i18n="hover"></span>');
+                break;
+            case "exp":
+                this._div.innerHTML += (props
+                    ? '<b>' + props.name + '</b><br />' + props.value.toFixed(2)
+                    : '<span i18n="hover"></span>');
+                break;
+            default:
+                break;
+        }
+        
     }
     translatePage();
 };
@@ -397,7 +445,9 @@ function handleJsonSeq(data) {
 
     // legend
     let grades = [quants["Q0"], quants["Q1"], quants["Q2"], quants["Q3"], quants["Q4"]];
-    var legend_text = "<h4>Accessibility [%]</h4>";
+    var legend_text;
+    if (justice.value == "acc") {legend_text = "<h4>Accessibility [%]</h4>";}
+    else if (justice.value == "exp") {legend_text = "<h4>Exposure [" + data.features[0].properties.value_desc + "]</h4>";}
 
     // loop through our density intervals and generate a label with a colored square for each interval
     for (var i = 0; i < grades.length - 1; i++) {
