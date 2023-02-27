@@ -306,7 +306,7 @@ info.onAdd = function (map) {
 
 // method that we will use to update the control based on feature properties passed
 info.update = function (props) {
-    this._div.innerHTML = '<h4>' + user.options[user.selectedIndex].text + " / " + amenity.options[amenity.selectedIndex].text + " / " + mot.options[mot.selectedIndex].text + '</h4>';
+    this._div.innerHTML = '<h4>' + (user.options[user.selectedIndex] ? user.options[user.selectedIndex].text : '') + " / " + (amenity.options[amenity.selectedIndex] ? amenity.options[amenity.selectedIndex].text : '') + " / " + (mot.options[mot.selectedIndex] ? mot.options[mot.selectedIndex].text : '' ) + '</h4>';
     if (biv) {
         this._div.innerHTML += (props
             ? '<b>' + props.name + '</b><br /> Acc. ' + props.value_acc.toFixed(2) + ' % (' + props.hilo_acc + ') - Pop. ' + props.value_pop.toFixed(2) + ' % (' + props.hilo_pop + ')'
@@ -386,7 +386,7 @@ function handleJsonBiv(data) {
 
     // Add layer to map
     polygonLayer = L.geoJson(data, {
-        attribution: '&copy; <a href="https://www.mos.ed.tum.de/en/sv/homepage/">TUM Chair of Urban Structure and Transport Planning</a>',
+        attribution: '&copy; <a href="https://www.mos.ed.tum.de/sv/homepage/" i18n="chair"></a>',
         style: style,
         onEachFeature: onEachFeature
     }).addTo(map);
@@ -406,6 +406,8 @@ function handleJsonBiv(data) {
             poiLayer.bringToFront();
         }
     }
+
+    translatePage();
 }
 
 function handleJsonSeq(data) {
@@ -459,7 +461,7 @@ function handleJsonSeq(data) {
 
     // Add layer to map
     polygonLayer = L.geoJson(data, {
-        attribution: '&copy; <a href="https://www.mos.ed.tum.de/en/sv/homepage/">TUM Chair of Urban Structure and Transport Planning</a>',
+        attribution: '&copy; <a href="https://www.mos.ed.tum.de/sv/homepage/" i18n="chair"></a>',
         style: style,
         onEachFeature: onEachFeature
     }).addTo(map);
@@ -479,11 +481,13 @@ function handleJsonSeq(data) {
             poiLayer.bringToFront();
         }
     }
+
+    translatePage();
 }
 
 function handleJsonPOIs(data) {
     poiLayer = L.geoJson(data, {
-        attribution: '&copy; <a href="https://www.mos.ed.tum.de/en/sv/homepage/">TUM Chair of Urban Structure and Transport Planning</a>',
+        attribution: '&copy; <a href="https://www.mos.ed.tum.de/sv/homepage/" i18n="chair"></a>',
         pointToLayer: function (feature, latlng) {
             return L.circleMarker(latlng, poiCircleStyle);
         },
@@ -494,7 +498,9 @@ function handleJsonPOIs(data) {
 
     var legend_text = '<h4>Points of Interest (POIs)</h4>';
     legend_text += getLegendIFromCircleStyle(poiCircleStyle);
-    generateLegend(legend_text, false)
+    generateLegend(legend_text, false);
+
+    translatePage();
 }
 
 function handleJsonAreas(data) {
@@ -506,7 +512,7 @@ function handleJsonAreas(data) {
         fillOpacity: 0.2
     };
     areaLayer = L.geoJson(data, {
-        attribution: '&copy; <a href="https://www.mos.ed.tum.de/en/sv/homepage/">TUM Chair of Urban Structure and Transport Planning</a>',
+        attribution: '&copy; <a href="https://www.mos.ed.tum.de/sv/homepage/" i18n="chair"></a>',
         interactive: false,
         style: style
     }).addTo(map);
@@ -518,6 +524,8 @@ function handleJsonAreas(data) {
     if (poiLayer) {
         poiLayer.bringToFront();
     }
+
+    translatePage();
 }
 
 /**********************
