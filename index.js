@@ -25,6 +25,7 @@ const amenity = document.querySelector('#amenity')
 const mot = document.querySelector('#mot')
 const map_type = document.querySelector('#map_type')
 
+// Selector values
 var acc = {
     "v1": {
         "tp": "Total population",
@@ -91,6 +92,7 @@ justice.onchange = (e) => {
     updateSelector(mot, "mot", e.target.value);
 };
 
+// When selector value is clicked
 btn.onclick = (event) => {
     event.preventDefault();
     info.update();
@@ -280,7 +282,7 @@ const download = document.querySelector('#download');
 var legend;
 
 /**************
- * MAP DESIGN *
+ * MAP LEGEND *
  **************/
 
 var poiCircleStyle = {
@@ -324,7 +326,7 @@ function generateLegend(info, replace) {
 }
 
 /******************
- * END MAP DESIGN *
+ * END MAP LEGEND *
  ******************/
 
 /*********************
