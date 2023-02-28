@@ -62,6 +62,15 @@ var ava = {
     }
 }
 
+var beh = {
+    "v1": {
+        "bike_usage": "Bike usage",
+        "transit_usage": "Transit usage",
+        "walk_usage": "Walk usage",
+        "car_sharing_usage": "Car sharing usage"
+    }
+}
+
 function updateSelector(selector, name, justice_value) {
     selector.options.length = 0;
     selector.disabled = false;
@@ -196,6 +205,23 @@ btn.onclick = (event) => {
                         version: '1.1.0',
                         request: 'GetFeature',
                         typename: 'MGeM:availability',
+                        srsname: 'EPSG:4326',
+                        outputFormat: 'text/javascript',
+                        viewparams: 'type:'.concat(v1.value)
+                    },
+                    dataType: 'jsonp',
+                    jsonpCallback: 'callback:handleJsonSeq',
+                    jsonp: 'format_options'
+                });
+            break;
+        case "beh":
+            $.ajax('http://localhost:8080/geoserver/wfs', {
+                    type: 'GET',
+                    data: {
+                        service: 'WFS',
+                        version: '1.1.0',
+                        request: 'GetFeature',
+                        typename: 'MGeM:behaviour',
                         srsname: 'EPSG:4326',
                         outputFormat: 'text/javascript',
                         viewparams: 'type:'.concat(v1.value)
@@ -346,6 +372,7 @@ info.update = function (props) {
                 break;
             case "exp":
             case "ava":
+            case "beh":
                 this._div.innerHTML += (props
                     ? '<b>' + props.name + '</b><br />' + props.value.toFixed(2)
                     : '<span i18n="hover"></span>');
@@ -512,6 +539,9 @@ function handleJsonSeq(data) {
             break;
         case "ava":
             legend_text = "<h4>Availability [" + data.features[0].properties.value_desc + "]</h4>";
+            break;
+        case "beh":
+            legend_text = "<h4>Behaviour [" + data.features[0].properties.value_desc + "]</h4>";
             break;
         case "inc":
             legend_text = "<h4>Income [€]</h4>";
