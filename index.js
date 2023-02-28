@@ -181,21 +181,39 @@ btn.onclick = (event) => {
             });
             break;
         case "exp":
-            $.ajax('http://localhost:8080/geoserver/wfs', {
-                    type: 'GET',
-                    data: {
-                        service: 'WFS',
-                        version: '1.1.0',
-                        request: 'GetFeature',
-                        typename: 'MGeM:exposure',
-                        srsname: 'EPSG:4326',
-                        outputFormat: 'text/javascript',
-                        viewparams: 'type:'.concat(v1.value)
-                    },
-                    dataType: 'jsonp',
-                    jsonpCallback: 'callback:handleJsonSeq',
-                    jsonp: 'format_options'
-                });
+            if (map_type.value == "m1") {
+                $.ajax('http://localhost:8080/geoserver/wfs', {
+                        type: 'GET',
+                        data: {
+                            service: 'WFS',
+                            version: '1.1.0',
+                            request: 'GetFeature',
+                            typename: 'MGeM:exposure',
+                            srsname: 'EPSG:4326',
+                            outputFormat: 'text/javascript',
+                            viewparams: 'type:'.concat(v1.value)
+                        },
+                        dataType: 'jsonp',
+                        jsonpCallback: 'callback:handleJsonSeq',
+                        jsonp: 'format_options'
+                    });
+            } else {
+                $.ajax('http://localhost:8080/geoserver/wfs', {
+                        type: 'GET',
+                        data: {
+                            service: 'WFS',
+                            version: '1.1.0',
+                            request: 'GetFeature',
+                            typename: 'MGeM:exposure_hilo',
+                            srsname: 'EPSG:4326',
+                            outputFormat: 'text/javascript',
+                            viewparams: 'type:'.concat(v1.value)
+                        },
+                        dataType: 'jsonp',
+                        jsonpCallback: 'callback:handleJsonBiv',
+                        jsonp: 'format_options'
+                    });
+            }
             break;
         case "ava":
             $.ajax('http://localhost:8080/geoserver/wfs', {
@@ -238,7 +256,7 @@ btn.onclick = (event) => {
                         service: 'WFS',
                         version: '1.1.0',
                         request: 'GetFeature',
-                        typename: 'MGeM:bezirksteile',
+                        typename: 'MGeM:income',
                         srsname: 'EPSG:4326',
                         outputFormat: 'text/javascript'
                     },
@@ -359,34 +377,38 @@ info.onAdd = function (map) {
 // method that we will use to update the control based on feature properties passed
 info.update = function (props) {
     this._div.innerHTML = '<h4>' + (v1.options[v1.selectedIndex] ? v1.options[v1.selectedIndex].text : '') + (amenity.options[amenity.selectedIndex] ? " / " + amenity.options[amenity.selectedIndex].text : '') + (mot.options[mot.selectedIndex] ? " / " + mot.options[mot.selectedIndex].text : '' ) + '</h4>';
-    if (biv) {
-        this._div.innerHTML += (props
-            ? '<b>' + props.name + '</b><br /> Acc. ' + props.value_acc.toFixed(2) + ' % (' + props.hilo_acc + ') - Pop. ' + props.value_pop.toFixed(2) + ' % (' + props.hilo_pop + ')'
-            : '<span i18n="hover"></span>');
-    } else {
-        switch (justice.value) {
-            case "acc":
+    
+    switch (justice.value) {
+        case "acc":
+            if (biv) {
+                this._div.innerHTML += (props
+                    ? '<b>' + props.name + '</b><br /> Acc. ' + props.value_acc.toFixed(2) + ' % (' + props.hilo_acc + ') - Pop. ' + props.value_pop.toFixed(2) + ' % (' + props.hilo_pop + ')'
+                    : '<span i18n="hover"></span>');
+            } else {
                 this._div.innerHTML += (props
                     ? '<b>' + props.name + '</b><br />' + props.value.toFixed(2) + ' %'
                     : '<span i18n="hover"></span>');
-                break;
-            case "exp":
-            case "ava":
-            case "beh":
+            }
+            break;
+        case "exp":
+        case "ava":
+        case "beh":
+        case "inc":
+            if (biv) {
+                this._div.innerHTML += (props
+                    ? '<b>' + props.name + '</b><br /> X ' + props.value_exp.toFixed(2) + ' (' + props.hilo_exp + ') - Pop. ' + props.value_pop.toFixed(2) + ' % (' + props.hilo_pop + ')'
+                    : '<span i18n="hover"></span>');
+            } else {
                 this._div.innerHTML += (props
                     ? '<b>' + props.name + '</b><br />' + props.value.toFixed(2)
                     : '<span i18n="hover"></span>');
-                break;
-            case "inc":
-                this._div.innerHTML += (props
-                    ? '<b>' + props.name + '</b><br />' + props.income.toFixed(2)
-                    : '<span i18n="hover"></span>');
-                break;
-            default:
-                break;
-        }
-        
+            }
+            break;
+        default:
+            break;
     }
+        
+    
     translatePage();
 };
 
@@ -405,6 +427,16 @@ var scale = L.control.scale({ metric: true, imperial: false }).addTo(map);
 
 function handleJsonBiv(data) {
     biv = true;
+
+    var hilo_X;
+    switch (justice.value) {
+        case "acc":
+            hilo_X = "hilo_acc";
+            break;
+        case "exp":
+            hilo_X = "hilo_exp";
+            break;
+    }
 
     // Add data to download button
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data));
@@ -435,7 +467,7 @@ function handleJsonBiv(data) {
 
     function style(feature) {
         return {
-            fillColor: getColorBiv(feature.properties.hilo_pop, feature.properties.hilo_acc),
+            fillColor: getColorBiv(feature.properties.hilo_pop, feature.properties[hilo_X]),
             weight: 0.5,
             opacity: 1,
             color: 'white',
@@ -465,12 +497,12 @@ function handleJsonBiv(data) {
     map.fitBounds(polygonLayer.getBounds());
 
     // Add layer control to map
-    layerControl = L.control.layers(null, {
-        "Background": tiles,
-        "Indicator": polygonLayer,
-        "POIs": poiLayer,
-        "Service Areas": areaLayer
-    }).addTo(map)
+    var layerControlOptions = {};
+    if (tiles) {layerControlOptions["Background"] = tiles;}
+    if (polygonLayer) {layerControlOptions["Indicator"] = polygonLayer;}
+    if (poiLayer) {layerControlOptions["POIs"] = poiLayer;}
+    if (areaLayer) {layerControlOptions["Service Areas"] = areaLayer;}
+    layerControl = L.control.layers(null, layerControlOptions).addTo(map)
 
     if (areaLayer) {
         areaLayer.bringToFront();
@@ -496,18 +528,8 @@ function handleJsonSeq(data) {
         return;
     }
 
-    var data_column;
-    switch (justice.value) {
-        case "inc":
-            data_column = "income";
-            break;
-        default:
-            data_column = "value";
-            break;
-    }
-
     // Generate quantiles
-    var quants = getQuants(data, data_column);
+    var quants = getQuants(data, "value");
     
     // Generate style from quantiles
     function getColor(d) {
@@ -519,7 +541,7 @@ function handleJsonSeq(data) {
 
     function style(feature) {
         return {
-            fillColor: getColor(feature.properties[data_column]),
+            fillColor: getColor(feature.properties.value),
             weight: 0.5,
             opacity: 1,
             color: 'white',
@@ -544,7 +566,7 @@ function handleJsonSeq(data) {
             legend_text = "<h4>Behaviour [" + data.features[0].properties.value_desc + "]</h4>";
             break;
         case "inc":
-            legend_text = "<h4>Income [€]</h4>";
+            legend_text = "<h4>Income [" + data.features[0].properties.value_desc + "]</h4>";
     }
 
     // loop through our density intervals and generate a label with a colored square for each interval
