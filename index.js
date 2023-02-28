@@ -205,6 +205,22 @@ btn.onclick = (event) => {
                     jsonp: 'format_options'
                 });
             break;
+        case "inc":
+            $.ajax('http://localhost:8080/geoserver/wfs', {
+                    type: 'GET',
+                    data: {
+                        service: 'WFS',
+                        version: '1.1.0',
+                        request: 'GetFeature',
+                        typename: 'MGeM:bezirksteile',
+                        srsname: 'EPSG:4326',
+                        outputFormat: 'text/javascript'
+                    },
+                    dataType: 'jsonp',
+                    jsonpCallback: 'callback:handleJsonSeq',
+                    jsonp: 'format_options'
+                });
+            break;
         default:
             break;
     }
@@ -334,6 +350,11 @@ info.update = function (props) {
                     ? '<b>' + props.name + '</b><br />' + props.value.toFixed(2)
                     : '<span i18n="hover"></span>');
                 break;
+            case "inc":
+                this._div.innerHTML += (props
+                    ? '<b>' + props.name + '</b><br />' + props.income.toFixed(2)
+                    : '<span i18n="hover"></span>');
+                break;
             default:
                 break;
         }
@@ -448,19 +469,30 @@ function handleJsonSeq(data) {
         return;
     }
 
+    var data_column;
+    switch (justice.value) {
+        case "inc":
+            data_column = "income";
+            break;
+        default:
+            data_column = "value";
+            break;
+    }
+
     // Generate quantiles
-    var quants = getQuants(data);
+    var quants = getQuants(data, data_column);
+    
     // Generate style from quantiles
     function getColor(d) {
-        return d > quants["Q3"] ? '#d7301f' :
-            d > quants["Q2"] ? '#fc8d59' :
+        return  d > quants["Q3"] ? '#d7301f' :
+                d > quants["Q2"] ? '#fc8d59' :
                 d > quants["Q1"] ? '#fdcc8a' :
-                    '#fef0d9';
+                '#fef0d9';
     }
 
     function style(feature) {
         return {
-            fillColor: getColor(feature.properties.value),
+            fillColor: getColor(feature.properties[data_column]),
             weight: 0.5,
             opacity: 1,
             color: 'white',
@@ -481,6 +513,8 @@ function handleJsonSeq(data) {
         case "ava":
             legend_text = "<h4>Availability [" + data.features[0].properties.value_desc + "]</h4>";
             break;
+        case "inc":
+            legend_text = "<h4>Income [€]</h4>";
     }
 
     // loop through our density intervals and generate a label with a colored square for each interval

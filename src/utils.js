@@ -18,12 +18,13 @@ function sortedQuants(sortedArray, q) {
  * Returns the quantiles of data, value must be stored in properties.value for each feature of data.
  *
  * @param {object} data The data in a dictionary format, fetched from a geoJSON.
+ * @param {string} column The geoJSON attribute with the data value.
  * @return {object} The quantiles in a dictionary, with keys "Q0" to "Q4"
  */
-function getQuants(data) {
+function getQuants(data, column) {
     var dataArray = [];
     for (let f in data.features) {
-        dataArray.push(data.features[f].properties.value);
+        dataArray.push(data.features[f].properties[column]);
     }
 
     var sortedArray = dataArray.sort(function (a, b) {
