@@ -288,21 +288,38 @@ btn.onclick = (event) => {
             }
             break;
         case "inc":
-            $.ajax('http://localhost:8080/geoserver/wfs', {
-                    type: 'GET',
-                    data: {
-                        service: 'WFS',
-                        version: '1.1.0',
-                        request: 'GetFeature',
-                        typename: 'MGeM:income',
-                        srsname: 'EPSG:4326',
-                        outputFormat: 'text/javascript'
-                    },
-                    dataType: 'jsonp',
-                    jsonpCallback: 'callback:handleJsonSeq',
-                    jsonp: 'format_options'
-                });
-            break;
+            if (map_type.value == "m1") {
+                $.ajax('http://localhost:8080/geoserver/wfs', {
+                        type: 'GET',
+                        data: {
+                            service: 'WFS',
+                            version: '1.1.0',
+                            request: 'GetFeature',
+                            typename: 'MGeM:income',
+                            srsname: 'EPSG:4326',
+                            outputFormat: 'text/javascript'
+                        },
+                        dataType: 'jsonp',
+                        jsonpCallback: 'callback:handleJsonSeq',
+                        jsonp: 'format_options'
+                    });
+                break;
+            } else {
+                $.ajax('http://localhost:8080/geoserver/wfs', {
+                        type: 'GET',
+                        data: {
+                            service: 'WFS',
+                            version: '1.1.0',
+                            request: 'GetFeature',
+                            typename: 'MGeM:income_hilo',
+                            srsname: 'EPSG:4326',
+                            outputFormat: 'text/javascript'
+                        },
+                        dataType: 'jsonp',
+                        jsonpCallback: 'callback:handleJsonBiv',
+                        jsonp: 'format_options'
+                    });
+            }
         default:
             break;
     }
@@ -499,6 +516,9 @@ function handleJsonBiv(data) {
             break;
         case "beh":
             hilo_X = "hilo_beh";
+            break;
+        case "inc":
+            hilo_X = "hilo_inc";
             break;
     }
 
