@@ -253,21 +253,39 @@ btn.onclick = (event) => {
             }
             break;
         case "beh":
-            $.ajax('http://localhost:8080/geoserver/wfs', {
-                    type: 'GET',
-                    data: {
-                        service: 'WFS',
-                        version: '1.1.0',
-                        request: 'GetFeature',
-                        typename: 'MGeM:behaviour',
-                        srsname: 'EPSG:4326',
-                        outputFormat: 'text/javascript',
-                        viewparams: 'type:'.concat(v1.value)
-                    },
-                    dataType: 'jsonp',
-                    jsonpCallback: 'callback:handleJsonSeq',
-                    jsonp: 'format_options'
-                });
+            if (map_type.value == "m1") {
+                $.ajax('http://localhost:8080/geoserver/wfs', {
+                        type: 'GET',
+                        data: {
+                            service: 'WFS',
+                            version: '1.1.0',
+                            request: 'GetFeature',
+                            typename: 'MGeM:behaviour',
+                            srsname: 'EPSG:4326',
+                            outputFormat: 'text/javascript',
+                            viewparams: 'type:'.concat(v1.value)
+                        },
+                        dataType: 'jsonp',
+                        jsonpCallback: 'callback:handleJsonSeq',
+                        jsonp: 'format_options'
+                    });
+            } else {
+                $.ajax('http://localhost:8080/geoserver/wfs', {
+                        type: 'GET',
+                        data: {
+                            service: 'WFS',
+                            version: '1.1.0',
+                            request: 'GetFeature',
+                            typename: 'MGeM:behaviour_hilo',
+                            srsname: 'EPSG:4326',
+                            outputFormat: 'text/javascript',
+                            viewparams: 'type:'.concat(v1.value)
+                        },
+                        dataType: 'jsonp',
+                        jsonpCallback: 'callback:handleJsonBiv',
+                        jsonp: 'format_options'
+                    });
+            }
             break;
         case "inc":
             $.ajax('http://localhost:8080/geoserver/wfs', {
@@ -415,6 +433,16 @@ info.update = function (props) {
                     ? '<b>' + props.name + '</b><br /> Ava. ' + props.value_ava.toFixed(2) + ' (' + props.hilo_ava + ') - Pop. ' + props.value_pop.toFixed(2) + ' (' + props.hilo_pop + ')'
                     : '<span i18n="hover"></span>');
                 break;
+            case "beh":
+                this._div.innerHTML += (props
+                    ? '<b>' + props.name + '</b><br /> Beh. ' + props.value_beh.toFixed(2) + ' (' + props.hilo_beh + ') - Pop. ' + props.value_pop.toFixed(2) + ' (' + props.hilo_pop + ')'
+                    : '<span i18n="hover"></span>');
+                break;
+            case "inc":
+                this._div.innerHTML += (props
+                    ? '<b>' + props.name + '</b><br /> Inc. ' + props.value_inc.toFixed(2) + ' (' + props.hilo_inc + ') - Pop. ' + props.value_pop.toFixed(2) + ' (' + props.hilo_pop + ')'
+                    : '<span i18n="hover"></span>');
+                break;
             default:
                 break;
         }
@@ -468,6 +496,9 @@ function handleJsonBiv(data) {
             break;
         case "ava":
             hilo_X = "hilo_ava";
+            break;
+        case "beh":
+            hilo_X = "hilo_beh";
             break;
     }
 
