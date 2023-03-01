@@ -218,21 +218,39 @@ btn.onclick = (event) => {
             }
             break;
         case "ava":
-            $.ajax('http://localhost:8080/geoserver/wfs', {
-                    type: 'GET',
-                    data: {
-                        service: 'WFS',
-                        version: '1.1.0',
-                        request: 'GetFeature',
-                        typename: 'MGeM:availability',
-                        srsname: 'EPSG:4326',
-                        outputFormat: 'text/javascript',
-                        viewparams: 'type:'.concat(v1.value)
-                    },
-                    dataType: 'jsonp',
-                    jsonpCallback: 'callback:handleJsonSeq',
-                    jsonp: 'format_options'
-                });
+            if (map_type.value == "m1") {
+                $.ajax('http://localhost:8080/geoserver/wfs', {
+                        type: 'GET',
+                        data: {
+                            service: 'WFS',
+                            version: '1.1.0',
+                            request: 'GetFeature',
+                            typename: 'MGeM:availability',
+                            srsname: 'EPSG:4326',
+                            outputFormat: 'text/javascript',
+                            viewparams: 'type:'.concat(v1.value)
+                        },
+                        dataType: 'jsonp',
+                        jsonpCallback: 'callback:handleJsonSeq',
+                        jsonp: 'format_options'
+                    });
+            } else {
+                $.ajax('http://localhost:8080/geoserver/wfs', {
+                        type: 'GET',
+                        data: {
+                            service: 'WFS',
+                            version: '1.1.0',
+                            request: 'GetFeature',
+                            typename: 'MGeM:availability_hilo',
+                            srsname: 'EPSG:4326',
+                            outputFormat: 'text/javascript',
+                            viewparams: 'type:'.concat(v1.value)
+                        },
+                        dataType: 'jsonp',
+                        jsonpCallback: 'callback:handleJsonBiv',
+                        jsonp: 'format_options'
+                    });
+            }
             break;
         case "beh":
             $.ajax('http://localhost:8080/geoserver/wfs', {
@@ -380,34 +398,44 @@ info.onAdd = function (map) {
 info.update = function (props) {
     this._div.innerHTML = '<h4>' + (v1.options[v1.selectedIndex] ? v1.options[v1.selectedIndex].text : '') + (amenity.options[amenity.selectedIndex] ? " / " + amenity.options[amenity.selectedIndex].text : '') + (mot.options[mot.selectedIndex] ? " / " + mot.options[mot.selectedIndex].text : '' ) + '</h4>';
     
-    switch (justice.value) {
-        case "acc":
-            if (biv) {
+    if (biv) {
+        switch (justice.value) {
+            case "acc":
                 this._div.innerHTML += (props
-                    ? '<b>' + props.name + '</b><br /> Acc. ' + props.value_acc.toFixed(2) + ' % (' + props.hilo_acc + ') - Pop. ' + props.value_pop.toFixed(2) + ' % (' + props.hilo_pop + ')'
+                    ? '<b>' + props.name + '</b><br /> Acc. ' + props.value_acc.toFixed(2) + ' % (' + props.hilo_acc + ') - Pop. ' + props.value_pop.toFixed(2) + ' (' + props.hilo_pop + ')'
                     : '<span i18n="hover"></span>');
-            } else {
+                break;
+            case "exp":
+                this._div.innerHTML += (props
+                    ? '<b>' + props.name + '</b><br /> Exp. ' + props.value_exp.toFixed(2) + ' (' + props.hilo_exp + ') - Pop. ' + props.value_pop.toFixed(2) + ' (' + props.hilo_pop + ')'
+                    : '<span i18n="hover"></span>');
+                break;
+            case "ava":
+                this._div.innerHTML += (props
+                    ? '<b>' + props.name + '</b><br /> Ava. ' + props.value_ava.toFixed(2) + ' (' + props.hilo_ava + ') - Pop. ' + props.value_pop.toFixed(2) + ' (' + props.hilo_pop + ')'
+                    : '<span i18n="hover"></span>');
+                break;
+            default:
+                break;
+        }
+    } else {
+        switch (justice.value) {
+            case "acc":
                 this._div.innerHTML += (props
                     ? '<b>' + props.name + '</b><br />' + props.value.toFixed(2) + ' %'
                     : '<span i18n="hover"></span>');
-            }
-            break;
-        case "exp":
-        case "ava":
-        case "beh":
-        case "inc":
-            if (biv) {
-                this._div.innerHTML += (props
-                    ? '<b>' + props.name + '</b><br /> X ' + props.value_exp.toFixed(2) + ' (' + props.hilo_exp + ') - Pop. ' + props.value_pop.toFixed(2) + ' % (' + props.hilo_pop + ')'
-                    : '<span i18n="hover"></span>');
-            } else {
+                break;
+            case "exp":
+            case "ava":
+            case "beh":
+            case "inc":
                 this._div.innerHTML += (props
                     ? '<b>' + props.name + '</b><br />' + props.value.toFixed(2)
                     : '<span i18n="hover"></span>');
-            }
-            break;
-        default:
-            break;
+                break;
+            default:
+                break;
+        }
     }
         
     
@@ -437,6 +465,9 @@ function handleJsonBiv(data) {
             break;
         case "exp":
             hilo_X = "hilo_exp";
+            break;
+        case "ava":
+            hilo_X = "hilo_ava";
             break;
     }
 
