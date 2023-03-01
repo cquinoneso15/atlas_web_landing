@@ -560,17 +560,10 @@ function handleJsonBiv(data) {
     }
 
     // Add legend
-    if (legend) { legend.remove(); }
-    legend = L.control({ position: 'bottomright' });
-
-    legend.onAdd = function (map) {
-
-        var div = L.DomUtil.create('div', 'info legend');
-        div.innerHTML = '<i style="background:' + getColorBiv("Low", "High") + '"></i>' + '<i style="background:' + getColorBiv("High", "High") + '"></i><br>' + '<i style="background:' + getColorBiv("Low", "Low") + '"></i>' + '<i style="background:' + getColorBiv("High", "Low") + '"></i>'
-        return div;
-    };
-
-    legend.addTo(map);
+    generateLegend('<i class="square" style="background:' + getColorBiv("Low", "High") + '"></i>' + 
+                    '<i class="square" style="background:' + getColorBiv("High", "High") + '"></i><br>' + 
+                    '<i class="square"style="background:' + getColorBiv("Low", "Low") + '"></i>' + 
+                    '<i class="square"style="background:' + getColorBiv("High", "Low") + '"></i>', false);
 
     // Add layer to map
     polygonLayer = L.geoJson(data, {
