@@ -560,10 +560,24 @@ function handleJsonBiv(data) {
     }
 
     // Add legend
-    generateLegend('<i class="square" style="background:' + getColorBiv("Low", "High") + '"></i>' + 
+    generateLegend(/*'<i class="square" style="background:' + getColorBiv("Low", "High") + '"></i>' + 
                     '<i class="square" style="background:' + getColorBiv("High", "High") + '"></i><br>' + 
                     '<i class="square"style="background:' + getColorBiv("Low", "Low") + '"></i>' + 
-                    '<i class="square"style="background:' + getColorBiv("High", "Low") + '"></i>', false);
+                    '<i class="square"style="background:' + getColorBiv("High", "Low") + '"></i>',*/
+                    '<svg width="100" height="80" xmlns="http://www.w3.org/2000/svg">' +
+                    '<defs><marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" /></marker></defs>' +
+                    '<g transform="translate(10 30) rotate(-45)">' +
+                    '<title>Bivariate legend</title>' +
+                    '<rect height="18" width="18" y="2" x="0" stroke="#000" fill="' + getColorBiv("Low", "High") + '"/>' +
+                    '<rect height="18" width="18" y="2" x="18" stroke="#000" fill="' + getColorBiv("High", "High") + '"/>' +
+                    '<rect height="18" width="18" y="20" x="0" stroke="#000" fill="' + getColorBiv("Low", "Low") + '"/>' +
+                    '<rect height="18" width="18" y="20" x="18" stroke="#000" fill="' + getColorBiv("High", "Low") + '"/>' +
+                    '<path d="M0,0 v38 h38" opacity="1" stroke-linecap="butt" stroke-linejoin="bevel" stroke="#000" stroke-width="2" fill="none" marker-start="url(#arrow)" marker-end="url(#arrow)"/>' +
+                    '<text font-weight="bold" font-size="0.75em" transform="translate(-10, 18) rotate(90)" text-anchor="middle">' + justice.value + '</text>' +
+                    '<text font-weight="bold" font-size="0.75em" transform="translate(18, 50)" text-anchor="middle">pop</text>' +
+                    '</g>' +
+                    '</svg>',
+                    false);
 
     // Add layer to map
     polygonLayer = L.geoJson(data, {
