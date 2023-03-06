@@ -117,209 +117,93 @@ btn.onclick = (event) => {
     switch (justice.value) {
         case "acc":
             if (map_type.value == "m1") {
-                $.ajax('http://localhost:8080/geoserver/wfs', {
-                    type: 'GET',
-                    data: {
-                        service: 'WFS',
-                        version: '1.1.0',
-                        request: 'GetFeature',
-                        typename: 'MGeM:Acc_all',
-                        srsname: 'EPSG:4326',
-                        outputFormat: 'text/javascript',
-                        viewparams: 'user:'.concat(v1.value).concat(';amenity:').concat(amenity.value).concat(';mot:').concat(mot.value)
-                    },
-                    dataType: 'jsonp',
-                    jsonpCallback: 'callback:handleJsonSeq',
-                    jsonp: 'format_options'
-                });
+                callGeoServer(
+                    "Acc_all", 
+                    {"user": v1.value, "amenity": amenity.value, "mot": mot.value}, 
+                    handleJsonSeq
+                );
             } else {
-                $.ajax('http://localhost:8080/geoserver/wfs', {
-                    type: 'GET',
-                    data: {
-                        service: 'WFS',
-                        version: '1.1.0',
-                        request: 'GetFeature',
-                        typename: 'MGeM:Acc_hilo',
-                        srsname: 'EPSG:4326',
-                        outputFormat: 'text/javascript',
-                        viewparams: 'user:'.concat(v1.value).concat(';amenity:').concat(amenity.value).concat(';mot:').concat(mot.value)
-                    },
-                    dataType: 'jsonp',
-                    jsonpCallback: 'callback:handleJsonBiv',
-                    jsonp: 'format_options'
-                });
+                callGeoServer(
+                    "Acc_hilo", 
+                    {"user": v1.value, "amenity": amenity.value, "mot": mot.value}, 
+                    handleJsonBiv
+                );
             }
 
-            $.ajax('http://localhost:8080/geoserver/wfs', {
-                type: 'GET',
-                data: {
-                    service: 'WFS',
-                    version: '1.1.0',
-                    request: 'GetFeature',
-                    typename: 'MGeM:pois',
-                    srsname: 'EPSG:4326',
-                    outputFormat: 'text/javascript',
-                    viewparams: 'amenity:'.concat(amenity.value)
-                },
-                dataType: 'jsonp',
-                jsonpCallback: 'callback:handleJsonPOIs',
-                jsonp: 'format_options'
-            });
+            callGeoServer(
+                "pois", 
+                {"amenity": amenity.value},
+                handleJsonPOIs
+            );
 
-            $.ajax('http://localhost:8080/geoserver/wfs', {
-                type: 'GET',
-                data: {
-                    service: 'WFS',
-                    version: '1.1.0',
-                    request: 'GetFeature',
-                    typename: 'MGeM:service_areas',
-                    srsname: 'EPSG:4326',
-                    outputFormat: 'text/javascript',
-                    viewparams: 'amenity:'.concat(amenity.value).concat(';mot:').concat(mot.value)
-                },
-                dataType: 'jsonp',
-                jsonpCallback: 'callback:handleJsonAreas',
-                jsonp: 'format_options'
-            });
+            callGeoServer(
+                "service_areas", 
+                {"amenity": amenity.value, "mot": mot.value}, 
+                handleJsonAreas
+            );
+
             break;
+
         case "exp":
             if (map_type.value == "m1") {
-                $.ajax('http://localhost:8080/geoserver/wfs', {
-                        type: 'GET',
-                        data: {
-                            service: 'WFS',
-                            version: '1.1.0',
-                            request: 'GetFeature',
-                            typename: 'MGeM:exposure',
-                            srsname: 'EPSG:4326',
-                            outputFormat: 'text/javascript',
-                            viewparams: 'type:'.concat(v1.value)
-                        },
-                        dataType: 'jsonp',
-                        jsonpCallback: 'callback:handleJsonSeq',
-                        jsonp: 'format_options'
-                    });
+                callGeoServer(
+                    "exposure", 
+                    {"type": v1.value}, 
+                    handleJsonSeq
+                );
             } else {
-                $.ajax('http://localhost:8080/geoserver/wfs', {
-                        type: 'GET',
-                        data: {
-                            service: 'WFS',
-                            version: '1.1.0',
-                            request: 'GetFeature',
-                            typename: 'MGeM:exposure_hilo',
-                            srsname: 'EPSG:4326',
-                            outputFormat: 'text/javascript',
-                            viewparams: 'type:'.concat(v1.value)
-                        },
-                        dataType: 'jsonp',
-                        jsonpCallback: 'callback:handleJsonBiv',
-                        jsonp: 'format_options'
-                    });
+                callGeoServer(
+                    "exposure_hilo", 
+                    {"type": v1.value}, 
+                    handleJsonBiv
+                );
             }
             break;
         case "ava":
             if (map_type.value == "m1") {
-                $.ajax('http://localhost:8080/geoserver/wfs', {
-                        type: 'GET',
-                        data: {
-                            service: 'WFS',
-                            version: '1.1.0',
-                            request: 'GetFeature',
-                            typename: 'MGeM:availability',
-                            srsname: 'EPSG:4326',
-                            outputFormat: 'text/javascript',
-                            viewparams: 'type:'.concat(v1.value)
-                        },
-                        dataType: 'jsonp',
-                        jsonpCallback: 'callback:handleJsonSeq',
-                        jsonp: 'format_options'
-                    });
+                callGeoServer(
+                    "availability", 
+                    {"type": v1.value}, 
+                    handleJsonSeq
+                );
             } else {
-                $.ajax('http://localhost:8080/geoserver/wfs', {
-                        type: 'GET',
-                        data: {
-                            service: 'WFS',
-                            version: '1.1.0',
-                            request: 'GetFeature',
-                            typename: 'MGeM:availability_hilo',
-                            srsname: 'EPSG:4326',
-                            outputFormat: 'text/javascript',
-                            viewparams: 'type:'.concat(v1.value)
-                        },
-                        dataType: 'jsonp',
-                        jsonpCallback: 'callback:handleJsonBiv',
-                        jsonp: 'format_options'
-                    });
+                callGeoServer(
+                    "availability_hilo", 
+                    {"type": v1.value}, 
+                    handleJsonBiv
+                );
             }
             break;
         case "beh":
             if (map_type.value == "m1") {
-                $.ajax('http://localhost:8080/geoserver/wfs', {
-                        type: 'GET',
-                        data: {
-                            service: 'WFS',
-                            version: '1.1.0',
-                            request: 'GetFeature',
-                            typename: 'MGeM:behaviour',
-                            srsname: 'EPSG:4326',
-                            outputFormat: 'text/javascript',
-                            viewparams: 'type:'.concat(v1.value)
-                        },
-                        dataType: 'jsonp',
-                        jsonpCallback: 'callback:handleJsonSeq',
-                        jsonp: 'format_options'
-                    });
+                callGeoServer(
+                    "behaviour", 
+                    {"type": v1.value}, 
+                    handleJsonSeq
+                );
             } else {
-                $.ajax('http://localhost:8080/geoserver/wfs', {
-                        type: 'GET',
-                        data: {
-                            service: 'WFS',
-                            version: '1.1.0',
-                            request: 'GetFeature',
-                            typename: 'MGeM:behaviour_hilo',
-                            srsname: 'EPSG:4326',
-                            outputFormat: 'text/javascript',
-                            viewparams: 'type:'.concat(v1.value)
-                        },
-                        dataType: 'jsonp',
-                        jsonpCallback: 'callback:handleJsonBiv',
-                        jsonp: 'format_options'
-                    });
+                callGeoServer(
+                    "behaviour_hilo", 
+                    {"type": v1.value}, 
+                    handleJsonBiv
+                );
             }
             break;
         case "inc":
             if (map_type.value == "m1") {
-                $.ajax('http://localhost:8080/geoserver/wfs', {
-                        type: 'GET',
-                        data: {
-                            service: 'WFS',
-                            version: '1.1.0',
-                            request: 'GetFeature',
-                            typename: 'MGeM:income',
-                            srsname: 'EPSG:4326',
-                            outputFormat: 'text/javascript'
-                        },
-                        dataType: 'jsonp',
-                        jsonpCallback: 'callback:handleJsonSeq',
-                        jsonp: 'format_options'
-                    });
-                break;
+                callGeoServer(
+                    "income", 
+                    {}, 
+                    handleJsonSeq
+                );
             } else {
-                $.ajax('http://localhost:8080/geoserver/wfs', {
-                        type: 'GET',
-                        data: {
-                            service: 'WFS',
-                            version: '1.1.0',
-                            request: 'GetFeature',
-                            typename: 'MGeM:income_hilo',
-                            srsname: 'EPSG:4326',
-                            outputFormat: 'text/javascript'
-                        },
-                        dataType: 'jsonp',
-                        jsonpCallback: 'callback:handleJsonBiv',
-                        jsonp: 'format_options'
-                    });
+                callGeoServer(
+                    "income_hilo", 
+                    {}, 
+                    handleJsonBiv
+                );
             }
+            break;
         default:
             break;
     }
