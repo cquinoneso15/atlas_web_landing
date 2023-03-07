@@ -19,11 +19,20 @@ const tiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y
 
 // Add selector and button
 const btn = document.querySelector('#btn');
-const justice = document.querySelector('#justice')
-const v1 = document.querySelector('#v1')
-const amenity = document.querySelector('#amenity')
-const mot = document.querySelector('#mot')
-const map_type = document.querySelector('#map_type')
+const justice = document.querySelector('#justice');
+const v1 = document.querySelector('#v1');
+const amenity = document.querySelector('#amenity');
+const mot = document.querySelector('#mot');
+const map_type = document.querySelector('#map_type');
+
+var polygonLayer;
+var poiLayer;
+var areaLayer;
+var layerControl;
+var biv;
+
+const download = document.querySelector('#download');
+var legend;
 
 // Selector values
 var acc = {
@@ -72,6 +81,26 @@ var beh = {
     }
 }
 
+var div = {
+    "v1": {
+        "gender": "Gender",
+        "education": "Education",
+        "income": "Income",
+        "age_young": "Age (young)",
+        "age_old": "Age (old)"
+    },
+    "mot": {
+        "uses_auto": "Uses auto",
+        "uses_pt": "Uses public transport",
+        "uses_bicycle": "Uses bicycle",
+        "uses_car_sharing": "Uses car sharing",
+        "has_driving_license": "Has driving license",
+        "owns_bike": "Owns a bike",
+        "owns_ebike": "Owns an e-bike",
+        "owns_car_sharing_membership": "Owns a car sharing membership"
+    }
+}
+
 function updateSelector(selector, name, justice_value) {
     selector.options.length = 0;
     selector.disabled = false;
@@ -83,6 +112,21 @@ function updateSelector(selector, name, justice_value) {
         }
     } catch (error){
         selector.disabled = true;
+    }
+}
+
+map_type.onchange = (e) => {
+    switch(e.target.value) {
+        case "m1":
+        case "m2":
+            justice.disabled = false;
+            break;
+        case "m3":
+            justice.disabled = true;
+            updateSelector(v1, "v1", "div");
+            updateSelector(amenity, "amenity", "div");
+            updateSelector(mot, "mot", "div");
+            break;
     }
 }
 
@@ -114,109 +158,108 @@ btn.onclick = (event) => {
     generateLegend("", true);
 
     //Connect to Geoserver WFS
-    switch (justice.value) {
-        case "acc":
-            if (map_type.value == "m1") {
-                callGeoServer(
-                    "Acc_all", 
-                    {"user": v1.value, "amenity": amenity.value, "mot": mot.value}, 
-                    handleJsonSeq
-                );
-            } else {
-                callGeoServer(
-                    "Acc_hilo", 
-                    {"user": v1.value, "amenity": amenity.value, "mot": mot.value}, 
-                    handleJsonBiv
-                );
-            }
+    if (map_type.value == "m3") {
+        callGeoServer(
+            "divergent", 
+            {"filter1": v1.value, "filter2": mot.value}, 
+            handleJsonDiv
+        );
+    } else {
+        switch (justice.value) {
+            case "acc":
+                if (map_type.value == "m1") {
+                    callGeoServer(
+                        "Acc_all", 
+                        {"user": v1.value, "amenity": amenity.value, "mot": mot.value}, 
+                        handleJsonSeq
+                    );
+                } else {
+                    callGeoServer(
+                        "Acc_hilo", 
+                        {"user": v1.value, "amenity": amenity.value, "mot": mot.value}, 
+                        handleJsonBiv
+                    );
+                }
 
-            callGeoServer(
-                "pois", 
-                {"amenity": amenity.value},
-                handleJsonPOIs
-            );
+                callGeoServer(
+                    "pois", 
+                    {"amenity": amenity.value},
+                    handleJsonPOIs
+                );
 
-            callGeoServer(
-                "service_areas", 
-                {"amenity": amenity.value, "mot": mot.value}, 
-                handleJsonAreas
-            );
+                callGeoServer(
+                    "service_areas", 
+                    {"amenity": amenity.value, "mot": mot.value}, 
+                    handleJsonAreas
+                );
 
-            break;
+                break;
 
-        case "exp":
-            if (map_type.value == "m1") {
-                callGeoServer(
-                    "exposure", 
-                    {"type": v1.value}, 
-                    handleJsonSeq
-                );
-            } else {
-                callGeoServer(
-                    "exposure_hilo", 
-                    {"type": v1.value}, 
-                    handleJsonBiv
-                );
-            }
-            break;
-        case "ava":
-            if (map_type.value == "m1") {
-                callGeoServer(
-                    "availability", 
-                    {"type": v1.value}, 
-                    handleJsonSeq
-                );
-            } else {
-                callGeoServer(
-                    "availability_hilo", 
-                    {"type": v1.value}, 
-                    handleJsonBiv
-                );
-            }
-            break;
-        case "beh":
-            if (map_type.value == "m1") {
-                callGeoServer(
-                    "behaviour", 
-                    {"type": v1.value}, 
-                    handleJsonSeq
-                );
-            } else {
-                callGeoServer(
-                    "behaviour_hilo", 
-                    {"type": v1.value}, 
-                    handleJsonBiv
-                );
-            }
-            break;
-        case "inc":
-            if (map_type.value == "m1") {
-                callGeoServer(
-                    "income", 
-                    {}, 
-                    handleJsonSeq
-                );
-            } else {
-                callGeoServer(
-                    "income_hilo", 
-                    {}, 
-                    handleJsonBiv
-                );
-            }
-            break;
-        default:
-            break;
+            case "exp":
+                if (map_type.value == "m1") {
+                    callGeoServer(
+                        "exposure", 
+                        {"type": v1.value}, 
+                        handleJsonSeq
+                    );
+                } else {
+                    callGeoServer(
+                        "exposure_hilo", 
+                        {"type": v1.value}, 
+                        handleJsonBiv
+                    );
+                }
+                break;
+            case "ava":
+                if (map_type.value == "m1") {
+                    callGeoServer(
+                        "availability", 
+                        {"type": v1.value}, 
+                        handleJsonSeq
+                    );
+                } else {
+                    callGeoServer(
+                        "availability_hilo", 
+                        {"type": v1.value}, 
+                        handleJsonBiv
+                    );
+                }
+                break;
+            case "beh":
+                if (map_type.value == "m1") {
+                    callGeoServer(
+                        "behaviour", 
+                        {"type": v1.value}, 
+                        handleJsonSeq
+                    );
+                } else {
+                    callGeoServer(
+                        "behaviour_hilo", 
+                        {"type": v1.value}, 
+                        handleJsonBiv
+                    );
+                }
+                break;
+            case "inc":
+                if (map_type.value == "m1") {
+                    callGeoServer(
+                        "income", 
+                        {}, 
+                        handleJsonSeq
+                    );
+                } else {
+                    callGeoServer(
+                        "income_hilo", 
+                        {}, 
+                        handleJsonBiv
+                    );
+                }
+                break;
+            default:
+                break;
+        }
     }
 };
-
-var polygonLayer;
-var poiLayer;
-var areaLayer;
-var layerControl;
-var biv;
-
-const download = document.querySelector('#download');
-var legend;
 
 /**************
  * MAP LEGEND *
@@ -577,6 +620,106 @@ function handleJsonSeq(data) {
             poiLayer.bringToFront();
         }
     }
+
+    translatePage();
+}
+
+function handleJsonDiv(data) {
+    biv = false;
+
+    // Add data to download button
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data));
+    download.setAttribute("href", dataStr);
+    download.setAttribute("download", "data.geojson");
+
+    // If layer is empty, show error message and return
+    if (data.features.length == 0) {
+        alert('Error while querying, no features found.');
+        return;
+    }
+
+    // Generate quantiles
+    var quantsPos = getQuants(filterData(data, "value", (x) => x > 0), "value");
+    var quantsNeg = getQuants(filterData(data, "value", (x) => x < 0), "value");
+    
+    // Generate style from quantiles
+    function getColor(d) {
+        return  d > quantsPos["Q2"]  ? '#a6611a' :
+                d > 0                ? '#dfc27d' :
+                d == 0               ? '#f5f5f5' :
+                d >= quantsNeg["Q2"] ? '#80cdc1' :
+                '#018571';
+    }
+
+    function style(feature) {
+        return {
+            fillColor: getColor(feature.properties.value),
+            weight: 0.5,
+            opacity: 1,
+            color: 'white',
+            fillOpacity: 0.6
+        };
+    }
+
+    // legend
+    var legend_text;
+    switch (v1.value) {
+        case "gender":
+            legend_text = "<h4>% Men - % Woman</h4>";
+            break;
+        case "education":
+            legend_text = "<h4>%High education degree - % Low education degree</h4>";
+            break;
+        case "income":
+            legend_text = "<h4>%High income - % Low income</h4>";
+            break;
+        case "age_young":
+            legend_text = "<h4>%Adults - %Younger adults</h4>";
+            break;
+        case "age_old":
+            legend_text = "<h4>%Adults - %Older adults</h4>";
+    }
+
+    
+    if (quantsPos["Q0"] != undefined) {
+        legend_text +=
+            '<i class="square" style="background:' + getColor((quantsPos["Q4"] + quantsPos["Q2"]) / 2.0) + '" ></i> ' +
+                (quantsPos["Q4"].toFixed(2)) + ' &ndash; ' + (quantsPos["Q2"].toFixed(2));
+        legend_text += '<br>';
+        legend_text +=
+            '<i class="square" style="background:' + getColor((quantsPos["Q2"] + quantsPos["Q0"]) / 2.0) + '" ></i> ' +
+                (quantsPos["Q2"].toFixed(2)) + ' &ndash; ' + (quantsPos["Q0"].toFixed(2));
+        legend_text += '<br>';
+    }
+    legend_text +=
+        '<i class="square" style="background:' + getColor(0.0) + '" ></i> 0.00';
+    if (quantsNeg["Q0"] != undefined) {
+        legend_text += '<br>';
+        legend_text +=
+            '<i class="square" style="background:' + getColor((quantsNeg["Q4"] + quantsNeg["Q2"]) / 2.0) + '" ></i> ' +
+                (quantsNeg["Q4"].toFixed(2)) + ' &ndash; ' + (quantsNeg["Q2"].toFixed(2));
+        legend_text += '<br>';
+        legend_text +=
+            '<i class="square" style="background:' + getColor((quantsNeg["Q2"] + quantsNeg["Q0"]) / 2.0) + '" ></i> ' +
+                (quantsNeg["Q2"].toFixed(2)) + ' &ndash; ' + (quantsNeg["Q0"].toFixed(2));
+    }
+
+    // add legend to map
+    generateLegend(legend_text, false);
+
+    // Add layer to map
+    polygonLayer = L.geoJson(data, {
+        attribution: '&copy; <a href="https://www.mos.ed.tum.de/sv/homepage/" i18n="chair"></a>',
+        style: style,
+        onEachFeature: onEachFeature
+    }).addTo(map);
+    map.fitBounds(polygonLayer.getBounds());
+
+    // Add layer control to map
+    layerControl = L.control.layers(null, {
+        "Background": tiles,
+        "Indicator": polygonLayer
+    }).addTo(map)
 
     translatePage();
 }

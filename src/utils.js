@@ -2,6 +2,12 @@
  * UTILS *
  *********/
 
+function filterData(data, column, filter) {
+    dataCopy = JSON.parse(JSON.stringify(data));
+    dataCopy.features = dataCopy.features.filter((d) => filter(d.properties[column]));
+    return dataCopy;
+}
+
 // Auxiliary function
 function sortedQuants(sortedArray, q) {
     var pos = ((sortedArray.length) - 1) * q;

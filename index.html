@@ -26,6 +26,11 @@
 
 
 <div id="map"></div>
+<select name="map_type" id="map_type">
+	<option value="m1">Sequential Univariate</option>
+	<option value="m2">Sequential Bivariate (with population)</option>
+	<option value="m3">Divergent</option>
+</select>
 <select name="justice" id="justice">
 	<option>Select justice...</option>
 	<optgroup label="Environmental justice">
@@ -46,10 +51,6 @@
 <select name="v1" id="v1" disabled="true"></select>
 <select name="amenity" id="amenity" disabled="true"></select>
 <select name="mot" id="mot" disabled="true"></select>
-<select name="map_type" id="map_type">
-	<option value="m1">Map 1</option>
-	<option value="m2">Map 2</option>
-</select>
 <button id="btn">Update map</button>
 <br><br>
 <a href="#" id="download">📥 Download data (GeoJSON)</a>
