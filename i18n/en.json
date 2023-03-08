@@ -2,5 +2,6 @@
     "title": "(In)justice Atlas",
     "chair": "TUM Chair of Urban Structure and Transport Planning",
     "hover": "Hover over a neighborhood",
-    "select_justice": "Select justice..."
+    "select_justice": "Select justice...",
+    "select_map_type": "Select map type..."
 }
