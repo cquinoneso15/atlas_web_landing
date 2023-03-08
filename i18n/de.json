@@ -3,5 +3,22 @@
     "chair": "TUM Lehrstuhl für Siedlungsstruktur und Verkehrsplanung",
     "hover": "Bewegen Sie den Mauszeiger über eine Bezirksteile",
     "select_justice": "Gerechtigkeit wählen...",
-    "select_map_type": "Kartentyp auswählen..."
+    "environmental_justice": "Umweltgerechtigkeit",
+    "exp": "Belichtung",
+    "distribution_justice": "Verteilungsgerechtigkeit",
+    "acc": "Errichbarkeit",
+    "ava": "Verfügbarkeit",
+    "interactional_justice": "Interaktionsgerechtigkeit",
+    "beh": "Verhalten",
+    "select_map_type": "Kartentyp auswählen...",
+    "seq_uni": "Sequentielles Univariat",
+    "seq_biv": "Sequentielles Bivariat (mit Bevölkerung)",
+    "div": "Abweichend",
+    "radar": "Radar",
+    "select_population": "Bevölkerung auswählen...",
+    "tp": "Gesamtbevölkerung",
+    "o65": "Über 65 Jahre alt",
+    "u18": "Unter 18 Jahre alt",
+    "ng": "Nicht-Deutsch",
+    "select_amenity": "Ausstattung auswählen..."
 }

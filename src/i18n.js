@@ -10,7 +10,11 @@ function translatePage() {
 
 function translateElement(element) {
     const key = element.getAttribute("i18n");
-    element.innerText = i18next.t(key);
+    if (element.tagName == "OPTGROUP") {
+        element.setAttribute("label", i18next.t(key));
+    } else {
+        element.innerText = i18next.t(key);
+    }
 }
 
 function bindLocaleSwitcher(initialValue) {

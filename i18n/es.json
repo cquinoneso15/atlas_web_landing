@@ -3,5 +3,22 @@
     "chair": "Cátedra de Estructura Urbana y Planificación del Transporte (TUM)",
     "hover": "Mueve el cursor sobre un barrio",
     "select_justice": "Selecciona justicia...",
-    "select_map_type": "Selecciona tipo de mapa..."
+    "environmental_justice": "Justicia ambiental",
+    "exp": "Exposición",
+    "distribution_justice": "Justicia de distribución",
+    "acc": "Accessibilidad",
+    "ava": "Disponibilidad",
+    "interactional_justice": "Justicia interaccional",
+    "beh": "Comportamiento",
+    "select_map_type": "Selecciona tipo de mapa...",
+    "seq_uni": "Sequencial de una variable",
+    "seq_biv": "Sequencial de dos variables (con población)",
+    "div": "Divergente",
+    "radar": "Radar",
+    "select_population": "Selecciona población...",
+    "tp": "Población total",
+    "o65": "Mayor de 65 años",
+    "u18": "Menor de 18 años",
+    "ng": "No alemanes",
+    "select_amenity": "Selecciona servicio..."
 }

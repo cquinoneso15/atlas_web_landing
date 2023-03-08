@@ -10,7 +10,7 @@
 const map = L.map('map').setView([48.14, 11.57], 11);
 
 // Add background layer
-const tiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+const tiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
     maxZoom: 20,
@@ -19,11 +19,11 @@ const tiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y
 
 // Add selector and button
 const btn = document.querySelector('#btn');
+const map_type = document.querySelector('#map_type');
 const justice = document.querySelector('#justice');
 const v1 = document.querySelector('#v1');
 const amenity = document.querySelector('#amenity');
 const mot = document.querySelector('#mot');
-const map_type = document.querySelector('#map_type');
 
 var polygonLayer;
 var poiLayer;
@@ -35,6 +35,147 @@ const download = document.querySelector('#download');
 var legend;
 
 // Selector values
+var selector_values = {
+    "seq_uni": {
+        "acc": {
+            "v1": [
+                "tp",
+                "o65",
+                "u18",
+                "ng"
+            ],
+            "amenity": [
+                "h",
+                "e",
+                "f",
+                "s",
+                "cc"
+            ],
+            "mot": [
+                "w_700",
+                "b_700",
+                "wpt_700"
+            ]
+        },
+        "exp": {
+            "v1": [
+                "accidents",
+                "noise",
+                "pollution"
+            ]
+        },
+        "ava": {
+            "v1": [
+                "acc_pt",
+                "cycleway_density",
+                "intersection_density"
+            ]
+        },
+        "beh": {
+            "v1": [
+                "bike_usage",
+                "pt_usage",
+                "walk_usage",
+                "car_sharing_usage"
+            ]
+        }
+    },
+    "seq_biv": {
+        "acc": {
+            "v1": [
+                "tp",
+                "o65",
+                "u18",
+                "ng"
+            ],
+            "amenity": [
+                "h",
+                "e",
+                "f",
+                "s",
+                "cc"
+            ],
+            "mot": [
+                "w_700",
+                "b_700",
+                "wpt_700"
+            ]
+        },
+        "exp": {
+            "v1": [
+                "accidents",
+                "noise",
+                "pollution"
+            ]
+        },
+        "ava": {
+            "v1": [
+                "acc_pt",
+                "cycleway_density",
+                "intersection_density"
+            ]
+        },
+        "beh": {
+            "v1": [
+                "bike_usage",
+                "pt_usage",
+                "walk_usage",
+                "car_sharing_usage"
+            ]
+        }
+    },
+    "div": {
+        "ava": {
+            "v1": [
+                "gender",
+                "education",
+                "income",
+                "age_young",
+                "age_old"
+            ],
+            "mot": [
+                "has_driving_license",
+                "owns_bike",
+                "owns_ebike",
+                "owns_car_sharing_membership"
+            ]
+        },
+        "beh": {
+            "v1": [
+                "gender",
+                "education",
+                "income",
+                "age_young",
+                "age_old"
+            ],
+            "mot": [
+                "auto_usage",
+                "pt_usage",
+                "bicycle_usage",
+                "car_sharing_usage",
+            ]
+        }
+    },
+    "radar": {
+        "acc": {
+            "v1": [
+                "tp",
+                "o65",
+                "u18",
+                "ng"
+            ],
+            "amenity": [
+                "all_am"
+            ],
+            "mot": [
+                "w_700",
+                "b_700",
+                "wpt_700"
+            ]
+        }
+    }
+}
+/*
 var acc = {
     "v1": {
         "tp": "Total population",
@@ -99,9 +240,29 @@ var div = {
         "owns_ebike": "Owns an e-bike",
         "owns_car_sharing_membership": "Owns a car sharing membership"
     }
+}*/
+
+var selected_values;
+
+function updateSelector(selector, name, map_type_value, justice_value) {
+    selector.options.length = 0;
+    selector.disabled = false;
+    try {
+        let selector_dict = selector_values[map_type_value][justice_value][name];
+        if (selector_dict.length == 0) {throw EvalError;}
+        var option;
+        for (const v of selector_dict) {
+            option = new Option(value=v);
+            option.setAttribute("i18n", v);
+            selector.add(option);
+        }
+    } catch (error){
+        selector.disabled = true;
+    }
+    translatePage();
 }
 
-function updateSelector(selector, name, justice_value) {
+/*function updateSelector(selector, name, justice_value) {
     selector.options.length = 0;
     selector.disabled = false;
     try {
@@ -113,10 +274,10 @@ function updateSelector(selector, name, justice_value) {
     } catch (error){
         selector.disabled = true;
     }
-}
+}*/
 
 map_type.onchange = (e) => {
-    switch(e.target.value) {
+    /*switch(e.target.value) {
         case "m1":
         case "m2":
             justice.disabled = false;
@@ -127,18 +288,28 @@ map_type.onchange = (e) => {
             updateSelector(amenity, "amenity", "div");
             updateSelector(mot, "mot", "div");
             break;
-    }
+    }*/
+    updateSelector(v1, "v1", e.target.value, justice.value);
+    updateSelector(amenity, "amenity", e.target.value, justice.value);
+    updateSelector(mot, "mot", e.target.value, justice.value);
 }
 
 justice.onchange = (e) => {
-    updateSelector(v1, "v1", e.target.value);
-    updateSelector(amenity, "amenity", e.target.value);
-    updateSelector(mot, "mot", e.target.value);
+    updateSelector(v1, "v1", map_type.value, e.target.value);
+    updateSelector(amenity, "amenity", map_type.value, e.target.value);
+    updateSelector(mot, "mot", map_type.value, e.target.value);
 };
 
 // When selector value is clicked
 btn.onclick = (event) => {
     event.preventDefault();
+    selected_values = {
+        "map_type": map_type.value,
+        "justice": justice.value,
+        "v1": v1.value,
+        "amenity": amenity.value,
+        "mot": mot.value
+    }
     info.update();
 
     // Remove layers if already displayed
@@ -158,90 +329,90 @@ btn.onclick = (event) => {
     generateLegend("", true);
 
     //Connect to Geoserver WFS
-    if (map_type.value == "m3") {
+    if (selected_values["map_type"] == "div") {
         callGeoServer(
             "divergent", 
-            {"filter1": v1.value, "filter2": mot.value}, 
+            {"filter1": selected_values["v1"], "filter2": selected_values["mot"]}, 
             handleJsonDiv
         );
     } else {
-        switch (justice.value) {
+        switch (selected_values["justice"]) {
             case "acc":
-                if (map_type.value == "m1") {
+                if (selected_values["map_type"] == "seq_uni") {
                     callGeoServer(
                         "Acc_all", 
-                        {"user": v1.value, "amenity": amenity.value, "mot": mot.value}, 
+                        {"user": selected_values["v1"], "amenity": selected_values["amenity"], "mot": selected_values["mot"]}, 
                         handleJsonSeq
                     );
                 } else {
                     callGeoServer(
                         "Acc_hilo", 
-                        {"user": v1.value, "amenity": amenity.value, "mot": mot.value}, 
+                        {"user": selected_values["v1"], "amenity": selected_values["amenity"], "mot": selected_values["mot"]}, 
                         handleJsonBiv
                     );
                 }
 
                 callGeoServer(
                     "pois", 
-                    {"amenity": amenity.value},
+                    {"amenity": selected_values["amenity"]},
                     handleJsonPOIs
                 );
 
                 callGeoServer(
                     "service_areas", 
-                    {"amenity": amenity.value, "mot": mot.value}, 
+                    {"amenity": selected_values["amenity"], "mot": selected_values["mot"]}, 
                     handleJsonAreas
                 );
 
                 break;
 
             case "exp":
-                if (map_type.value == "m1") {
+                if (selected_values["map_type"] == "seq_uni") {
                     callGeoServer(
                         "exposure", 
-                        {"type": v1.value}, 
+                        {"type": selected_values["v1"]}, 
                         handleJsonSeq
                     );
                 } else {
                     callGeoServer(
                         "exposure_hilo", 
-                        {"type": v1.value}, 
+                        {"type": selected_values["v1"]}, 
                         handleJsonBiv
                     );
                 }
                 break;
             case "ava":
-                if (map_type.value == "m1") {
+                if (selected_values["map_type"] == "seq_uni") {
                     callGeoServer(
                         "availability", 
-                        {"type": v1.value}, 
+                        {"type": selected_values["v1"]}, 
                         handleJsonSeq
                     );
                 } else {
                     callGeoServer(
                         "availability_hilo", 
-                        {"type": v1.value}, 
+                        {"type": selected_values["v1"]}, 
                         handleJsonBiv
                     );
                 }
                 break;
             case "beh":
-                if (map_type.value == "m1") {
+                if (selected_values["map_type"] == "seq_uni") {
                     callGeoServer(
                         "behaviour", 
-                        {"type": v1.value}, 
+                        {"type": selected_values["v1"]}, 
                         handleJsonSeq
                     );
                 } else {
                     callGeoServer(
                         "behaviour_hilo", 
-                        {"type": v1.value}, 
+                        {"type": selected_values["v1"]}, 
                         handleJsonBiv
                     );
                 }
                 break;
             case "inc":
-                if (map_type.value == "m1") {
+                if (selected_values["map_type"] == "seq_uni") {
                     callGeoServer(
                         "income", 
                         {}, 
@@ -352,7 +523,7 @@ var info = L.control();
 
 info.onAdd = function (map) {
     this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
-    this.update();
+    //this.update();
     return this._div;
 };
 
@@ -361,7 +532,7 @@ info.update = function (props) {
     this._div.innerHTML = '<h4>' + (v1.options[v1.selectedIndex] ? v1.options[v1.selectedIndex].text : '') + (amenity.options[amenity.selectedIndex] ? " / " + amenity.options[amenity.selectedIndex].text : '') + (mot.options[mot.selectedIndex] ? " / " + mot.options[mot.selectedIndex].text : '' ) + '</h4>';
     
     if (biv) {
-        switch (justice.value) {
+        switch (selected_values["justice"]) {
             case "acc":
                 this._div.innerHTML += (props
                     ? '<b>' + props.name + '</b><br /> Acc. ' + props.value_acc.toFixed(2) + ' % (' + props.hilo_acc + ') - Pop. ' + props.value_pop.toFixed(2) + ' (' + props.hilo_pop + ')'
@@ -391,7 +562,7 @@ info.update = function (props) {
                 break;
         }
     } else {
-        switch (justice.value) {
+        switch (selected_values["justice"]) {
             case "acc":
                 this._div.innerHTML += (props
                     ? '<b>' + props.name + '</b><br />' + props.value.toFixed(2) + ' %'
@@ -431,7 +602,7 @@ function handleJsonBiv(data) {
     biv = true;
 
     var hilo_X;
-    switch (justice.value) {
+    switch (selected_values["justice"]) {
         case "acc":
             hilo_X = "hilo_acc";
             break;
@@ -500,7 +671,7 @@ function handleJsonBiv(data) {
                     '<rect height="18" width="18" y="20" x="0" stroke="#000" fill="' + getColorBiv("Low", "Low") + '"/>' +
                     '<rect height="18" width="18" y="20" x="18" stroke="#000" fill="' + getColorBiv("High", "Low") + '"/>' +
                     '<path d="M0,0 v38 h38" opacity="1" stroke-linecap="butt" stroke-linejoin="bevel" stroke="#000" stroke-width="2" fill="none" marker-start="url(#arrow)" marker-end="url(#arrow)"/>' +
-                    '<text font-weight="bold" font-size="0.75em" transform="translate(-10, 18) rotate(90)" text-anchor="middle">' + justice.value + '</text>' +
+                    '<text font-weight="bold" font-size="0.75em" transform="translate(-10, 18) rotate(90)" text-anchor="middle">' + selected_values["justice"] + '</text>' +
                     '<text font-weight="bold" font-size="0.75em" transform="translate(18, 50)" text-anchor="middle">pop</text>' +
                     '</g>' +
                     '</svg>',
@@ -570,7 +741,7 @@ function handleJsonSeq(data) {
     // legend
     let grades = [quants["Q0"], quants["Q1"], quants["Q2"], quants["Q3"], quants["Q4"]];
     var legend_text;
-    switch (justice.value) {
+    switch (selected_values["justice"]) {
         case "acc":
             legend_text = "<h4>Accessibility [%]</h4>";
             break;
@@ -663,7 +834,7 @@ function handleJsonDiv(data) {
 
     // legend
     var legend_text;
-    switch (v1.value) {
+    switch (selected_values["v1"]) {
         case "gender":
             legend_text = "<h4>% Men - % Woman</h4>";
             break;
