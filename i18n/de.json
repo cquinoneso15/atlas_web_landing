@@ -1,5 +1,6 @@
 {
     "title": "(Un)gerechtigkeit Atlas",
     "chair": "TUM Lehrstuhl für Siedlungsstruktur und Verkehrsplanung",
-    "hover": "Bewegen Sie den Mauszeiger über eine Bezirksteile"
+    "hover": "Bewegen Sie den Mauszeiger über eine Bezirksteile",
+    "select_justice": "Gerechtigkeit wählen..."
 }

@@ -1,5 +1,6 @@
 {
     "title": "Atlas de (in)justicia",
     "chair": "Cátedra de Estructura Urbana y Planificación del Transporte (TUM)",
-    "hover": "Mueve el cursor sobre un barrio"
+    "hover": "Mueve el cursor sobre un barrio",
+    "select_justice": "Selecciona justicia..."
 }
