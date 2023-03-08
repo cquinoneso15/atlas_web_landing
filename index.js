@@ -75,7 +75,7 @@ var ava = {
 var beh = {
     "v1": {
         "bike_usage": "Bike usage",
-        "transit_usage": "Transit usage",
+        "pt_usage": "Transit usage",
         "walk_usage": "Walk usage",
         "car_sharing_usage": "Car sharing usage"
     }
@@ -90,10 +90,10 @@ var div = {
         "age_old": "Age (old)"
     },
     "mot": {
-        "uses_auto": "Uses auto",
-        "uses_pt": "Uses public transport",
-        "uses_bicycle": "Uses bicycle",
-        "uses_car_sharing": "Uses car sharing",
+        "auto_usage": "Uses auto",
+        "pt_usage": "Uses public transport",
+        "bicycle_usage": "Uses bicycle",
+        "car_sharing_usage": "Uses car sharing",
         "has_driving_license": "Has driving license",
         "owns_bike": "Owns a bike",
         "owns_ebike": "Owns an e-bike",
