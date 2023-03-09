@@ -23,5 +23,10 @@
     "o65": "Over 65 y/o",
     "u18": "Under 18 y/o",
     "ng": "Non-German",
-    "select_amenity": "Select amenity..."
+    "select_amenity": "Select amenity...",
+    "h": "Health",
+    "e": "Education",
+    "f": "Food",
+    "s": "Sports",
+    "cc": "Community centers"
 }

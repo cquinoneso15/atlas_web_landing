@@ -23,5 +23,10 @@
     "o65": "Mayor de 65 años",
     "u18": "Menor de 18 años",
     "ng": "No alemanes",
-    "select_amenity": "Selecciona servicio..."
+    "select_amenity": "Selecciona servicio...",
+    "h": "Salud",
+    "e": "Educación",
+    "f": "Comida",
+    "s": "Deportes",
+    "cc": "Centros comunitarios"
 }

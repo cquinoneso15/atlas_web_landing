@@ -23,5 +23,10 @@
     "o65": "Über 65 Jahre alt",
     "u18": "Unter 18 Jahre alt",
     "ng": "Nicht-Deutsch",
-    "select_amenity": "Ausstattung auswählen..."
+    "select_amenity": "Ausstattung auswählen...",
+    "h": "Gesundheit",
+    "e": "Bildung",
+    "f": "Essen",
+    "s": "Sport",
+    "cc": "Gemeindezentren"
 }

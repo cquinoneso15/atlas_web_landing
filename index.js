@@ -197,9 +197,15 @@ function updateSelector(selector, name, map_type_value, justice_value) {
 }
 
 map_type.onchange = (e) => {
-    updateSelector(v1, "v1", e.target.value, justice.value);
-    updateSelector(amenity, "amenity", e.target.value, justice.value);
-    updateSelector(mot, "mot", e.target.value, justice.value);
+    if (e.target.value == "radar") {
+        justice.disabled = true;
+        justice.value = "select";
+    } else {
+        justice.disabled = false;
+        updateSelector(v1, "v1", e.target.value, justice.value);
+        updateSelector(amenity, "amenity", e.target.value, justice.value);
+        updateSelector(mot, "mot", e.target.value, justice.value);
+    }
 }
 
 justice.onchange = (e) => {
