@@ -492,7 +492,7 @@ function highlightFeature(e) {
         weight: 5,
         color: '#666',
         dashArray: '',
-        fillOpacity: 0.7
+        fillOpacity: 0.9
     });
 
     layer.bringToFront();
@@ -652,17 +652,13 @@ function handleJsonBiv(data) {
             fillColor: getColorBiv(feature.properties.hilo_pop, feature.properties[hilo_X]),
             weight: 0.5,
             opacity: 1,
-            color: 'white',
-            fillOpacity: 0.6
+            color: 'grey',
+            fillOpacity: 0.7
         };
     }
 
     // Add legend
-    generateLegend(/*'<i class="square" style="background:' + getColorBiv("Low", "High") + '"></i>' + 
-                    '<i class="square" style="background:' + getColorBiv("High", "High") + '"></i><br>' + 
-                    '<i class="square"style="background:' + getColorBiv("Low", "Low") + '"></i>' + 
-                    '<i class="square"style="background:' + getColorBiv("High", "Low") + '"></i>',*/
-                    '<svg width="100" height="80" xmlns="http://www.w3.org/2000/svg">' +
+    generateLegend( '<svg width="100" height="80" xmlns="http://www.w3.org/2000/svg">' +
                     '<defs><marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" /></marker></defs>' +
                     '<g transform="translate(10 30) rotate(-45)">' +
                     '<title>Bivariate legend</title>' +
@@ -733,8 +729,8 @@ function handleJsonSeq(data) {
             fillColor: getColor(feature.properties.value),
             weight: 0.5,
             opacity: 1,
-            color: 'white',
-            fillOpacity: 0.6
+            color: 'grey',
+            fillOpacity: 0.7
         };
     }
 
@@ -827,8 +823,8 @@ function handleJsonDiv(data) {
             fillColor: getColor(feature.properties.value),
             weight: 0.5,
             opacity: 1,
-            color: 'white',
-            fillOpacity: 0.6
+            color: 'black',
+            fillOpacity: 0.7
         };
     }
 
