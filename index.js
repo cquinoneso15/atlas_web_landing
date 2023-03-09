@@ -186,7 +186,8 @@ function updateSelector(selector, name, map_type_value, justice_value) {
         if (selector_dict.length == 0) {throw EvalError;}
         var option;
         for (const v of selector_dict) {
-            option = new Option(value=v);
+            option = new Option();
+            option.setAttribute("value", v);
             option.setAttribute("i18n", v);
             selector.add(option);
         }
