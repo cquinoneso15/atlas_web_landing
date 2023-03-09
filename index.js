@@ -175,72 +175,6 @@ var selector_values = {
         }
     }
 }
-/*
-var acc = {
-    "v1": {
-        "tp": "Total population",
-	    "o65": "Over 65 y/o",
-	    "u18": "Under 18 y/o",
-	    "ng": "Non-germans"
-    },
-    "amenity": {
-        "h": "Health",
-        "e": "Education",
-        "f": "Food",
-        "s": "Sports",
-        "cc": "Community centers"
-    },
-    "mot": {
-        "w_700": "Walking, 700m",
-        "b_700": "Cycling, 10 min",
-        "wpt_700": "Walking + Public Transport"
-    }
-}
-
-var exp = {
-    "v1": {
-        "accidents": "Accidents",
-        "noise": "Noise",
-        "pollution": "Pollution"
-    }
-}
-
-var ava = {
-    "v1": {
-        "acc_pt": "Accessibility to PT stop",
-        "cycleway_density": "Cycleway density",
-        "intersection_density": "Intersection density"
-    }
-}
-
-var beh = {
-    "v1": {
-        "bike_usage": "Bike usage",
-        "pt_usage": "Transit usage",
-        "walk_usage": "Walk usage",
-        "car_sharing_usage": "Car sharing usage"
-    }
-}
-
-var div = {
-    "v1": {
-        "gender": "Gender",
-        "education": "Education",
-        "income": "Income",
-        "age_young": "Age (young)",
-        "age_old": "Age (old)"
-    },
-    "mot": {
-        "auto_usage": "Uses auto",
-        "pt_usage": "Uses public transport",
-        "bicycle_usage": "Uses bicycle",
-        "car_sharing_usage": "Uses car sharing",
-        "has_driving_license": "Has driving license",
-        "owns_bike": "Owns a bike",
-        "owns_ebike": "Owns an e-bike",
-        "owns_car_sharing_membership": "Owns a car sharing membership"
-    }
-}*/
 
 var selected_values;
 
@@ -262,33 +196,7 @@ function updateSelector(selector, name, map_type_value, justice_value) {
     translatePage();
 }
 
-/*function updateSelector(selector, name, justice_value) {
-    selector.options.length = 0;
-    selector.disabled = false;
-    try {
-        let selector_dict = window[justice_value][name];
-        if (selector_dict.length == 0) {throw EvalError;}
-        for (var key in selector_dict) {
-            selector.add(new Option(selector_dict[key], key))
-        }
-    } catch (error){
-        selector.disabled = true;
-    }
-}*/
-
 map_type.onchange = (e) => {
-    /*switch(e.target.value) {
-        case "m1":
-        case "m2":
-            justice.disabled = false;
-            break;
-        case "m3":
-            justice.disabled = true;
-            updateSelector(v1, "v1", "div");
-            updateSelector(amenity, "amenity", "div");
-            updateSelector(mot, "mot", "div");
-            break;
-    }*/
     updateSelector(v1, "v1", e.target.value, justice.value);
     updateSelector(amenity, "amenity", e.target.value, justice.value);
     updateSelector(mot, "mot", e.target.value, justice.value);
