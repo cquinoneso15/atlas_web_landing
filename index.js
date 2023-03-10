@@ -198,15 +198,9 @@ function updateSelector(selector, name, map_type_value, justice_value) {
 }
 
 map_type.onchange = (e) => {
-    if (e.target.value == "radar") {
-        justice.disabled = true;
-        justice.value = "select";
-    } else {
-        justice.disabled = false;
-        updateSelector(v1, "v1", e.target.value, justice.value);
-        updateSelector(amenity, "amenity", e.target.value, justice.value);
-        updateSelector(mot, "mot", e.target.value, justice.value);
-    }
+    updateSelector(v1, "v1", e.target.value, justice.value);
+    updateSelector(amenity, "amenity", e.target.value, justice.value);
+    updateSelector(mot, "mot", e.target.value, justice.value);
 }
 
 justice.onchange = (e) => {
@@ -249,6 +243,12 @@ btn.onclick = (event) => {
             "divergent", 
             {"filter1": selected_values["v1"], "filter2": selected_values["mot"]}, 
             handleJsonDiv
+        );
+    } else if (selected_values["map_type"] == "radar") {
+        callGeoServer(
+            "acc_all_amenities", 
+            {"user": selected_values["v1"], "mot": selected_values["mot"]}, 
+            handleJsonRadar
         );
     } else {
         switch (selected_values["justice"]) {
@@ -802,6 +802,64 @@ function handleJsonDiv(data) {
         "Background": tiles,
         "Indicator": polygonLayer
     }).addTo(map)
+
+    translatePage();
+}
+
+function handleJsonRadar(data) {
+    biv = false;
+
+    // Add data to download button
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data));
+    download.setAttribute("href", dataStr);
+    download.setAttribute("download", "data.geojson");
+
+    // If layer is empty, show error message and return
+    if (data.features.length == 0) {
+        alert('Error while querying, no features found.');
+        return;
+    }
+
+    function style(feature) {
+        return {
+            fillColor: 'blue',
+            weight: 0.5,
+            opacity: 1,
+            color: 'grey',
+            fillOpacity: 0.7
+        };
+    }
+
+    var legend_text = '<h4>No neighbourhood selected</h4>';
+    generateLegend(legend_text, true);
+
+    function onClick(e) {
+        zoomToFeature(e);
+        
+        var layer = e.target;
+        layer.setStyle({
+            weight: 5,
+            color: 'black',
+            dashArray: '',
+            fillOpacity: 0.9
+        });
+        layer.bringToFront();
+
+        generateLegend('<div style="width: 400px;"><canvas id="radar"></canvas></div>', true);
+        radarPlot(e);
+    }
+
+    function onEachFeature(feature, layer) {
+        layer.on({
+            click: onClick
+        });
+    }
+
+    polygonLayer = L.geoJson(data, {
+        attribution: '&copy; <a href="https://www.mos.ed.tum.de/sv/homepage/" i18n="chair"></a>',
+        style: style,
+        onEachFeature: onEachFeature
+    }).addTo(map);
 
     translatePage();
 }
