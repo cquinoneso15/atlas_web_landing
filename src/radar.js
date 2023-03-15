@@ -84,7 +84,8 @@ function radarPlot(e) {
           line: {
             borderWidth: 3
           }
-        }
+        },
+        locale: document.querySelector("[data-i18n-switcher]").value
       },
     };
   
