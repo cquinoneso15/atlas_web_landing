@@ -835,6 +835,8 @@ function handleJsonRadar(data) {
     generateLegend(legend_text, true);
 
     function onClick(e) {
+        polygonLayer.resetStyle();
+
         zoomToFeature(e);
         
         var layer = e.target;
