@@ -8,12 +8,16 @@ function translatePage() {
         .forEach(translateElement);
 }
 
+function translateString(string) {
+    return i18next.t(string);
+}
+
 function translateElement(element) {
     const key = element.getAttribute("i18n");
     if (element.tagName == "OPTGROUP") {
-        element.setAttribute("label", i18next.t(key));
+        element.setAttribute("label", translateString(key));
     } else {
-        element.innerText = i18next.t(key);
+        element.innerText = translateString(key);
     }
 }
 

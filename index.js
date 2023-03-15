@@ -33,6 +33,7 @@ var biv;
 
 const download = document.querySelector('#download');
 var legend;
+var radar;
 
 // Selector values
 var selector_values = {
@@ -157,7 +158,7 @@ var selector_values = {
         }
     },
     "radar": {
-        "acc": {
+        /*"acc": {
             "v1": [
                 "tp",
                 "o65",
@@ -172,7 +173,7 @@ var selector_values = {
                 "b_700",
                 "wpt_700"
             ]
-        }
+        }*/
     }
 }
 
@@ -246,8 +247,8 @@ btn.onclick = (event) => {
         );
     } else if (selected_values["map_type"] == "radar") {
         callGeoServer(
-            "acc_all_amenities", 
-            {"user": selected_values["v1"], "mot": selected_values["mot"]}, 
+            "all_normalized", 
+            {}, 
             handleJsonRadar
         );
     } else {
@@ -846,7 +847,7 @@ function handleJsonRadar(data) {
         layer.bringToFront();
 
         generateLegend('<div style="width: 400px;"><canvas id="radar"></canvas></div>', true);
-        radarPlot(e);
+        radar = radarPlot(e);
     }
 
     function onEachFeature(feature, layer) {
