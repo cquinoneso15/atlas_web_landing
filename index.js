@@ -158,22 +158,6 @@ var selector_values = {
         }
     },
     "radar": {
-        /*"acc": {
-            "v1": [
-                "tp",
-                "o65",
-                "u18",
-                "ng"
-            ],
-            "amenity": [
-                "all_am"
-            ],
-            "mot": [
-                "w_700",
-                "b_700",
-                "wpt_700"
-            ]
-        }*/
     }
 }
 
@@ -823,11 +807,11 @@ function handleJsonRadar(data) {
 
     function style(feature) {
         return {
-            fillColor: 'blue',
-            weight: 0.5,
+            fillColor: '#e8ae43',
+            weight: 1,
             opacity: 1,
             color: 'grey',
-            fillOpacity: 0.7
+            fillOpacity: 0.5
         };
     }
 
