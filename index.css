@@ -1,7 +1,264 @@
-html, body {
+html {
+    --black: #000000;
+    --white: #FFFFFF;
+    --tum-blue-brand: #3070B3;
+    --plyr-color-main: var(--tum-blue-brand);
+    --tum-blue-dark: #072140;
+    --tum-blue-dark-1: #0A2D57;
+    --tum-blue-dark-2: #0E396E;
+    --tum-blue-dark-3: #114584;
+    --tum-blue-dark-4: #14519A;
+    --tum-blue-dark-5: #165DB1;
+    --tum-blue-light: #5E94D4;
+    --tum-blue-light-1: #9ABCE4;
+    --tum-blue-light-2: #C2D7EF;
+    --tum-blue-light-3: #D7E4F4;
+    --tum-blue-light-4: #E3EEFA;
+    --tum-blue-light-5: #F0F5FA;
+    --tum-yellow: #FED702;
+    --tum-yellow-dark: #CBAB01;
+    --tum-yellow-1: #FEDE34;
+    --tum-yellow-2: #FEE667;
+    --tum-yellow-3: #FEEE9A;
+    --tum-yellow-4: #FEF6CD;
+    --tum-orange: #F7B11E;
+    --tum-orange-dark: #D99208;
+    --tum-orange-1: #F9BF4E;
+    --tum-orange-2: #FAD080;
+    --tum-orange-3: #FCE2B0;
+    --tum-orange-4: #FEF4E1;
+    --tum-orange-danger: #C24814;
+    --tum-pink: #B55CA5;
+    --tum-pink-dark: #9B468D;
+    --tum-pink-1: #C680BB;
+    --tum-pink-2: #D6A4CE;
+    --tum-pink-3: #E6C7E1;
+    --tum-pink-4: #F6EAF4;
+    --tum-blue-bright: #8F81EA;
+    --tum-blue-bright-dark: #6955E2;
+    --tum-blue-bright-1: #B6ACF1;
+    --tum-blue-bright-2: #C9C2F5;
+    --tum-blue-bright-3: #DCD8F9;
+    --tum-blue-bright-4: #EFEDFC;
+    --tum-red: #EA7237;
+    --tum-red-dark: #D95117;
+    --tum-red-1: #EF9067;
+    --tum-red-2: #F3B295;
+    --tum-red-3: #F6C2AC;
+    --tum-red-4: #FBE4DA;
+    --tum-green: #9FBA36;
+    --tum-green-dark: #7D922A;
+    --tum-green-1: #B6CE55;
+    --tum-green-2: #C7D97D;
+    --tum-green-3: #D8E5A4;
+    --tum-green-4: #E9F1CB;
+    --tum-grey-1: #20252A;
+    --tum-grey-2: #333A41;
+    --tum-grey-3: #475058;
+    --tum-grey-4: #6A757E;
+    --tum-grey-5: #ABB5BE;
+    --tum-grey-6: #CDD4DB;
+    --tum-grey-7: #DDE2E6;
+    --tum-grey-8: #E8ECEF;
+    --tum-grey-9: #F8F9FA;
+    --theme-color: var(--tum-blue-dark);
+    --in2-modal-brand-color: var(--tum-blue-dark)
+}
+
+html,
+body {
     height: 100%;
     margin: 0;
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    background-color: var(--tum-blue-light-2);
 }
+
+/****************
+ * BEGIN NAVBAR *
+ ****************/
+.navbar input[type="checkbox"],
+.navbar .hamburger-lines {
+    display: none;
+}
+
+.navbar {
+    box-shadow: 0px 5px 10px 0px #aaa;
+    position: fixed;
+    width: 100%;
+    background: var(--tum-blue-dark);
+    color: white;
+    height: 64px;
+    z-index: 12;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    height: 64px;
+    align-items: center;
+    width: 95%;
+    margin: auto;
+}
+
+.menu-items {
+    order: 2;
+    display: flex;
+}
+
+.logo {
+    order: 1;
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+
+    align-items: center;
+    color: inherit !important;
+    -moz-column-gap: 0.75rem;
+    column-gap: 0.75rem;
+    display: flex;
+    -webkit-padding-after: 1.25rem;
+    padding-block-end: 1.25rem;
+    -webkit-padding-before: 1.25rem;
+    padding-block-start: 1.25rem;
+    text-decoration: none !important;
+}
+
+.logo span.visually-hidden {
+    clip: rect(1px, 1px, 1px, 1px) !important;
+    -webkit-clip-path: inset(50%) !important;
+    clip-path: inset(50%) !important;
+    height: 1px !important;
+    width: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+}
+
+.logo span.desktop-show {
+    display: block;
+}
+
+@media (max-width: 1000px) {
+    .navbar-container input[type="checkbox"],
+    .navbar-container .hamburger-lines {
+        display: block;
+    }
+
+    .navbar-container {
+        display: block;
+        position: relative;
+        height: 64px;
+    }
+
+    .navbar-container input[type="checkbox"] {
+        position: absolute;
+        display: block;
+        height: 32px;
+        width: 30px;
+        top: 20px;
+        left: 20px;
+        z-index: 5;
+        opacity: 0;
+    }
+
+    .navbar-container .hamburger-lines {
+        display: block;
+        height: 23px;
+        width: 35px;
+        position: absolute;
+        top: 17px;
+        left: 20px;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .navbar-container .hamburger-lines .line {
+        display: block;
+        height: 2px;
+        width: 100%;
+        border-radius: 10px;
+        background: white;
+    }
+
+    .navbar-container .hamburger-lines .line1 {
+        transform-origin: 0% 0%;
+        transition: transform 0.4s ease-in-out;
+    }
+
+    .navbar-container .hamburger-lines .line2 {
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .navbar-container .hamburger-lines .line3 {
+        transform-origin: 0% 100%;
+        transition: transform 0.4s ease-in-out;
+    }
+
+    .navbar .menu-items {
+        padding-top: 100px;
+        background: #fff;
+        height: 100vh;
+        max-width: 300px;
+        transform: translate(-150%);
+        display: flex;
+        flex-direction: column;
+        margin-left: -40px;
+        padding-left: 50px;
+        transition: transform 0.5s ease-in-out;
+        box-shadow: 5px 0px 10px 0px #aaa;
+    }
+
+    .navbar .menu-items li {
+        margin-bottom: 1.5rem;
+        font-size: 1.3rem;
+        font-weight: 500;
+    }
+
+    .logo {
+        position: absolute;
+        top: -9px;
+        right: 15px;
+        font-size: 2rem;
+    }
+
+    .logo span.desktop-show {
+        display: none;
+    }
+
+    .navbar-container input[type="checkbox"]:checked~.menu-items {
+        transform: translateX(0);
+    }
+
+    .navbar-container input[type="checkbox"]:checked~.hamburger-lines .line1 {
+        transform: rotate(35deg);
+        background: var(--tum-blue-dark);
+    }
+
+    .navbar-container input[type="checkbox"]:checked~.hamburger-lines .line2 {
+        transform: scaleY(0);
+        background: var(--tum-blue-dark);
+    }
+
+    .navbar-container input[type="checkbox"]:checked~.hamburger-lines .line3 {
+        transform: rotate(-35deg);
+        background: var(--tum-blue-dark);
+    }
+}
+
+/**************
+ * END NAVBAR *
+ **************/
+
+.map-area {
+    padding-top: 64px;
+}
+
+.map-area div#map {
+    z-index: 0;
+}
+
 .leaflet-container {
     height: 700px;
     width: 100%;
@@ -12,26 +269,31 @@ html, body {
     padding: 6px 8px;
     font: 14px/16px Arial, Helvetica, sans-serif;
     background: white;
-    background: rgba(255,255,255,0.8);
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
 }
+
 .info h4 {
     margin: 0 0 5px;
     color: #777;
 }
+
 .legend {
     line-height: 18px;
     color: #555;
 }
+
 .legend i {
     float: left;
     margin-right: 8px;
 }
+
 .legend i.square {
     width: 18px;
     height: 18px;
 }
+
 .legend i.circle {
     border-radius: 50%;
 }
