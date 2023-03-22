@@ -34,33 +34,49 @@
 			<span class="line line3"></span>
 		</div>
 		<div class="menu-items">
-			<select name="map_type" id="map_type">
-				<option value="select" i18n="select_map_type" class="select"></option>
-				<option value="seq_uni" i18n="seq_uni"></option>
-				<option value="seq_biv" i18n="seq_biv"></option>
-				<option value="div" i18n="div"></option>
-				<option value="radar" i18n="radar"></option>
-			</select>
-			<select name="justice" id="justice">
-				<option value="select" i18n="select_justice"></option>
-				<optgroup i18n="environmental_justice">
-					<option value="exp" i18n="exp"></option>
-				</optgroup>
-				<optgroup i18n="distribution_justice">
-					<option value="acc" i18n="acc"></option>
-					<option value="ava" i18n="ava"></option>
-				</optgroup>
-				<optgroup i18n="interactional_justice">
-					<option value="beh" i18n="beh"></option>
-				</optgroup>
-				<optgroup i18n="other_variables">
-					<option value="pop" i18n="pop"></option>
-					<option value="inc" i18n="inc"></option>
-				</optgroup>
-			</select>
-			<select name="v1" id="v1" disabled="true"></select>
-			<select name="amenity" id="amenity" disabled="true"></select>
-			<select name="mot" id="mot" disabled="true"></select>
+			<div class="select-pair" id="sp-0">
+				<div class="select-title" i18n="select_map_type"></div>
+				<select name="map_type" id="map_type">
+					<option value="select" i18n="select"></option>
+					<option value="sg" i18n="sg"></option>
+					<option value="ji" i18n="ji"></option>
+					<option value="ji_v_sg" i18n="ji_v_sg"></option>
+					<option value="diff_sg" i18n="diff_sg"></option>
+					<option value="summ" i18n="summ"></option>
+				</select>
+			</div>
+			<div class="select-pair" id="sp-1">
+				<div class="select-title" i18n="select_justice"></div>
+				<select name="justice" id="justice">
+					<option value="select" i18n="select"></option>
+					<optgroup i18n="environmental_justice">
+						<option value="exp" i18n="exp"></option>
+					</optgroup>
+					<optgroup i18n="distribution_justice">
+						<option value="acc" i18n="acc"></option>
+						<option value="ava" i18n="ava"></option>
+					</optgroup>
+					<optgroup i18n="interactional_justice">
+						<option value="beh" i18n="beh"></option>
+					</optgroup>
+					<optgroup i18n="other_variables">
+						<option value="pop" i18n="pop"></option>
+						<option value="inc" i18n="inc"></option>
+					</optgroup>
+				</select>
+			</div>
+			<div class="select-pair" id="sp-2">
+				<div class="select-title" i18n="select"></div>
+				<select name="v1" id="v1" disabled="true"></select>
+			</div>
+			<div class="select-pair" id="sp-3">
+				<div class="select-title" i18n="select"></div>
+				<select name="amenity" id="amenity" disabled="true"></select>
+			</div>
+			<div class="select-pair" id="sp-4">
+				<div class="select-title" i18n="select"></div>
+				<select name="mot" id="mot" disabled="true"></select>
+			</div>
 			<button id="btn">Update map</button>
 		</div>
 		<a class="logo" title="Technische Universität München" href="/">
@@ -88,6 +104,7 @@
 		<option value="es">Español</option>
 	</select>
 </footer>
+
 <script src="src/utils.js"></script>
 <script src="src/geoserver.js"></script>
 <script src="src/i18n.js"></script>

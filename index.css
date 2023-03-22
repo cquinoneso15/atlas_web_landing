@@ -103,22 +103,32 @@ body {
 .menu-items {
     order: 2;
     display: flex;
-    border-left:  1px solid var(--tum-grey-5);
 }
 
 .menu-items > * {
-    background-color: var(--tum-blue-dark);
-    color: white;
-    height: 64px;
-    border-right:  1px solid var(--tum-grey-5);
+    vertical-align: middle;
+    margin-left: 10px;
 }
 
 .menu-items > button {
     font-weight: 600;
 }
 
-.menu-items > select option.select {
-    font-style: italic;
+.menu-items > div > * {
+    display: block;
+}
+
+.menu-items > div > div.select-title::after {
+     content: "\1f6c8";
+     margin-left: 5px;
+}
+
+.menu-items select {
+    background-color: var(--tum-blue-dark);
+    color: white;
+    border-style: solid;
+    border-color: var(--tum-blue-bright-3);
+    border-width: 1px;
 }
 
 .logo {
@@ -229,6 +239,10 @@ body {
         margin-right: 10px;
         font-size: 1rem;
     }
+
+    .menu-items > div > div.select-title {
+        color: var(--tum-blue-dark);
+   }
 
     .logo {
         position: absolute;

@@ -37,7 +37,10 @@ var radar;
 
 // Selector values
 var selector_values = {
-    "seq_uni": {
+    "sg": {
+        
+    },
+    "ji": {
         "acc": {
             "v1": [
                 "tp",
@@ -81,7 +84,7 @@ var selector_values = {
             ]
         }
     },
-    "seq_biv": {
+    "ji_v_sg": {
         "acc": {
             "v1": [
                 "tp",
@@ -125,7 +128,7 @@ var selector_values = {
             ]
         }
     },
-    "div": {
+    "diff_sg": {
         "ava": {
             "v1": [
                 "gender",
@@ -157,15 +160,26 @@ var selector_values = {
             ]
         }
     },
-    "radar": {
+    "summ": {
     }
 }
 
 var selected_values;
 
 function updateSelector(selector, name, map_type_value, justice_value) {
+    let sp = {
+        "map_type": "sp-0",
+        "justice": "sp-1",
+        "v1": "sp-2",
+        "amenity": "sp-3",
+        "mot": "sp-4"
+    }
+
+    let curr_sp = document.querySelector('#' + sp[name]);
+
     selector.options.length = 0;
     selector.disabled = false;
+    curr_sp.style.display = 'block';  
     try {
         let selector_dict = selector_values[map_type_value][justice_value][name];
         if (selector_dict.length == 0) {throw EvalError;}
@@ -178,6 +192,7 @@ function updateSelector(selector, name, map_type_value, justice_value) {
         }
     } catch (error){
         selector.disabled = true;
+        curr_sp.style.display = 'none';
     }
     translatePage();
 }
@@ -223,13 +238,13 @@ btn.onclick = (event) => {
     generateLegend("", true);
 
     //Connect to Geoserver WFS
-    if (selected_values["map_type"] == "div") {
+    if (selected_values["map_type"] == "ji_v_sg") {
         callGeoServer(
             "divergent", 
             {"filter1": selected_values["v1"], "filter2": selected_values["mot"]}, 
             handleJsonDiv
         );
-    } else if (selected_values["map_type"] == "radar") {
+    } else if (selected_values["map_type"] == "summ") {
         callGeoServer(
             "all_normalized", 
             {}, 
@@ -238,7 +253,7 @@ btn.onclick = (event) => {
     } else {
         switch (selected_values["justice"]) {
             case "acc":
-                if (selected_values["map_type"] == "seq_uni") {
+                if (selected_values["map_type"] == "ji") {
                     callGeoServer(
                         "Acc_all", 
                         {"user": selected_values["v1"], "amenity": selected_values["amenity"], "mot": selected_values["mot"]}, 
@@ -267,7 +282,7 @@ btn.onclick = (event) => {
                 break;
 
             case "exp":
-                if (selected_values["map_type"] == "seq_uni") {
+                if (selected_values["map_type"] == "ji") {
                     callGeoServer(
                         "exposure", 
                         {"type": selected_values["v1"]}, 
@@ -282,7 +297,7 @@ btn.onclick = (event) => {
                 }
                 break;
             case "ava":
-                if (selected_values["map_type"] == "seq_uni") {
+                if (selected_values["map_type"] == "ji") {
                     callGeoServer(
                         "availability", 
                         {"type": selected_values["v1"]}, 
@@ -297,7 +312,7 @@ btn.onclick = (event) => {
                 }
                 break;
             case "beh":
-                if (selected_values["map_type"] == "seq_uni") {
+                if (selected_values["map_type"] == "ji") {
                     callGeoServer(
                         "behaviour", 
                         {"type": selected_values["v1"]}, 
@@ -312,7 +327,7 @@ btn.onclick = (event) => {
                 }
                 break;
             case "inc":
-                if (selected_values["map_type"] == "seq_uni") {
+                if (selected_values["map_type"] == "ji") {
                     callGeoServer(
                         "income", 
                         {}, 
