@@ -11,9 +11,6 @@
     "ava": "Verfügbarkeit",
     "interactional_justice": "Interaktionsgerechtigkeit",
     "beh": "Verhalten",
-    "other_variables": "Andere Variablen",
-    "pop": "Bevölkerung",
-    "inc": "Einkommen",
 
     "select": "----------",
     "select_map_type": "Kartentyp auswählen...",
@@ -22,6 +19,10 @@
     "ji_v_sg": "(Un)G.-Indikatoren vs. soz. Gruppen",
     "diff_sg": "Unterschied zw. soziale Gruppen",
     "summ": "Summary",
+
+    "select_sg": "Soziale Gruppe auswählen...",
+    "pop": "Bevölkerung",
+    "inc": "Einkommen",
 
     "select_population": "Bevölkerung auswählen...",
     "tp": "Gesamtbevölkerung",

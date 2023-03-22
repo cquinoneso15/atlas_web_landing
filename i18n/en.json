@@ -11,9 +11,6 @@
     "ava": "Availability",
     "interactional_justice": "Interactional Justice",
     "beh": "Behaviour",
-    "other_variables": "Other variables",
-    "pop": "Population",
-    "inc": "Income",
     
     "select": "----------",
     "select_map_type": "Select map type...",
@@ -22,6 +19,10 @@
     "ji_v_sg": "Indicators vs. soc. groups",
     "diff_sg": "Difference soc. groups",
     "summ": "Summary",
+
+    "select_sg": "Select social group...",
+    "pop": "Population",
+    "inc": "Income",
 
     "select_population": "Select population...",
     "tp": "Total population",

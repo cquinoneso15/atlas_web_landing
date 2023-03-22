@@ -37,27 +37,39 @@ var radar;
 
 // Selector values
 var selector_values_after_sp_0 = {
-    "sg": [
-        "pop",
-        "inc"
-    ],
-    "ji": [
-        "acc",
-        "exp",
-        "ava",
-        "beh"
-    ],
-    "ji_v_sg": [
-        "acc",
-        "exp",
-        "ava",
-        "beh"
-    ],
-    "diff_sg": [
-        "ava",
-        "beh"
-    ],
-    "summ": []
+    "sg": {
+        "title": "select_sg",
+        "values": [
+            "pop",
+            "inc"
+        ]
+    },
+    "ji": {
+        "title": "select_justice",
+        "values": [
+            "acc",
+            "exp",
+            "ava",
+            "beh"
+        ]
+    },
+    "ji_v_sg": {
+        "title": "select_justice",
+        "values": [
+            "acc",
+            "exp",
+            "ava",
+            "beh"
+        ]
+    },
+    "diff_sg": {
+        "title": "select_justice",
+        "values": [
+            "ava",
+            "beh"
+        ]
+    },
+    "summ": {}
 }
 var selector_values_after_sp_1 = {
     "sg": {
@@ -190,21 +202,14 @@ var selector_values_after_sp_1 = {
 var selected_values;
 
 function updateSelectorAfterSP0(selector, name, map_type_value) {
-    let sp = {
-        "map_type": "sp-0",
-        "justice": "sp-1",
-        "v1": "sp-2",
-        "amenity": "sp-3",
-        "mot": "sp-4"
-    }
-
-    let curr_sp = document.querySelector('#' + sp[name]);
+    let curr_sp = document.querySelector('#sp-1');
 
     selector.options.length = 0;
     selector.disabled = false;
-    curr_sp.style.display = 'block';  
+    curr_sp.style.display = 'block';
     try {
-        let selector_dict = selector_values_after_sp_0[map_type_value];
+        curr_sp.querySelector('.select-title').setAttribute("i18n", selector_values_after_sp_0[map_type_value]["title"])
+        let selector_dict = selector_values_after_sp_0[map_type_value]["values"];
         if (selector_dict.length == 0) {throw EvalError;}
         var option;
         option = new Option();

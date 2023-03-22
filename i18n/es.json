@@ -11,9 +11,6 @@
     "ava": "Disponibilidad",
     "interactional_justice": "Justicia interaccional",
     "beh": "Comportamiento",
-    "other_variables": "Otras variables",
-    "pop": "Población",
-    "inc": "Renta",
 
     "select": "----------",
     "select_map_type": "Selecciona tipo de mapa...",
@@ -22,6 +19,10 @@
     "ji_v_sg": "Indicadores vs. grupos soc.",
     "diff_sg": "Diferencia grupos soc.",
     "summ": "Summary",
+
+    "select_sg": "Selecciona grupo social...",
+    "pop": "Población",
+    "inc": "Renta",
 
     "select_population": "Selecciona población...",
     "tp": "Población total",
