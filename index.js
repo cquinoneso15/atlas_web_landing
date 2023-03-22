@@ -36,7 +36,30 @@ var legend;
 var radar;
 
 // Selector values
-var selector_values = {
+var selector_values_after_sp_0 = {
+    "sg": [
+        "pop",
+        "inc"
+    ],
+    "ji": [
+        "acc",
+        "exp",
+        "ava",
+        "beh"
+    ],
+    "ji_v_sg": [
+        "acc",
+        "exp",
+        "ava",
+        "beh"
+    ],
+    "diff_sg": [
+        "ava",
+        "beh"
+    ],
+    "summ": []
+}
+var selector_values_after_sp_1 = {
     "sg": {
         
     },
@@ -166,7 +189,7 @@ var selector_values = {
 
 var selected_values;
 
-function updateSelector(selector, name, map_type_value, justice_value) {
+function updateSelectorAfterSP0(selector, name, map_type_value) {
     let sp = {
         "map_type": "sp-0",
         "justice": "sp-1",
@@ -181,9 +204,48 @@ function updateSelector(selector, name, map_type_value, justice_value) {
     selector.disabled = false;
     curr_sp.style.display = 'block';  
     try {
-        let selector_dict = selector_values[map_type_value][justice_value][name];
+        let selector_dict = selector_values_after_sp_0[map_type_value];
         if (selector_dict.length == 0) {throw EvalError;}
         var option;
+        option = new Option();
+        option.setAttribute("value", "select");
+        option.setAttribute("i18n", "select");
+        selector.add(option);
+        for (const v of selector_dict) {
+            option = new Option();
+            option.setAttribute("value", v);
+            option.setAttribute("i18n", v);
+            selector.add(option);
+        }
+    } catch (error){
+        selector.disabled = true;
+        curr_sp.style.display = 'none';
+    }
+    translatePage();
+}
+
+function updateSelectorAfterSP1(selector, name, map_type_value, justice_value) {
+    let sp = {
+        "map_type": "sp-0",
+        "justice": "sp-1",
+        "v1": "sp-2",
+        "amenity": "sp-3",
+        "mot": "sp-4"
+    }
+
+    let curr_sp = document.querySelector('#' + sp[name]);
+
+    selector.options.length = 0;
+    selector.disabled = false;
+    curr_sp.style.display = 'block';  
+    try {
+        let selector_dict = selector_values_after_sp_1[map_type_value][justice_value][name];
+        if (selector_dict.length == 0) {throw EvalError;}
+        var option;
+        option = new Option();
+        option.setAttribute("value", "select");
+        option.setAttribute("i18n", "select");
+        selector.add(option);
         for (const v of selector_dict) {
             option = new Option();
             option.setAttribute("value", v);
@@ -198,15 +260,13 @@ function updateSelector(selector, name, map_type_value, justice_value) {
 }
 
 map_type.onchange = (e) => {
-    updateSelector(v1, "v1", e.target.value, justice.value);
-    updateSelector(amenity, "amenity", e.target.value, justice.value);
-    updateSelector(mot, "mot", e.target.value, justice.value);
+    updateSelectorAfterSP0(justice, "justice", e.target.value);
 }
 
 justice.onchange = (e) => {
-    updateSelector(v1, "v1", map_type.value, e.target.value);
-    updateSelector(amenity, "amenity", map_type.value, e.target.value);
-    updateSelector(mot, "mot", map_type.value, e.target.value);
+    updateSelectorAfterSP1(v1, "v1", map_type.value, e.target.value);
+    updateSelectorAfterSP1(amenity, "amenity", map_type.value, e.target.value);
+    updateSelectorAfterSP1(mot, "mot", map_type.value, e.target.value);
 };
 
 // When selector value is clicked
