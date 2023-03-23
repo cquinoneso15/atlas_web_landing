@@ -24,15 +24,20 @@
     "pop": "Población",
     "inc": "Renta",
 
-    "select_population": "Selecciona población...",
     "tp": "Población total",
     "o65": "Mayor de 65 años",
     "u18": "Menor de 18 años",
     "ng": "No alemanes",
+
     "select_amenity": "Selecciona servicio...",
     "h": "Salud",
     "e": "Educación",
     "f": "Comida",
     "s": "Deportes",
-    "cc": "Centros comunitarios"
+    "cc": "Centros comunitarios",
+
+    "select_mot": "Seleccionar modo de transporte...",
+    "w_700": "A pie, 700 m",
+    "b_700": "Bicicleta, 10 min",
+    "wpt_700": "A pie + Transporte público, 20 min"
 }

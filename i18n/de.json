@@ -24,15 +24,20 @@
     "pop": "Bevölkerung",
     "inc": "Einkommen",
 
-    "select_population": "Bevölkerung auswählen...",
     "tp": "Gesamtbevölkerung",
     "o65": "Über 65 Jahre alt",
     "u18": "Unter 18 Jahre alt",
     "ng": "Nicht-Deutsch",
+
     "select_amenity": "Ausstattung auswählen...",
     "h": "Gesundheit",
     "e": "Bildung",
     "f": "Essen",
     "s": "Sport",
-    "cc": "Gemeindezentren"
+    "cc": "Gemeindezentren",
+
+    "select_mot": "Transportmittel auswählen...",
+    "w_700": "Zu Fuß, 700m",
+    "b_700": "Radfahren, 10min",
+    "wpt_700": "Zu Fuß + ÖPNV, 20min"
 }

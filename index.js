@@ -73,130 +73,178 @@ var selector_values_after_sp_0 = {
 }
 var selector_values_after_sp_1 = {
     "sg": {
-        
+       "pop": {},
+       "inc": {} 
     },
     "ji": {
         "acc": {
-            "v1": [
-                "tp",
-                "o65",
-                "u18",
-                "ng"
-            ],
-            "amenity": [
-                "h",
-                "e",
-                "f",
-                "s",
-                "cc"
-            ],
-            "mot": [
-                "w_700",
-                "b_700",
-                "wpt_700"
-            ]
+            "v1": {
+                "title": "select_sg",
+                "values": [
+                    "tp",
+                    "o65",
+                    "u18",
+                    "ng"
+                ]
+            },
+            "amenity": {
+                "title": "select_amenity",
+                "values": [
+                    "h",
+                    "e",
+                    "f",
+                    "s",
+                    "cc"
+                ]
+            },
+            "mot": {
+                "title": "select_mot",
+                "values": [
+                    "w_700",
+                    "b_700",
+                    "wpt_700"
+                ]
+            }
         },
         "exp": {
-            "v1": [
-                "accidents",
-                "noise",
-                "pollution"
-            ]
+            "v1": {
+                "title": "select_exp",
+                "values": [
+                    "accidents",
+                    "noise",
+                    "pollution"
+                ]
+            }
         },
         "ava": {
-            "v1": [
-                "acc_pt",
-                "cycleway_density",
-                "intersection_density"
-            ]
+            "v1": {
+                "title": "select_ava",
+                "values": [
+                    "acc_pt",
+                    "cycleway_density",
+                    "intersection_density"
+                ]
+            }
         },
         "beh": {
-            "v1": [
-                "bike_usage",
-                "pt_usage",
-                "walk_usage",
-                "car_sharing_usage"
-            ]
+            "v1": {
+                "title": "select_beh",
+                "values": [
+                    "bike_usage",
+                    "pt_usage",
+                    "walk_usage",
+                    "car_sharing_usage"
+                ]
+            }
         }
     },
     "ji_v_sg": {
         "acc": {
-            "v1": [
-                "tp",
-                "o65",
-                "u18",
-                "ng"
-            ],
-            "amenity": [
-                "h",
-                "e",
-                "f",
-                "s",
-                "cc"
-            ],
-            "mot": [
-                "w_700",
-                "b_700",
-                "wpt_700"
-            ]
+            "v1": {
+                "title": "select_sg",
+                "values": [
+                    "tp",
+                    "o65",
+                    "u18",
+                    "ng"
+                ]
+            },
+            "amenity": {
+                "title": "select_amenity",
+                "values": [
+                    "h",
+                    "e",
+                    "f",
+                    "s",
+                    "cc"
+                ]
+            },
+            "mot": {
+                "title": "select_mot",
+                "values": [
+                    "w_700",
+                    "b_700",
+                    "wpt_700"
+                ]
+            }
         },
         "exp": {
-            "v1": [
-                "accidents",
-                "noise",
-                "pollution"
-            ]
+            "v1": {
+                "title": "select_exp",
+                "values": [
+                    "accidents",
+                    "noise",
+                    "pollution"
+                ]
+            }
         },
         "ava": {
-            "v1": [
-                "acc_pt",
-                "cycleway_density",
-                "intersection_density"
-            ]
+            "v1": {
+                "title": "select_ava",
+                "values": [
+                    "acc_pt",
+                    "cycleway_density",
+                    "intersection_density"
+                ]
+            }
         },
         "beh": {
-            "v1": [
-                "bike_usage",
-                "pt_usage",
-                "walk_usage",
-                "car_sharing_usage"
-            ]
+            "v1": {
+                "title": "select_beh",
+                "values": [
+                    "bike_usage",
+                    "pt_usage",
+                    "walk_usage",
+                    "car_sharing_usage"
+                ]
+            }
         }
     },
     "diff_sg": {
         "ava": {
-            "v1": [
-                "gender",
-                "education",
-                "income",
-                "age_young",
-                "age_old"
-            ],
-            "mot": [
-                "has_driving_license",
-                "owns_bike",
-                "owns_ebike",
-                "owns_car_sharing_membership"
-            ]
+            "v1": {
+                "title": "select_sg",
+                "values": [
+                    "gender",
+                    "education",
+                    "income",
+                    "age_young",
+                    "age_old"
+                ]
+            },
+            "mot": {
+                "title": "select_mot",
+                "values": [
+                    "has_driving_license",
+                    "owns_bike",
+                    "owns_ebike",
+                    "owns_car_sharing_membership"
+                ]
+            }
         },
         "beh": {
-            "v1": [
-                "gender",
-                "education",
-                "income",
-                "age_young",
-                "age_old"
-            ],
-            "mot": [
-                "auto_usage",
-                "pt_usage",
-                "bicycle_usage",
-                "car_sharing_usage",
-            ]
+            "v1": {
+                "title": "select",
+                "values": [
+                    "gender",
+                    "education",
+                    "income",
+                    "age_young",
+                    "age_old"
+                ]
+            },
+            "mot": {
+                "title": "select_mot",
+                "values": [
+                    "auto_usage",
+                    "pt_usage",
+                    "bicycle_usage",
+                    "car_sharing_usage",
+                ]
+            }
         }
     },
-    "summ": {
-    }
+    "summ": {}
 }
 
 var selected_values;
@@ -244,7 +292,8 @@ function updateSelectorAfterSP1(selector, name, map_type_value, justice_value) {
     selector.disabled = false;
     curr_sp.style.display = 'block';  
     try {
-        let selector_dict = selector_values_after_sp_1[map_type_value][justice_value][name];
+        curr_sp.querySelector('.select-title').setAttribute("i18n", selector_values_after_sp_1[map_type_value][justice_value][name]["title"])
+        let selector_dict = selector_values_after_sp_1[map_type_value][justice_value][name]["values"];
         if (selector_dict.length == 0) {throw EvalError;}
         var option;
         option = new Option();
@@ -266,6 +315,9 @@ function updateSelectorAfterSP1(selector, name, map_type_value, justice_value) {
 
 map_type.onchange = (e) => {
     updateSelectorAfterSP0(justice, "justice", e.target.value);
+    updateSelectorAfterSP1(v1, "v1", "", "");
+    updateSelectorAfterSP1(amenity, "amenity", "", "");
+    updateSelectorAfterSP1(mot, "mot", "", "");
 }
 
 justice.onchange = (e) => {
