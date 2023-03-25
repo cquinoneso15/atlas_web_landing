@@ -73,8 +73,20 @@ var selector_values_after_sp_0 = {
 }
 var selector_values_after_sp_1 = {
     "sg": {
-       "pop": {},
-       "inc": {} 
+        "pop": {
+            "v1": {
+                "title": "select_sg",
+                "values": [
+                    "tp",
+                    "o65",
+                    "u18",
+                    "ng",
+                    "un",
+                    "sp"
+                ]
+            }
+        },
+        "inc": {}
     },
     "ji": {
         "acc": {
@@ -258,7 +270,7 @@ function updateSelectorAfterSP0(selector, name, map_type_value) {
     try {
         curr_sp.querySelector('.select-title').setAttribute("i18n", selector_values_after_sp_0[map_type_value]["title"])
         let selector_dict = selector_values_after_sp_0[map_type_value]["values"];
-        if (selector_dict.length == 0) {throw EvalError;}
+        if (selector_dict.length == 0) { throw EvalError; }
         var option;
         option = new Option();
         option.setAttribute("value", "select");
@@ -270,7 +282,7 @@ function updateSelectorAfterSP0(selector, name, map_type_value) {
             option.setAttribute("i18n", v);
             selector.add(option);
         }
-    } catch (error){
+    } catch (error) {
         selector.disabled = true;
         curr_sp.style.display = 'none';
     }
@@ -290,11 +302,11 @@ function updateSelectorAfterSP1(selector, name, map_type_value, justice_value) {
 
     selector.options.length = 0;
     selector.disabled = false;
-    curr_sp.style.display = 'block';  
+    curr_sp.style.display = 'block';
     try {
         curr_sp.querySelector('.select-title').setAttribute("i18n", selector_values_after_sp_1[map_type_value][justice_value][name]["title"])
         let selector_dict = selector_values_after_sp_1[map_type_value][justice_value][name]["values"];
-        if (selector_dict.length == 0) {throw EvalError;}
+        if (selector_dict.length == 0) { throw EvalError; }
         var option;
         option = new Option();
         option.setAttribute("value", "select");
@@ -306,7 +318,7 @@ function updateSelectorAfterSP1(selector, name, map_type_value, justice_value) {
             option.setAttribute("i18n", v);
             selector.add(option);
         }
-    } catch (error){
+    } catch (error) {
         selector.disabled = true;
         curr_sp.style.display = 'none';
     }
@@ -357,14 +369,14 @@ btn.onclick = (event) => {
     //Connect to Geoserver WFS
     if (selected_values["map_type"] == "ji_v_sg") {
         callGeoServer(
-            "divergent", 
-            {"filter1": selected_values["v1"], "filter2": selected_values["mot"]}, 
+            "divergent",
+            { "filter1": selected_values["v1"], "filter2": selected_values["mot"] },
             handleJsonDiv
         );
     } else if (selected_values["map_type"] == "summ") {
         callGeoServer(
-            "all_normalized", 
-            {}, 
+            "all_normalized",
+            {},
             handleJsonRadar
         );
     } else {
@@ -372,27 +384,27 @@ btn.onclick = (event) => {
             case "acc":
                 if (selected_values["map_type"] == "ji") {
                     callGeoServer(
-                        "Acc_all", 
-                        {"user": selected_values["v1"], "amenity": selected_values["amenity"], "mot": selected_values["mot"]}, 
+                        "Acc_all",
+                        { "user": selected_values["v1"], "amenity": selected_values["amenity"], "mot": selected_values["mot"] },
                         handleJsonSeq
                     );
                 } else {
                     callGeoServer(
-                        "Acc_hilo", 
-                        {"user": selected_values["v1"], "amenity": selected_values["amenity"], "mot": selected_values["mot"]}, 
+                        "Acc_hilo",
+                        { "user": selected_values["v1"], "amenity": selected_values["amenity"], "mot": selected_values["mot"] },
                         handleJsonBiv
                     );
                 }
 
                 callGeoServer(
-                    "pois", 
-                    {"amenity": selected_values["amenity"]},
+                    "pois",
+                    { "amenity": selected_values["amenity"] },
                     handleJsonPOIs
                 );
 
                 callGeoServer(
-                    "service_areas", 
-                    {"amenity": selected_values["amenity"], "mot": selected_values["mot"]}, 
+                    "service_areas",
+                    { "amenity": selected_values["amenity"], "mot": selected_values["mot"] },
                     handleJsonAreas
                 );
 
@@ -401,14 +413,14 @@ btn.onclick = (event) => {
             case "exp":
                 if (selected_values["map_type"] == "ji") {
                     callGeoServer(
-                        "exposure", 
-                        {"type": selected_values["v1"]}, 
+                        "exposure",
+                        { "type": selected_values["v1"] },
                         handleJsonSeq
                     );
                 } else {
                     callGeoServer(
-                        "exposure_hilo", 
-                        {"type": selected_values["v1"]}, 
+                        "exposure_hilo",
+                        { "type": selected_values["v1"] },
                         handleJsonBiv
                     );
                 }
@@ -416,14 +428,14 @@ btn.onclick = (event) => {
             case "ava":
                 if (selected_values["map_type"] == "ji") {
                     callGeoServer(
-                        "availability", 
-                        {"type": selected_values["v1"]}, 
+                        "availability",
+                        { "type": selected_values["v1"] },
                         handleJsonSeq
                     );
                 } else {
                     callGeoServer(
-                        "availability_hilo", 
-                        {"type": selected_values["v1"]}, 
+                        "availability_hilo",
+                        { "type": selected_values["v1"] },
                         handleJsonBiv
                     );
                 }
@@ -431,30 +443,39 @@ btn.onclick = (event) => {
             case "beh":
                 if (selected_values["map_type"] == "ji") {
                     callGeoServer(
-                        "behaviour", 
-                        {"type": selected_values["v1"]}, 
+                        "behaviour",
+                        { "type": selected_values["v1"] },
                         handleJsonSeq
                     );
                 } else {
                     callGeoServer(
-                        "behaviour_hilo", 
-                        {"type": selected_values["v1"]}, 
+                        "behaviour_hilo",
+                        { "type": selected_values["v1"] },
                         handleJsonBiv
                     );
                 }
                 break;
             case "inc":
-                if (selected_values["map_type"] == "ji") {
+                if (selected_values["map_type"] == "sg") {
                     callGeoServer(
-                        "income", 
-                        {}, 
+                        "income",
+                        {},
                         handleJsonSeq
                     );
                 } else {
                     callGeoServer(
-                        "income_hilo", 
-                        {}, 
+                        "income_hilo",
+                        {},
                         handleJsonBiv
+                    );
+                }
+                break;
+            case "pop":
+                if (selected_values["map_type"] == "sg") {
+                    callGeoServer(
+                        "population",
+                        { "user": selected_values["v1"] },
+                        handleJsonSeq
                     );
                 }
                 break;
@@ -528,8 +549,8 @@ function highlightFeature(e) {
     });
 
     layer.bringToFront();
-    if (areaLayer) {areaLayer.bringToFront();}
-    if (poiLayer) {poiLayer.bringToFront();}
+    if (areaLayer) { areaLayer.bringToFront(); }
+    if (poiLayer) { poiLayer.bringToFront(); }
     info.update(layer.feature.properties);
 }
 
@@ -561,8 +582,8 @@ info.onAdd = function (map) {
 
 // method that we will use to update the control based on feature properties passed
 info.update = function (props) {
-    this._div.innerHTML = '<h4>' + (v1.options[v1.selectedIndex] ? v1.options[v1.selectedIndex].text : '') + (amenity.options[amenity.selectedIndex] ? " / " + amenity.options[amenity.selectedIndex].text : '') + (mot.options[mot.selectedIndex] ? " / " + mot.options[mot.selectedIndex].text : '' ) + '</h4>';
-    
+    this._div.innerHTML = '<h4>' + (v1.options[v1.selectedIndex] ? v1.options[v1.selectedIndex].text : '') + (amenity.options[amenity.selectedIndex] ? " / " + amenity.options[amenity.selectedIndex].text : '') + (mot.options[mot.selectedIndex] ? " / " + mot.options[mot.selectedIndex].text : '') + '</h4>';
+
     if (biv) {
         switch (selected_values["justice"]) {
             case "acc":
@@ -612,8 +633,8 @@ info.update = function (props) {
                 break;
         }
     }
-        
-    
+
+
     translatePage();
 };
 
@@ -690,20 +711,20 @@ function handleJsonBiv(data) {
     }
 
     // Add legend
-    generateLegend( '<svg width="100" height="80" xmlns="http://www.w3.org/2000/svg">' +
-                    '<defs><marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" /></marker></defs>' +
-                    '<g transform="translate(10 30) rotate(-45)">' +
-                    '<title>Bivariate legend</title>' +
-                    '<rect height="18" width="18" y="2" x="0" stroke="#000" fill="' + getColorBiv("Low", "High") + '"/>' +
-                    '<rect height="18" width="18" y="2" x="18" stroke="#000" fill="' + getColorBiv("High", "High") + '"/>' +
-                    '<rect height="18" width="18" y="20" x="0" stroke="#000" fill="' + getColorBiv("Low", "Low") + '"/>' +
-                    '<rect height="18" width="18" y="20" x="18" stroke="#000" fill="' + getColorBiv("High", "Low") + '"/>' +
-                    '<path d="M0,0 v38 h38" opacity="1" stroke-linecap="butt" stroke-linejoin="bevel" stroke="#000" stroke-width="2" fill="none" marker-start="url(#arrow)" marker-end="url(#arrow)"/>' +
-                    '<text font-weight="bold" font-size="0.75em" transform="translate(-10, 18) rotate(90)" text-anchor="middle">' + selected_values["justice"] + '</text>' +
-                    '<text font-weight="bold" font-size="0.75em" transform="translate(18, 50)" text-anchor="middle">pop</text>' +
-                    '</g>' +
-                    '</svg>',
-                    false);
+    generateLegend('<svg width="100" height="80" xmlns="http://www.w3.org/2000/svg">' +
+        '<defs><marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" /></marker></defs>' +
+        '<g transform="translate(10 30) rotate(-45)">' +
+        '<title>Bivariate legend</title>' +
+        '<rect height="18" width="18" y="2" x="0" stroke="#000" fill="' + getColorBiv("Low", "High") + '"/>' +
+        '<rect height="18" width="18" y="2" x="18" stroke="#000" fill="' + getColorBiv("High", "High") + '"/>' +
+        '<rect height="18" width="18" y="20" x="0" stroke="#000" fill="' + getColorBiv("Low", "Low") + '"/>' +
+        '<rect height="18" width="18" y="20" x="18" stroke="#000" fill="' + getColorBiv("High", "Low") + '"/>' +
+        '<path d="M0,0 v38 h38" opacity="1" stroke-linecap="butt" stroke-linejoin="bevel" stroke="#000" stroke-width="2" fill="none" marker-start="url(#arrow)" marker-end="url(#arrow)"/>' +
+        '<text font-weight="bold" font-size="0.75em" transform="translate(-10, 18) rotate(90)" text-anchor="middle">' + selected_values["justice"] + '</text>' +
+        '<text font-weight="bold" font-size="0.75em" transform="translate(18, 50)" text-anchor="middle">pop</text>' +
+        '</g>' +
+        '</svg>',
+        false);
 
     // Add layer to map
     polygonLayer = L.geoJson(data, {
@@ -715,10 +736,10 @@ function handleJsonBiv(data) {
 
     // Add layer control to map
     var layerControlOptions = {};
-    if (tiles) {layerControlOptions["Background"] = tiles;}
-    if (polygonLayer) {layerControlOptions["Indicator"] = polygonLayer;}
-    if (poiLayer) {layerControlOptions["POIs"] = poiLayer;}
-    if (areaLayer) {layerControlOptions["Service Areas"] = areaLayer;}
+    if (tiles) { layerControlOptions["Background"] = tiles; }
+    if (polygonLayer) { layerControlOptions["Indicator"] = polygonLayer; }
+    if (poiLayer) { layerControlOptions["POIs"] = poiLayer; }
+    if (areaLayer) { layerControlOptions["Service Areas"] = areaLayer; }
     layerControl = L.control.layers(null, layerControlOptions).addTo(map)
 
     if (areaLayer) {
@@ -731,6 +752,7 @@ function handleJsonBiv(data) {
     translatePage();
 }
 
+/*
 function handleJsonSeq(data) {
     biv = false;
 
@@ -822,6 +844,7 @@ function handleJsonSeq(data) {
 
     translatePage();
 }
+*/
 
 function handleJsonDiv(data) {
     biv = false;
@@ -840,14 +863,14 @@ function handleJsonDiv(data) {
     // Generate quantiles
     var quantsPos = getQuants(filterData(data, "value", (x) => x > 0), "value");
     var quantsNeg = getQuants(filterData(data, "value", (x) => x < 0), "value");
-    
+
     // Generate style from quantiles
     function getColor(d) {
-        return  d > quantsPos["Q2"]  ? '#a6611a' :
-                d > 0                ? '#dfc27d' :
-                d == 0               ? '#f5f5f5' :
-                d >= quantsNeg["Q2"] ? '#80cdc1' :
-                '#018571';
+        return d > quantsPos["Q2"] ? '#a6611a' :
+            d > 0 ? '#dfc27d' :
+                d == 0 ? '#f5f5f5' :
+                    d >= quantsNeg["Q2"] ? '#80cdc1' :
+                        '#018571';
     }
 
     function style(feature) {
@@ -879,29 +902,29 @@ function handleJsonDiv(data) {
             legend_text = "<h4>%Adults - %Older adults</h4>";
     }
 
-    
+
     if (quantsPos["Q0"] != undefined) {
         legend_text +=
             '<i class="square" style="background:' + getColor((quantsPos["Q4"] + quantsPos["Q2"]) / 2.0) + '" ></i> ' +
-                (quantsPos["Q4"].toFixed(2)) + ' &ndash; ' + (quantsPos["Q2"].toFixed(2));
+            (quantsPos["Q4"].toFixed(2)) + ' &ndash; ' + (quantsPos["Q2"].toFixed(2));
         legend_text += '<br>';
         legend_text +=
             '<i class="square" style="background:' + getColor((quantsPos["Q2"] + quantsPos["Q0"]) / 2.0) + '" ></i> ' +
-                (quantsPos["Q2"].toFixed(2)) + ' &ndash; ' + (quantsPos["Q0"].toFixed(2));
+            (quantsPos["Q2"].toFixed(2)) + ' &ndash; ' + (quantsPos["Q0"].toFixed(2));
         legend_text += '<br>';
     }
-    legend_text +=
-        '<i class="square" style="background:' + getColor(0.0) + '" ></i> 0.00';
     if (quantsNeg["Q0"] != undefined) {
         legend_text += '<br>';
         legend_text +=
             '<i class="square" style="background:' + getColor((quantsNeg["Q4"] + quantsNeg["Q2"]) / 2.0) + '" ></i> ' +
-                (quantsNeg["Q4"].toFixed(2)) + ' &ndash; ' + (quantsNeg["Q2"].toFixed(2));
+            (quantsNeg["Q4"].toFixed(2)) + ' &ndash; ' + (quantsNeg["Q2"].toFixed(2));
         legend_text += '<br>';
         legend_text +=
             '<i class="square" style="background:' + getColor((quantsNeg["Q2"] + quantsNeg["Q0"]) / 2.0) + '" ></i> ' +
-                (quantsNeg["Q2"].toFixed(2)) + ' &ndash; ' + (quantsNeg["Q0"].toFixed(2));
+            (quantsNeg["Q2"].toFixed(2)) + ' &ndash; ' + (quantsNeg["Q0"].toFixed(2));
     }
+    legend_text +=
+        '<i class="square" style="background:' + getColor(0.0) + '" ></i> No data';
 
     // add legend to map
     generateLegend(legend_text, false);
@@ -954,7 +977,7 @@ function handleJsonRadar(data) {
         polygonLayer.resetStyle();
 
         zoomToFeature(e);
-        
+
         var layer = e.target;
         layer.setStyle({
             weight: 5,

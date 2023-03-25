@@ -41,7 +41,7 @@ function hideByLabel(plot, label) {
     var data = datasets[i].data;
     data = plot.data.labels.map(key => varDict[key]).map(x => properties[x]);
   }
-  
+
   plot.update();
 }
 
@@ -51,45 +51,55 @@ function radarPlot(e) {
   var properties = currentLayer.feature.properties;
 
   const config = {
-      type: 'radar',
-      data: {
-          labels: labels.map(x => translateString(x.split("value_")[1])),
-          datasets: [
-            {
-              label: properties.name,
-              data: labels.map(x => properties[x]),
-              fill: true,
-              backgroundColor: 'rgba(255, 99, 132, 0.2)',
-              borderColor: 'rgb(255, 99, 132)',
-              borderJoinStyle: 'round',
-              pointBackgroundColor: 'rgb(255, 99, 132)',
-              pointBorderColor: '#fff',
-              pointHoverBackgroundColor: '#fff',
-              pointHoverBorderColor: 'rgb(255, 99, 132)'
-            },
-            {
-              label: "Average of Munich",
-              data: labels.map(x => 0.5), //TODO Fix
-              fill: true,
-              backgroundColor: 'rgba(150, 150, 150, 0.2)',
-              borderColor: 'rgb(150, 150, 150)',
-              borderJoinStyle: 'round',
-              pointBackgroundColor: 'rgb(150, 150, 150)',
-              pointBorderColor: '#fff',
-              pointHoverBackgroundColor: '#fff',
-              pointHoverBorderColor: 'rgb(150, 150, 150)'
-            }
-          ]
-      },
-      options: {
-        elements: {
-          line: {
-            borderWidth: 3
-          }
+    type: 'radar',
+    data: {
+      labels: labels.map(x => translateString(x.split("value_")[1])),
+      datasets: [
+        {
+          label: properties.name,
+          data: labels.map(x => properties[x]),
+          fill: true,
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor: 'rgb(255, 99, 132)',
+          borderJoinStyle: 'round',
+          pointBackgroundColor: 'rgb(255, 99, 132)',
+          pointBorderColor: '#fff',
+          pointHoverBackgroundColor: '#fff',
+          pointHoverBorderColor: 'rgb(255, 99, 132)'
         },
-        locale: document.querySelector("[data-i18n-switcher]").value
+        {
+          label: "Average of Munich",
+          data: labels.map(x => 0.5), //TODO Fix
+          fill: true,
+          backgroundColor: 'rgba(150, 150, 150, 0.2)',
+          borderColor: 'rgb(150, 150, 150)',
+          borderJoinStyle: 'round',
+          pointBackgroundColor: 'rgb(150, 150, 150)',
+          pointBorderColor: '#fff',
+          pointHoverBackgroundColor: '#fff',
+          pointHoverBorderColor: 'rgb(150, 150, 150)'
+        }
+      ]
+    },
+    options: {
+      elements: {
+        line: {
+          borderWidth: 3
+        }
       },
-    };
-  
+      scales: {
+        r: {
+          animate: false,
+          angleLines: {
+            display: true
+          },
+          suggestedMin: -0.2,
+          suggestedMax: 1
+        }
+      },
+      locale: document.querySelector("[data-i18n-switcher]").value
+    },
+  };
+
   return new Chart(document.getElementById('radar'), config);
 }
