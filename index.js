@@ -182,6 +182,17 @@ var selector_values_after_sp_1 = {
         },
         "exp": {
             "v1": {
+                "title": "select_sg",
+                "values": [
+                    "tp",
+                    "o65",
+                    "u18",
+                    "ng",
+                    "un",
+                    "sp"
+                ]
+            },
+            "amenity": {
                 "title": "select_exp",
                 "values": [
                     "accidents",
@@ -367,7 +378,7 @@ btn.onclick = (event) => {
     generateLegend("", true);
 
     //Connect to Geoserver WFS
-    if (selected_values["map_type"] == "ji_v_sg") {
+    if (selected_values["map_type"] == "diff_sg") {
         callGeoServer(
             "divergent",
             { "filter1": selected_values["v1"], "filter2": selected_values["mot"] },
@@ -420,7 +431,7 @@ btn.onclick = (event) => {
                 } else {
                     callGeoServer(
                         "exposure_hilo",
-                        { "type": selected_values["v1"] },
+                        { "user": selected_values["v1"], "type": selected_values["amenity"] },
                         handleJsonBiv
                     );
                 }
