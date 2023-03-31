@@ -28,6 +28,8 @@
     "o65": "Über 65 Jahre alt",
     "u18": "Unter 18 Jahre alt",
     "ng": "Nicht-Deutsch",
+    "un": "Arbeitslos",
+    "sp": "Alleinerziehende",
 
     "select_amenity": "Ausstattung auswählen...",
     "h": "Gesundheit",

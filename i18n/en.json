@@ -28,6 +28,8 @@
     "o65": "Over 65 y/o",
     "u18": "Under 18 y/o",
     "ng": "Non-German",
+    "un": "Unemployed",
+    "sp": "Single parents",
 
     "select_amenity": "Select amenity...",
     "h": "Health",
