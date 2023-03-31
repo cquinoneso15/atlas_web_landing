@@ -41,5 +41,15 @@
     "select_mot": "Select mode of transport...",
     "w_700": "Walking, 700m",
     "b_700": "Biking, 10min",
-    "wpt_700": "Walking + Public Transport, 20min"
+    "wpt_700": "Walking + Public Transport, 20min",
+
+    "select_exp": "Select exposure...",
+    "accidents": "Accidents",
+    "noise": "Noise",
+    "pollution": "Pollution",
+
+    "select_ava": "Select availability...",
+    "acc_pt": "Accessibility to Public Transport",
+    "cycleway_density": "Cycleway density",
+    "intersection_density": "Intersection density"
 }

@@ -41,5 +41,15 @@
     "select_mot": "Seleccionar modo de transporte...",
     "w_700": "A pie, 700 m",
     "b_700": "Bicicleta, 10 min",
-    "wpt_700": "A pie + Transporte público, 20 min"
+    "wpt_700": "A pie + Transporte público, 20 min",
+    
+    "select_exp": "Selecciona exposición...",
+    "accidents": "Accidentes",
+    "noise": "Ruido",
+    "pollution": "Contaminación",
+
+    "select_ava": "Selecciona disponibilidad...",
+    "acc_pt": "Accessibilidad al transporte público",
+    "cycleway_density": "Densidad de carriles bici",
+    "intersection_density": "Densidad de intersecciones"
 }

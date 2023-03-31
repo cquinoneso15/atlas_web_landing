@@ -41,5 +41,15 @@
     "select_mot": "Transportmittel auswählen...",
     "w_700": "Zu Fuß, 700m",
     "b_700": "Radfahren, 10min",
-    "wpt_700": "Zu Fuß + ÖPNV, 20min"
+    "wpt_700": "Zu Fuß + ÖPNV, 20min",
+    
+    "select_exp": "Belichtung auswählen...",
+    "accidents": "Unfälle",
+    "noise": "Lärm",
+    "pollution": "Verschmutzung",
+
+    "select_ava": "Verfügbarkeit auswählen...",
+    "acc_pt": "Zugang zu ÖPNV",
+    "cycleway_density": "Radwegdichte",
+    "intersection_density": "Schnittdichte"
 }
