@@ -58,7 +58,9 @@
     "intersection_density": "Schnittdichte",
 
     "select_beh": "Verhalten auswählen...",
+    "auto_usage": "Autonutzung",
     "bike_usage": "Fahrradnutzung",
+    "bicycle_usage": "Fahrradnutzung",
     "pt_usage": "Nutzung öffentlicher Verkehrsmittel",
     "walk_usage": "Nutzung zu Fuß",
     "car_sharing_usage": "Carsharing-Nutzung"

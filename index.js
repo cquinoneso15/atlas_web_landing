@@ -258,7 +258,7 @@ var selector_values_after_sp_1 = {
         },
         "beh": {
             "v1": {
-                "title": "select",
+                "title": "select_sg",
                 "values": [
                     "gender",
                     "education",

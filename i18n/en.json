@@ -62,7 +62,9 @@
     "intersection_density": "Intersection density",
 
     "select_beh": "Select behaviour...",
+    "auto_usage": "Auto usage",
     "bike_usage": "Bicycle usage",
+    "bicycle_usage": "Bicycle usage",
     "pt_usage": "Public Transport usage",
     "walk_usage": "Walk usage",
     "car_sharing_usage": "Car-sharing usage"

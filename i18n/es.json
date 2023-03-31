@@ -58,7 +58,9 @@
     "intersection_density": "Densidad de intersecciones",
 
     "select_beh": "Seleccionar comportamiento...",
+    "auto_usage": "Uso de coche",
     "bike_usage": "Uso de bicicletas",
+    "bicycle_usage": "Uso de bicicletas",
     "pt_usage": "Uso del transporte público",
     "walk_usage": "Uso de caminar",
     "car_sharing_usage": "Uso de coche compartido"
