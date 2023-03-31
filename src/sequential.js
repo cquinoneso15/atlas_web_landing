@@ -56,7 +56,7 @@ function handleJsonSeq(data) {
         case "beh":
             legend_text = "<h4>Behaviour [" + data.features[0].properties.value_desc + "]</h4>";
             break;
-        case "inc":
+        case "income":
             legend_text = "<h4>Income [" + data.features[0].properties.value_desc + "]</h4>";
     }
 

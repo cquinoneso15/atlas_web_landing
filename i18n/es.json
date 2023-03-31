@@ -22,7 +22,7 @@
 
     "select_sg": "Selecciona grupo social...",
     "pop": "Población",
-    "inc": "Renta",
+    "income": "Renta",
 
     "tp": "Población total",
     "o65": "Mayor de 65 años",
@@ -42,6 +42,10 @@
     "w_700": "A pie, 700 m",
     "b_700": "Bicicleta, 10 min",
     "wpt_700": "A pie + Transporte público, 20 min",
+    "has_driving_license": "Tiene carnet de conducir",
+    "owns_bike": "Tiene una bicicleta",
+    "owns_ebike": "Tiene una bicicleta eléctrica",
+    "owns_car_sharing_membership": "Tiene una suscripción de coche compartido",
     
     "select_exp": "Selecciona exposición...",
     "accidents": "Accidentes",
@@ -51,5 +55,11 @@
     "select_ava": "Selecciona disponibilidad...",
     "acc_pt": "Accessibilidad al transporte público",
     "cycleway_density": "Densidad de carriles bici",
-    "intersection_density": "Densidad de intersecciones"
+    "intersection_density": "Densidad de intersecciones",
+
+    "select_beh": "Seleccionar comportamiento...",
+    "bike_usage": "Uso de bicicletas",
+    "pt_usage": "Uso del transporte público",
+    "walk_usage": "Uso de caminar",
+    "car_sharing_usage": "Uso de coche compartido"
 }

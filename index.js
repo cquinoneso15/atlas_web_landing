@@ -41,7 +41,7 @@ var selector_values_after_sp_0 = {
         "title": "select_sg",
         "values": [
             "pop",
-            "inc"
+            "income"
         ]
     },
     "ji": {
@@ -86,7 +86,7 @@ var selector_values_after_sp_1 = {
                 ]
             }
         },
-        "inc": {}
+        "income": {}
     },
     "ji": {
         "acc": {
@@ -477,7 +477,7 @@ btn.onclick = (event) => {
                     );
                 }
                 break;
-            case "inc":
+            case "income":
                 if (selected_values["map_type"] == "sg") {
                     callGeoServer(
                         "income",
@@ -628,7 +628,7 @@ info.update = function (props) {
                     ? '<b>' + props.name + '</b><br /> Beh. ' + props.value_beh.toFixed(2) + ' (' + props.hilo_beh + ') - Pop. ' + props.value_pop.toFixed(2) + ' (' + props.hilo_pop + ')'
                     : '<span i18n="hover"></span>');
                 break;
-            case "inc":
+            case "income":
                 this._div.innerHTML += (props
                     ? '<b>' + props.name + '</b><br /> Inc. ' + props.value_inc.toFixed(2) + ' (' + props.hilo_inc + ') - Pop. ' + props.value_pop.toFixed(2) + ' (' + props.hilo_pop + ')'
                     : '<span i18n="hover"></span>');
@@ -646,7 +646,7 @@ info.update = function (props) {
             case "exp":
             case "ava":
             case "beh":
-            case "inc":
+            case "income":
                 this._div.innerHTML += (props
                     ? '<b>' + props.name + '</b><br />' + props.value.toFixed(2)
                     : '<span i18n="hover"></span>');
@@ -690,7 +690,7 @@ function handleJsonBiv(data) {
         case "beh":
             hilo_X = "hilo_beh";
             break;
-        case "inc":
+        case "income":
             hilo_X = "hilo_inc";
             break;
     }
@@ -826,7 +826,7 @@ function handleJsonSeq(data) {
         case "beh":
             legend_text = "<h4>Behaviour [" + data.features[0].properties.value_desc + "]</h4>";
             break;
-        case "inc":
+        case "income":
             legend_text = "<h4>Income [" + data.features[0].properties.value_desc + "]</h4>";
     }
 

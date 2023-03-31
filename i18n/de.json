@@ -22,7 +22,7 @@
 
     "select_sg": "Soziale Gruppe auswählen...",
     "pop": "Bevölkerung",
-    "inc": "Einkommen",
+    "income": "Einkommen",
 
     "tp": "Gesamtbevölkerung",
     "o65": "Über 65 Jahre alt",
@@ -42,6 +42,10 @@
     "w_700": "Zu Fuß, 700m",
     "b_700": "Radfahren, 10min",
     "wpt_700": "Zu Fuß + ÖPNV, 20min",
+    "has_driving_license": "Hat Führerschein",
+    "owns_bike": "Besitzt ein Fahrrad",
+    "owns_ebike": "Besitzt ein Elektrofahrrad",
+    "owns_car_sharing_membership": "Besitzt eine Carsharing-Mitgliedschaft",
     
     "select_exp": "Belichtung auswählen...",
     "accidents": "Unfälle",
@@ -51,5 +55,11 @@
     "select_ava": "Verfügbarkeit auswählen...",
     "acc_pt": "Zugang zu ÖPNV",
     "cycleway_density": "Radwegdichte",
-    "intersection_density": "Schnittdichte"
+    "intersection_density": "Schnittdichte",
+
+    "select_beh": "Verhalten auswählen...",
+    "bike_usage": "Fahrradnutzung",
+    "pt_usage": "Nutzung öffentlicher Verkehrsmittel",
+    "walk_usage": "Nutzung zu Fuß",
+    "car_sharing_usage": "Carsharing-Nutzung"
 }
