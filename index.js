@@ -203,6 +203,17 @@ var selector_values_after_sp_1 = {
         },
         "ava": {
             "v1": {
+                "title": "select_sg",
+                "values": [
+                    "tp",
+                    "o65",
+                    "u18",
+                    "ng",
+                    "un",
+                    "sp"
+                ]
+            },
+            "amenity": {
                 "title": "select_ava",
                 "values": [
                     "acc_pt",
@@ -446,7 +457,7 @@ btn.onclick = (event) => {
                 } else {
                     callGeoServer(
                         "availability_hilo",
-                        { "type": selected_values["v1"] },
+                        { "user": selected_values["v1"], "type": selected_values["amenity"] },
                         handleJsonBiv
                     );
                 }
