@@ -39,6 +39,7 @@ var radar;
 var selector_values_after_sp_0 = {
     "sg": {
         "title": "select_sg",
+        "desc": "desc",
         "values": [
             "pop",
             "income"
@@ -46,6 +47,7 @@ var selector_values_after_sp_0 = {
     },
     "ji": {
         "title": "select_justice",
+        "desc": "desc",
         "values": [
             "acc",
             "exp",
@@ -55,6 +57,7 @@ var selector_values_after_sp_0 = {
     },
     "ji_v_sg": {
         "title": "select_justice",
+        "desc": "desc",
         "values": [
             "acc",
             "exp",
@@ -64,6 +67,7 @@ var selector_values_after_sp_0 = {
     },
     "diff_sg": {
         "title": "select_justice",
+        "desc": "desc",
         "values": [
             "ava",
             "beh"
@@ -76,6 +80,7 @@ var selector_values_after_sp_1 = {
         "pop": {
             "v1": {
                 "title": "select_sg",
+                "desc": "desc",
                 "values": [
                     "tp",
                     "o65",
@@ -92,6 +97,7 @@ var selector_values_after_sp_1 = {
         "acc": {
             "v1": {
                 "title": "select_sg",
+                "desc": "desc",
                 "values": [
                     "tp",
                     "o65",
@@ -101,6 +107,7 @@ var selector_values_after_sp_1 = {
             },
             "amenity": {
                 "title": "select_amenity",
+                "desc": "desc",
                 "values": [
                     "h",
                     "e",
@@ -111,6 +118,7 @@ var selector_values_after_sp_1 = {
             },
             "mot": {
                 "title": "select_mot",
+                "desc": "desc",
                 "values": [
                     "w_700",
                     "b_700",
@@ -121,6 +129,7 @@ var selector_values_after_sp_1 = {
         "exp": {
             "v1": {
                 "title": "select_exp",
+                "desc": "desc",
                 "values": [
                     "accidents",
                     "noise",
@@ -131,6 +140,7 @@ var selector_values_after_sp_1 = {
         "ava": {
             "v1": {
                 "title": "select_ava",
+                "desc": "desc",
                 "values": [
                     "acc_pt",
                     "cycleway_density",
@@ -141,6 +151,7 @@ var selector_values_after_sp_1 = {
         "beh": {
             "v1": {
                 "title": "select_beh",
+                "desc": "desc",
                 "values": [
                     "bike_usage",
                     "pt_usage",
@@ -154,6 +165,7 @@ var selector_values_after_sp_1 = {
         "acc": {
             "v1": {
                 "title": "select_sg",
+                "desc": "desc",
                 "values": [
                     "tp",
                     "o65",
@@ -163,6 +175,7 @@ var selector_values_after_sp_1 = {
             },
             "amenity": {
                 "title": "select_amenity",
+                "desc": "desc",
                 "values": [
                     "h",
                     "e",
@@ -173,6 +186,7 @@ var selector_values_after_sp_1 = {
             },
             "mot": {
                 "title": "select_mot",
+                "desc": "desc",
                 "values": [
                     "w_700",
                     "b_700",
@@ -183,6 +197,7 @@ var selector_values_after_sp_1 = {
         "exp": {
             "v1": {
                 "title": "select_sg",
+                "desc": "desc",
                 "values": [
                     "tp",
                     "o65",
@@ -194,6 +209,7 @@ var selector_values_after_sp_1 = {
             },
             "amenity": {
                 "title": "select_exp",
+                "desc": "desc",
                 "values": [
                     "accidents",
                     "noise",
@@ -204,6 +220,7 @@ var selector_values_after_sp_1 = {
         "ava": {
             "v1": {
                 "title": "select_sg",
+                "desc": "desc",
                 "values": [
                     "tp",
                     "o65",
@@ -215,6 +232,7 @@ var selector_values_after_sp_1 = {
             },
             "amenity": {
                 "title": "select_ava",
+                "desc": "desc",
                 "values": [
                     "acc_pt",
                     "cycleway_density",
@@ -225,6 +243,7 @@ var selector_values_after_sp_1 = {
         "beh": {
             "v1": {
                 "title": "select_sg",
+                "desc": "desc",
                 "values": [
                     "tp",
                     "o65",
@@ -236,6 +255,7 @@ var selector_values_after_sp_1 = {
             },
             "amenity": {
                 "title": "select_beh",
+                "desc": "desc",
                 "values": [
                     "bike_usage",
                     "pt_usage",
@@ -249,6 +269,7 @@ var selector_values_after_sp_1 = {
         "ava": {
             "v1": {
                 "title": "select_sg",
+                "desc": "desc",
                 "values": [
                     "gender",
                     "education",
@@ -259,6 +280,7 @@ var selector_values_after_sp_1 = {
             },
             "mot": {
                 "title": "select_mot",
+                "desc": "desc",
                 "values": [
                     "has_driving_license",
                     "owns_bike",
@@ -270,6 +292,7 @@ var selector_values_after_sp_1 = {
         "beh": {
             "v1": {
                 "title": "select_sg",
+                "desc": "desc",
                 "values": [
                     "gender",
                     "education",
@@ -280,6 +303,7 @@ var selector_values_after_sp_1 = {
             },
             "mot": {
                 "title": "select_mot",
+                "desc": "desc",
                 "values": [
                     "auto_usage",
                     "pt_usage",
@@ -301,7 +325,11 @@ function updateSelectorAfterSP0(selector, name, map_type_value) {
     selector.disabled = false;
     curr_sp.style.display = 'block';
     try {
-        curr_sp.querySelector('.select-title').setAttribute("i18n", selector_values_after_sp_0[map_type_value]["title"])
+        let select_title = curr_sp.querySelector('.select-title');
+        let select_title_text = select_title.querySelector('.select-title-text');
+        select_title_text.setAttribute("i18n", selector_values_after_sp_0[map_type_value]["title"])
+        let select_title_info = select_title.querySelector('.select-title-info');
+        select_title_info.setAttribute("desc", selector_values_after_sp_1[map_type_value]["desc"]);
         let selector_dict = selector_values_after_sp_0[map_type_value]["values"];
         if (selector_dict.length == 0) { throw EvalError; }
         var option;
@@ -337,7 +365,11 @@ function updateSelectorAfterSP1(selector, name, map_type_value, justice_value) {
     selector.disabled = false;
     curr_sp.style.display = 'block';
     try {
-        curr_sp.querySelector('.select-title').setAttribute("i18n", selector_values_after_sp_1[map_type_value][justice_value][name]["title"])
+        let select_title = curr_sp.querySelector('.select-title');
+        let select_title_text = select_title.querySelector('.select-title-text');
+        select_title_text.setAttribute("i18n", selector_values_after_sp_1[map_type_value][justice_value][name]["title"]);
+        let select_title_info = select_title.querySelector('.select-title-info');
+        select_title_info.setAttribute("desc", selector_values_after_sp_1[map_type_value][justice_value][name]["desc"]);
         let selector_dict = selector_values_after_sp_1[map_type_value][justice_value][name]["values"];
         if (selector_dict.length == 0) { throw EvalError; }
         var option;
