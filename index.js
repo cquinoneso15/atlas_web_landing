@@ -328,8 +328,8 @@ function updateSelectorAfterSP0(selector, name, map_type_value) {
         let select_title = curr_sp.querySelector('.select-title');
         let select_title_text = select_title.querySelector('.select-title-text');
         select_title_text.setAttribute("i18n", selector_values_after_sp_0[map_type_value]["title"])
-        let select_title_info = select_title.querySelector('.select-title-info');
-        select_title_info.setAttribute("desc", selector_values_after_sp_1[map_type_value]["desc"]);
+        let select_title_info_tooltip = select_title.querySelector('.select-title-info').querySelector('.info-tooltip');
+        select_title_info_tooltip.setAttribute("desc", selector_values_after_sp_1[map_type_value]["desc"]);
         let selector_dict = selector_values_after_sp_0[map_type_value]["values"];
         if (selector_dict.length == 0) { throw EvalError; }
         var option;
@@ -368,8 +368,8 @@ function updateSelectorAfterSP1(selector, name, map_type_value, justice_value) {
         let select_title = curr_sp.querySelector('.select-title');
         let select_title_text = select_title.querySelector('.select-title-text');
         select_title_text.setAttribute("i18n", selector_values_after_sp_1[map_type_value][justice_value][name]["title"]);
-        let select_title_info = select_title.querySelector('.select-title-info');
-        select_title_info.setAttribute("desc", selector_values_after_sp_1[map_type_value][justice_value][name]["desc"]);
+        let select_title_info_tooltip = select_title.querySelector('.select-title-info').querySelector('.info-tooltip');
+        select_title_info_tooltip.setAttribute("i18n", selector_values_after_sp_1[map_type_value][justice_value][name]["desc"]);
         let selector_dict = selector_values_after_sp_1[map_type_value][justice_value][name]["values"];
         if (selector_dict.length == 0) { throw EvalError; }
         var option;

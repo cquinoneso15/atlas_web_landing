@@ -126,6 +126,27 @@ body {
     margin-left: 5px;
 }
 
+.menu-items>div>div.select-title>div.select-title-info>span.info-tooltip {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.3s linear, opacity 0.3s linear;
+
+    position: absolute;
+    z-index: 2;
+    width: 100px;
+    color: white;
+    font-size: 12px;
+    background-color: #192733;
+    border-radius: 10px;
+    padding: 10px 15px 10px 15px;
+}
+  
+.menu-items>div>div.select-title>div.select-title-info:hover>span.info-tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  
 .menu-items select {
     background-color: var(--tum-blue-dark);
     color: white;
