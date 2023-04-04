@@ -716,6 +716,9 @@ var scale = L.control.scale({ metric: true, imperial: false }).addTo(map);
  * AJAX CALLBACKS *
  ******************/
 
+/* Check src/handlers */
+
+/*
 function handleJsonBiv(data) {
     biv = true;
 
@@ -816,6 +819,7 @@ function handleJsonBiv(data) {
 
     translatePage();
 }
+*/
 
 /*
 function handleJsonSeq(data) {
