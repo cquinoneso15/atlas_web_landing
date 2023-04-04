@@ -32,15 +32,25 @@ function handleJsonBiv(data) {
         return;
     }
 
+    function getCritical(variable) {
+        return ((variable == 0.75) ? 'High' : 'Low');
+    }
+
+    function getNonCritical(variable) {
+        return ((getCritical(variable) == 'High') ? 'Low' : 'High');
+    }
+
     function getColorBiv(v1, v2) {
-        if (v1 == "High") {
-            if (v2 == "High") {
+        let v1_critical = getCritical(biv_quart_pop);
+        let v2_critical = getCritical(biv_quart_X);
+        if (v1 == v1_critical) {
+            if (v2 == v2_critical) {
                 return '#574249';
             } else {
                 return '#c85a5a';
             }
         } else {
-            if (v2 == "High") {
+            if (v2 == v2_critical) {
                 return '#64acbe';
             } else {
                 return '#e8e8e8';
@@ -63,11 +73,12 @@ function handleJsonBiv(data) {
         '<defs><marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" /></marker></defs>' +
         '<g transform="translate(10 30) rotate(-45)">' +
         '<title>Bivariate legend</title>' +
-        '<rect height="18" width="18" y="2" x="0" stroke="#000" fill="' + getColorBiv("Low", "High") + '"/>' +
-        '<rect height="18" width="18" y="2" x="18" stroke="#000" fill="' + getColorBiv("High", "High") + '"/>' +
-        '<rect height="18" width="18" y="20" x="0" stroke="#000" fill="' + getColorBiv("Low", "Low") + '"/>' +
-        '<rect height="18" width="18" y="20" x="18" stroke="#000" fill="' + getColorBiv("High", "Low") + '"/>' +
-        '<path d="M0,0 v38 h38" opacity="1" stroke-linecap="butt" stroke-linejoin="bevel" stroke="#000" stroke-width="2" fill="none" marker-start="url(#arrow)" marker-end="url(#arrow)"/>' +
+        '<rect height="18" width="18" y="2" x="0" stroke="#000" fill="' + getColorBiv(getNonCritical(biv_quart_pop), getCritical(biv_quart_X)) + '"/>' +
+        '<rect height="18" width="18" y="2" x="18" stroke="#000" fill="' + getColorBiv(getCritical(biv_quart_pop), getCritical(biv_quart_X)) + '"/>' +
+        '<rect height="18" width="18" y="20" x="0" stroke="#000" fill="' + getColorBiv(getNonCritical(biv_quart_pop), getNonCritical(biv_quart_X)) + '"/>' +
+        '<rect height="18" width="18" y="20" x="18" stroke="#000" fill="' + getColorBiv(getCritical(biv_quart_pop), getNonCritical(biv_quart_X)) + '"/>' +
+        '<path d="M0,0 v38" opacity="1" stroke-linecap="butt" stroke-linejoin="bevel" stroke="#000" stroke-width="2" fill="none"' + ((getCritical(biv_quart_X) == 'High') ? ' marker-start="url(#arrow)"' : ' marker-end="url(#arrow)"') + '/>' +
+        '<path d="M0,38 h38" opacity="1" stroke-linecap="butt" stroke-linejoin="bevel" stroke="#000" stroke-width="2" fill="none"' + ((getCritical(biv_quart_pop) == 'Low') ? ' marker-start="url(#arrow)"' : ' marker-end="url(#arrow)"') + '/>' +
         '<text font-weight="bold" font-size="0.75em" transform="translate(-10, 18) rotate(90)" text-anchor="middle">' + selected_values["justice"] + '</text>' +
         '<text font-weight="bold" font-size="0.75em" transform="translate(18, 50)" text-anchor="middle">pop</text>' +
         '</g>' +
