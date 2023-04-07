@@ -14,10 +14,16 @@ function translateString(string) {
 
 function translateElement(element) {
     const key = element.getAttribute("i18n");
-    if (element.tagName == "OPTGROUP") {
-        element.setAttribute("label", translateString(key));
-    } else {
-        element.innerText = translateString(key);
+    switch (element.tagName) {
+        case "OPTGROUP": // Inside selects
+            element.setAttribute("label", translateString(key));
+            break;
+        case "text": // Inside SVGs
+            element.textContent = translateString(key);
+            break;
+        default:
+            element.innerText = translateString(key);
+            break;
     }
 }
 
