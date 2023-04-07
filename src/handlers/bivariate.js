@@ -69,7 +69,7 @@ function handleJsonBiv(data) {
     }
 
     // Add legend
-    generateLegend('<svg width="100" height="80" xmlns="http://www.w3.org/2000/svg">' +
+    generateLegend('<svg width="150" height="150" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">' +
         '<defs><marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" /></marker></defs>' +
         '<g transform="translate(15 30) rotate(-45)">' +
         '<title>Bivariate legend</title>' +
@@ -81,6 +81,11 @@ function handleJsonBiv(data) {
         '<path d="M0,38 h38" opacity="1" stroke-linecap="butt" stroke-linejoin="bevel" stroke="#000" stroke-width="2" fill="none"' + ((getCritical(biv_quart_pop) == 'Low') ? ' marker-start="url(#arrow)"' : ' marker-end="url(#arrow)"') + '/>' +
         '<text font-weight="bold" font-size="0.65em" transform="translate(-14, 18) rotate(90)" text-anchor="middle" i18n="' + selected_values["justice"] + '"></text>' +
         '<text font-weight="bold" font-size="0.65em" transform="translate(18, 50)" text-anchor="middle" i18n="pop"></text>' +
+        '</g>' +
+        '<g transform="translate(25 0)">' +
+        '<path d="M0,80 h38" opacity="1" stroke-linecap="butt" stroke-linejoin="bevel" stroke="#000" stroke-width="2" fill="none" marker-end="url(#arrow)"/>' +
+        '<text font-size="0.65em" transform="translate(-5, 80)" text-anchor="end" i18n="low"></text>' +
+        '<text font-size="0.65em" transform="translate(45, 80)" text-anchor="start" i18n="high"></text>' +
         '</g>' +
         '</svg>',
         false);
