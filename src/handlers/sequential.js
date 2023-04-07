@@ -35,7 +35,7 @@ function handleJsonSeq(data) {
             fillColor: getColor(feature.properties.value),
             weight: 0.5,
             opacity: 1,
-            color: 'grey',
+            color: '#1a1a1a',
             fillOpacity: 0.7
         };
     }

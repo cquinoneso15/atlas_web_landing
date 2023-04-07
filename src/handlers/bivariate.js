@@ -63,7 +63,7 @@ function handleJsonBiv(data) {
             fillColor: getColorBiv(feature.properties.hilo_pop, feature.properties["hilo_" + X]),
             weight: 0.5,
             opacity: 1,
-            color: 'grey',
+            color: '#1a1a1a',
             fillOpacity: 0.7
         };
     }
@@ -71,7 +71,7 @@ function handleJsonBiv(data) {
     // Add legend
     generateLegend('<svg width="100" height="80" xmlns="http://www.w3.org/2000/svg">' +
         '<defs><marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" /></marker></defs>' +
-        '<g transform="translate(10 30) rotate(-45)">' +
+        '<g transform="translate(15 30) rotate(-45)">' +
         '<title>Bivariate legend</title>' +
         '<rect height="18" width="18" y="2" x="0" stroke="#000" fill="' + getColorBiv(getNonCritical(biv_quart_pop), getCritical(biv_quart_X)) + '"/>' +
         '<rect height="18" width="18" y="2" x="18" stroke="#000" fill="' + getColorBiv(getCritical(biv_quart_pop), getCritical(biv_quart_X)) + '"/>' +
@@ -79,8 +79,8 @@ function handleJsonBiv(data) {
         '<rect height="18" width="18" y="20" x="18" stroke="#000" fill="' + getColorBiv(getCritical(biv_quart_pop), getNonCritical(biv_quart_X)) + '"/>' +
         '<path d="M0,0 v38" opacity="1" stroke-linecap="butt" stroke-linejoin="bevel" stroke="#000" stroke-width="2" fill="none"' + ((getCritical(biv_quart_X) == 'High') ? ' marker-start="url(#arrow)"' : ' marker-end="url(#arrow)"') + '/>' +
         '<path d="M0,38 h38" opacity="1" stroke-linecap="butt" stroke-linejoin="bevel" stroke="#000" stroke-width="2" fill="none"' + ((getCritical(biv_quart_pop) == 'Low') ? ' marker-start="url(#arrow)"' : ' marker-end="url(#arrow)"') + '/>' +
-        '<text font-weight="bold" font-size="0.75em" transform="translate(-10, 18) rotate(90)" text-anchor="middle" i18n="' + selected_values["justice"] + '"></text>' +
-        '<text font-weight="bold" font-size="0.75em" transform="translate(18, 50)" text-anchor="middle" i18n="pop"></text>' +
+        '<text font-weight="bold" font-size="0.65em" transform="translate(-14, 18) rotate(90)" text-anchor="middle" i18n="' + selected_values["justice"] + '"></text>' +
+        '<text font-weight="bold" font-size="0.65em" transform="translate(18, 50)" text-anchor="middle" i18n="pop"></text>' +
         '</g>' +
         '</svg>',
         false);

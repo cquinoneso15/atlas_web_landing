@@ -592,6 +592,17 @@ function generateLegend(info, replace) {
         }
         legend._container.innerHTML += info;
     }
+
+    /*
+    // SVG size fix
+    var svgs = legend._container.getElementsByTagName("svg");
+    for (var s of svgs) {
+        let bbox = s.getBBox();
+        s.setAttribute("width", bbox.width + "px");
+        s.setAttribute("height", bbox.height + "px");
+        s.setAttribute("viewBox", `${bbox.x} ${bbox.y} ${bbox.width} ${bbox.height}`);
+    }
+    */
 }
 
 /******************
@@ -947,7 +958,7 @@ function handleJsonDiv(data) {
             fillColor: getColor(feature.properties.value),
             weight: 0.5,
             opacity: 1,
-            color: 'black',
+            color: '#1a1a1a',
             fillOpacity: 0.7
         };
     }
