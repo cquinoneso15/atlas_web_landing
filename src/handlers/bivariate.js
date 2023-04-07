@@ -97,8 +97,10 @@ function handleJsonBiv(data) {
     var layerControlOptions = {};
     if (tiles) { layerControlOptions["Background"] = tiles; }
     if (polygonLayer) { layerControlOptions["Indicator"] = polygonLayer; }
-    if (poiLayer) { layerControlOptions["POIs"] = poiLayer; }
-    if (areaLayer) { layerControlOptions["Service Areas"] = areaLayer; }
+    if (selected_values["justice"] == "acc") {
+        if (poiLayer) { layerControlOptions["POIs"] = poiLayer; }
+        if (areaLayer) { layerControlOptions["Service Areas"] = areaLayer; }
+    }
     layerControl = L.control.layers(null, layerControlOptions).addTo(map)
 
     if (areaLayer) {

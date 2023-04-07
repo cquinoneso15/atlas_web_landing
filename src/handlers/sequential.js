@@ -80,12 +80,14 @@ function handleJsonSeq(data) {
     map.fitBounds(polygonLayer.getBounds());
 
     // Add layer control to map
-    layerControl = L.control.layers(null, {
-        "Background": tiles,
-        "Indicator": polygonLayer,
-        "POIs": poiLayer,
-        "Service Areas": areaLayer
-    }).addTo(map)
+    var layerControlOptions = {};
+    if (tiles) { layerControlOptions["Background"] = tiles; }
+    if (polygonLayer) { layerControlOptions["Indicator"] = polygonLayer; }
+    if (selected_values["justice"] == "acc") {
+        if (poiLayer) { layerControlOptions["POIs"] = poiLayer; }
+        if (areaLayer) { layerControlOptions["Service Areas"] = areaLayer; }
+    }
+    layerControl = L.control.layers(null, layerControlOptions).addTo(map)
 
     if (areaLayer) {
         areaLayer.bringToFront();
