@@ -1026,7 +1026,7 @@ function handleJsonDiv(data) {
     translatePage();
 }
 
-function handleJsonRadar(data) {
+/*function handleJsonRadar(data) {
     biv = false;
 
     // Add data to download button
@@ -1084,7 +1084,7 @@ function handleJsonRadar(data) {
     }).addTo(map);
 
     translatePage();
-}
+}*/
 
 function handleJsonPOIs(data) {
     poiLayer = L.geoJson(data, {

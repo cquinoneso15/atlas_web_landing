@@ -45,6 +45,7 @@ function hideByLabel(plot, label) {
   plot.update();
 }
 
+var averages;
 
 function radarPlot(e) {
   currentLayer = e.target;
@@ -69,7 +70,7 @@ function radarPlot(e) {
         },
         {
           label: "Average of Munich",
-          data: labels.map(x => 0.5), //TODO Fix
+          data: labels.map(x => averages[x]),
           fill: true,
           backgroundColor: 'rgba(150, 150, 150, 0.2)',
           borderColor: 'rgb(150, 150, 150)',
@@ -102,4 +103,71 @@ function radarPlot(e) {
   };
 
   return new Chart(document.getElementById('radar'), config);
+}
+
+function setAverage(data) {
+  let found = data.features.find(element => element.properties["bzt_id"] == null);
+  averages = found.properties;
+}
+
+function handleJsonRadar(data) {
+  biv = false;
+
+  setAverage(data);
+
+  // Add data to download button
+  var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data));
+  download.setAttribute("href", dataStr);
+  download.setAttribute("download", "data.geojson");
+
+  // If layer is empty, show error message and return
+  if (data.features.length == 0) {
+      alert('Error while querying, no features found.');
+      return;
+  }
+
+  function style(feature) {
+      return {
+          fillColor: '#e8ae43',
+          weight: 1,
+          opacity: 1,
+          color: 'grey',
+          fillOpacity: 0.5
+      };
+  }
+
+  var legend_text = '<h4>No neighbourhood selected</h4>';
+  generateLegend(legend_text, true);
+
+  function onClick(e) {
+      polygonLayer.resetStyle();
+
+      zoomToFeature(e);
+
+      var layer = e.target;
+      layer.setStyle({
+          weight: 5,
+          color: 'black',
+          dashArray: '',
+          fillOpacity: 0.9
+      });
+      layer.bringToFront();
+
+      generateLegend('<div style="width: 400px;"><canvas id="radar"></canvas></div>', true);
+      radar = radarPlot(e);
+  }
+
+  function onEachFeature(feature, layer) {
+      layer.on({
+          click: onClick
+      });
+  }
+
+  polygonLayer = L.geoJson(data, {
+      attribution: '&copy; <a href="https://www.mos.ed.tum.de/sv/homepage/" i18n="chair"></a>',
+      style: style,
+      onEachFeature: onEachFeature
+  }).addTo(map);
+
+  translatePage();
 }
