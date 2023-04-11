@@ -994,6 +994,8 @@ function handleJsonDiv(data) {
             (quantsPos["Q2"].toFixed(2)) + ' &ndash; ' + (quantsPos["Q0"].toFixed(2));
         legend_text += '<br>';
     }
+    legend_text +=
+    '<i class="square" style="background:' + getColor(0.0) + '" ></i> No data';
     if (quantsNeg["Q0"] != undefined) {
         legend_text += '<br>';
         legend_text +=
@@ -1004,8 +1006,6 @@ function handleJsonDiv(data) {
             '<i class="square" style="background:' + getColor((quantsNeg["Q2"] + quantsNeg["Q0"]) / 2.0) + '" ></i> ' +
             (quantsNeg["Q2"].toFixed(2)) + ' &ndash; ' + (quantsNeg["Q0"].toFixed(2));
     }
-    legend_text +=
-        '<i class="square" style="background:' + getColor(0.0) + '" ></i> No data';
 
     // add legend to map
     generateLegend(legend_text, false);
