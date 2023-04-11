@@ -700,6 +700,7 @@ info.update = function (props) {
             case "exp":
             case "ava":
             case "beh":
+            case "pop":
             case "income":
                 this._div.innerHTML += (props
                     ? '<b>' + props.name + '</b><br />' + props.value.toFixed(2)
