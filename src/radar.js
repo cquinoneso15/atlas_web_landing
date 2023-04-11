@@ -170,4 +170,7 @@ function handleJsonRadar(data) {
   }).addTo(map);
 
   translatePage();
+
+  // Select one neighbourhood to start with
+  polygonLayer.getLayers().find(layer => layer.feature.properties.name == "Königsplatz").fireEvent('click');
 }
