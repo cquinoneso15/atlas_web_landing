@@ -554,20 +554,6 @@ btn.onclick = (event) => {
  * MAP LEGEND *
  **************/
 
-var poiCircleStyle = {
-    radius: 1.5,
-    fillColor: "#5ab4ac",
-    color: "#000000",
-    weight: 0.25,
-    opacity: 0.75,
-    fillOpacity: 1
-}
-
-function getLegendIFromCircleStyle(style) {
-    let size = (style.radius * 2.0) + (style.weight * 2.0);
-    return '<i class="circle" style="background: ' + style.fillColor + percToHex(style.fillOpacity) + '; border: ' + style.weight + 'px solid ' + style.color + percToHex(style.opacity) + '; width:' + size + 'px; height:' + size + 'px;" ></i>';
-}
-
 /**
  * Adds info to the map legend
  *
@@ -1087,6 +1073,7 @@ function handleJsonDiv(data) {
     translatePage();
 }*/
 
+/*
 function handleJsonPOIs(data) {
     poiLayer = L.geoJson(data, {
         attribution: '&copy; <a href="https://www.mos.ed.tum.de/sv/homepage/" i18n="chair"></a>',
@@ -1104,6 +1091,7 @@ function handleJsonPOIs(data) {
 
     translatePage();
 }
+*/
 
 function handleJsonAreas(data) {
     let style = {
