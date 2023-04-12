@@ -173,4 +173,5 @@ function handleJsonRadar(data) {
 
   // Select one neighbourhood to start with
   polygonLayer.getLayers().find(layer => layer.feature.properties.name == "Königsplatz").fireEvent('click');
+  map.fitBounds(polygonLayer.getBounds());
 }
