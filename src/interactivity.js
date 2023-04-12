@@ -80,24 +80,9 @@ info.update = function (props) {
                 break;
         }
     } else {
-        switch (selected_values["justice"]) {
-            case "acc":
-                this._div.innerHTML += (props
-                    ? '<b>' + props.name + '</b><br />' + props.value.toFixed(2) + ' %'
-                    : '<span i18n="hover"></span>');
-                break;
-            case "exp":
-            case "ava":
-            case "beh":
-            case "pop":
-            case "income":
-                this._div.innerHTML += (props
+        this._div.innerHTML += (props
                     ? '<b>' + props.name + '</b><br />' + props.value.toFixed(2)
                     : '<span i18n="hover"></span>');
-                break;
-            default:
-                break;
-        }
     }
 
 
