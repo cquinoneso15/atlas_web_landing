@@ -18,13 +18,14 @@ const tiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{
 }).addTo(map);
 
 // Add selector and button
-const btn = document.querySelector('#btn');
+const update_btn = document.querySelector('#btn');
 const map_type = document.querySelector('#map_type');
 const justice = document.querySelector('#justice');
 const v1 = document.querySelector('#v1');
 const amenity = document.querySelector('#amenity');
 const mot = document.querySelector('#mot');
 
+// Map layers
 var polygonLayer;
 var poiLayer;
 var areaLayer;
@@ -404,7 +405,7 @@ justice.onchange = (e) => {
 };
 
 // When selector value is clicked
-btn.onclick = (event) => {
+update_btn.onclick = (event) => {
     event.preventDefault();
     selected_values = {
         "map_type": map_type.value,
