@@ -81,7 +81,7 @@ info.update = function (props) {
         }
     } else {
         this._div.innerHTML += (props
-                    ? '<b>' + props.name + '</b><br />' + props.value.toFixed(2)
+                    ? '<b>' + props.name + '</b><br />' + props.value.toFixed(2) + "&nbsp;" + props.value_desc
                     : '<span i18n="hover"></span>');
     }
 
