@@ -20,6 +20,9 @@
     "diff_sg": "Unterschied zw. soziale Gruppen",
     "summ": "Summary",
 
+    "low": "Niedrig",
+    "high": "Hoch",
+
     "select_sg": "Soziale Gruppe auswählen...",
     "pop": "Bevölkerung",
     "income": "Einkommen",

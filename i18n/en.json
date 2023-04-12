@@ -20,6 +20,9 @@
     "diff_sg": "Difference soc. groups",
     "summ": "Summary",
 
+    "low": "Low",
+    "high": "High",
+
     "select_sg": "Select social group...",
     "pop": "Population",
     "income": "Income",
