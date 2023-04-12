@@ -450,13 +450,13 @@ update_btn.onclick = (event) => {
             case "acc":
                 if (selected_values["map_type"] == "ji") {
                     callGeoServer(
-                        "Acc_all",
+                        "acc_all",
                         { "user": selected_values["v1"], "amenity": selected_values["amenity"], "mot": selected_values["mot"] },
                         handleJsonSeq
                     );
                 } else {
                     callGeoServer(
-                        "Acc_hilo",
+                        "acc_hilo",
                         { "user": selected_values["v1"], "amenity": selected_values["amenity"], "mot": selected_values["mot"] },
                         handleJsonBiv
                     );

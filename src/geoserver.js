@@ -5,6 +5,9 @@
  * Affil.: TUM SVP            *
  ******************************/
 
+const GEOSERVER_URL = "http://91.200.101.244:3000/geoserver/wfs";
+// const GEOSERVER_URL = 'http://localhost:8080/geoserver/wfs';
+
 function formatDictionary(dict) {
     let pairs = [];
     for (let key in dict) {
@@ -34,7 +37,7 @@ function callGeoServer(tablename, params, callback){
             throw new EvalError('Callback should be a string or a function');
     }
 
-    return $.ajax('http://localhost:8080/geoserver/wfs', {
+    return $.ajax(GEOSERVER_URL, {
         type: 'GET',
         data: {
             service: 'WFS',
