@@ -40,11 +40,16 @@ var radar;
 var selector_values_after_sp_0 = {
     "sg": {
         "title": "select_sg",
-        "desc": "desc",
-        "values": [
-            "pop",
-            "income"
-        ]
+                "desc": "desc",
+                "values": [
+                    "tp",
+                    "o65",
+                    "u18",
+                    "ng",
+                    "un",
+                    "sp",
+                    "income"
+                ]
     },
     "ji": {
         "title": "select_justice",
@@ -78,6 +83,7 @@ var selector_values_after_sp_0 = {
 }
 var selector_values_after_sp_1 = {
     "sg": {
+        /*
         "pop": {
             "v1": {
                 "title": "select_sg",
@@ -93,6 +99,7 @@ var selector_values_after_sp_1 = {
             }
         },
         "income": {}
+        */
     },
     "ji": {
         "acc": {
@@ -536,11 +543,18 @@ update_btn.onclick = (event) => {
                     );
                 }
                 break;
-            case "pop":
+            //case "pop":
+            case "tp":
+            case "o65":
+            case "u18":
+            case "ng":
+            case "un":
+            case "sp":
                 if (selected_values["map_type"] == "sg") {
                     callGeoServer(
                         "population",
-                        { "user": selected_values["v1"] },
+                        //{ "user": selected_values["v1"] },
+                        { "user": selected_values["justice"] },
                         handleJsonSeq
                     );
                 }
