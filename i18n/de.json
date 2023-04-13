@@ -1,8 +1,9 @@
 {
-    "title": "(Un)gerechtigkeit Atlas",
+    "title": "(Un)gerechtigkeitsatlas",
     "chair": "TUM Lehrstuhl für Siedlungsstruktur und Verkehrsplanung",
     "header": "Lehrstuhl für Siedlungsstruktur und Verkehrsplanung\nTUM School of Engineering and Design\nTechnische Universität München",
     "hover": "Bewegen Sie den Mauszeiger über eine Bezirksteile",
+    "update": "zur Karte",
 
     "select_justice": "Kategorie",
     "environmental_justice": "Umweltgerechtigkeit",
