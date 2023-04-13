@@ -4,6 +4,7 @@
     "header": "Chair of Urban Structure and Transport Planning\nTUM School of Engineering and Design\nTechnical University of Munich",
     "hover": "Hover over a neighborhood",
     "update": "Update map",
+    "download": "📥 Download data (GeoJSON)",
 
     "select_justice": "Category",
     "environmental_justice": "Environmental Justice",

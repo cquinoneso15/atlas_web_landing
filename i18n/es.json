@@ -4,6 +4,7 @@
     "header": "Cátedra de Estructura Urbana y Planificación del Transporte\nTUM School of Engineering and Design\nUniversidad Técnica de Múnich",
     "hover": "Mueve el cursor sobre un barrio",
     "update": "Actualizar",
+    "download": "📥 Descargar datos (GeoJSON)",
 
     "select_justice": "Categoría",
     "environmental_justice": "Justicia ambiental",
