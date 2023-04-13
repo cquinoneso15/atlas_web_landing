@@ -2,6 +2,22 @@
  * I18N *
  ********/
 
+i18next
+    .use(i18nextHttpBackend)
+    .use(i18nextBrowserLanguageDetector)
+    .init({
+        supportedLngs: ["en", "de", "es"],
+        fallbackLng: "en",
+        debug: true,
+        nonExplicitSupportedLngs: true,
+        backend: {
+            loadPath: 'i18n/{{lng}}.json'
+        }
+    }, function(err, t) {translatePage(); 
+        bindLocaleSwitcher(i18next.language);});
+
+i18next.on('languageChanged', () => {translatePage();});
+
 function translatePage() {
     document
         .querySelectorAll("[i18n]")
@@ -36,22 +52,6 @@ function bindLocaleSwitcher(initialValue) {
         i18next.changeLanguage(e.target.value);
     };
 }
-
-i18next
-    .use(i18nextHttpBackend)
-    .use(i18nextBrowserLanguageDetector)
-    .init({
-        supportedLngs: ["en", "de", "es"],
-        fallbackLng: "en",
-        debug: true,
-        nonExplicitSupportedLngs: true,
-        backend: {
-            loadPath: 'i18n/{{lng}}.json'
-        }
-    }, function(err, t) {translatePage(); 
-        bindLocaleSwitcher(i18next.language);});
-
-i18next.on('languageChanged', () => {translatePage();});
 
 /************
  * END I18N *
