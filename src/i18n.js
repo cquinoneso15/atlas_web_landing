@@ -34,6 +34,7 @@ function bindLocaleSwitcher(initialValue) {
     switcher.onchange = (e) => {
         // Set the locale to the selected option[value]
         i18next.changeLanguage(e.target.value);
+        document.documentElement.setAttribute("lang", e.target.value); 
     };
 }
 
@@ -42,9 +43,8 @@ i18next
     .use(i18nextBrowserLanguageDetector)
     .init({
         supportedLngs: ["en", "de", "es"],
-        fallbackLng: "en",
+        fallbackLng: ["en"],
         debug: true,
-        nonExplicitSupportedLngs: true,
         backend: {
             loadPath: 'i18n/{{lng}}.json'
         }
