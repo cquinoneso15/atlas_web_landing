@@ -52,7 +52,7 @@ i18next
         bindLocaleSwitcher(i18next.language);});
 
 i18next.on('languageChanged initialized', () => {
-    if (!i18n.isInitialized) return;
+    if (!i18next.isInitialized) return;
     translatePage();
 });
 
