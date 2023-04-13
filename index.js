@@ -25,6 +25,11 @@ const v1 = document.querySelector('#v1');
 const amenity = document.querySelector('#amenity');
 const mot = document.querySelector('#mot');
 
+const about_us_btn = document.querySelector('#about_us');
+var span = document.getElementsByClassName("close")[0];
+var modal_about = document.getElementById("modal-about");
+
+
 // Map layers
 var polygonLayer;
 var poiLayer;
@@ -564,3 +569,18 @@ update_btn.onclick = (event) => {
         }
     }
 };
+
+about_us_btn.onclick = (event) => {
+    modal_about.style.display = "block";
+}
+
+span.onclick = function() {
+    modal_about.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal_about) {
+        modal_about.style.display = "none";
+    }
+}
