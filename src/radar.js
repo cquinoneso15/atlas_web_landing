@@ -153,7 +153,7 @@ function handleJsonRadar(data) {
       });
       layer.bringToFront();
 
-      generateLegend('<div style="width: 400px;"><canvas id="radar"></canvas></div>', true);
+      generateLegend('<div style="width: 500px;"><canvas id="radar"></canvas></div>', true);
       radar = radarPlot(e);
   }
 
