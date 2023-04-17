@@ -42,6 +42,9 @@
     "un": "Arbeitslos",
     "sp": "Alleinerziehende",
 
+    "pop_integer": "Menschen",
+    "pop_percentage": "% der Gesamtbevölkerung",
+
     "select_amenity": "Ausstattung",
     "h": "Gesundheit",
     "e": "Bildung",

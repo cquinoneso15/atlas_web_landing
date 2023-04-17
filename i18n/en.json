@@ -41,6 +41,9 @@
     "ng": "Non-German",
     "un": "Unemployed",
     "sp": "Single parents",
+    
+    "pop_integer": "people",
+    "pop_percentage": "% of total population",
 
     "select_amenity": "Amenity",
     "h": "Health",

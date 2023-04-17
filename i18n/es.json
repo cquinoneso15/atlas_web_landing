@@ -41,6 +41,9 @@
     "ng": "No alemanes",
     "un": "Desempleados",
     "sp": "Padres solteros",
+    
+    "pop_integer": "personas",
+    "pop_percentage": "% de la población total",
 
     "select_amenity": "Servicio",
     "h": "Salud",
