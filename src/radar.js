@@ -69,7 +69,7 @@ function radarPlot(e) {
           pointHoverBorderColor: 'rgb(255, 99, 132)'
         },
         {
-          label: "Average of Munich",
+          label: translateString("avg_munich"),
           data: labels.map(x => averages[x]),
           fill: true,
           backgroundColor: 'rgba(150, 150, 150, 0.2)',
