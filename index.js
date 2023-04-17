@@ -18,7 +18,7 @@ const tiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{
 }).addTo(map);
 
 // Add selector and button
-const update_btn = document.querySelector('#btn');
+//const update_btn = document.querySelector('#btn');
 const map_type = document.querySelector('#map_type');
 const justice = document.querySelector('#justice');
 const v1 = document.querySelector('#v1');
@@ -408,17 +408,52 @@ map_type.onchange = (e) => {
     updateSelectorAfterSP1(v1, "v1", "", "");
     updateSelectorAfterSP1(amenity, "amenity", "", "");
     updateSelectorAfterSP1(mot, "mot", "", "");
+
+    if (correctValues()) {
+        changeMap();
+    }
 }
 
 justice.onchange = (e) => {
     updateSelectorAfterSP1(v1, "v1", map_type.value, e.target.value);
     updateSelectorAfterSP1(amenity, "amenity", map_type.value, e.target.value);
     updateSelectorAfterSP1(mot, "mot", map_type.value, e.target.value);
+    
+    if (correctValues()) {
+        changeMap();
+    }
 };
 
+v1.onchange = (e) => {
+    if (correctValues()) {
+        changeMap();
+    }
+}
+
+amenity.onchange = (e) => {
+    if (correctValues()) {
+        changeMap();
+    }
+}
+
+mot.onchange = (e) => {
+    if (correctValues()) {
+        changeMap();
+    }
+}
+
+function correctValues() {
+    if (map_type.value == "radar") return true;
+
+    if (justice.value == "select") return false;
+    
+    return ((!v1.disabled && v1.value != "select") || v1.disabled)
+    && ((!amenity.disabled && amenity.value != "select") || amenity.disabled)
+    && ((!mot.disabled && mot.value != "select") || mot.disabled)
+}
+
 // When selector value is clicked
-update_btn.onclick = (event) => {
-    event.preventDefault();
+function changeMap() {
     selected_values = {
         "map_type": map_type.value,
         "justice": justice.value,
