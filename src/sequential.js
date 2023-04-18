@@ -42,26 +42,7 @@ function handleJsonSeq(data) {
 
     // legend
     let grades = [quants["Q0"], quants["Q1"], quants["Q2"], quants["Q3"], quants["Q4"]];
-    var legend_text;
-    switch (selected_values["justice"]) {
-        case "acc":
-            legend_text = "<h4>Accessibility [%]</h4>";
-            break;
-        case "exp":
-            legend_text = "<h4>Exposure [" + data.features[0].properties.value_desc + "]</h4>";
-            break;
-        case "ava":
-            legend_text = "<h4>Availability [" + data.features[0].properties.value_desc + "]</h4>";
-            break;
-        case "beh":
-            legend_text = "<h4>Behaviour [" + data.features[0].properties.value_desc + "]</h4>";
-            break;
-        case "pop":
-            legend_text = "<h4>Population [" + data.features[0].properties.value_desc + "]</h4>";
-            break;
-        case "income":
-            legend_text = "<h4>Income [" + data.features[0].properties.value_desc + "]</h4>";
-    }
+    var legend_text = '<h4><span i18n="' + selected_values["justice"] + '"></span> [<span i18n="' + data.features[0].properties.value_desc + '"></span>]</h4>';
 
     // loop through our density intervals and generate a label with a colored square for each interval
     for (var i = 0; i < grades.length - 1; i++) {
