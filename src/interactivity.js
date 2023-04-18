@@ -54,12 +54,12 @@ info.update = function (props) {
         if (X == "income") X = "inc";
 
         this._div.innerHTML += (props
-            ? '<b>' + props.name + '</b><br /><span i18n="' + selected_values["justice"] + '"></span> ' + props['value_' + X].toFixed(2) + ' % (' + props['hilo_' + X] + ') - Pop. ' + props.value_pop.toFixed(2) + ' (' + props.hilo_pop + ')'
+            ? '<b>' + props.name + '</b><br /><span i18n="' + selected_values["justice"] + '"></span> ' + props['value_' + X].toFixed(2) + '&nbsp;<span i18n="' + props['value_' + X + '_desc'] + '"></span> (' + props['hilo_' + X] + ')<br /><span i18n="pop"></span> ' + props.value_pop.toFixed(2) + '&nbsp;<span i18n="' + props['value_pop_desc'] + '"></span> (' + props.hilo_pop + ')'
             : '');
     } else {
         this._div.innerHTML += (props
-                    ? '<b>' + props.name + '</b><br />' + props.value.toFixed(2) + '&nbsp;<span i18n="' + props.value_desc + '"></span>'
-                    : '');
+            ? '<b>' + props.name + '</b><br />' + props.value.toFixed(2) + '&nbsp;<span i18n="' + props.value_desc + '"></span>'
+            : '');
     }
 
 
