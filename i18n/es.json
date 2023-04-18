@@ -3,6 +3,7 @@
     "chair": "Cátedra de Estructura Urbana y Planificación del Transporte (TUM)",
     "header": "Cátedra de Estructura Urbana y Planificación del Transporte\nTUM School of Engineering and Design\nUniversidad Técnica de Múnich",
     "hover": "Mueve el cursor sobre un barrio",
+    "click": "Haz clic en un barrio",
     "update": "Actualizar",
     "download": "📥 Descargar datos (GeoJSON)",
     "about_us": "Sobre nosotros",

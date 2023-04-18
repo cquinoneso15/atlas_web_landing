@@ -47,7 +47,12 @@ info.onAdd = function (map) {
 
 // method that we will use to update the control based on feature properties passed
 info.update = function (props) {
-    this._div.innerHTML = '<h4><span i18n="hover"></span></h4>';
+
+    if (selected_values["justice"] == "radar") {
+        this._div.innerHTML = '<h4><span i18n="click"></span></h4>';
+    } else {
+        this._div.innerHTML = '<h4><span i18n="hover"></span></h4>';
+    }
 
     if (biv) {
         var X = selected_values["justice"];
