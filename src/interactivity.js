@@ -48,7 +48,7 @@ info.onAdd = function (map) {
 // method that we will use to update the control based on feature properties passed
 info.update = function (props) {
 
-    if (selected_values["justice"] == "summ") {
+    if (selected_values["map_type"] == "summ") {
         this._div.innerHTML = '<h4><span i18n="click"></span></h4>';
     } else {
         this._div.innerHTML = '<h4><span i18n="hover"></span></h4>';
