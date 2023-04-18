@@ -50,35 +50,12 @@ info.update = function (props) {
     this._div.innerHTML = '<h4><span i18n="hover"></span></h4>';
 
     if (biv) {
-        switch (selected_values["justice"]) {
-            case "acc":
-                this._div.innerHTML += (props
-                    ? '<b>' + props.name + '</b><br /> Acc. ' + props.value_acc.toFixed(2) + ' % (' + props.hilo_acc + ') - Pop. ' + props.value_pop.toFixed(2) + ' (' + props.hilo_pop + ')'
-                    : '');
-                break;
-            case "exp":
-                this._div.innerHTML += (props
-                    ? '<b>' + props.name + '</b><br /> Exp. ' + props.value_exp.toFixed(2) + ' (' + props.hilo_exp + ') - Pop. ' + props.value_pop.toFixed(2) + ' (' + props.hilo_pop + ')'
-                    : '');
-                break;
-            case "ava":
-                this._div.innerHTML += (props
-                    ? '<b>' + props.name + '</b><br /> Ava. ' + props.value_ava.toFixed(2) + ' (' + props.hilo_ava + ') - Pop. ' + props.value_pop.toFixed(2) + ' (' + props.hilo_pop + ')'
-                    : '');
-                break;
-            case "beh":
-                this._div.innerHTML += (props
-                    ? '<b>' + props.name + '</b><br /> Beh. ' + props.value_beh.toFixed(2) + ' (' + props.hilo_beh + ') - Pop. ' + props.value_pop.toFixed(2) + ' (' + props.hilo_pop + ')'
-                    : '');
-                break;
-            case "income":
-                this._div.innerHTML += (props
-                    ? '<b>' + props.name + '</b><br /> Inc. ' + props.value_inc.toFixed(2) + ' (' + props.hilo_inc + ') - Pop. ' + props.value_pop.toFixed(2) + ' (' + props.hilo_pop + ')'
-                    : '');
-                break;
-            default:
-                break;
-        }
+        var X = selected_values["justice"];
+        if (X == "income") X = "inc";
+
+        this._div.innerHTML += (props
+            ? '<b>' + props.name + '</b><br /><span i18n="' + selected_values["justice"] + '"></span> ' + props['value_' + X].toFixed(2) + ' % (' + props['hilo_' + X] + ') - Pop. ' + props.value_pop.toFixed(2) + ' (' + props.hilo_pop + ')'
+            : '');
     } else {
         this._div.innerHTML += (props
                     ? '<b>' + props.name + '</b><br />' + props.value.toFixed(2) + '&nbsp;<span i18n="' + props.value_desc + '"></span>'
