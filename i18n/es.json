@@ -46,6 +46,7 @@
     
     "pop_integer": "personas",
     "pop_percentage": "% de la población total",
+    "sg_percentage": "% de la población del grupo social cubierta",
 
     "select_amenity": "Servicio",
     "h": "Salud",

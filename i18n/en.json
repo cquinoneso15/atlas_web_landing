@@ -46,6 +46,7 @@
     
     "pop_integer": "people",
     "pop_percentage": "% of total population",
+    "sg_percentage": "% of social group population covered",
 
     "select_amenity": "Amenity",
     "h": "Health",

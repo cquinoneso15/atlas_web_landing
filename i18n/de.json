@@ -46,6 +46,7 @@
 
     "pop_integer": "Menschen",
     "pop_percentage": "% der Gesamtbevölkerung",
+    "sg_percentage": "% der Bevölkerung der sozialen Gruppe abgedeckt",
 
     "select_amenity": "Ausstattung",
     "h": "Gesundheit",
