@@ -70,12 +70,15 @@
     "noise": "Noise",
     "pollution": "Pollution (PM 2.5)",
 
+    "Accidents/ha/year": "crashes/ha/year",
+
     "select_ava": "Availability",
     "acc_pt": "Accessibility to Public Transport",
     "cycleway_density": "Cycleway density",
     "intersection_density": "Intersection density",
 
     "% PT stations served in 700m": "% PT stations served in 700m",
+    "intersection number/ha": "number/ha",
 
     "select_beh": "Behaviour",
     "auto_usage": "Car usage",
