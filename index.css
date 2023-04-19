@@ -143,12 +143,12 @@ body {
 
 .menu-items>div>div.select-title>div.select-title-info:hover {
     cursor: help;
-  }
+}
   
 .menu-items>div>div.select-title>div.select-title-info:hover>span.info-tooltip {
     visibility: visible;
     opacity: 1;
-  }
+}
   
   
 .menu-items select {
