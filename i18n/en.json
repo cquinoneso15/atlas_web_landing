@@ -46,7 +46,7 @@
     "sp": "Single parents",
     
     "pop_integer": "people",
-    "pop_percentage": "% of total population",
+    "pop_percentage": "%",
     "sg_percentage": "% of social group population covered",
 
     "select_amenity": "Amenity",

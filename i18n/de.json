@@ -46,7 +46,7 @@
     "sp": "Alleinerziehende",
 
     "pop_integer": "Menschen",
-    "pop_percentage": "% der Gesamtbevölkerung",
+    "pop_percentage": "%",
     "sg_percentage": "% der Bevölkerung der sozialen Gruppe abgedeckt",
 
     "select_amenity": "Ausstattung",
