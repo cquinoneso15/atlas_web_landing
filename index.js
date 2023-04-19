@@ -60,20 +60,20 @@ var selector_values_after_sp_0 = {
         "title": "select_justice",
         "desc": "desc",
         "values": [
-            "acc",
-            "exp",
             "ava",
-            "beh"
+            "beh",
+            "exp",
+            "acc"
         ]
     },
     "ji_v_sg": {
         "title": "select_justice",
         "desc": "desc",
         "values": [
-            "acc",
-            "exp",
             "ava",
-            "beh"
+            "beh",
+            "exp",
+            "acc"
         ]
     },
     "diff_sg": {
