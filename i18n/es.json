@@ -75,6 +75,8 @@
     "cycleway_density": "Densidad de carriles bici",
     "intersection_density": "Densidad de intersecciones",
 
+    "% PT stations served in 700m": "% paradas TP servidas en 700m",
+
     "select_beh": "Comportamiento",
     "auto_usage": "Uso de coche",
     "bike_usage": "Uso de bicicletas",

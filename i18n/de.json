@@ -75,6 +75,8 @@
     "cycleway_density": "Radwegdichte",
     "intersection_density": "Schnittdichte",
 
+    "% PT stations served in 700m": "% bediente ÖPNV-Stationen in 700m",
+
     "select_beh": "Verhalten",
     "auto_usage": "Autonutzung",
     "bike_usage": "Fahrradnutzung",

@@ -75,6 +75,8 @@
     "cycleway_density": "Cycleway density",
     "intersection_density": "Intersection density",
 
+    "% PT stations served in 700m": "% PT stations served in 700m",
+
     "select_beh": "Behaviour",
     "auto_usage": "Car usage",
     "bike_usage": "Bicycle usage",
