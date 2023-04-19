@@ -79,9 +79,9 @@ function handleJsonBiv(data) {
         '<rect height="18" width="18" y="20" x="18" stroke="#000" fill="' + getColorBiv(getCritical(biv_quart_pop), getNonCritical(biv_quart_X)) + '"/>' +
         '<path d="M0,0 v38" opacity="1" stroke-linecap="butt" stroke-linejoin="bevel" stroke="#000" stroke-width="2" fill="none"' + ((getCritical(biv_quart_X) == 'High') ? ' marker-start="url(#arrow)"' : ' marker-end="url(#arrow)"') + '/>' +
         '<path d="M0,38 h38" opacity="1" stroke-linecap="butt" stroke-linejoin="bevel" stroke="#000" stroke-width="2" fill="none"' + ((getCritical(biv_quart_pop) == 'Low') ? ' marker-start="url(#arrow)"' : ' marker-end="url(#arrow)"') + '/>' +
-        '<text font-weight="bold" font-size="0.5em" transform="translate(-10, 18) rotate(90)" text-anchor="middle" i18n="' + selected_values["justice"] + '"></text>' +
+        '<text font-weight="bold" font-size="0.5em" transform="translate(-10, 18) rotate(90)" text-anchor="middle" i18n="' + selected_values["amenity"] + '"></text>' +
         '<text font-size="0.5em" transform="translate(-17, 18) rotate(90)" text-anchor="middle" i18n="' + data.features[0].properties["value_desc_" + X] + '"></text>' +
-        '<text font-weight="bold" font-size="0.5em" transform="translate(18, 48)" text-anchor="middle" i18n="pop"></text>' +
+        '<text font-weight="bold" font-size="0.5em" transform="translate(18, 48)" text-anchor="middle" i18n="' + selected_values["v1"] + '"></text>' +
         '<text font-size="0.5em" transform="translate(18, 55)" text-anchor="middle" i18n="' + data.features[0].properties["value_desc_pop"] + '"></text>' +
         '</g>' +
         '<g transform="translate(25 10)">' +
