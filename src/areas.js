@@ -19,7 +19,7 @@ function handleJsonAreas(data) {
         style: style
     }).addTo(map);
 
-    var legend_text = '<h4>POI catchment area</h4>';
+    var legend_text = '<h4><span i18n="' + selected_values["amenity"] + '"></span> POI catchment area</h4>';
     legend_text += '<i class="square" style="background:' + style.fillColor + percToHex(style.fillOpacity) + '; border: ' + style.weight + 'px solid ' + style.color + percToHex(style.opacity) + '; width: 16px; height: 16px" ></i> '
     generateLegend(legend_text, false)
 

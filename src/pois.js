@@ -31,7 +31,7 @@ function handleJsonPOIs(data) {
         }
     }).addTo(map);
 
-    var legend_text = '<h4>Points of Interest (POIs)</h4>';
+    var legend_text = '<h4><span i18n="' + selected_values["amenity"] + '"></span> Points of Interest (POIs)</h4>';
     legend_text += getLegendIFromCircleStyle(poiCircleStyle);
     generateLegend(legend_text, false);
 
