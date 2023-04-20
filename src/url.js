@@ -44,7 +44,9 @@ share_btn.onclick = (event) => {
     let share_url = new URL(window.location.href);
     if (selected_values != undefined) {
         for (const key in selected_values) {
-            share_url.searchParams.set(key, selected_values[key]);
+            if (selected_values[key] !== ''){
+                share_url.searchParams.set(key, selected_values[key]);
+            }
         }
     }
 
