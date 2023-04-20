@@ -619,3 +619,27 @@ window.onclick = function(event) {
         modal_about.style.display = "none";
     }
 }
+
+function valueInSelect(select, value) {
+    // Get the options of the select element
+    const options = select.options;
+
+    // Check if the value is among the options
+    let isValueInOptions = false;
+    for (let i = 0; i < options.length; i++) {
+        if (options[i].value === value) {
+            isValueInOptions = true;
+            break;
+        }
+    }
+
+    return isValueInOptions;
+}
+
+// Check parameters and update
+let url = new URL(window.location.href);
+if (valueInSelect(map_type, url.searchParams.get("map_type"))) map_type.value = url.searchParams.get("map_type");
+if (valueInSelect(justice, url.searchParams.get("justice"))) justice.value = url.searchParams.get("justice");
+if (valueInSelect(v1, url.searchParams.get("v1"))) v1.value = url.searchParams.get("v1");
+if (valueInSelect(user, url.searchParams.get("user"))) user.value = url.searchParams.get("user");
+if (valueInSelect(mot, url.searchParams.get("mot"))) mot.value = url.searchParams.get("mot");
