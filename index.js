@@ -25,6 +25,7 @@ const v1 = document.querySelector('#v1');
 const amenity = document.querySelector('#amenity');
 const mot = document.querySelector('#mot');
 
+const share_btn = document.querySelector('#share');
 const about_us_btn = document.querySelector('#about_us');
 var span = document.getElementsByClassName("close")[0];
 var modal_about = document.getElementById("modal-about");
@@ -87,25 +88,7 @@ var selector_values_after_sp_0 = {
     "summ": {}
 }
 var selector_values_after_sp_1 = {
-    "sg": {
-        /*
-        "pop": {
-            "v1": {
-                "title": "select_sg",
-                "desc": "desc",
-                "values": [
-                    "tp",
-                    "o65",
-                    "u18",
-                    "ng",
-                    "un",
-                    "sp"
-                ]
-            }
-        },
-        "income": {}
-        */
-    },
+    "sg": {},
     "ji": {
         "acc": {
             "v1": {
@@ -404,6 +387,7 @@ function updateSelectorAfterSP1(selector, name, map_type_value, justice_value) {
 }
 
 map_type.onchange = (e) => {
+    e.preventDefault()
     updateSelectorAfterSP0(justice, "justice", e.target.value);
     updateSelectorAfterSP1(v1, "v1", "", "");
     updateSelectorAfterSP1(amenity, "amenity", "", "");
@@ -415,6 +399,7 @@ map_type.onchange = (e) => {
 }
 
 justice.onchange = (e) => {
+    e.preventDefault()
     updateSelectorAfterSP1(v1, "v1", map_type.value, e.target.value);
     updateSelectorAfterSP1(amenity, "amenity", map_type.value, e.target.value);
     updateSelectorAfterSP1(mot, "mot", map_type.value, e.target.value);
@@ -425,18 +410,21 @@ justice.onchange = (e) => {
 };
 
 v1.onchange = (e) => {
+    e.preventDefault()
     if (correctValues()) {
         changeMap();
     }
 }
 
 amenity.onchange = (e) => {
+    e.preventDefault()
     if (correctValues()) {
         changeMap();
     }
 }
 
 mot.onchange = (e) => {
+    e.preventDefault()
     if (correctValues()) {
         changeMap();
     }
@@ -461,6 +449,7 @@ function changeMap() {
         "amenity": amenity.value,
         "mot": mot.value
     }
+
     info.update();
 
     // Remove layers if already displayed
@@ -619,27 +608,3 @@ window.onclick = function(event) {
         modal_about.style.display = "none";
     }
 }
-
-function valueInSelect(select, value) {
-    // Get the options of the select element
-    const options = select.options;
-
-    // Check if the value is among the options
-    let isValueInOptions = false;
-    for (let i = 0; i < options.length; i++) {
-        if (options[i].value === value) {
-            isValueInOptions = true;
-            break;
-        }
-    }
-
-    return isValueInOptions;
-}
-
-// Check parameters and update
-let url = new URL(window.location.href);
-if (valueInSelect(map_type, url.searchParams.get("map_type"))) map_type.value = url.searchParams.get("map_type");
-if (valueInSelect(justice, url.searchParams.get("justice"))) justice.value = url.searchParams.get("justice");
-if (valueInSelect(v1, url.searchParams.get("v1"))) v1.value = url.searchParams.get("v1");
-if (valueInSelect(user, url.searchParams.get("user"))) user.value = url.searchParams.get("user");
-if (valueInSelect(mot, url.searchParams.get("mot"))) mot.value = url.searchParams.get("mot");

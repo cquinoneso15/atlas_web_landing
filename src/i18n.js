@@ -3,6 +3,7 @@
  ********/
 
 function translatePage() {
+    if (!i18next.isInitialized) return;
     document
         .querySelectorAll("[i18n]")
         .forEach(translateElement);
