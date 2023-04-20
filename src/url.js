@@ -18,16 +18,26 @@ function valueInSelect(select, value) {
 
 // Check parameters and update
 let url = new URL(window.location.href);
-if (valueInSelect(map_type, url.searchParams.get("map_type"))) map_type.value = url.searchParams.get("map_type");
-map_type.dispatchEvent(new Event('change'));
-if (valueInSelect(justice, url.searchParams.get("justice"))) justice.value = url.searchParams.get("justice");
-justice.dispatchEvent(new Event('change'));
-if (valueInSelect(v1, url.searchParams.get("v1"))) v1.value = url.searchParams.get("v1");
-v1.dispatchEvent(new Event('change'));
-if (valueInSelect(amenity, url.searchParams.get("amenity"))) amenity.value = url.searchParams.get("amenity");
-amenity.dispatchEvent(new Event('change'));
-if (valueInSelect(mot, url.searchParams.get("mot"))) mot.value = url.searchParams.get("mot");
-mot.dispatchEvent(new Event('change'));
+if (valueInSelect(map_type, url.searchParams.get("map_type"))) {
+    map_type.value = url.searchParams.get("map_type");
+    map_type.dispatchEvent(new Event('change'));
+}
+if (valueInSelect(justice, url.searchParams.get("justice"))) {
+    justice.value = url.searchParams.get("justice");
+    justice.dispatchEvent(new Event('change'));
+}
+if (valueInSelect(v1, url.searchParams.get("v1"))) {
+    v1.value = url.searchParams.get("v1");
+    v1.dispatchEvent(new Event('change'));
+}
+if (valueInSelect(amenity, url.searchParams.get("amenity"))) {
+    amenity.value = url.searchParams.get("amenity");
+    amenity.dispatchEvent(new Event('change'));
+}
+if (valueInSelect(mot, url.searchParams.get("mot"))) {
+    mot.value = url.searchParams.get("mot");
+    mot.dispatchEvent(new Event('change'));
+}
 
 // Share function
 share_btn.onclick = (event) => {
