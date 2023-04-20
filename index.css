@@ -100,6 +100,11 @@ body {
     margin: auto;
 }
 
+.title {
+    order: 1;
+    display: flex;
+}
+
 .menu-items {
     order: 2;
     display: flex;
@@ -160,7 +165,7 @@ body {
 }
 
 .logo {
-    order: 1;
+    order: 0;
     font-size: 0.75rem;
     align-items: center;
     color: inherit !important;
