@@ -83,6 +83,7 @@ function radarPlot(e) {
       ]
     },
     options: {
+      aspectRatio: 1.5,
       elements: {
         line: {
           borderWidth: 3
@@ -104,7 +105,10 @@ function radarPlot(e) {
               ...Array(3).fill('#20252A'),
               ...Array(5).fill('#9B468D'),
             ],
-            fontSize: 9
+            font: {
+              size: 9
+            },
+            centerPointLabels: true
           },
         }
       },
