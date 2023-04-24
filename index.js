@@ -600,7 +600,7 @@ function displayModal(welcomeOrAboutUs) {
     if (welcomeOrAboutUs) {
         content.innerHTML = '<h2 i18n="welcome"></h2><p i18n="project_description"></p><p i18n="tool_tutorial"></p>'
     } else {
-        content.innerHTML = '<p>Some text here...</p><img src="https://www.mos.ed.tum.de/fileadmin/_processed_/9/8/csm_Header_MCube_57378eef86.jpg" alt="MCube">'
+        content.innerHTML = '<p i18n="about_us_text"></p><p i18n="data_source"></p><img src="https://www.mos.ed.tum.de/fileadmin/_processed_/9/8/csm_Header_MCube_57378eef86.jpg" alt="MCube">'
     }
     modal_about.style.display = "block";
 }

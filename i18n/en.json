@@ -6,12 +6,14 @@
     "click": "Click on a neighborhood",
     "update": "Update map",
     "download": "📥 Download data (GeoJSON)",
-    "about_us": "About us",
+    "about_us": "About",
     "share": "Share",
 
     "welcome": "Welcome to the (In)justice Atlas",
     "project_description": "A Research Project of the Technical University of Munich for spatial and social inequalities in everyday trips",
     "tool_tutorial": "Please select a map type, category and other variables on the dropdown menu to get started.",
+
+    "data_source": "Data sources: Accessibility from OpenStreetMap POIs and road network, German national GTFS. Behaviour and Availability from National Mobility survey MiD 2017, OpenStreetMap. Exposure to road accidents from Unfallatlas, to noise from Umweltatlas, Pollution from Chair of Transport Behaviour at TUM. Sociodemographics from City of Munich (2018-2021) and National Census 2011",
 
     "select_justice": "Category",
     "environmental_justice": "Environmental Justice",
