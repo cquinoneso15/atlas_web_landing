@@ -364,6 +364,11 @@ body {
     border-radius: 50%;
 }
 
+.radar {
+    max-width: 90vw;
+    width: 500px
+}
+
 /***********
  * END MAP *
  ***********/

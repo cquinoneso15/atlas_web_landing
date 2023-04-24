@@ -83,7 +83,7 @@ function radarPlot(e) {
       ]
     },
     options: {
-      aspectRatio: 1.5,
+      aspectRatio: 1.4,
       elements: {
         line: {
           borderWidth: 3
@@ -167,7 +167,7 @@ function handleJsonRadar(data) {
       });
       layer.bringToFront();
 
-      generateLegend('<div style="width: 500px;"><canvas id="radar"></canvas></div>', true);
+      generateLegend('<div class="radar"><canvas id="radar"></canvas></div>', true);
       radar = radarPlot(e);
   }
 
