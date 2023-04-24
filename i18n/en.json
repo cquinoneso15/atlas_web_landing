@@ -8,6 +8,10 @@
     "download": "📥 Download data (GeoJSON)",
     "about_us": "About us",
 
+    "welcome": "Welcome to the (In)justice Atlas",
+    "project_description": "A Research Project of the Technical University of Munich for spatial and social inequalities in everyday trips",
+    "tool_tutorial": "Please select a map type, category and other variables on the dropdown menu to get started.",
+
     "select_justice": "Category",
     "environmental_justice": "Environmental Justice",
     "exp": "Exposure",

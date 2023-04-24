@@ -38,6 +38,9 @@ if (valueInSelect(mot, url.searchParams.get("mot"))) {
     mot.value = url.searchParams.get("mot");
     mot.dispatchEvent(new Event('change'));
 }
+if (url.searchParams.get("map_type") == null || !correctValues()) {
+    displayModal(true);
+}
 
 // Share function
 share_btn.onclick = (event) => {

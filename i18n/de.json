@@ -8,6 +8,10 @@
     "download": "📥 Daten herunterladen (GeoJSON)",
     "about_us": "Über uns",
 
+    "welcome": "Willkommen beim (Un)Gerechtigkeitsatlas",
+    "project_description": "Ein Forschungsprojekt der Technischen Universität München zu räumlichen und sozialen Ungleichheiten im Reisealltag",
+    "tool_tutorial": "Bitte wählen Sie einen Kartentyp, eine Kategorie und andere Variablen im Dropdown-Menü aus, um zu beginnen.",
+
     "select_justice": "Kategorie",
     "environmental_justice": "Umweltgerechtigkeit",
     "exp": "Belichtung",

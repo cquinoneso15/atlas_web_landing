@@ -8,6 +8,10 @@
     "download": "📥 Descargar datos (GeoJSON)",
     "about_us": "Sobre nosotros",
 
+    "welcome": "Bienvenido/a al Atlas de (In)justicia",
+    "project_description": "Un proyecto de investigación de la Universidad Técnica de Múnich sobre las desigualdades espaciales y sociales en los viajes cotidianos",
+    "tool_tutorial": "Seleccione un tipo de mapa, categoría y otras variables en el menú desplegable para comenzar.",
+
     "select_justice": "Categoría",
     "environmental_justice": "Justicia ambiental",
     "exp": "Exposición",

@@ -594,8 +594,19 @@ function changeMap() {
     }
 };
 
-about_us_btn.onclick = (event) => {
+// Parameter true if welcome modal, false if about us modal
+function displayModal(welcomeOrAboutUs) {
+    var content = modal_about.querySelector('.modal-content').querySelector('.modal-text');
+    if (welcomeOrAboutUs) {
+        content.innerHTML = '<h2 i18n="welcome"></h2><p i18n="project_description"></p><p i18n="tool_tutorial"></p>'
+    } else {
+        content.innerHTML = '<p>Some text here...</p><img src="https://www.mos.ed.tum.de/fileadmin/_processed_/9/8/csm_Header_MCube_57378eef86.jpg" alt="MCube">'
+    }
     modal_about.style.display = "block";
+}
+
+about_us_btn.onclick = (event) => {
+    displayModal(false);
 }
 
 span.onclick = function() {
