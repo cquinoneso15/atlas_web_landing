@@ -95,7 +95,17 @@ function radarPlot(e) {
             display: true
           },
           suggestedMin: -0.2,
-          suggestedMax: 1
+          suggestedMax: 1,
+          pointLabels:{
+            color: [
+              ...Array(5).fill('#072140'),
+              ...Array(3).fill('#FF2140'),
+              ...Array(4).fill('#C24814'),
+              ...Array(3).fill('#20252A'),
+              ...Array(5).fill('#9B468D'),
+            ],
+            fontSize: 9
+          },
         }
       },
       locale: document.querySelector("[data-i18n-switcher]").value
