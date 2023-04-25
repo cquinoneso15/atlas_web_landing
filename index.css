@@ -76,6 +76,23 @@ body {
 /****************
  * BEGIN NAVBAR *
  ****************/
+.navbar {
+    box-shadow: 0px 5px 10px 0px #aaa;
+    position: fixed;
+    width: 100%;
+    background: var(--tum-blue-dark);
+    color: white;
+    height: 64px;
+    z-index: 12;
+}
+
+.navbar-container {
+    display: block;
+    height: 64px;
+    position: relative;
+    margin: auto;
+}
+
 .navbar-container>input[type="checkbox"],
 .navbar-container>.hamburger-lines {
     display: block;
@@ -145,23 +162,6 @@ body {
     background: var(--tum-blue-dark);
 }
 
-.navbar {
-    box-shadow: 0px 5px 10px 0px #aaa;
-    position: fixed;
-    width: 100%;
-    background: var(--tum-blue-dark);
-    color: white;
-    height: 64px;
-    z-index: 12;
-}
-
-.navbar-container {
-    display: block;
-    height: 64px;
-    position: relative;
-    margin: auto;
-}
-
 .navbar .menu-items {
     padding-top: 50px;
     background: var(--tum-blue-light-4);
@@ -181,8 +181,6 @@ body {
     margin-right: 10px;
     font-size: 1rem;
 }
-
-/* TEST */
 
 .menu-items>.select-main {
     border-bottom: 1px solid var(--tum-blue-dark);
@@ -232,9 +230,6 @@ body {
     align-items: center;
     min-height: 25px;
 }
-
-
-/* END TEST */
 
 .menu-items>button {
     font-weight: 600;
@@ -299,6 +294,13 @@ div.select-title-info:hover>span.info-tooltip {
     justify-content: space-between;
     align-items: center;
     margin: auto;
+    transition: width 0.5s ease-in-out, left 0.5s ease-in-out;
+}
+
+.navbar-container>input[type="checkbox"]:checked~.navbar-top-elements {
+    left: 340px;
+    width: calc(100% - 355px);
+
 }
 
 .title {
