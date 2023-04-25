@@ -27,13 +27,89 @@
 
 <nav class="navbar">
 	<div class="navbar-container">
-		<input type="checkbox" name="" id="">
+		<input type="checkbox">
 		<div class="hamburger-lines">
 			<span class="line line1"></span>
 			<span class="line line2"></span>
 			<span class="line line3"></span>
 		</div>
 		<div class="menu-items">
+			<div class="select-main" id="sp-0">
+				<input type="checkbox">
+				<div class="select-title-text" i18n="select_map_type"></div>
+				<div class="select-title-arrow"></div>
+				<div class="select-options" id="map_type">
+					<div class="select-option">
+						<input type="radio" name="map_type" value="sg">
+						<label for="sg" i18n="sg"></label>
+						<div class="select-title-info">
+							&#x1F6C8;
+							<span class="info-tooltip" i18n="desc"></span>
+						</div>
+					</div>
+					<div class="select-option">
+						<input type="radio" name="map_type" value="ji">
+						<label for="ji" i18n="ji"></label>
+						<div class="select-title-info">
+							&#x1F6C8;
+							<span class="info-tooltip" i18n="desc"></span>
+						</div>
+					</div>
+					<div class="select-option">
+						<input type="radio" name="map_type" value="ji_v_sg">
+						<label for="ji_v_sg" i18n="ji_v_sg"></label>
+						<div class="select-title-info">
+							&#x1F6C8;
+							<span class="info-tooltip" i18n="desc"></span>
+						</div>
+					</div>
+					<div class="select-option">
+						<input type="radio" name="map_type" value="diff_sg">
+						<label for="diff_sg" i18n="diff_sg"></label>
+						<div class="select-title-info">
+							&#x1F6C8;
+							<span class="info-tooltip" i18n="desc"></span>
+						</div>
+					</div>
+					<div class="select-option">
+						<input type="radio" name="map_type" value="summ">
+						<label for="summ" i18n="summ"></label>
+						<div class="select-title-info">
+							&#x1F6C8;
+							<span class="info-tooltip" i18n="desc"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="select-main" id="sp-1" style="display: none;">
+				<input type="checkbox">
+				<div class="select-title-text" i18n="select"></div>
+				<div class="select-title-arrow"></div>
+				<div class="select-options" id="justice">
+				</div>
+			</div>
+			<div class="select-main" id="sp-2" style="display: none;">
+				<input type="checkbox">
+				<div class="select-title-text" i18n="select"></div>
+				<div class="select-title-arrow"></div>
+				<div class="select-options" id="v1">
+				</div>
+			</div>
+			<div class="select-main" id="sp-3" style="display: none;">
+				<input type="checkbox">
+				<div class="select-title-text" i18n="select"></div>
+				<div class="select-title-arrow"></div>
+				<div class="select-options" id="amenity">
+				</div>
+			</div>
+			<div class="select-main" id="sp-4" style="display: none;">
+				<input type="checkbox">
+				<div class="select-title-text" i18n="select"></div>
+				<div class="select-title-arrow"></div>
+				<div class="select-options" id="mot">
+				</div>
+			</div>
+			<!--
 			<div class="select-pair" id="sp-0">
 				<div class="select-title">
 					<div class="select-title-text" i18n="select_map_type"></div>
@@ -92,18 +168,20 @@
 				</div>
 				<select name="mot" id="mot" disabled="true"></select>
 			</div>
-			<!--<button id="btn" i18n="update"></button>-->
+			-->
 		</div>
-		<a class="logo" title="Technische Universität München" href="/">
-			<svg width="80" height="42" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 73 38">
-				<path d="M28 0v31h8V0h37v38h-7V7h-8v31h-7V7h-8v31H21V7h-7v31H7V7H0V0h28z" fill="currentColor"></path>
-			</svg>
+		<div class="navbar-top-elements">
+			<a class="logo" title="Technische Universität München" href="/">
+				<svg width="80" height="42" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 73 38">
+					<path d="M28 0v31h8V0h37v38h-7V7h-8v31h-7V7h-8v31H21V7h-7v31H7V7H0V0h28z" fill="currentColor"></path>
+				</svg>
 
-			<span class="visually-hidden">TUM</span>
+				<span class="visually-hidden">TUM</span>
 
-			<span class="desktop-show" i18n="header"></span>
-		</a>
-		<div class="title"><h1 i18n="title"></h1></div>
+				<span class="desktop-show" i18n="header"></span>
+			</a>
+			<div class="title"><h1 i18n="title"></h1></div>
+		</div>
 	</div>
 </nav>
 

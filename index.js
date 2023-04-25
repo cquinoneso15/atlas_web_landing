@@ -18,7 +18,6 @@ const tiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{
 }).addTo(map);
 
 // Add selector and button
-//const update_btn = document.querySelector('#btn');
 const map_type = document.querySelector('#map_type');
 const justice = document.querySelector('#justice');
 const v1 = document.querySelector('#v1');
@@ -42,47 +41,104 @@ const download = document.querySelector('#download');
 var legend;
 var radar;
 
+function isDisabled(name) {
+    return document.querySelector('#' + name).children.length == 0;
+}
+
+function getValue(name) {
+    return $('input[name="' + name +'"]:checked').val();
+}
+
 // Selector values
 var selector_values_after_sp_0 = {
     "sg": {
         "title": "select_sg",
-                "desc": "desc",
-                "values": [
-                    "tp",
-                    "o65",
-                    "u18",
-                    "ng",
-                    "un",
-                    "sp",
-                    "income"
-                ]
+        "values": [
+            {
+                "value": "tp",
+                "desc": "desc"
+            },
+            {
+                "value": "o65",
+                "desc": "desc"
+            },
+            {
+                "value": "u18",
+                "desc": "desc"
+            },
+            {
+                "value": "ng",
+                "desc": "desc"
+            },
+            {
+                "value": "un",
+                "desc": "desc"
+            },
+            {
+                "value": "sp",
+                "desc": "desc"
+            },
+            {
+                "value": "income",
+                "desc": "desc"
+            }
+        ]
     },
     "ji": {
         "title": "select_justice",
-        "desc": "desc",
         "values": [
-            "ava",
-            "beh",
-            "exp",
-            "acc"
+            {
+                "value": "ava",
+                "desc": "desc"
+            },
+            {
+                "value": "beh",
+                "desc": "desc"
+            },
+            {
+                "value": "exp",
+                "desc": "desc"
+            },
+            {
+                "value": "acc",
+                "desc": "desc"
+            }
         ]
     },
     "ji_v_sg": {
         "title": "select_justice",
         "desc": "desc",
         "values": [
-            "ava",
-            "beh",
-            "exp",
-            "acc"
+            {
+                "value": "ava",
+                "desc": "desc"
+            },
+            {
+                "value": "beh",
+                "desc": "desc"
+            },
+            {
+                "value": "exp",
+                "desc": "desc"
+            },
+            {
+                "value": "acc",
+                "desc": "desc"
+            }
         ]
     },
     "diff_sg": {
         "title": "select_justice",
         "desc": "desc",
         "values": [
-            "ava",
-            "beh"
+            {
+                "value": "ava",
+                "desc": "desc"
+            },
+            {
+                "value": "beh",
+                "desc": "desc"
+            }
         ]
     },
     "summ": {}
@@ -93,32 +149,66 @@ var selector_values_after_sp_1 = {
         "acc": {
             "v1": {
                 "title": "select_sg",
-                "desc": "desc",
                 "values": [
-                    "tp",
-                    "o65",
-                    "u18",
-                    "ng"
+                    {
+                        "value": "tp",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "o65",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "u18",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "ng",
+                        "desc": "desc"
+                    }
                 ]
             },
             "amenity": {
                 "title": "select_amenity",
-                "desc": "desc",
                 "values": [
-                    "h",
-                    "e",
-                    "f",
-                    "s",
-                    "cc"
+                    {
+                        "value": "h",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "e",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "f",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "s",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "cc",
+                        "desc": "desc"
+                    }
                 ]
             },
             "mot": {
                 "title": "select_mot",
                 "desc": "desc",
                 "values": [
-                    "w_700",
-                    "b_700",
-                    "wpt_700"
+                    {
+                        "value": "w_700",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "b_700",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "wpt_700",
+                        "desc": "desc"
+                    }
                 ]
             }
         },
@@ -127,9 +217,18 @@ var selector_values_after_sp_1 = {
                 "title": "select_exp",
                 "desc": "desc",
                 "values": [
-                    "accidents",
-                    "noise",
-                    "pollution"
+                    {
+                        "value": "accidents",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "noise",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "pollution",
+                        "desc": "desc"
+                    }
                 ]
             }
         },
@@ -138,9 +237,18 @@ var selector_values_after_sp_1 = {
                 "title": "select_ava",
                 "desc": "desc",
                 "values": [
-                    "acc_pt",
-                    "cycleway_density",
-                    "intersection_density"
+                    {
+                        "value": "acc_pt",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "cycleway_density",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "intersection_density",
+                        "desc": "desc"
+                    }
                 ]
             }
         },
@@ -149,10 +257,22 @@ var selector_values_after_sp_1 = {
                 "title": "select_beh",
                 "desc": "desc",
                 "values": [
-                    "bike_usage",
-                    "pt_usage",
-                    "walk_usage",
-                    "car_sharing_usage"
+                    {
+                        "value": "bike_usage",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "pt_usage",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "walk_usage",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "car_sharing_usage",
+                        "desc": "desc"
+                    }
                 ]
             }
         }
@@ -163,30 +283,66 @@ var selector_values_after_sp_1 = {
                 "title": "select_sg",
                 "desc": "desc",
                 "values": [
-                    "tp",
-                    "o65",
-                    "u18",
-                    "ng"
+                    {
+                        "value": "tp",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "o65",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "u18",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "ng",
+                        "desc": "desc"
+                    }
                 ]
             },
             "amenity": {
                 "title": "select_amenity",
                 "desc": "desc",
                 "values": [
-                    "h",
-                    "e",
-                    "f",
-                    "s",
-                    "cc"
+                    {
+                        "value": "h",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "e",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "f",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "s",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "cc",
+                        "desc": "desc"
+                    }
                 ]
             },
             "mot": {
                 "title": "select_mot",
                 "desc": "desc",
                 "values": [
-                    "w_700",
-                    "b_700",
-                    "wpt_700"
+                    {
+                        "value": "w_700",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "b_700",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "wpt_700",
+                        "desc": "desc"
+                    }
                 ]
             }
         },
@@ -195,21 +351,48 @@ var selector_values_after_sp_1 = {
                 "title": "select_sg",
                 "desc": "desc",
                 "values": [
-                    "tp",
-                    "o65",
-                    "u18",
-                    "ng",
-                    "un",
-                    "sp"
+                    {
+                        "value": "tp",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "o65",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "u18",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "ng",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "un",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "sp",
+                        "desc": "desc"
+                    }
                 ]
             },
             "amenity": {
                 "title": "select_exp",
                 "desc": "desc",
                 "values": [
-                    "accidents",
-                    "noise",
-                    "pollution"
+                    {
+                        "value": "accidents",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "noise",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "pollution",
+                        "desc": "desc"
+                    }
                 ]
             }
         },
@@ -218,21 +401,48 @@ var selector_values_after_sp_1 = {
                 "title": "select_sg",
                 "desc": "desc",
                 "values": [
-                    "tp",
-                    "o65",
-                    "u18",
-                    "ng",
-                    "un",
-                    "sp"
+                    {
+                        "value": "tp",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "o65",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "u18",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "ng",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "un",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "sp",
+                        "desc": "desc"
+                    }
                 ]
             },
             "amenity": {
                 "title": "select_ava",
                 "desc": "desc",
                 "values": [
-                    "acc_pt",
-                    "cycleway_density",
-                    "intersection_density"
+                    {
+                        "value": "acc_pt",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "cycleway_density",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "intersection_density",
+                        "desc": "desc"
+                    }
                 ]
             }
         },
@@ -241,22 +451,52 @@ var selector_values_after_sp_1 = {
                 "title": "select_sg",
                 "desc": "desc",
                 "values": [
-                    "tp",
-                    "o65",
-                    "u18",
-                    "ng",
-                    "un",
-                    "sp"
+                    {
+                        "value": "tp",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "o65",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "u18",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "ng",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "un",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "sp",
+                        "desc": "desc"
+                    }
                 ]
             },
             "amenity": {
                 "title": "select_beh",
                 "desc": "desc",
                 "values": [
-                    "bike_usage",
-                    "pt_usage",
-                    "walk_usage",
-                    "car_sharing_usage"
+                    {
+                        "value": "bike_usage",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "pt_usage",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "walk_usage",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "car_sharing_usage",
+                        "desc": "desc"
+                    }
                 ]
             }
         }
@@ -267,21 +507,48 @@ var selector_values_after_sp_1 = {
                 "title": "select_sg",
                 "desc": "desc",
                 "values": [
-                    "gender",
-                    "education",
-                    "income",
-                    "age_young",
-                    "age_old"
+                    {
+                        "value": "gender",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "education",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "income",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "age_young",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "age_old",
+                        "desc": "desc"
+                    }
                 ]
             },
             "mot": {
                 "title": "select_mot",
                 "desc": "desc",
                 "values": [
-                    "has_driving_license",
-                    "owns_bike",
-                    "owns_ebike",
-                    "owns_car_sharing_membership"
+                    {
+                        "value": "has_driving_license",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "owns_bike",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "owns_ebike",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "owns_car_sharing_membership",
+                        "desc": "desc"
+                    }
                 ]
             }
         },
@@ -290,21 +557,48 @@ var selector_values_after_sp_1 = {
                 "title": "select_sg",
                 "desc": "desc",
                 "values": [
-                    "gender",
-                    "education",
-                    "income",
-                    "age_young",
-                    "age_old"
+                    {
+                        "value": "gender",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "education",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "income",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "age_young",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "age_old",
+                        "desc": "desc"
+                    }
                 ]
             },
             "mot": {
                 "title": "select_mot",
                 "desc": "desc",
                 "values": [
-                    "auto_usage",
-                    "pt_usage",
-                    "bicycle_usage",
-                    "car_sharing_usage",
+                    {
+                        "value": "auto_usage",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "pt_usage",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "bicycle_usage",
+                        "desc": "desc"
+                    },
+                    {
+                        "value": "car_sharing_usage",
+                        "desc": "desc"
+                    }
                 ]
             }
         }
@@ -314,130 +608,161 @@ var selector_values_after_sp_1 = {
 
 var selected_values;
 
-function updateSelectorAfterSP0(selector, name, map_type_value) {
+function updateSelectorAfterSP0(name, map_type_value) {
+    // Find the .select-main to change
     let curr_sp = document.querySelector('#sp-1');
-
-    selector.options.length = 0;
-    selector.disabled = false;
     curr_sp.style.display = 'block';
+
     try {
-        let select_title = curr_sp.querySelector('.select-title');
-        let select_title_text = select_title.querySelector('.select-title-text');
+        // Change its title
+        let select_title_text = curr_sp.querySelector('.select-title-text');
         select_title_text.setAttribute("i18n", selector_values_after_sp_0[map_type_value]["title"])
-        let select_title_info_tooltip = select_title.querySelector('.select-title-info').querySelector('.info-tooltip');
-        select_title_info_tooltip.setAttribute("desc", selector_values_after_sp_1[map_type_value]["desc"]);
+
+        // Fetch possible values
         let selector_dict = selector_values_after_sp_0[map_type_value]["values"];
         if (selector_dict.length == 0) { throw EvalError; }
-        var option;
-        option = new Option();
-        option.setAttribute("value", "select");
-        option.setAttribute("i18n", "select");
-        selector.add(option);
+
+        // Empty select options
+        let select_options = curr_sp.querySelector(".select-options");
+        select_options.innerHTML = "";
+
+        // Create the different options
         for (const v of selector_dict) {
-            option = new Option();
-            option.setAttribute("value", v);
-            option.setAttribute("i18n", v);
-            selector.add(option);
+            var option = document.createElement("div");
+            option.setAttribute("class", "select-option");
+
+            var radio = document.createElement("input");
+            radio.setAttribute("type", "radio");
+            radio.setAttribute("name", name);
+            radio.setAttribute("value", v["value"]);
+            option.appendChild(radio);
+
+            var label = document.createElement("label");
+            label.setAttribute("for", v["value"]);
+            label.setAttribute("i18n", v["value"]);
+            option.appendChild(label);
+
+            var info = document.createElement("div");
+            info.setAttribute("class", "select-title-info");
+            info.innerHTML = "&#x1F6C8;";
+
+            var info_tooltip = document.createElement("span");
+            info_tooltip.setAttribute("class", "info-tooltip");
+            info_tooltip.setAttribute("i18n", v["desc"]);
+            info.appendChild(info_tooltip);
+
+            option.appendChild(info);
+            select_options.appendChild(option);
         }
+
+        // Unfold in the interface
+        curr_sp.querySelector("input[type=checkbox]").checked = true;
+
+        // Add function when checked
+        $('input[type=radio][name=' + name + ']').change(function() {
+            updateSelectorAfterSP1("v1", this.value);
+            updateSelectorAfterSP1("amenity", this.value);
+            updateSelectorAfterSP1("mot", this.value);
+            
+            if (correctValues()) {
+                changeMap();
+            }
+        });
     } catch (error) {
-        selector.disabled = true;
         curr_sp.style.display = 'none';
     }
     translatePage();
 }
 
-function updateSelectorAfterSP1(selector, name, map_type_value, justice_value) {
+function updateSelectorAfterSP1(name, justice_value) {
+    let map_type_value = getValue("map_type");
+
     let sp = {
-        "map_type": "sp-0",
-        "justice": "sp-1",
         "v1": "sp-2",
         "amenity": "sp-3",
         "mot": "sp-4"
     }
 
+    // Find the .select-main to change
     let curr_sp = document.querySelector('#' + sp[name]);
-
-    selector.options.length = 0;
-    selector.disabled = false;
     curr_sp.style.display = 'block';
+
     try {
-        let select_title = curr_sp.querySelector('.select-title');
-        let select_title_text = select_title.querySelector('.select-title-text');
-        select_title_text.setAttribute("i18n", selector_values_after_sp_1[map_type_value][justice_value][name]["title"]);
-        let select_title_info_tooltip = select_title.querySelector('.select-title-info').querySelector('.info-tooltip');
-        select_title_info_tooltip.setAttribute("i18n", selector_values_after_sp_1[map_type_value][justice_value][name]["desc"]);
+        // Change its title
+        let select_title_text = curr_sp.querySelector('.select-title-text');
+        select_title_text.setAttribute("i18n", selector_values_after_sp_1[map_type_value][justice_value][name]["title"])
+
+        // Fetch possible values
         let selector_dict = selector_values_after_sp_1[map_type_value][justice_value][name]["values"];
         if (selector_dict.length == 0) { throw EvalError; }
-        var option;
-        option = new Option();
-        option.setAttribute("value", "select");
-        option.setAttribute("i18n", "select");
-        selector.add(option);
+
+        // Empty select options
+        let select_options = curr_sp.querySelector(".select-options");
+        select_options.innerHTML = "";
+
+        // Create the different options
         for (const v of selector_dict) {
-            option = new Option();
-            option.setAttribute("value", v);
-            option.setAttribute("i18n", v);
-            selector.add(option);
+            var option = document.createElement("div");
+            option.setAttribute("class", "select-option");
+
+            var radio = document.createElement("input");
+            radio.setAttribute("type", "radio");
+            radio.setAttribute("name", name);
+            radio.setAttribute("value", v["value"]);
+            option.appendChild(radio);
+
+            var label = document.createElement("label");
+            label.setAttribute("for", v["value"]);
+            label.setAttribute("i18n", v["value"]);
+            option.appendChild(label);
+
+            var info = document.createElement("div");
+            info.setAttribute("class", "select-title-info");
+            info.innerHTML = "&#x1F6C8;";
+
+            var info_tooltip = document.createElement("span");
+            info_tooltip.setAttribute("class", "info-tooltip");
+            info_tooltip.setAttribute("i18n", v["desc"]);
+            info.appendChild(info_tooltip);
+
+            option.appendChild(info);
+            select_options.appendChild(option);
         }
+
+        // Unfold in the interface
+        curr_sp.querySelector("input[type=checkbox]").checked = true;
+
+        // Add function when checked
+        $('input[type=radio][name=' + name + ']').change(function() {
+            if (correctValues()) {
+                changeMap();
+            }
+        });
     } catch (error) {
-        selector.disabled = true;
         curr_sp.style.display = 'none';
     }
     translatePage();
 }
 
-map_type.onchange = (e) => {
-    e.preventDefault()
-    updateSelectorAfterSP0(justice, "justice", e.target.value);
-    updateSelectorAfterSP1(v1, "v1", "", "");
-    updateSelectorAfterSP1(amenity, "amenity", "", "");
-    updateSelectorAfterSP1(mot, "mot", "", "");
+$('input[type=radio][name=map_type]').change(function() {
+    updateSelectorAfterSP0("justice", this.value);
+    updateSelectorAfterSP1("v1", "", "");
+    updateSelectorAfterSP1("amenity", "", "");
+    updateSelectorAfterSP1("mot", "", "");
 
     if (correctValues()) {
         changeMap();
     }
-}
-
-justice.onchange = (e) => {
-    e.preventDefault()
-    updateSelectorAfterSP1(v1, "v1", map_type.value, e.target.value);
-    updateSelectorAfterSP1(amenity, "amenity", map_type.value, e.target.value);
-    updateSelectorAfterSP1(mot, "mot", map_type.value, e.target.value);
-    
-    if (correctValues()) {
-        changeMap();
-    }
-};
-
-v1.onchange = (e) => {
-    e.preventDefault()
-    if (correctValues()) {
-        changeMap();
-    }
-}
-
-amenity.onchange = (e) => {
-    e.preventDefault()
-    if (correctValues()) {
-        changeMap();
-    }
-}
-
-mot.onchange = (e) => {
-    e.preventDefault()
-    if (correctValues()) {
-        changeMap();
-    }
-}
+});
 
 function correctValues() {
-    if (map_type.value == "radar") return true;
+    if (getValue("map_type") == "radar") return true;
 
-    if (justice.value == "select") return false;
+    if (getValue("justice") == "select") return false;
     
-    return ((!v1.disabled && v1.value != "select") || v1.disabled)
-    && ((!amenity.disabled && amenity.value != "select") || amenity.disabled)
-    && ((!mot.disabled && mot.value != "select") || mot.disabled)
+    return ((!isDisabled("v1") && getValue("v1") != "select") || isDisabled("v1"))
+    && ((!isDisabled("amenity") && getValue("amenity") != "select") || isDisabled("amenity"))
+    && ((!isDisabled("mot") && getValue("mot") != "select") || isDisabled("mot"))
 }
 
 // When selector value is clicked
