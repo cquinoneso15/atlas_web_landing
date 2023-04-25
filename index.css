@@ -186,13 +186,18 @@ body {
     border-bottom: 1px solid var(--tum-blue-dark);
     color: var(--tum-blue-dark);
     position: relative;
-    min-height: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.menu-items>.select-main#sp-0 {
+    border-top: 1px solid var(--tum-blue-dark);
 }
 
 .menu-items>.select-main>.select-title-arrow {
     position: absolute;
     right: 0;
-    top: 0;
+    top: 5px;
     height: 1rem;
     width: 1rem;
     background-image: url('data:image/svg+xml,\00003csvg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">\00003cpath fill="%2370757a" d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z">\00003c/path>\00003c/svg>');
@@ -202,7 +207,7 @@ body {
 .menu-items>.select-main>input[type="checkbox"] {
     position: absolute;
     left: 0;
-    top: 0;
+    top: 5px;
     width: 100%;
     opacity: 0;
 }
