@@ -6,6 +6,10 @@
  ******************************/
 
 
+// Show left bar when in desktop
+const mediaQuery = window.matchMedia('(max-width: 1000px)');
+document.querySelector('#navbar-left').checked = !mediaQuery.matches;
+
 // Create map
 const map = L.map('map').setView([48.14, 11.57], 11);
 
@@ -47,6 +51,21 @@ function isDisabled(name) {
 
 function getValue(name) {
     return $('input[name="' + name +'"]:checked').val();
+}
+
+function setValue(name, value) {
+    if (valueInSelect(name, value)) {
+        let input = $('input[name="' + name +'"][value="' + value + '"]')[0];
+        input.checked = true;
+        input.dispatchEvent(new Event('change'));
+    }
+}
+
+function valueInSelect(name, value) {
+    if (value === '' || value === '#') return false;
+
+    // Check if the value is among the options
+    return $('input[name="' + name +'"][value="' + value + '"]').length != 0;
 }
 
 // Selector values
@@ -634,6 +653,7 @@ function updateSelectorAfterSP0(name, map_type_value) {
             var radio = document.createElement("input");
             radio.setAttribute("type", "radio");
             radio.setAttribute("name", name);
+            radio.setAttribute("id", v["value"]);
             radio.setAttribute("value", v["value"]);
             option.appendChild(radio);
 
@@ -708,6 +728,7 @@ function updateSelectorAfterSP1(name, justice_value) {
             var radio = document.createElement("input");
             radio.setAttribute("type", "radio");
             radio.setAttribute("name", name);
+            radio.setAttribute("id", v["value"]);
             radio.setAttribute("value", v["value"]);
             option.appendChild(radio);
 
