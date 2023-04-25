@@ -756,23 +756,23 @@ $('input[type=radio][name=map_type]').change(function() {
 });
 
 function correctValues() {
-    if (getValue("map_type") == "radar") return true;
+    if (getValue("map_type") == "summ") return true;
 
-    if (getValue("justice") == "select") return false;
+    if (getValue("justice") == undefined) return false;
     
-    return ((!isDisabled("v1") && getValue("v1") != "select") || isDisabled("v1"))
-    && ((!isDisabled("amenity") && getValue("amenity") != "select") || isDisabled("amenity"))
-    && ((!isDisabled("mot") && getValue("mot") != "select") || isDisabled("mot"))
+    return ((!isDisabled("v1") && getValue("v1") != undefined) || isDisabled("v1"))
+    && ((!isDisabled("amenity") && getValue("amenity") != undefined) || isDisabled("amenity"))
+    && ((!isDisabled("mot") && getValue("mot") != undefined) || isDisabled("mot"))
 }
 
 // When selector value is clicked
 function changeMap() {
     selected_values = {
-        "map_type": map_type.value,
-        "justice": justice.value,
-        "v1": v1.value,
-        "amenity": amenity.value,
-        "mot": mot.value
+        "map_type": getValue("map_type"),
+        "justice": getValue("justice"),
+        "v1": getValue("v1"),
+        "amenity": getValue("amenity"),
+        "mot": getValue("mot")
     }
 
     info.update();
