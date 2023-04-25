@@ -300,7 +300,6 @@ div.select-title-info:hover>span.info-tooltip {
 .navbar-container>input[type="checkbox"]:checked~.navbar-top-elements {
     left: 340px;
     width: calc(100% - 355px);
-
 }
 
 .title {
@@ -411,10 +410,17 @@ div.select-title-info:hover>span.info-tooltip {
 
 footer {
     height: 5%;
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+    transition: width 0.5s ease-in-out, padding-left 0.5s ease-in-out;
+}
+
+.navbar:has(.navbar-container>input[type="checkbox"]:checked)~footer {
+    padding-left: 315px;
+    width: calc(100% - 315px);
 }
 
 .modal {
