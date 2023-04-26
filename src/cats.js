@@ -648,16 +648,18 @@ function updateSelectorAfterSP0(name, map_type_value) {
             label.setAttribute("i18n", v["value"]);
             option.appendChild(label);
 
-            var info = document.createElement("div");
-            info.setAttribute("class", "select-title-info");
-            info.innerHTML = "&#x1F6C8;";
+            if (v["desc"] !== "desc") {
+                var info = document.createElement("div");
+                info.setAttribute("class", "select-title-info");
+                info.innerHTML = "&#x1F6C8;";
 
-            var info_tooltip = document.createElement("span");
-            info_tooltip.setAttribute("class", "info-tooltip");
-            info_tooltip.setAttribute("i18n", v["desc"]);
-            info.appendChild(info_tooltip);
+                var info_tooltip = document.createElement("span");
+                info_tooltip.setAttribute("class", "info-tooltip");
+                info_tooltip.setAttribute("i18n", v["desc"]);
+                info.appendChild(info_tooltip);
 
-            option.appendChild(info);
+                option.appendChild(info);
+            }
             select_options.appendChild(option);
         }
 
@@ -723,16 +725,18 @@ function updateSelectorAfterSP1(name, justice_value) {
             label.setAttribute("i18n", v["value"]);
             option.appendChild(label);
 
-            var info = document.createElement("div");
-            info.setAttribute("class", "select-title-info");
-            info.innerHTML = "&#x1F6C8;";
+            if (v["desc"] !== "desc") {
+                var info = document.createElement("div");
+                info.setAttribute("class", "select-title-info");
+                info.innerHTML = "&#x1F6C8;";
 
-            var info_tooltip = document.createElement("span");
-            info_tooltip.setAttribute("class", "info-tooltip");
-            info_tooltip.setAttribute("i18n", v["desc"]);
-            info.appendChild(info_tooltip);
+                var info_tooltip = document.createElement("span");
+                info_tooltip.setAttribute("class", "info-tooltip");
+                info_tooltip.setAttribute("i18n", v["desc"]);
+                info.appendChild(info_tooltip);
 
-            option.appendChild(info);
+                option.appendChild(info);
+            }
             select_options.appendChild(option);
         }
 
