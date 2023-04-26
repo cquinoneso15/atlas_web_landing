@@ -187,11 +187,12 @@ body {
     color: var(--tum-blue-dark);
     position: relative;
     padding-top: 5px;
-    padding-bottom: 5px;
+    padding-bottom: 10px;
 }
 
 .menu-items>.select-main#sp-0 {
     border-top: 1px solid var(--tum-blue-dark);
+    padding-top: 10px;
 }
 
 .menu-items>.select-main>.select-title-arrow {
@@ -204,10 +205,14 @@ body {
     transition: transform .4s ease-in-out;
 }
 
+.menu-items>.select-main#sp-0>.select-title-arrow {
+    top: 10px;
+}
+
 .menu-items>.select-main>input[type="checkbox"] {
     position: absolute;
     left: 0;
-    top: 5px;
+    top: 10px;
     width: 100%;
     opacity: 0;
 }

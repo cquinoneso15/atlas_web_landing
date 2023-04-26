@@ -49,13 +49,13 @@ function createCatSelection (name) {
                         next = "justice";
                         break;
                     case "justice":
-                        next = "v1";
-                        break;
-                    case "v1":
                         next = "amenity";
                         break;
                     case "amenity":
                         next = "mot";
+                        break;
+                    case "mot":
+                        next = "v1";
                         break;
                 }
 
