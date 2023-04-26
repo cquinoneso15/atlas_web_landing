@@ -1,5 +1,5 @@
 {
-    "title": "(In)justice Atlas",
+    "title": "TUM Mobility (In)justice Atlas",
     "chair": "TUM Chair of Urban Structure and Transport Planning",
     "header": "Chair of Urban Structure and Transport Planning\nTUM School of Engineering and Design\nTechnical University of Munich",
     "hover": "Hover over a neighborhood",
@@ -9,28 +9,33 @@
     "about_us": "About",
     "share": "Share",
 
-    "welcome": "Welcome to the (In)justice Atlas",
-    "project_description": "A Research Project of the Technical University of Munich for spatial and social inequalities in everyday trips",
-    "tool_tutorial": "Please select a map type, category and other variables on the dropdown menu to get started.",
+    "welcome": "Welcome to the Mobility (In)justice Atlas",
+    "project_description": "A Research Project of the Technical University of Munich for spatial and social injustices in mobility",
+    "tool_tutorial": "Please select a map type, category and other variables get started.",
 
     "data_source": "Data sources: Accessibility from OpenStreetMap POIs and road network, German national GTFS. Behaviour and Availability from National Mobility survey MiD 2017, OpenStreetMap. Exposure to road accidents from Unfallatlas, to noise from Umweltatlas, Pollution from Chair of Transport Behaviour at TUM. Sociodemographics from City of Munich (2018-2021) and National Census 2011",
 
     "select_justice": "Category",
     "environmental_justice": "Environmental Justice",
-    "exp": "Exposure",
+    "exp": "Neighborhood risks",
     "distribution_justice": "Distribution Justice",
-    "acc": "Accessibility",
-    "ava": "Availability",
+    "acc": "Access to amenities by social group",
+    "ava": "Infrastructure available",
     "interactional_justice": "Interactional Justice",
-    "beh": "Behaviour",
+    "beh": "Transport mode use",
     
     "select": "----------",
     "select_map_type": "Map type",
     "sg": "Social disadvantages",
+    "desc_sg": "Where do social disadvantaged groups live?",
     "ji": "Transport disadvantages",
+    "desc_ji": "Where are transport disadvantages?",
     "ji_v_sg": "Social & transport disadvantages",
+    "desc_ji_v_sg": "Where do social disadvantages cross transport disadvantages?",
     "diff_sg": "Advantaged vs. disadvantaged groups",
+    "desc_diff_sg": "How big is the gap between advantaged and disadvantaged groups?",
     "summ": "Neighbourhoods summary",
+    "desc_summ": "How just is mobility in my neighborhood?",
 
     "avg_munich": "Average of Munich",
 
@@ -72,22 +77,22 @@
     "owns_ebike": "E-bicycle ownership",
     "owns_car_sharing_membership": "Car-sharing membership",
 
-    "select_exp": "Exposure",
+    "select_exp": "Neighborhood risks",
     "accidents": "Road crashes",
     "noise": "Noise",
     "pollution": "Pollution (PM 2.5)",
 
     "Accidents/ha/year": "crashes/ha/year",
 
-    "select_ava": "Availability",
+    "select_ava": "Infrastructure available",
     "acc_pt": "Accessibility to Public Transport",
     "cycleway_density": "Cycleway density",
-    "intersection_density": "Intersection density",
+    "intersection_density": "Street intersections",
 
     "% PT stations served in 700m": "% PT stations served in 700m",
     "intersection number/ha": "number/ha",
 
-    "select_beh": "Behaviour",
+    "select_beh": "Transport mode use",
     "auto_usage": "Car usage",
     "bike_usage": "Bicycle usage",
     "bicycle_usage": "Bicycle usage",

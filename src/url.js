@@ -9,10 +9,13 @@ setValue("mot", url.searchParams.get("mot"));
 
 if (url.searchParams.get("map_type") == null || !correctValues()) {
     displayModal(true);
+} else {
+    // Show left bar when in desktop
+    const mediaQuery = window.matchMedia('(max-width: 1000px)');
+    document.querySelector('#navbar-left').checked = !mediaQuery.matches;
 }
 
-// Share function
-share_btn.onclick = (event) => {
+function createShareURL() {
     let share_url = new URL(window.location.href);
     if (selected_values != undefined) {
         // Add parameters to URL
@@ -22,6 +25,13 @@ share_btn.onclick = (event) => {
             }
         }
     }
+    return share_url;
+}
+
+// Share function
+const share_btn = document.querySelector('#share');
+share_btn.onclick = (event) => {
+    let share_url = createShareURL;
 
     navigator.clipboard.writeText(share_url)
     .then(() => {

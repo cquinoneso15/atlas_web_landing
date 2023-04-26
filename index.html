@@ -35,7 +35,7 @@
 		</div>
 		<div class="menu-items">
 			<div class="select-main" id="sp-0">
-				<input type="checkbox">
+				<input type="checkbox" checked>
 				<div class="select-title-text" i18n="select_map_type"></div>
 				<div class="select-title-arrow"></div>
 				<div class="select-options" id="map_type">
@@ -44,7 +44,7 @@
 						<label for="sg" i18n="sg"></label>
 						<div class="select-title-info">
 							&#x1F6C8;
-							<span class="info-tooltip" i18n="desc"></span>
+							<span class="info-tooltip" i18n="desc_sg"></span>
 						</div>
 					</div>
 					<div class="select-option">
@@ -52,7 +52,7 @@
 						<label for="ji" i18n="ji"></label>
 						<div class="select-title-info">
 							&#x1F6C8;
-							<span class="info-tooltip" i18n="desc"></span>
+							<span class="info-tooltip" i18n="desc_ji"></span>
 						</div>
 					</div>
 					<div class="select-option">
@@ -60,7 +60,7 @@
 						<label for="ji_v_sg" i18n="ji_v_sg"></label>
 						<div class="select-title-info">
 							&#x1F6C8;
-							<span class="info-tooltip" i18n="desc"></span>
+							<span class="info-tooltip" i18n="desc_ji_v_sg"></span>
 						</div>
 					</div>
 					<div class="select-option">
@@ -68,7 +68,7 @@
 						<label for="diff_sg" i18n="diff_sg"></label>
 						<div class="select-title-info">
 							&#x1F6C8;
-							<span class="info-tooltip" i18n="desc"></span>
+							<span class="info-tooltip" i18n="desc_diff_sg"></span>
 						</div>
 					</div>
 					<div class="select-option">
@@ -76,7 +76,7 @@
 						<label for="summ" i18n="summ"></label>
 						<div class="select-title-info">
 							&#x1F6C8;
-							<span class="info-tooltip" i18n="desc"></span>
+							<span class="info-tooltip" i18n="desc_summ"></span>
 						</div>
 					</div>
 				</div>
@@ -109,66 +109,6 @@
 				<div class="select-options" id="mot">
 				</div>
 			</div>
-			<!--
-			<div class="select-pair" id="sp-0">
-				<div class="select-title">
-					<div class="select-title-text" i18n="select_map_type"></div>
-					<div class="select-title-info">
-						&#x1F6C8;
-						<span class="info-tooltip" i18n="desc"></span>
-					</div>
-				</div>
-				<select name="map_type" id="map_type">
-					<option value="select" i18n="select"></option>
-					<option value="sg" i18n="sg"></option>
-					<option value="ji" i18n="ji"></option>
-					<option value="ji_v_sg" i18n="ji_v_sg"></option>
-					<option value="diff_sg" i18n="diff_sg"></option>
-					<option value="summ" i18n="summ"></option>
-				</select>
-			</div>
-			<div class="select-pair" id="sp-1" style="display: none;">
-				<div class="select-title">
-					<div class="select-title-text" i18n="select"></div>
-					<div class="select-title-info">
-						&#x1F6C8;
-						<span class="info-tooltip" i18n="desc"></span>
-					</div>
-				</div>
-				<select name="justice" id="justice" disabled="true">
-				</select>
-			</div>
-			<div class="select-pair" id="sp-2" style="display: none;">
-				<div class="select-title">
-					<div class="select-title-text" i18n="select"></div>
-					<div class="select-title-info">
-						&#x1F6C8;
-						<span class="info-tooltip" i18n="desc"></span>
-					</div>
-				</div>
-				<select name="v1" id="v1" disabled="true"></select>
-			</div>
-			<div class="select-pair" id="sp-3" style="display: none;">
-				<div class="select-title">
-					<div class="select-title-text" i18n="select"></div>
-					<div class="select-title-info">
-						&#x1F6C8;
-						<span class="info-tooltip" i18n="desc"></span>
-					</div>
-				</div>
-				<select name="amenity" id="amenity" disabled="true"></select>
-			</div>
-			<div class="select-pair" id="sp-4" style="display: none;">
-				<div class="select-title">
-					<div class="select-title-text" i18n="select"></div>
-					<div class="select-title-info">
-						&#x1F6C8;
-						<span class="info-tooltip" i18n="desc"></span>
-					</div>
-				</div>
-				<select name="mot" id="mot" disabled="true"></select>
-			</div>
-			-->
 		</div>
 		<div class="navbar-top-elements">
 			<a class="logo" title="Technische Universität München" href="/">
@@ -213,13 +153,15 @@
 <script src="src/geoserver.js"></script>
 <script src="src/radar.js"></script>
 <script src="src/legend.js"></script>
-<script src="index.js"></script>
+<script src="src/map.js"></script>
+<script src="src/cats.js"></script>
 <script src="src/interactivity.js"></script>
 <script src="src/sequential.js"></script>
 <script src="src/bivariate.js"></script>
 <script src="src/divergent.js"></script>
 <script src="src/pois.js"></script>
 <script src="src/areas.js"></script>
+<script src="src/modal.js"></script>
 <script src="src/url.js"></script>
 </body>
 </html>

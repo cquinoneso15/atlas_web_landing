@@ -1,5 +1,5 @@
 {
-    "title": "(Un)gerechtigkeitsatlas",
+    "title": "TUM Mobilitäts(un)gerechtigkeitsatlas",
     "chair": "TUM Lehrstuhl für Siedlungsstruktur und Verkehrsplanung",
     "header": "Lehrstuhl für Siedlungsstruktur und Verkehrsplanung\nTUM School of Engineering and Design\nTechnische Universität München",
     "hover": "Bewegen Sie den Mauszeiger über eine Bezirksteile",
@@ -9,26 +9,33 @@
     "about_us": "Über",
     "share": "Teilen",
 
-    "welcome": "Willkommen beim (Un)Gerechtigkeitsatlas",
-    "project_description": "Ein Forschungsprojekt der Technischen Universität München zu räumlichen und sozialen Ungleichheiten im Alltag Verkehr",
-    "tool_tutorial": "Bitte wählen Sie einen Kartentyp, eine Kategorie und andere Variablen im Dropdown-Menü aus, um zu beginnen.",
+    "welcome": "Willkommen beim Mobilitäts(Un)Gerechtigkeitsatlas",
+    "project_description": "Ein Forschungsprojekt der Technischen Universität München zu räumlichen und sozialen Mobilitätsungerechtigkeiten",
+    "tool_tutorial": "Bitte wählen Sie einen Kartentyp, eine Kategorie und andere Variablen aus, um zu beginnen.",
+
+    "data_source": "Datenquellen: Erreichbarkeit aus OpenStreetMap POIs und Straßennetz, Deutsches nationales GTFS. Verhalten und Verfügbarkeit aus Nationaler Mobilitätserhebung MiD 2017, OpenStreetMap. Belastung durch Verkehrsunfälle aus Unfallatlas, Lärm aus Umweltatlas, Umweltverschmutzung vom Lehrstuhl für Verkehrsverhalten an der TUM Soziodemographie der Landeshauptstadt München (2018-2021) und Volkszählung 2011",
 
     "select_justice": "Kategorie",
     "environmental_justice": "Umweltgerechtigkeit",
-    "exp": "Belichtung",
+    "exp": "Bezirksteilerisiken",
     "distribution_justice": "Verteilungsgerechtigkeit",
-    "acc": "Errichbarkeit",
-    "ava": "Verfügbarkeit",
+    "acc": "Zugang zu Annehmlichkeiten nach sozialer Gruppe",
+    "ava": "Infrastruktur vorhanden",
     "interactional_justice": "Interaktionsgerechtigkeit",
-    "beh": "Verhalten",
+    "beh": "Nutzung des Transportmodus",
 
     "select": "----------",
     "select_map_type": "Kartentyp",
     "sg": "Soziale Benachteiligung",
+    "desc_sg": "Wo leben sozial benachteiligte Gruppen?",
     "ji": "Transportnachteile",
+    "desc_ji": "Wo sind Transportnachteile?",
     "ji_v_sg": "Soziale & Verkehrsnachteile",
+    "desc_ji_v_sg": "Wo kreuzen sich soziale Nachteile mit Verkehrsnachteilen?",
     "diff_sg": "Begünstigte vs. benachteiligte Gruppen",
-    "summ": "Zusammenfassung der Nachbarschaften",
+    "desc_diff_sg": "Wie groß ist die Kluft zwischen begünstigten und benachteiligten Gruppen?",
+    "summ": "Zusammenfassung der Bezirksteile",
+    "desc_summ": "Wie gerecht ist die Mobilität in meinem Bezirksteil?",
 
     "avg_munich": "Durchschnitt von München",
 
@@ -70,22 +77,22 @@
     "owns_ebike": "Besitzt ein Elektrofahrrad",
     "owns_car_sharing_membership": "Besitzt eine Carsharing-Mitgliedschaft",
     
-    "select_exp": "Belastung",
+    "select_exp": "Bezirksteilerisiken",
     "accidents": "Unfälle",
     "noise": "Lärm",
     "pollution": "Verschmutzung (PM 2.5)",
 
     "Accidents/ha/year": "Unfälle/ha/Jahr",
 
-    "select_ava": "Verfügbarkeit",
+    "select_ava": "Infrastruktur verfügbar",
     "acc_pt": "Zugang zu ÖPNV",
     "cycleway_density": "Radwegdichte",
-    "intersection_density": "Schnittdichte",
+    "intersection_density": "Straßenkreuzungen",
 
     "% PT stations served in 700m": "% bediente ÖPNV-Stationen in 700m",
     "intersection number/ha": "Nummer/ha",
 
-    "select_beh": "Verhalten",
+    "select_beh": "Nutzung des Transportmodus",
     "auto_usage": "Autonutzung",
     "bike_usage": "Fahrradnutzung",
     "bicycle_usage": "Fahrradnutzung",

@@ -1,49 +1,11 @@
-/******************************
- * index.js                   *
- * Script file for index.html *
- * Author: Héctor Ochoa Ortiz *
- * Affil.: TUM SVP            *
- ******************************/
+/**************************************************
+ * map.js                                         *
+ * Script file for categories and other variables *
+ * Author: Héctor Ochoa Ortiz                     *
+ * Affil.: TUM SVP                                *
+ * Last update: 2023-04-26                        *
+ **************************************************/
 
-
-// Show left bar when in desktop
-const mediaQuery = window.matchMedia('(max-width: 1000px)');
-document.querySelector('#navbar-left').checked = !mediaQuery.matches;
-
-// Create map
-const map = L.map('map').setView([48.14, 11.57], 11);
-
-// Add background layer
-const tiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
-    subdomains: 'abcd',
-    maxZoom: 20,
-    minZoom: 0
-}).addTo(map);
-
-// Add selector and button
-const map_type = document.querySelector('#map_type');
-const justice = document.querySelector('#justice');
-const v1 = document.querySelector('#v1');
-const amenity = document.querySelector('#amenity');
-const mot = document.querySelector('#mot');
-
-const share_btn = document.querySelector('#share');
-const about_us_btn = document.querySelector('#about_us');
-var span = document.getElementsByClassName("close")[0];
-var modal_about = document.getElementById("modal-about");
-
-
-// Map layers
-var polygonLayer;
-var poiLayer;
-var areaLayer;
-var layerControl;
-var biv;
-
-const download = document.querySelector('#download');
-var legend;
-var radar;
 
 function isDisabled(name) {
     return document.querySelector('#' + name).children.length == 0;
@@ -67,6 +29,30 @@ function valueInSelect(name, value) {
     // Check if the value is among the options
     return $('input[name="' + name +'"][value="' + value + '"]').length != 0;
 }
+
+// Starting values
+var selector_values_before_sp_0 = [
+    {
+        "value": "sg",
+        "desc": "desc_sg"
+    },
+    {
+        "value": "ji",
+        "desc": "desc_ji"
+    },
+    {
+        "value": "ji_v_sg",
+        "desc": "desc_ji_v_sg"
+    },
+    {
+        "value": "diff_sg",
+        "desc": "desc_diff_sg"
+    },
+    {
+        "value": "summ",
+        "desc": "desc_summ"
+    }
+]
 
 // Selector values
 var selector_values_after_sp_0 = {
@@ -776,193 +762,46 @@ $('input[type=radio][name=map_type]').change(function() {
     }
 });
 
-function correctValues() {
-    if (getValue("map_type") == "summ") return true;
-
-    if (getValue("justice") == undefined) return false;
-    
-    return ((!isDisabled("v1") && getValue("v1") != undefined) || isDisabled("v1"))
-    && ((!isDisabled("amenity") && getValue("amenity") != undefined) || isDisabled("amenity"))
-    && ((!isDisabled("mot") && getValue("mot") != undefined) || isDisabled("mot"))
+function valueInList(list, value) {
+    try {
+        for (let item of list["values"]) {
+            if (item.value === value)
+                return true;
+        }
+    } catch {}
+    return false;
 }
 
-// When selector value is clicked
-function changeMap() {
-    selected_values = {
-        "map_type": getValue("map_type"),
-        "justice": getValue("justice"),
-        "v1": getValue("v1"),
-        "amenity": getValue("amenity"),
-        "mot": getValue("mot")
-    }
+function listLength(list) {
+    try {
+        return list["values"].length;
+    } catch {}
+    return 0;
+}
 
-    info.update();
+function correctValues(values) {
+    if (values == undefined) {
+        // If value dict not passed, use selectors
+        if (getValue("map_type") == "summ") return true;
 
-    // Remove layers if already displayed
-    if (polygonLayer) {
-        polygonLayer.remove();
-        if (poiLayer) {
-            poiLayer.remove();
-        }
-        if (areaLayer) {
-            areaLayer.remove();
-        }
-        if (layerControl) {
-            layerControl.remove();
-        }
-    }
-
-    generateLegend("", true);
-
-    //Connect to Geoserver WFS
-    if (selected_values["map_type"] == "diff_sg") {
-        callGeoServer(
-            "divergent",
-            { "filter1": selected_values["v1"], "filter2": selected_values["mot"] },
-            handleJsonDiv
-        );
-    } else if (selected_values["map_type"] == "summ") {
-        callGeoServer(
-            "all_normalized",
-            {},
-            handleJsonRadar
-        );
+        if (getValue("justice") == undefined) return false;
+        
+        return ((!isDisabled("v1") && getValue("v1") != undefined) || isDisabled("v1"))
+        && ((!isDisabled("amenity") && getValue("amenity") != undefined) || isDisabled("amenity"))
+        && ((!isDisabled("mot") && getValue("mot") != undefined) || isDisabled("mot"));
     } else {
-        switch (selected_values["justice"]) {
-            case "acc":
-                if (selected_values["map_type"] == "ji") {
-                    callGeoServer(
-                        "acc_all",
-                        { "user": selected_values["v1"], "amenity": selected_values["amenity"], "mot": selected_values["mot"] },
-                        handleJsonSeq
-                    );
-                } else {
-                    callGeoServer(
-                        "acc_hilo",
-                        { "user": selected_values["v1"], "amenity": selected_values["amenity"], "mot": selected_values["mot"] },
-                        handleJsonBiv
-                    );
-                }
+        // Otherwise check in values dict
+        if (values["map_type"] == "summ") return true;
 
-                callGeoServer(
-                    "pois",
-                    { "amenity": selected_values["amenity"] },
-                    handleJsonPOIs
-                );
-
-                callGeoServer(
-                    "service_areas",
-                    { "amenity": selected_values["amenity"], "mot": selected_values["mot"] },
-                    handleJsonAreas
-                );
-
-                break;
-
-            case "exp":
-                if (selected_values["map_type"] == "ji") {
-                    callGeoServer(
-                        "exposure",
-                        { "type": selected_values["v1"] },
-                        handleJsonSeq
-                    );
-                } else {
-                    callGeoServer(
-                        "exposure_hilo",
-                        { "user": selected_values["v1"], "type": selected_values["amenity"] },
-                        handleJsonBiv
-                    );
-                }
-                break;
-            case "ava":
-                if (selected_values["map_type"] == "ji") {
-                    callGeoServer(
-                        "availability",
-                        { "type": selected_values["v1"] },
-                        handleJsonSeq
-                    );
-                } else {
-                    callGeoServer(
-                        "availability_hilo",
-                        { "user": selected_values["v1"], "type": selected_values["amenity"] },
-                        handleJsonBiv
-                    );
-                }
-                break;
-            case "beh":
-                if (selected_values["map_type"] == "ji") {
-                    callGeoServer(
-                        "behaviour",
-                        { "type": selected_values["v1"] },
-                        handleJsonSeq
-                    );
-                } else {
-                    callGeoServer(
-                        "behaviour_hilo",
-                        { "user": selected_values["v1"], "type": selected_values["amenity"] },
-                        handleJsonBiv
-                    );
-                }
-                break;
-            case "income":
-                if (selected_values["map_type"] == "sg") {
-                    callGeoServer(
-                        "income",
-                        {},
-                        handleJsonSeq
-                    );
-                } else {
-                    callGeoServer(
-                        "income_hilo",
-                        {},
-                        handleJsonBiv
-                    );
-                }
-                break;
-            //case "pop":
-            case "tp":
-            case "o65":
-            case "u18":
-            case "ng":
-            case "un":
-            case "sp":
-                if (selected_values["map_type"] == "sg") {
-                    callGeoServer(
-                        "population",
-                        //{ "user": selected_values["v1"] },
-                        { "user": selected_values["justice"] },
-                        handleJsonSeq
-                    );
-                }
-                break;
-            default:
-                break;
-        }
-    }
-};
-
-// Parameter true if welcome modal, false if about us modal
-function displayModal(welcomeOrAboutUs) {
-    var content = modal_about.querySelector('.modal-content').querySelector('.modal-text');
-    if (welcomeOrAboutUs) {
-        content.innerHTML = '<h2 i18n="welcome"></h2><p i18n="project_description"></p><p i18n="tool_tutorial"></p>'
-    } else {
-        content.innerHTML = '<p i18n="about_us_text"></p><p i18n="data_source"></p><img src="https://www.mos.ed.tum.de/fileadmin/_processed_/9/8/csm_Header_MCube_57378eef86.jpg" alt="MCube">'
-    }
-    modal_about.style.display = "block";
-    translatePage();
-}
-
-about_us_btn.onclick = (event) => {
-    displayModal(false);
-}
-
-span.onclick = function() {
-    modal_about.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal_about) {
-        modal_about.style.display = "none";
+        if (values["justice"] == undefined) return false;
+        
+        return (listLength(selector_values_after_sp_1[values["map_type"]][values["justice"]]["v1"]) == 0) ||
+                   (valueInList(selector_values_after_sp_1[values["map_type"]][values["justice"]]["v1"], values["v1"]))
+                &&
+                (listLength(selector_values_after_sp_1[values["map_type"]][values["justice"]]["amenity"]) == 0) ||
+                   (valueInList(selector_values_after_sp_1[values["map_type"]][values["justice"]]["amenity"], values["amenity"]))
+                &&
+                (listLength(selector_values_after_sp_1[values["map_type"]][values["justice"]]["mot"]) == 0) ||
+                   (valueInList(selector_values_after_sp_1[values["map_type"]][values["justice"]]["mot"], values["mot"]));
     }
 }

@@ -1,5 +1,5 @@
 {
-    "title": "Atlas de (in)justicia",
+    "title": "TUM Atlas de (in)justicia en la movilidad",
     "chair": "Cátedra de Estructura Urbana y Planificación del Transporte (TUM)",
     "header": "Cátedra de Estructura Urbana y Planificación del Transporte\nTUM School of Engineering and Design\nUniversidad Técnica de Múnich",
     "hover": "Mueve el cursor sobre un barrio",
@@ -9,26 +9,33 @@
     "about_us": "Sobre",
     "share": "Compartir",
 
-    "welcome": "Bienvenido/a al Atlas de (In)justicia",
-    "project_description": "Un proyecto de investigación de la Universidad Técnica de Múnich sobre las desigualdades espaciales y sociales en los viajes cotidianos",
-    "tool_tutorial": "Seleccione un tipo de mapa, categoría y otras variables en el menú desplegable para comenzar.",
+    "welcome": "Bienvenido/a al Atlas de (in)justicia en la movilidad",
+    "project_description": "Un proyecto de investigación de la Universidad Técnica de Múnich sobre las injusticias espaciales y sociales en la movilidad",
+    "tool_tutorial": "Seleccione un tipo de mapa, categoría y otras variables para comenzar.",
+
+    "data_source": "Fuentes de datos: Accesibilidad de OpenStreetMap (PDI y red de carreteras) y GTFS nacional alemán. Comportamiento y disponibilidad de la encuesta nacional de movilidad MiD 2017, OpenStreetMap. Exposición a accidentes de tráfico de Unfallatlas, al ruido de Umweltatlas, a la contaminación de la Cátedra de Comportamiento del Transporte en TUM Sociodemografía de la Ciudad de Munich (2018-2021) y Censo Nacional 2011",
 
     "select_justice": "Categoría",
     "environmental_justice": "Justicia ambiental",
-    "exp": "Exposición",
+    "exp": "Riesgos de exposición",
     "distribution_justice": "Justicia de distribución",
-    "acc": "Accessibilidad",
-    "ava": "Disponibilidad",
+    "acc": "Acceso a servicios por grupo social",
+    "ava": "Infraestructura disponible",
     "interactional_justice": "Justicia interaccional",
-    "beh": "Comportamiento",
+    "beh": "Uso de modo de transporte",
 
     "select": "----------",
     "select_map_type": "Tipo de mapa",
     "sg": "Desventajas sociales",
+    "desc_sg": "¿Dónde viven los grupos sociales en desventaja o desfavorecidos?",
     "ji": "Desventajas de transporte",
+    "desc_ji": "¿Dónde hay desventajas en el transporte?",
     "ji_v_sg": "Desventajas sociales y de transporte",
+    "desc_ji_v_sg": "¿Dónde se cruzan las desventajas sociales con las del transporte?",
     "diff_sg": "Grupos aventajados vs. desfavorecidos",
+    "desc_diff_sg": "¿Qué tan grande es la brecha entre los grupos sociales favorecidos y desfavorecidos?",
     "summ": "Resumen de barrios",
+    "desc_summ": "¿Qué tan justa es la movilidad en mi barrio?",
 
     "avg_munich": "Media de Múnich",
 
@@ -70,22 +77,22 @@
     "owns_ebike": "Tiene una bicicleta eléctrica",
     "owns_car_sharing_membership": "Tiene una suscripción de coche compartido",
     
-    "select_exp": "Exposición a",
+    "select_exp": "Riesgos de exposición a",
     "accidents": "Accidentes",
     "noise": "Ruido",
     "pollution": "Contaminación (PM 2.5)",
 
     "Accidents/ha/year": "accidentes/ha/año",
 
-    "select_ava": "Disponibilidad",
+    "select_ava": "Infraestructura disponible",
     "acc_pt": "Accessibilidad al transporte público",
     "cycleway_density": "Densidad de carriles bici",
-    "intersection_density": "Densidad de intersecciones",
+    "intersection_density": "Número de intersecciones",
 
     "% PT stations served in 700m": "% paradas TP servidas en 700m",
     "intersection number/ha": "número/ha",
 
-    "select_beh": "Comportamiento",
+    "select_beh": "Uso de modo de transporte",
     "auto_usage": "Uso de coche",
     "bike_usage": "Uso de bicicletas",
     "bicycle_usage": "Uso de bicicletas",

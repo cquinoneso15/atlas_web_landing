@@ -145,6 +145,7 @@ body {
 
 .navbar-container>input[type="checkbox"]:checked~.menu-items {
     transform: translateX(0);
+    box-shadow: 5px 0px 10px 0px #aaa;
 }
 
 .navbar-container>input[type="checkbox"]:checked~.hamburger-lines .line1 {
@@ -167,13 +168,12 @@ body {
     background: var(--tum-blue-light-4);
     height: 100vh;
     max-width: 300px;
-    transform: translate(-150%);
+    transform: translate(-310px);
     display: flex;
     flex-direction: column;
     margin-left: -40px;
     padding-left: 50px;
-    transition: transform 0.5s ease-in-out;
-    box-shadow: 5px 0px 10px 0px #aaa;
+    transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
 }
 
 .navbar .menu-items>* {
@@ -360,6 +360,13 @@ div.select-title-info:hover>span.info-tooltip {
 .map-area {
     padding-top: 64px;
     height: calc(95% - 64px);
+    width: 100%;
+    transition: width 0.5s ease-in-out;
+    float: right;
+}
+
+.navbar:has(.navbar-container>input[type="checkbox"]:checked)~.map-area {
+    width: calc(100% - 310px);
 }
 
 .map-area div#map {
@@ -457,6 +464,58 @@ footer {
     width: auto;
     max-width: 90%;
 }
+
+.modal-content>.modal-text>.cats>.cat-selection {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: auto;
+    gap: 10px;
+}
+
+.modal-content>.modal-text>.cats>.cat-selection>.cat-selection-option {
+    min-width: 100px;
+    min-height: 100px;
+    background-color: var(--tum-blue-brand);
+    box-shadow: 0px 5px 10px 0px #aaa;
+    border-radius: 5px;
+    color: whitesmoke;
+}
+
+.modal-content>.modal-text>.cats>.cat-selection>.cat-selection-option>.cat-selection-option-text {
+    font-weight: bold;
+    font-size: medium;
+    margin-bottom: 5px;
+}
+
+.modal-content>.modal-text>.cats>.cat-selection>.cat-selection-option>.cat-selection-option-desc {
+    font-weight: lighter;
+    font-size: smaller;
+}
+
+.modal-content>.modal-text>.cats>.line-wrapper {
+    position: relative;
+    text-align: center;
+    margin-top: 10px;
+}
+  
+.modal-content>.modal-text>.cats>.line-wrapper>.line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin: 0;
+}
+  
+.modal-content>.modal-text>.cats>.line-wrapper>.cat-title {
+    position: relative;
+    display: inline-block;
+    padding: 0 10px;
+    background-color: white;
+}
+  
 
 .close {
     color: #aaa;
