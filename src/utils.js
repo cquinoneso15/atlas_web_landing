@@ -2,6 +2,26 @@
  * UTILS *
  *********/
 
+function disableTransitions() {
+    // Select all elements that have a CSS transition rule
+    var elementsWithTransition = $('*').filter(function() {
+        var transition = $(this).css('transition');
+        return transition !== undefined && transition !== 'none';
+    });
+    
+    elementsWithTransition.addClass('notransition');
+}
+
+function enableTransitions() {
+    // Select all elements that have a CSS transition rule
+    var elementsWithTransition = $('*').filter(function() {
+        var transition = $(this).css('transition');
+        return transition !== undefined && transition !== 'none';
+    });
+    
+    elementsWithTransition.removeClass('notransition');
+}
+
 function filterData(data, column, filter) {
     dataCopy = JSON.parse(JSON.stringify(data));
     dataCopy.features = dataCopy.features.filter((d) => filter(d.properties[column]));

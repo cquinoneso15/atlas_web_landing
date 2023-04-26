@@ -200,7 +200,6 @@ var selector_values_after_sp_1 = {
             },
             "mot": {
                 "title": "select_mot",
-                "desc": "desc",
                 "values": [
                     {
                         "value": "w_700",
@@ -220,7 +219,6 @@ var selector_values_after_sp_1 = {
         "exp": {
             "v1": {
                 "title": "select_exp",
-                "desc": "desc",
                 "values": [
                     {
                         "value": "accidents",
@@ -240,7 +238,6 @@ var selector_values_after_sp_1 = {
         "ava": {
             "v1": {
                 "title": "select_ava",
-                "desc": "desc",
                 "values": [
                     {
                         "value": "acc_pt",
@@ -260,7 +257,6 @@ var selector_values_after_sp_1 = {
         "beh": {
             "v1": {
                 "title": "select_beh",
-                "desc": "desc",
                 "values": [
                     {
                         "value": "bike_usage",
@@ -286,7 +282,6 @@ var selector_values_after_sp_1 = {
         "acc": {
             "v1": {
                 "title": "select_sg",
-                "desc": "desc",
                 "values": [
                     {
                         "value": "tp",
@@ -308,7 +303,6 @@ var selector_values_after_sp_1 = {
             },
             "amenity": {
                 "title": "select_amenity",
-                "desc": "desc",
                 "values": [
                     {
                         "value": "h",
@@ -334,7 +328,6 @@ var selector_values_after_sp_1 = {
             },
             "mot": {
                 "title": "select_mot",
-                "desc": "desc",
                 "values": [
                     {
                         "value": "w_700",
@@ -354,7 +347,6 @@ var selector_values_after_sp_1 = {
         "exp": {
             "v1": {
                 "title": "select_sg",
-                "desc": "desc",
                 "values": [
                     {
                         "value": "tp",
@@ -384,7 +376,6 @@ var selector_values_after_sp_1 = {
             },
             "amenity": {
                 "title": "select_exp",
-                "desc": "desc",
                 "values": [
                     {
                         "value": "accidents",
@@ -404,7 +395,6 @@ var selector_values_after_sp_1 = {
         "ava": {
             "v1": {
                 "title": "select_sg",
-                "desc": "desc",
                 "values": [
                     {
                         "value": "tp",
@@ -434,7 +424,6 @@ var selector_values_after_sp_1 = {
             },
             "amenity": {
                 "title": "select_ava",
-                "desc": "desc",
                 "values": [
                     {
                         "value": "acc_pt",
@@ -454,7 +443,6 @@ var selector_values_after_sp_1 = {
         "beh": {
             "v1": {
                 "title": "select_sg",
-                "desc": "desc",
                 "values": [
                     {
                         "value": "tp",
@@ -484,7 +472,6 @@ var selector_values_after_sp_1 = {
             },
             "amenity": {
                 "title": "select_beh",
-                "desc": "desc",
                 "values": [
                     {
                         "value": "bike_usage",
@@ -510,7 +497,6 @@ var selector_values_after_sp_1 = {
         "ava": {
             "v1": {
                 "title": "select_sg",
-                "desc": "desc",
                 "values": [
                     {
                         "value": "gender",
@@ -536,7 +522,6 @@ var selector_values_after_sp_1 = {
             },
             "mot": {
                 "title": "select_mot",
-                "desc": "desc",
                 "values": [
                     {
                         "value": "has_driving_license",
@@ -560,7 +545,6 @@ var selector_values_after_sp_1 = {
         "beh": {
             "v1": {
                 "title": "select_sg",
-                "desc": "desc",
                 "values": [
                     {
                         "value": "gender",
@@ -586,7 +570,6 @@ var selector_values_after_sp_1 = {
             },
             "mot": {
                 "title": "select_mot",
-                "desc": "desc",
                 "values": [
                     {
                         "value": "auto_usage",
@@ -798,14 +781,31 @@ function correctValues(values) {
         if (values["map_type"] == "summ") return true;
 
         if (values["justice"] == undefined) return false;
+
+        let c_v1;
+        try {
+            c_v1 = (listLength(selector_values_after_sp_1[values["map_type"]][values["justice"]]["v1"]) == 0) ||
+            (valueInList(selector_values_after_sp_1[values["map_type"]][values["justice"]]["v1"], values["v1"]));
+        } catch {
+            c_v1 = true;
+        }
+
+        let c_amenity;
+        try {
+            c_amenity = (listLength(selector_values_after_sp_1[values["map_type"]][values["justice"]]["amenity"]) == 0) ||
+            (valueInList(selector_values_after_sp_1[values["map_type"]][values["justice"]]["amenity"], values["amenity"]));
+        } catch {
+            c_amenity = true;
+        }
+
+        let c_mot;
+        try {
+            c_mot = (listLength(selector_values_after_sp_1[values["map_type"]][values["justice"]]["mot"]) == 0) ||
+            (valueInList(selector_values_after_sp_1[values["map_type"]][values["justice"]]["mot"], values["mot"]));
+        } catch {
+            c_mot = true;
+        }
         
-        return (listLength(selector_values_after_sp_1[values["map_type"]][values["justice"]]["v1"]) == 0) ||
-                   (valueInList(selector_values_after_sp_1[values["map_type"]][values["justice"]]["v1"], values["v1"]))
-                &&
-                (listLength(selector_values_after_sp_1[values["map_type"]][values["justice"]]["amenity"]) == 0) ||
-                   (valueInList(selector_values_after_sp_1[values["map_type"]][values["justice"]]["amenity"], values["amenity"]))
-                &&
-                (listLength(selector_values_after_sp_1[values["map_type"]][values["justice"]]["mot"]) == 0) ||
-                   (valueInList(selector_values_after_sp_1[values["map_type"]][values["justice"]]["mot"], values["mot"]));
+        return c_v1 && c_amenity && c_mot;
     }
 }

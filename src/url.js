@@ -8,11 +8,15 @@ setValue("amenity", url.searchParams.get("amenity"));
 setValue("mot", url.searchParams.get("mot"));
 
 if (url.searchParams.get("map_type") == null || !correctValues()) {
+    disableTransitions();    
+    document.querySelector('#navbar-left').checked = false;
+    enableTransitions();
     displayModal(true);
 } else {
     // Show left bar when in desktop
     const mediaQuery = window.matchMedia('(max-width: 1000px)');
     document.querySelector('#navbar-left').checked = !mediaQuery.matches;
+    map.fitBounds(polygonLayer.getBounds());
 }
 
 function createShareURL() {

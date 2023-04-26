@@ -13,16 +13,37 @@ function createCatSelection (name) {
         let cat_selection = content.querySelector('.cat-selection');
         cat_selection.innerHTML = "";
         var values_dict;
-        switch (name) {
-            case "map_type":
-                values_dict = selector_values_before_sp_0;
-                break;
-            case "justice":
-                values_dict = selector_values_after_sp_0[temporaryValues["map_type"]]["values"];
-                break;
-            default:
-                values_dict = selector_values_after_sp_1[temporaryValues["map_type"]][temporaryValues["justice"]][name]["values"];
-                break;
+        try {
+            switch (name) {
+                case "map_type":
+                    values_dict = selector_values_before_sp_0;
+                    break;
+                case "justice":
+                    values_dict = selector_values_after_sp_0[temporaryValues["map_type"]]["values"];
+                    break;
+                default:
+                    values_dict = selector_values_after_sp_1[temporaryValues["map_type"]][temporaryValues["justice"]][name]["values"];
+                    break;
+            }
+        } catch {
+            var next;
+            switch(name) {
+                case "map_type":
+                    next = "justice";
+                    break;
+                case "justice":
+                    next = "amenity";
+                    break;
+                case "amenity":
+                    next = "mot";
+                    break;
+                case "mot":
+                    next = "v1";
+                    break;
+            }
+
+            createCatSelection(next);
+            return;
         }
 
         for (let v of values_dict) {
@@ -65,7 +86,19 @@ function createCatSelection (name) {
         }
 
         let cat_title = content.querySelector('.cat-title');
-        cat_title.setAttribute("i18n", "select_" + name);
+        var select_name;
+        switch (name) {
+            case "map_type":
+                select_name = "select_map_type";
+                break;
+            case "justice":
+                select_name = selector_values_after_sp_0[temporaryValues["map_type"]]["title"];
+                break;
+            default:
+                select_name = selector_values_after_sp_1[temporaryValues["map_type"]][temporaryValues["justice"]][name]["title"];
+                break;
+        }
+        cat_title.setAttribute("i18n", select_name);
         translatePage();
     }
 }
