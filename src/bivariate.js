@@ -1,5 +1,5 @@
 /************************************
- * sequential.js                    *
+ * bivariate.js                     *
  * Ajax callback for bivariate data *
  * Author: Héctor Ochoa Ortiz       *
  * Affil.: TUM SVP                  *
@@ -10,6 +10,7 @@ var biv_quart_pop;
 var biv_breakpoint_X;
 var biv_quart_X;
 
+// This function gets called from the GeoServer response
 function handleJsonBiv(data) {
     biv = true;
 
@@ -110,6 +111,7 @@ function handleJsonBiv(data) {
     }
     layerControl = L.control.layers(null, layerControlOptions).addTo(map)
 
+    // Reorder layers
     if (areaLayer) {
         areaLayer.bringToFront();
         if (poiLayer) {

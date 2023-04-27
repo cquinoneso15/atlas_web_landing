@@ -3,18 +3,35 @@
  * Script file for categories and other variables *
  * Author: Héctor Ochoa Ortiz                     *
  * Affil.: TUM SVP                                *
- * Last update: 2023-04-26                        *
+ * Last update: 2023-04-27                        *
  **************************************************/
 
-
+/**
+ * Find out if a selector is disabled, by checking its children nodes.
+ *
+ * @param {string} name The name of the selector.
+ * @return {boolean} True if the selector with name name has no children (is disabled). False otherwise.
+ */
 function isDisabled(name) {
     return document.querySelector('#' + name).children.length == 0;
 }
 
+/**
+ * Returns the checked value of a selector with name name.
+ *
+ * @param {string} name The name of the selector.
+ * @return {string} Returns the checked value of a selector with name name.
+ */
 function getValue(name) {
     return $('input[name="' + name +'"]:checked').val();
 }
 
+/**
+ * Sets the checked value of a selector with name name.
+ * If the value is not in the selector, do nothing.
+ *
+ * @param {string} name The name of the selector.
+ */
 function setValue(name, value) {
     if (valueInSelect(name, value)) {
         let input = $('input[name="' + name +'"][value="' + value + '"]')[0];
@@ -23,6 +40,12 @@ function setValue(name, value) {
     }
 }
 
+/**
+ * Find out if an option with value value is in a selector with name name.
+ *
+ * @param {string} name The name of the selector.
+ * @return {boolean} True if the selector with name name has an option with value value. False otherwise.
+ */
 function valueInSelect(name, value) {
     if (value === '' || value === '#') return false;
 
