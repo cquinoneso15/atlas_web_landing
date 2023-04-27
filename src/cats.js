@@ -769,7 +769,7 @@ function updateSelectorAfterSP1(name, justice_value) {
     translatePage();
 }
 
-// Update before SP0
+// Add callback for SP0
 $('input[type=radio][name=map_type]').change(function() {
     updateSelectorAfterSP0("justice", this.value);
     updateSelectorAfterSP1("v1", "", "");
