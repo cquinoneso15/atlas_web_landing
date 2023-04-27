@@ -1,9 +1,16 @@
-/********
- * I18N *
- ********/
+/****************************************
+ * i18n.js                              *
+ * Script file for internationalization *
+ * Author: Héctor Ochoa Ortiz           *
+ * Affil.: TUM SVP                      *
+ * Last update: 2023-04-27              *
+ ****************************************/
 
 function translatePage() {
+    // Don't translate if i18n hasn't finished initializing
     if (!i18next.isInitialized) return;
+
+    // Translate each element with a i18n attribute
     document
         .querySelectorAll("[i18n]")
         .forEach(translateElement);
@@ -39,6 +46,7 @@ function bindLocaleSwitcher(initialValue) {
     };
 }
 
+// i18n set up
 i18next
     .use(i18nextHttpBackend)
     .use(i18nextBrowserLanguageDetector)
@@ -57,7 +65,3 @@ i18next.on('languageChanged initialized', () => {
     if (!i18next.isInitialized) return;
     translatePage();
 });
-
-/************
- * END I18N *
- ************/
