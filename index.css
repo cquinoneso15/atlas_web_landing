@@ -232,6 +232,10 @@ input[type="checkbox"]:checked~.arrow {
     transform: rotate(180deg);
 }
 
+.legend>.arrow {
+    right: 5px;
+}
+
 .menu-items>.select-main>input[type="checkbox"]~.select-options {
     /* Don't display options when unchecked */
     display: none;
