@@ -100,5 +100,6 @@
     "walk_usage": "Caminar",
     "car_sharing_usage": "Uso de coche compartido",
     
-    "desc": ""
+    "desc": "",
+    "legend": "Leyenda"
 }

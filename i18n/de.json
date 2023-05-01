@@ -100,5 +100,6 @@
     "walk_usage": "Zu Fuß",
     "car_sharing_usage": "Carsharing-Nutzung",
     
-    "desc": ""
+    "desc": "",
+    "legend": "Legende"
 }

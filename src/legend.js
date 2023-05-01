@@ -14,7 +14,7 @@ function generateLegend(info, replace) {
         legend.onAdd = function (map) {
             var div = L.DomUtil.create('div', 'info legend');
             div.innerHTML = '<input type="checkbox">'
-            + '<div class="legend-title-text" i18n="select"></div>' 
+            + '<div class="legend-title-text" i18n="legend"></div>' 
             + '<div class="arrow"></div>'
             + '<div class="legend-content"></div>';
 
