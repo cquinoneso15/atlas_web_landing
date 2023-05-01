@@ -189,3 +189,8 @@ function changeMap() {
         }
     }
 };
+
+// Update map size after menu transition
+document.getElementById('navbar-left').addEventListener('change', function() {
+    setTimeout(function(){ map.invalidateSize()}, 500); // 500 ms = 0.5s = transition time
+});
