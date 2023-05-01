@@ -30,4 +30,6 @@ function generateLegend(info, replace) {
         }
         legend._container.querySelector('.legend-content').innerHTML += info;
     }
+
+    translatePage();
 }
