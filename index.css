@@ -202,29 +202,32 @@ body {
     padding-top: 10px;
 }
 
-.menu-items>.select-main>.select-title-arrow {
+.arrow {
     position: absolute;
     right: 0;
-    top: 5px;
+    top: 7px;
     height: 1rem;
     width: 1rem;
     background-image: url('data:image/svg+xml,\00003csvg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">\00003cpath fill="%2370757a" d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z">\00003c/path>\00003c/svg>');
     transition: transform .4s ease-in-out;
 }
 
-.menu-items>.select-main#sp-0>.select-title-arrow {
-    top: 10px;
+.menu-items>.select-main#sp-0>.arrow {
+    top: 12px;
 }
 
 .menu-items>.select-main>input[type="checkbox"] {
+    top: 10px;
+}
+
+.menu-items>.select-main>input[type="checkbox"], .legend>input[type="checkbox"] {
     position: absolute;
     left: 0;
-    top: 10px;
     width: 100%;
     opacity: 0;
 }
 
-.menu-items>.select-main>input[type="checkbox"]:checked~.select-title-arrow {
+input[type="checkbox"]:checked~.arrow {
     transform: rotate(180deg);
 }
 
@@ -407,6 +410,18 @@ div.select-title-info:hover>span.info-tooltip {
 .legend {
     line-height: 18px;
     color: #555;
+}
+
+.legend-title-text {
+    padding-right: 15px;
+}
+
+.legend-content {
+    display: block;
+}
+
+.legend>input[type="checkbox"]:checked~.legend-content {
+    display: none;
 }
 
 .legend i {

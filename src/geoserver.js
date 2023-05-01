@@ -6,7 +6,7 @@
  ******************************/
 
 const GEOSERVER_URL = "http://91.200.101.244:3000/geoserver/wfs";
-// const GEOSERVER_URL = 'http://localhost:8080/geoserver/wfs';
+// const GEOSERVER_URL = 'http://localhost:3000/geoserver/wfs';
 
 function formatDictionary(dict) {
     let pairs = [];
