@@ -41,6 +41,7 @@
 
     "Low": "Bajo",
     "High": "Alto",
+    "desc_biv": "Los barrios críticos son aquellos con un valor crítico en ambas variables",
 
     "select_sg": "Grupos sociales",
     "pop": "Población",

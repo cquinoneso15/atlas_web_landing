@@ -41,6 +41,7 @@
 
     "Low": "Niedrig",
     "High": "Hoch",
+    "desc_biv": "Die kritischen Bezirksteile sind diejenigen mit einem kritischen Wert für beide Variablen",
 
     "select_sg": "Soziale Gruppe auswählen...",
     "pop": "Bevölkerung",

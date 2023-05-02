@@ -70,7 +70,7 @@ function handleJsonBiv(data) {
     }
 
     // Add legend
-    generateLegend('<svg width="150" height="150" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">' +
+    generateLegend('<svg width="220" height="200" viewBox="-13 0 107 100" xmlns="http://www.w3.org/2000/svg">' +
         '<defs><marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" /></marker></defs>' +
         '<g transform="translate(15 30) rotate(-45)">' +
         '<title>Bivariate legend</title>' +
@@ -80,17 +80,18 @@ function handleJsonBiv(data) {
         '<rect height="18" width="18" y="20" x="18" stroke="#000" fill="' + getColorBiv(getCritical(biv_quart_pop), getNonCritical(biv_quart_X)) + '"/>' +
         '<path d="M0,0 v38" opacity="1" stroke-linecap="butt" stroke-linejoin="bevel" stroke="#000" stroke-width="2" fill="none"' + ((getCritical(biv_quart_X) == 'High') ? ' marker-start="url(#arrow)"' : ' marker-end="url(#arrow)"') + '/>' +
         '<path d="M0,38 h38" opacity="1" stroke-linecap="butt" stroke-linejoin="bevel" stroke="#000" stroke-width="2" fill="none"' + ((getCritical(biv_quart_pop) == 'Low') ? ' marker-start="url(#arrow)"' : ' marker-end="url(#arrow)"') + '/>' +
-        '<text font-weight="bold" font-size="0.5em" transform="translate(-10, 18) rotate(90)" text-anchor="middle" i18n="' + selected_values["amenity"] + '"></text>' +
-        '<text font-size="0.5em" transform="translate(-17, 18) rotate(90)" text-anchor="middle" i18n="' + data.features[0].properties["value_desc_" + X] + '"></text>' +
-        '<text font-weight="bold" font-size="0.5em" transform="translate(18, 48)" text-anchor="middle" i18n="' + selected_values["v1"] + '"></text>' +
-        '<text font-size="0.5em" transform="translate(18, 55)" text-anchor="middle" i18n="' + data.features[0].properties["value_desc_pop"] + '"></text>' +
+        '<text font-weight="bold" font-size="0.4em" transform="translate(-10, 18) rotate(90)" text-anchor="middle" i18n="' + selected_values["amenity"] + '"></text>' +
+        '<text font-size="0.4em" transform="translate(-17, 18) rotate(90)" text-anchor="middle" i18n="' + data.features[0].properties["value_desc_" + X] + '"></text>' +
+        '<text font-weight="bold" font-size="0.4em" transform="translate(18, 48)" text-anchor="middle" i18n="' + selected_values["v1"] + '"></text>' +
+        '<text font-size="0.4em" transform="translate(18, 55)" text-anchor="middle" i18n="' + data.features[0].properties["value_desc_pop"] + '"></text>' +
         '</g>' +
         '<g transform="translate(25 10)">' +
         '<path d="M0,80 h38" opacity="1" stroke-linecap="butt" stroke-linejoin="bevel" stroke="#000" stroke-width="2" fill="none" marker-end="url(#arrow)"/>' +
         '<text font-size="0.5em" transform="translate(-5, 80)" text-anchor="end" i18n="Low"></text>' +
         '<text font-size="0.5em" transform="translate(45, 80)" text-anchor="start" i18n="High"></text>' +
         '</g>' +
-        '</svg>',
+        '</svg>'+
+        '<div style="width:220px;"><span i18n="desc_biv" style="font-size:smaller;"></span> (<i class="square" style="display:inline-block;float:none;margin:0;background:' + getColorBiv(getCritical(biv_quart_pop), getCritical(biv_quart_X)) + '" ></i>)</div>',
         false);
 
     // Add layer to map

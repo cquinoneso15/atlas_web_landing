@@ -41,6 +41,7 @@
 
     "Low": "Low",
     "High": "High",
+    "desc_biv": "The critical neighbourhoods are those with a critical value on both variables",
 
     "select_sg": "Social groups",
     "pop": "Population",
