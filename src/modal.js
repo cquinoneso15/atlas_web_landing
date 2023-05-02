@@ -126,6 +126,8 @@ function createPersonDiv (name, affil, photo, desc, socials) {
     affil_div.setAttribute("i18n", affil);
     p.appendChild(affil_div);
 
+    p.appendChild(document.createElement("hr"));
+
     var desc_p = document.createElement("p");
     desc_p.setAttribute("class", "person-desc");
     desc_p.setAttribute("i18n", desc);
