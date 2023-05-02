@@ -87,8 +87,8 @@ function handleJsonBiv(data) {
         '</g>' +
         '<g transform="translate(25 10)">' +
         '<path d="M0,80 h38" opacity="1" stroke-linecap="butt" stroke-linejoin="bevel" stroke="#000" stroke-width="2" fill="none" marker-end="url(#arrow)"/>' +
-        '<text font-size="0.5em" transform="translate(-5, 80)" text-anchor="end" i18n="Low"></text>' +
-        '<text font-size="0.5em" transform="translate(45, 80)" text-anchor="start" i18n="High"></text>' +
+        '<text font-size="0.4em" transform="translate(-5, 82)" text-anchor="end" i18n="Low"></text>' +
+        '<text font-size="0.4em" transform="translate(45, 82)" text-anchor="start" i18n="High"></text>' +
         '</g>' +
         '</svg>'+
         '<div style="width:220px;"><span i18n="desc_biv" style="font-size:smaller;"></span> (<i class="square" style="display:inline-block;float:none;margin:0;background:' + getColorBiv(getCritical(biv_quart_pop), getCritical(biv_quart_X)) + '" ></i>)</div>',
