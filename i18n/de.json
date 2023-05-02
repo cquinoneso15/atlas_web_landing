@@ -10,7 +10,7 @@
     "share": "Teilen",
 
     "welcome": "Willkommen beim Mobilitäts(Un)Gerechtigkeitsatlas",
-    "project_description": "Ein Forschungsprojekt der Technischen Universität München zu räumlichen und sozialen Mobilitätsungerechtigkeiten",
+    "project_description": "Wo kommt es in München zu Mobilitäts(un)gerechtigkeiten?",
     "tool_tutorial": "Bitte wählen Sie einen Kartentyp, eine Kategorie und andere Variablen aus, um zu beginnen.",
 
     "data_source": "Datenquellen: Erreichbarkeit aus OpenStreetMap POIs und Straßennetz, Deutsches nationales GTFS. Verhalten und Verfügbarkeit aus Nationaler Mobilitätserhebung MiD 2017, OpenStreetMap. Belastung durch Verkehrsunfälle aus Unfallatlas, Lärm aus Umweltatlas, Umweltverschmutzung vom Lehrstuhl für Verkehrsverhalten an der TUM Soziodemographie der Landeshauptstadt München (2018-2021) und Volkszählung 2011",

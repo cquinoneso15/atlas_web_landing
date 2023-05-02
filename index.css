@@ -62,7 +62,8 @@ html {
     --tum-grey-8: #E8ECEF;
     --tum-grey-9: #F8F9FA;
     --theme-color: var(--tum-blue-dark);
-    --in2-modal-brand-color: var(--tum-blue-dark)
+    --in2-modal-brand-color: var(--tum-blue-dark);
+    --mcube-orange: #f05e4a;
 }
 
 html,
@@ -500,6 +501,11 @@ footer {
     max-width: 90%;
 }
 
+.modal-content .cursive-small {
+    font-style: italic;
+    font-size: 0.8em;
+}
+
 .modal-content>.modal-text>.cats>.cat-selection {
     display: flex;
     flex-direction: row;
@@ -518,6 +524,10 @@ footer {
     border-radius: 5px;
     color: whitesmoke;
 }
+
+.modal-content>.modal-text>.cats>.cat-selection>.cat-selection-option:hover {
+    background-color: var(--mcube-orange);
+  }
 
 .modal-content>.modal-text>.cats>.cat-selection>.cat-selection-option>.cat-selection-option-text {
     font-weight: bold;

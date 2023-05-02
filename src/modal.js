@@ -108,7 +108,7 @@ function displayModal(welcomeOrAboutUs) {
     var content = modal_about.querySelector('.modal-content').querySelector('.modal-text');
     if (welcomeOrAboutUs) {
         // Welcome
-        content.innerHTML = '<h2 i18n="welcome"></h2><p i18n="project_description"></p><p i18n="tool_tutorial"></p>';
+        content.innerHTML = '<h2 i18n="welcome"></h2><p i18n="project_description"></p><p i18n="tool_tutorial" class="cursive-small"></p>';
         
         // Cat selection
         content.innerHTML += '<div class="cats"><div class="line-wrapper"><hr class="line"><div class="cat-title"></div></div><div class="cat-selection"></div></div>';
