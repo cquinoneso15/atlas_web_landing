@@ -567,12 +567,14 @@ footer {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 
 .people-group {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    flex-wrap: wrap;
     gap: 20px;
 }
 
@@ -615,6 +617,7 @@ footer {
     justify-content: center;
     align-items: center;
     margin: auto;
+    flex-wrap: wrap;
     gap: 5px;
     padding-bottom: 10px;
 }
