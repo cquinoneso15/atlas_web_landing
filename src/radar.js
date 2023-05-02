@@ -108,7 +108,7 @@ function radarPlot(e) {
             font: {
               size: 9
             },
-            centerPointLabels: true
+            centerPointLabels: false
           },
         }
       },
