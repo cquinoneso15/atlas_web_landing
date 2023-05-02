@@ -103,6 +103,54 @@ function createCatSelection (name) {
     }
 }
 
+function createPersonDiv (name, affil, photo, desc, socials) {
+    // Create the person div
+    var p = document.createElement("div");
+    p.setAttribute("class", "person");
+
+    // Create each element, append it to the person div
+
+    var photo_img = document.createElement("img");
+    photo_img.setAttribute("class", "person-photo");
+    photo_img.setAttribute("src", photo);
+    photo_img.setAttribute("alt", name);
+    p.appendChild(photo_img);
+
+    var name_div = document.createElement("div");
+    name_div.setAttribute("class", "person-name");
+    name_div.textContent = name;
+    p.appendChild(name_div);
+
+    var affil_div = document.createElement("div");
+    affil_div.setAttribute("class", "person-affil");
+    affil_div.setAttribute("i18n", affil);
+    p.appendChild(affil_div);
+
+    var desc_p = document.createElement("p");
+    desc_p.setAttribute("class", "person-desc");
+    desc_p.setAttribute("i18n", desc);
+    p.appendChild(desc_p);
+
+    var affil_div = document.createElement("div");
+    affil_div.setAttribute("class", "person-socials");
+    // Loop for each social
+    for (let s of Object.keys(socials)) {
+        var social_a = document.createElement("a");
+        social_a.setAttribute("class", "social-button");
+        social_a.setAttribute("href", socials[s]);
+        social_a.setAttribute("target", "_blank");
+
+        var social_i = document.createElement("i");
+        social_i.setAttribute("class", s);
+        social_a.appendChild(social_i);
+        
+        affil_div.appendChild(social_a);
+    }
+    p.appendChild(affil_div);
+
+    return p;
+}
+
 // Parameter true if welcome modal, false if about us modal
 function displayModal(welcomeOrAboutUs) {
     var content = modal_about.querySelector('.modal-content').querySelector('.modal-text');
@@ -115,10 +163,61 @@ function displayModal(welcomeOrAboutUs) {
         createCatSelection("map_type");
     } else {
         // About
-        content.innerHTML = '<p i18n="about_us_text"></p><p i18n="data_source"></p><img src="https://www.mos.ed.tum.de/fileadmin/_processed_/9/8/csm_Header_MCube_57378eef86.jpg" alt="MCube">'
+        content.innerHTML = '<p i18n="about_us_text"></p>'
+        + '<div class="people">'
+        + '<div id="atlas-authors" class="people-group"><h3 i18n="atlas_authors"></h3></div>'
+        + '<div id="atlas-developer" class="people-group"><h3 i18n="atlas_developer"></h3></div>'
+        + '</div>'
+        + '<p i18n="data_source"></p>'
         translatePage();
+
+        let authors = content.querySelector('#atlas-authors');
+        authors.appendChild(createPersonDiv(
+            "David Durán",
+            "tum",
+            "img/david.jpg",
+            "desc_david",
+            {
+                "fab fa-linkedin": "https://www.linkedin.com/in/david-duran-55336916b",
+                "fa fa-envelope": "mailto:david.duran@tum.de"
+            }
+        ));
+        authors.appendChild(createPersonDiv(
+            "Sindi Haxhija",
+            "tum",
+            "img/sindi.jpg",
+            "desc_sindi",
+            {
+                "fa fa-envelope": "mailto:sindi.haxhija@tum.de"
+            }
+        ));
+        authors.appendChild(createPersonDiv(
+            "María Teresa Baquero Larriva",
+            "upm",
+            "img/maite.jpg",
+            "desc_maite",
+            {
+                "fa fa-envelope": "mailto:maite.baquero@tum.de"
+            }
+        ));
+
+
+        let developer = content.querySelector('#atlas-developer');
+        developer.appendChild(createPersonDiv(
+            "Héctor Ochoa Ortiz",
+            "unicam",
+            "img/hector.jpg",
+            "desc_hector",
+            {
+                "fab fa-linkedin": "https://www.linkedin.com/in/hector-ochoa-ortiz",
+                "fab fa-github": "https://github.com/Robot8A",
+                "fa fa-globe": "https://pros.unicam.it/members/",
+                "fa fa-envelope": "mailto:hector.ochoa@tum.de"
+            }
+        ));
     }
     modal_about.style.display = "block";
+    translatePage();
 }
 
 // When About button is clicked, show About modal

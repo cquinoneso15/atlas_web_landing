@@ -101,5 +101,17 @@
     "car_sharing_usage": "Uso de coche compartido",
     
     "desc": "",
-    "legend": "Leyenda"
+    "legend": "Leyenda",
+
+    "atlas_authors": "Autores del atlas",
+    "atlas_developer": "Desarrollador",
+
+    "tum": "Universidad Técnica de Múnich",
+    "upm": "Universidad Politécnica de Madrid",
+    "unicam": "Universidad de Camerino",
+
+    "desc_david": "Postdoctorado en la Cátedra de Estructura Urbana y Planificación del Transporte de la Universidad Técnica de Múnich y director del Grupo de Investigación de Equidad en la Movilidad. El tema de su disertación fue ¿Eficiencia y/o Equidad? Entender y planificar el uso compartido de bicicletas basado en la equidad espacial. Es graduado del Programa de Maestría Internacional en Sistemas de Transporte en la Universidad Técnica de Múnich y tiene experiencia en ingeniería civil. Su investigación se centra en crear conciencia y evaluar y abordar las desigualdades de movilidad. Sus métodos principales son enfoques de métodos mixtos, que combinan el análisis espacial y aprendizaje automático con técnicas cualitativas.",
+    "desc_sindi": "Se incorporó a la Cátedra de Estructura Urbana y Planificación del Transporte como Investigadora Asociada en diciembre de 2021. Tiene una doble maestría en Planificación Espacial Europea de la Universidad de Radboud (Países Bajos) y Desarrollo Regional del Instituto de Tecnología de Blekinge (Suecia). Antes de su trabajo en la cátedra, trabajó como planificadora urbana para el Instituto ISOCARP en los Países Bajos, donde participó principalmente en proyectos de la UE centrados en ciudades inteligentes y soluciones basadas en la naturaleza. Su enfoque de investigación para su doctorado es la movilidad urbana. y cuestiones de justicia espacial en proyectos de desarrollo urbano.",
+    "desc_maite": "Es Doctora en Regeneración Urbana y Sostenibilidad por la Universidad Politécnica de Madrid (2021). Maestría en Construcción (2016) y Arquitecta (2013) por la Universidad de Cuenca, Ecuador. Actualmente es investigadora postdoctoral en de la Universidad Politécnica de Madrid e investigadora invitada en TUM. Sus líneas de investigación se centran en lograr espacios urbanos accesibles y saludables para todos, planificando para ¨toda la vida¨ considerando las diferentes necesidades de la población a medida que envejece para promover un envejecimiento activo y saludable.",
+    "desc_hector": "Investigador interdisciplinario e ingeniero de geodatos. Graduado en Ingeniería Informática por la Universidad de Zaragoza (ES) y Erasmus Mundus M.Sc. en Cartografía por TU Múnich (DE), TU Wien (AT), TU Dreden (DE), UTwente (NL). Trabajó con TUM durante 7 meses como asistente de proyecto (autónomo), 4 de los cuales desarrollando este atlas web.\nActualmente, Early Stage Researcher (ESR) en la Universidad de Camerino (IT), para el proyecto ODECO H2020-MSCA-ITN-2020."
 }
