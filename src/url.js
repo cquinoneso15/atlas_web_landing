@@ -15,7 +15,9 @@ if (url.searchParams.get("map_type") == null || !correctValues()) {
 } else {
     // Show left bar when in desktop
     const mediaQuery = window.matchMedia('(max-width: 1000px)');
+    disableTransitions();  
     document.querySelector('#navbar-left').checked = !mediaQuery.matches;
+    enableTransitions();
     map.fitBounds(polygonLayer.getBounds());
 }
 
