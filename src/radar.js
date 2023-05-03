@@ -95,11 +95,11 @@ function radarPlot(e) {
           suggestedMax: 1,
           pointLabels:{
             color: [
+              ...Array(5).fill('#e41a1c'),
+              ...Array(3).fill('#377eb8'),
+              ...Array(4).fill('#4daf4a'),
+              ...Array(3).fill('#984ea3'),
               ...Array(5).fill('#072140'),
-              ...Array(3).fill('#FF2140'),
-              ...Array(4).fill('#C24814'),
-              ...Array(3).fill('#20252A'),
-              ...Array(5).fill('#9B468D'),
             ],
             font: {
               size: 9
