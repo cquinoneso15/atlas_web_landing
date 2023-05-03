@@ -64,10 +64,15 @@
 
     "select_amenity": "Amenity",
     "h": "Health",
+    "radar_h": "Health Acc.",
     "e": "Education",
+    "radar_e": "Education Acc.",
     "f": "Food",
+    "radar_f": "Food Acc.",
     "s": "Sport centers",
+    "radar_s": "Sport centers Acc.",
     "cc": "Community centers",
+    "radar_cc": "Community centers Acc.",
 
     "select_mot": "Mode of transport",
     "w_700": "Walking, 700m",

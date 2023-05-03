@@ -64,10 +64,15 @@
 
     "select_amenity": "Ausstattung",
     "h": "Gesundheit",
+    "radar_h": "Err. von Gesundheit",
     "e": "Bildung",
+    "radar_e": "Err. von Bildung",
     "f": "Essen",
+    "radar_f": "Err. von Essen",
     "s": "Sportzentren",
+    "radar_s": "Err. von Sportzentren",
     "cc": "Gemeindezentren",
+    "radar_cc": "Err. von Gemeindezentren",
 
     "select_mot": "Transportmittel",
     "w_700": "Zu Fuß, 700m",

@@ -3,7 +3,7 @@
  * Script file setting up and displaying the map *
  * Author: Héctor Ochoa Ortiz                    *
  * Affil.: TUM SVP                               *
- * Last update: 2023-04-26                       *
+ * Last update: 2023-05-03                       *
  *************************************************/
 
 
@@ -34,7 +34,6 @@ var biv;
 
 const download = document.querySelector('#download');
 var legend;
-var radar;
 
 // When selector value is clicked
 function changeMap() {

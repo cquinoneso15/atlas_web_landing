@@ -64,10 +64,15 @@
 
     "select_amenity": "Servicio",
     "h": "Salud",
+    "radar_h": "Acc. a Salud",
     "e": "Educación",
+    "radar_e": "Acc. a Educación",
     "f": "Comida",
+    "radar_f": "Acc. a Comida",
     "s": "Centros deportivos",
+    "radar_s": "Acc. a Centros deportivos",
     "cc": "Centros comunitarios",
+    "radar_cc": "Acc. a Centros comunitarios",
 
     "select_mot": "Modo de transporte",
     "w_700": "A pie, 700 m",

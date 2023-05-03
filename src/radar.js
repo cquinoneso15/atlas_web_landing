@@ -3,6 +3,7 @@
  * Script file for Radar Plots *
  * Author: Héctor Ochoa Ortiz  *
  * Affil.: TUM SVP             *
+ * Last update: 2023-05-03     *
  *******************************/
 
 var currentLayer;
@@ -30,21 +31,7 @@ let labels = [
   "value_ng"
 ]
 
-function hideByLabel(plot, label) {
-  var datasets = plot.data.datasets;
-  var properties = currentLayer.feature.properties;
-
-  // Remove label item from labels
-  plot.data.labels = plot.data.labels.filter(item => item !== label);
-
-  for (var i = 0; i < datasets.length; i++) {
-    var data = datasets[i].data;
-    data = plot.data.labels.map(key => varDict[key]).map(x => properties[x]);
-  }
-
-  plot.update();
-}
-
+var radar;
 var averages;
 
 function radarPlot(e) {
@@ -54,7 +41,16 @@ function radarPlot(e) {
   const config = {
     type: 'radar',
     data: {
-      labels: labels.map(x => translateString(x.split("value_")[1])),
+      labels: labels.map(x => {
+        // Tries to find the string "radar_<variable_name>" in the translation
+        // If not found, just ask for the translation of <variable_name>
+        let varName = x.split("value_")[1];
+        let tS = translateString("radar_" + varName);
+        if (tS == "radar_" + varName || tS == "") {
+          tS = translateString(varName);
+        }
+        return tS;
+      }),
       datasets: [
         {
           label: properties.name,
@@ -154,21 +150,25 @@ function handleJsonRadar(data) {
   generateLegend(legend_text, true);
 
   function onClick(e) {
-      polygonLayer.resetStyle();
+    // Remove the style, in case a previous neighbourhood was selected
+    polygonLayer.resetStyle();
 
-      zoomToFeature(e);
+    // Zoom to the selected neighbourhood
+    zoomToFeature(e);
 
-      var layer = e.target;
-      layer.setStyle({
-          weight: 5,
-          color: 'black',
-          dashArray: '',
-          fillOpacity: 0.9
-      });
-      layer.bringToFront();
+    // Set style of the selected neighborhood
+    var layer = e.target;
+    layer.setStyle({
+        weight: 5,
+        color: 'black',
+        dashArray: '',
+        fillOpacity: 0.9
+    });
+    layer.bringToFront();
 
-      generateLegend('<div class="radar"><canvas id="radar"></canvas></div>', true);
-      radar = radarPlot(e);
+    // Generate the radar plot
+    generateLegend('<div class="radar"><canvas id="radar"></canvas></div>', true);
+    radar = radarPlot(e);
   }
 
   function onEachFeature(feature, layer) {
