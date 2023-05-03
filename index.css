@@ -333,6 +333,12 @@ div.select-title-info:hover>span.info-tooltip {
     display: flex;
 }
 
+@media (max-width: 450px) {    
+    h1 {
+        font-size: 1.2em;
+    }
+}
+
 .logo {
     order: 0;
     font-size: 0.75rem;
