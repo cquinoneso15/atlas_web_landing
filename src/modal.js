@@ -165,7 +165,7 @@ function displayModal(welcomeOrAboutUs) {
         createCatSelection("map_type");
     } else {
         // About
-        content.innerHTML = '<p i18n="about_us_text"></p>'
+        content.innerHTML = '<p i18n="about_us"></p>'
         + '<div class="people">'
         + '<div id="atlas-authors" class="people-group"><h3 i18n="atlas_authors"></h3></div>'
         + '<div id="atlas-developer" class="people-group"><h3 i18n="atlas_developer"></h3></div>'
