@@ -38,7 +38,7 @@
     "desc_summ": "How just is mobility in my neighborhood?",
 
     "avg_munich": "Average of Munich",
-    "radar_norm": "This plot shows the different characteristics of the neighborhood in comparison with other neighborhoods in Munich, where 0 represents the neighborhood with the worst characteristics in the city and 1 represents the neighborhood with the best characteristics in the city.",
+    "radar_norm": "This plot shows the different characteristics of the neighborhood in comparison with other neighborhoods in Munich, where 0 means that the neighborhood has the worst characterisitcs in the city and 1 means that the neighborhood has the best characteristics in the city.",
 
     "Low": "Low",
     "High": "High",

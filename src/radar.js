@@ -168,7 +168,7 @@ function handleJsonRadar(data) {
     layer.bringToFront();
 
     // Generate the radar plot
-    generateLegend('<div class="radar"><canvas id="radar"></canvas><div i18n="radar_norm" style="font-size:smaller"></div></div>', true);
+    generateLegend('<div class="radar"><canvas id="radar"></canvas><div i18n="radar_norm" style="font-size:smaller;font-style:italic"></div></div>', true);
     radar = radarPlot(e);
   }
 

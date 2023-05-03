@@ -38,7 +38,7 @@
     "desc_summ": "¿Qué tan justa es la movilidad en mi barrio?",
 
     "avg_munich": "Media de Múnich",
-    "radar_norm": "Este gráfico muestra las diferentes características del barrio en comparación con otros barrios de Múnich, donde 0 representa el barrio con las peores características de la ciudad y 1 representa el barrio con las mejores características de la ciudad.",
+    "radar_norm": "Este gráfico muestra las diferentes características del barrio en comparación con otros barrios de Múnich, donde 0 significa que el barrio tiene las peores características de la ciudad y 1 significa que el barrio tiene las mejores características de la ciudad.",
 
     "Low": "Bajo",
     "High": "Alto",
