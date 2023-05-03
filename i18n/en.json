@@ -104,6 +104,7 @@
     "bicycle_usage": "Bicycle usage",
     "pt_usage": "Public Transport usage",
     "walk_usage": "Walking",
+    "radar_walk_usage": "Walking share",
     "car_sharing_usage": "Car-sharing usage",
 
     "desc": "",
