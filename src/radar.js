@@ -149,6 +149,7 @@ function handleJsonRadar(data) {
   var legend_text = '<h4>No neighbourhood selected</h4>';
   generateLegend(legend_text, true);
 
+  // Callback when selecting a neighbourhood on the map
   function onClick(e) {
     // Remove the style, in case a previous neighbourhood was selected
     polygonLayer.resetStyle();
@@ -167,7 +168,7 @@ function handleJsonRadar(data) {
     layer.bringToFront();
 
     // Generate the radar plot
-    generateLegend('<div class="radar"><canvas id="radar"></canvas></div>', true);
+    generateLegend('<div class="radar"><canvas id="radar"></canvas><div i18n="radar_norm" style="font-size:smaller"></div></div>', true);
     radar = radarPlot(e);
   }
 
