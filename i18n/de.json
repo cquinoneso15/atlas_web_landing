@@ -38,6 +38,7 @@
     "desc_summ": "Wie gerecht ist die Mobilität in meinem Bezirksteil?",
 
     "avg_munich": "Durchschnitt von München",
+    "radar_norm": "Dieses Diagramm zeigt die unterschiedlichen Eigenschaften des Bezirkteils im Vergleich zu anderen Bezirkteilen in München, wobei 0 den Bezirkteil mit den schlechtesten Eigenschaften in der Stadt und 1 den Bezirkteil mit den besten Eigenschaften in der Stadt darstellt.",
 
     "Low": "Niedrig",
     "High": "Hoch",
