@@ -67,10 +67,10 @@ var selector_values_before_sp_0 = [
         "value": "ji_v_sg",
         "desc": "desc_ji_v_sg"
     },
-    {
+    /*{
         "value": "diff_sg",
         "desc": "desc_diff_sg"
-    },
+    },*/
     {
         "value": "summ",
         "desc": "desc_summ"

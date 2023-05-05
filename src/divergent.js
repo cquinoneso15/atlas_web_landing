@@ -46,19 +46,19 @@ function handleJsonDiv(data) {
     var legend_text;
     switch (selected_values["v1"]) {
         case "gender":
-            legend_text = "<h4>% Men - % Woman</h4>";
+            legend_text = '<h4>% <span i18n="men"></span> - % <span i18n="women"></span></h4>';
             break;
         case "education":
-            legend_text = "<h4>%High education degree - % Low education degree</h4>";
+            legend_text = '<h4>% <span i18="high_education"></span> - % <span i18="low_education"></span></h4>';
             break;
         case "income":
-            legend_text = "<h4>%High income - % Low income</h4>";
+            legend_text = '<h4>% <span i18="high_income"></span> - % <span i18="low_income"></span></h4>';
             break;
         case "age_young":
-            legend_text = "<h4>%Adults - %Younger adults</h4>";
+            legend_text = '<h4>% <span i18="adults"></span> - %<span i18="age_young"></span></h4>';
             break;
         case "age_old":
-            legend_text = "<h4>%Adults - %Older adults</h4>";
+            legend_text = '<h4>% <span i18="adults"></span> - %<span i18="age_old"></span></h4>';
     }
 
 
@@ -84,6 +84,8 @@ function handleJsonDiv(data) {
             '<i class="square" style="background:' + getColor((quantsNeg["Q2"] + quantsNeg["Q0"]) / 2.0) + '" ></i> ' +
             (quantsNeg["Q2"].toFixed(2)) + ' &ndash; ' + (quantsNeg["Q0"].toFixed(2));
     }
+
+    legend_text += '<div i18n="divergent_explanation" style="font-size:smaller;font-style:italic"></div>';
 
     // add legend to map
     generateLegend(legend_text, false);
