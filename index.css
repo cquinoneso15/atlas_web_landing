@@ -177,7 +177,7 @@ body {
     height: 100vh;
     max-width: 300px;
     transform: translate(-310px);
-    overflow-y: scroll;
+    /*overflow-y: scroll;*/
     display: flex;
     flex-direction: column;
     margin-left: -40px;
