@@ -49,8 +49,8 @@
     "income": "Ingresos económicos",
     "gender": "Género",
     "education": "Educación",
-    "age_young": "Edad joven",
-    "age_old": "Edad anciana",
+    "age_young": "Personas mayores",
+    "age_old": "Niños y adolescentes",
 
     "tp": "Población total",
     "o65": "Personas mayores",
