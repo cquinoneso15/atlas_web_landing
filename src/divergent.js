@@ -42,8 +42,10 @@ function handleJsonDiv(data) {
         };
     }
 
-    // legend
+    // LEGEND
     var legend_text;
+
+    // Generate the legend title based on the divergent filter
     switch (selected_values["v1"]) {
         case "gender":
             legend_text = '<h4>% <span i18n="men"></span> - % <span i18n="women"></span></h4>';
@@ -61,7 +63,7 @@ function handleJsonDiv(data) {
             legend_text = '<h4>% <span i18="adults"></span> - %<span i18="age_old"></span></h4>';
     }
 
-
+    // Generate the legend content with the colors, based on quantile (positive and negative) values
     if (quantsPos["Q0"] != undefined) {
         legend_text +=
             '<i class="square" style="background:' + getColor((quantsPos["Q4"] + quantsPos["Q2"]) / 2.0) + '" ></i> ' +
@@ -85,9 +87,10 @@ function handleJsonDiv(data) {
             (quantsNeg["Q2"].toFixed(2)) + ' &ndash; ' + (quantsNeg["Q0"].toFixed(2));
     }
 
+    // Add the explanation text at the bottom of the legend
     legend_text += '<div i18n="divergent_explanation" style="font-size:smaller;font-style:italic"></div>';
 
-    // add legend to map
+    // Add the legend to map
     generateLegend(legend_text, false);
 
     // Add layer to map
