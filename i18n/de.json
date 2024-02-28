@@ -46,7 +46,7 @@
 
     "select_sg": "Bevölkerungsgruppen",
     "pop": "Bevölkerung",
-    "income": "Einkommen",
+    "income": "Geringes Einkommen",
     "high_income": "Hohes Einkommen",
     "low_income": "Geringes Einkommen",
     "gender": "Geschlecht",
@@ -57,11 +57,11 @@
     "low_education": "Niedriger Bildungsabschluss",
     "age_young": "Kinder und Jugendliche",
     "adults": "Erwachsene",
-    "age_old": "Ältere Personen",
+    "age_old": "Senioren",
     "divergent_explanation": "Diese Karte zeigt den prozentualen Unterschied in der Nutzung oder Verfügbarkeit verschiedener Transportmittel zwischen verschiedenen sozialen Gruppen. Positive Werte bedeuten, dass die privilegierten sozialen Gruppen einen größeren Zugang zu Ressourcen haben oder diese mehr nutzen. Negative Werte bedeuten, dass die benachteiligten sozialen Gruppen einen größeren Zugang zu Ressourcen haben oder diese mehr nutzen.",
 
     "tp": "Gesamtbevölkerung",
-    "o65": "Ältere Personen",
+    "o65": "Senioren",
     "u18": "Kinder und Jugendliche",
     "ng": "Migranten",
     "un": "Arbeitslose",
