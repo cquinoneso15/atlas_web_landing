@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base target="_top">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title id="title", i18n="title"></title>
+
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="shortcut icon" type="image/x-icon" href="https://www.tum.de/typo3conf/ext/in2template/Resources/Public/Images/Icons/favicons/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+
+    <!-- i18n -->
+    <script src="https://cdn.jsdelivr.net/npm/i18next@22.4.10/i18next.min.js" integrity="sha256-HhbcQm9uCk1XKzYb8wgO1aAW+Wcdh14ITlBggCy7lDk=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/i18next-http-backend@2.1.1/i18nextHttpBackend.min.js" integrity="sha256-PEd69ii7lMPlO/bO8tpxaVjLXXkD+r9aejg8nFAcue4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@7.0.1/i18nextBrowserLanguageDetector.min.js" integrity="sha256-5O8laLCvkg/QnkOa0yIzvZ7RcJgT4nSG6/gdbudcTGg=" crossorigin="anonymous"></script>
+
+    <!-- Social buttons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="landing.css" />
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-top-elements">
+            <a class="logo" title="Technische Universität München" href="/">
+                <svg width="80" height="42" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 73 38">
+                    <path d="M28 0v31h8V0h37v38h-7V7h-8v31h-7V7h-8v31H21V7h-7v31H7V7H0V0h28z" fill="currentColor"></path>
+                </svg>
+
+                <span class="visually-hidden">TUM</span>
+
+                <span class="desktop-show" i18n="header"></span>
+                <img style="height: 42px;" src="../img/Mcluster.jpeg" alt="MCube Cluster">
+                <img style="height: 42px;" src="../img/Cluster4futur.jpeg" alt="Cluster4futur">
+                <img style="height: 42px;" src="../img/Bundesminsterium.jpeg" alt="Bundesminsterium">
+            </a>
+        </div>
+        <div class="title"><h1 i18n="title"></h1></div>
+            <select data-i18n-switcher class="locale-switcher" style="height:35%">
+                <option value="en">English</option>
+                <option value="de">Deutsch</option>
+            </select>
+        </div>
+
+</nav>
+<script>
+    function updateText(key) {
+        const textElement = document.getElementById('dynamicText');
+        const fullText = i18next.t(key);
+
+        textElement.textContent = '';
+        const parts = fullText.split('\n');
+
+        parts.forEach((part, index) => {
+            if (index == 0) {
+                const boldSpan = document.createElement('strong');
+                boldSpan.textContent = part;
+                textElement.appendChild(boldSpan);
+                textElement.appendChild(document.createElement('br'));
+                textElement.appendChild(document.createElement('br'));
+            } else {
+                textElement.appendChild(document.createTextNode(part));
+            }
+        });
+    }
+</script>
+<div class="main">
+ <div class="grid_main">
+<div class="column" >
+    <div class="text-box" style="height: 100%">
+        <h3 i18n="landing_goal_title" style="font-size: 25px; padding-top:5px"></h3>
+        <p i18n="landing_goal2"></p>
+        <div class="container2">
+                <div class="box">
+                    <p><strong i18n="goal"></strong>
+                        <br>
+                        <i i18n="goal_desc"></i>
+                    </p>
+                </div>
+            <div class="box">
+                <img src="img/diagrampng.png" style="max-height: 90%;width: 100%; object-fit: contain;">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="column">
+    <div class="text-box" style="height: 100%">
+        <h3 i18n="landing_transportdisa_title" style="font-size: 25px; padding-top:5px"></h3>
+        <div class="container3">
+            <div class="image-grid">
+                <div><img src="img/Exposure.png" alt="Image 1" onclick="updateText('external_desc')"><i i18n="exp"> </i> </div>
+                <div><img src="img/Proximity.png" alt="Image 2" onclick="updateText('Proximity_desc')"><i i18n="acc"></i> </div>
+                <div><img src="img/Behavior.png" alt="Image 3" onclick="updateText('behavior_desc')"><i i18n="beh"> </i> </div>
+                 <div><img src="img/availability.png" alt="Image 4" onclick="updateText('infra_desc')"><i i18n="ava"></i> </div>
+            </div>
+            <div class="text-box-dynamic2">
+                <p id="dynamicText" i18n="dynamic_box_click"></p>
+            </div>
+        </div>
+    </div>
+</div>
+     <div class="column">
+         <div class="text-box" style="height: 100%">
+             <h3 i18n="landing_implemented area" style="font-size: 25px; padding-top:5px"></h3>
+             <a href="http://accessibility-atlas.de" class="button" i18n="Landing_Munich_atlas" style="left: 20%"></a>
+             <a href="https://cyrkafrde.github.io/Altas_MJ_TN/" class="button" i18n="Landing_Tunis_atlas" style="left: 24%"></a>
+             <p i18n="landing_map_desc"></p>
+             <i i18n="landing_map_desc2" style="color:grey"></i>
+             <div id="mapid" style="width: 100%; height: 400px; margin-top:15px"></div>
+         </div>
+     </div>
+     <div class="column">
+         <div class="text-box" style="height: 100%">
+             <h3 i18n="landing_website_use" style="font-size: 25px; padding-top:5px"></h3>
+             <p i18n="landing_website_desc"></p>
+             <ol>
+                 <li><strong i18n="landing_social_title"></strong><span i18n="landing_social_desc1"></span><i class="square" style="display:inline-block;float:none;margin:0;background: #d7301f" ></i> <span i18n="dot"></span><span class="select-title-info">&#x1F6C8;<span class="info-tooltip" i18n="landing_social_todo"></span></span></li>
+                 <li><strong i18n="landing_transport_title"></strong> <span i18n="landing_transport_desc1"></span><i class="square" style="display:inline-block;float:none;margin:0;background: #d7301f" ></i><span i18n="dot"></span><span class="select-title-info">&#x1F6C8;<span class="info-tooltip" i18n="landing_transport_todo"></span></span></li>
+                 <li><strong i18n="landing_bivar_title"></strong> <span i18n="landing_bivar_desc1"></span><i class="square" style="display:inline-block;float:none;margin:0;background: #574249" ></i><span i18n="dot"></span><span class="select-title-info">&#x1F6C8;<span class="info-tooltip" i18n="landing_bivar_todo"></span></span> </li>
+                 <li><strong i18n="landing_summmary_title"></strong> <span i18n="landing_summmary_desc"></span><span class="select-title-info">&#x1F6C8;<span class="info-tooltip" i18n="landing_summary_todo"></span></span></li>
+             </ol>
+         </div>
+     </div>
+
+ </div>
+
+    <div id="dynamicContentContainer"></div>
+    <div id="table-wrapper" >
+        <div id="Source" > </div>
+        <div id="dynamicSource" > </div> </div>
+
+    <div class="text-box" id="acknowledgments">
+        <h2 i18n="Acknowledgments" style="padding-top:5px"></h2>
+        <p i18n="Acknowledgments_text"></p>
+        <i i18n="Authors"></i>
+        <h2 i18n="Funding"></h2>
+        <p i18n="Fund_text"></p>
+        <img style="height: 80px;" src="../img/Mcluster.jpeg" alt="MCube Cluster">
+        <img style="height: 80px;" src="../img/Cluster4futur.jpeg" alt="Cluster4futur">
+        <img style="height: 80px;" src="../img/Bundesminsterium.jpeg" alt="Bundesminsterium">
+    </div>
+            </div>
+
+
+
+
+            <script src="src/map_landing.js"></script>
+              <script src="src/i18n.js"></script>
+              </body>
+              </html>
