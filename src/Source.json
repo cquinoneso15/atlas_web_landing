@@ -1,0 +1,81 @@
+{
+  "Germany": [
+    { "category": "ji",
+      "variable": "acc",
+      "type_of_data": [
+        { "id": "1.1", "name": "Services", "source": "OSM","url": "https://www.openstreetmap.de/", "desc": "Isochore" }
+      ]
+    },
+    {"category": "ji",
+      "variable": "ava",
+      "type_of_data": [
+        { "id": "2.1", "name": "acc_pt", "source": "OSM","url": "https://www.openstreetmap.de/", "desc": "Isochore" },
+        { "id": "2.2", "name": "cycleway_density", "source": "OSM","url": "https://www.openstreetmap.de/", "desc": "" },
+        { "id": "2.3", "name": "intersection_density", "source": "OSM","url": "https://www.openstreetmap.de/", "desc": ""}
+      ]
+    },
+    {"category": "ji",
+      "variable": "exp",
+      "type_of_data": [
+        { "id": "3.1", "name": "accidents", "source": "Unfallatlas, Statistischen Ämter des Bundes und der Länder","url": "https://unfallatlas.statistikportal.de/" , "desc":""},
+        { "id": "3.2", "name": "Noise", "source": "Umwelt Atlas, Bayerischer Landesamt für Umwelt" ,"url":"https://www.lfu.bayern.de/umweltlaermdatenbank/", "desc": "Noise_desc" },
+        { "id": "3.3", "name": "pollution", "source": "Traffic simulation, Chair of Transport Behaivor, Technical Univeristy of Munich","desc": "Pollution_desc" }
+      ]
+    },
+    {"category": "ji",
+      "variable": "beh",
+      "type_of_data": [
+        { "id": "4.1", "name": "mot", "source": "Mobilität in Deutschland (MiD) , 2017","url":"https://www.mobilitaet-in-deutschland.de/", "desc":  "Usage_desc" }
+      ]
+    },
+    {
+      "variable": "sg",
+      "type_of_data": [
+        { "id": "5.1", "name": "Social_groups", "source": "Landeshauptstadt München (2018-2021) - 2021","url": "https://www.mstatistik-muenchen.de/indikatorenatlas/atlas.html?indicator=i63&date=2018", "desc":"" }
+      ]
+    }
+  ],
+  "Tunisia": [
+    {"category": "ji",
+      "variable": "acc",
+      "type_of_data": [
+        { "id": "1.1", "name": "Services", "source": "Census,","url":"https://www.ins.tn/enquetes/recensement-general-de-la-population-et-de-lhabitat-2014", "desc": "Isochore" },
+        { "id": "1.2", "name": "Service_built_up_tn", "source": "OSM,","url":"https://download.geofabrik.de/africa.html","desc": "pt_acc_tn_desc"}
+      ]
+    },
+    {"category": "ji",
+      "variable": "ava",
+      "type_of_data": [
+        { "id": "2.1", "name": "acc_pt", "source": "OSM","url": "https://download.geofabrik.de/africa.html", "desc": "pt_acc_tn_desc" },
+        { "id": "2.2", "name": "road_density", "source": "OSM","url": "https://download.geofabrik.de/africa.html", "desc": "" },
+        { "id": "2.3", "name": "intersection_density", "source": "OSM","url": "https://download.geofabrik.de/africa.html", "desc": ""}
+      ]
+    },
+    {"category": "ji",
+      "variable": "exp",
+      "type_of_data": [
+        { "id": "3.1", "name": "accidents", "source": "National Observatory of Road Safety","url": "https://onsr.nat.tn/" , "desc":""}
+      ]
+    },
+    {"category": "ji",
+      "variable": "beh",
+      "type_of_data": [
+        { "id": "4.1", "name": "mot", "source": "Census 2014","url":"https://www.ins.tn/enquetes/recensement-general-de-la-population-et-de-lhabitat-2014", "desc":  "desc_beh_tn"}
+      ]
+    },
+    {"category": "ji",
+      "variable": "tempo",
+      "type_of_data": [
+        { "id": "5.1", "name": "Frequency", "source": "Transtu 2023/2024","url":"https://www.transtu.tn/fr/0113-marche-horaire-hiver-2023-2024.html", "desc": "PT_headway"},
+        { "id": "5.2", "name": "Duration of commuting", "source": "Census 2014","url":"https://www.ins.tn/enquetes/recensement-general-de-la-population-et-de-lhabitat-2014", "desc": "dur_comm_desc"}
+      ]
+    },
+    {
+      "variable": "sg",
+      "type_of_data": [
+        { "id": "6.1", "name": "Social_groups", "source": "Census 2014","url": "https://www.ins.tn/enquetes/recensement-general-de-la-population-et-de-lhabitat-2014", "desc":"" }
+      ]
+    }
+
+  ]
+}
