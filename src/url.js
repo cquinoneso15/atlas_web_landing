@@ -1,6 +1,11 @@
 // Check parameters and update
 let url = new URL(window.location.href);
 
+if (url.searchParams.get("page") === "Landing") {
+    window.location.href = "Landing.html";
+    return;  // Stop further execution to ensure redirect happens
+}
+
 setValue("map_type", url.searchParams.get("map_type"));
 setValue("justice", url.searchParams.get("justice"));
 setValue("v1", url.searchParams.get("v1"));
