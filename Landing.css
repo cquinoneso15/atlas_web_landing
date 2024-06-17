@@ -188,6 +188,7 @@ body {
 
 
 .container2 {
+    padding-left: 10px;
     position:relative;
     display: grid;
     gap: 20px;
@@ -196,6 +197,7 @@ body {
     grid-template-columns: 1fr 1fr;
 }
 .container3 {
+    padding-left: 10px;
     position:relative;
     display: grid;
     grid-template-columns: 10fr 5fr;
@@ -221,7 +223,6 @@ body {
 }
 .column{
     font-size: 18px;
-    margin-bottom: 20px;
 }
 
 .image-grid img {
@@ -269,6 +270,9 @@ body {
     overflow:auto ;
 }
 .text-box .button {
+     idth: 25%;
+    text-align: center;
+    object-fit: contain;
     position: relative;
     box-shadow: 8px 8px 15px #a3b1c6, -8px -8px 15px #ffffff;
     display: inline-block;
@@ -280,30 +284,6 @@ body {
     margin-bottom: 20px;
     margin-right: 20px;
     margin-left: 20px;
-}
-
-
-.text-box2 {
-    position: relative;
-    font-size: 18px;
-    margin-bottom: 20px;
-    padding: 3%;
-    background-color: white;
-}
-
-.text-box2 .button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #072140;
-    -webkit-text-fill-color: #ffffff;
-    text-align: center;
-    border-radius: 10px;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 20px;
-    margin-bottom: 20px;
 }
 .leaflet-container {
     background-color: var(--white);
