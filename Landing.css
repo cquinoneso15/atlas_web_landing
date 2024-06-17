@@ -209,7 +209,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 3fr 5fr;
-    grid-gap: 10px;
+    grid-gap: 20px;
     margin-bottom: 20px;
 
 }
