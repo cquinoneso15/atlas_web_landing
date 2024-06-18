@@ -301,7 +301,7 @@ body {
     background-color: white;
     padding: 15px;
     margin-bottom: 20px;
-
+    overflow:auto ;
 }
 
 
@@ -312,6 +312,7 @@ body {
     height: 300px;
     position: relative;
     padding: 5px;
+    
 }
 .leaflet-container {
     background-color: var(--white);
