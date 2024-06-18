@@ -60,7 +60,6 @@ html {
     --tum-grey-6: #CDD4DB;
     --tum-grey-7: #DDE2E6;
     --tum-grey-8: #E8ECEF;
-    --tum-grey-8: #E8ECEF;
     --tum-grey-9: #F8F9FA;
     --theme-color: var(--tum-blue-dark);
     --in2-modal-brand-color: var(--tum-blue-dark);
@@ -81,20 +80,22 @@ body {
     -moz-transition: none !important;
     -o-transition: none !important;
     transition: none !important;
-  }
+}
 
 /****************
  * BEGIN NAVBAR *
  ****************/
 
 .navbar {
-    box-shadow: 0px 5px 10px 0px #aaa;
-    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
     background: var(--tum-blue-dark);
     color: white;
-    height: 64px;
+    height: 80px;
     z-index: 12;
+    padding: 0px;
 }
 
 .navbar-container {
@@ -102,6 +103,7 @@ body {
     width: 100%; /* Ensures it fills the .navbar */
     height: 64px; /* Keeps your defined height */
     justify-content: space-between; /* Space between navbar items */
+    position: relative;
 
 }
 
@@ -161,7 +163,9 @@ body {
 /*************
  * BEGIN content *
  *************/
-
+body {
+    background:var(--tum-blue-light-2);
+}
 .main {
     margin-top: 0;
     display: block;
@@ -216,10 +220,10 @@ body {
 }
 
 .image-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr); /* Two */
-        grid-template-rows:repeat(2, 1fr);; /* Ensures two rows */
-        gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two */
+    grid-template-rows:repeat(2, 1fr);; /* Ensures two rows */
+    gap: 10px;
 }
 .column{
     font-size: 18px;
@@ -307,6 +311,8 @@ body {
     height: 300px;
     position: relative;
     padding: 5px;
+    overflow-y: auto;
+    font-size: 1vw;
 }
 .leaflet-container {
     background-color: var(--white);
@@ -315,7 +321,7 @@ body {
 
 
 #dynamicContentContainer {
-     position: relative;
+    position: relative;
     background-color: white;
 
 }
@@ -332,7 +338,7 @@ body {
 }
 
 #dynamicSource {
-   margin-top:0px
+    margin-top:0px
 }
 
 
