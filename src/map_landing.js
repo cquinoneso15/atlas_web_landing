@@ -31,10 +31,6 @@ $.getJSON("src/countries.geo.json", function(geoJsonData) {
             onEachFeature: function(feature, layer) {
                     layer.on('click', function() {
                         displayCountryData(feature.properties.name);
-                            var textBox = document.querySelector('.text-box-dynamic'); // Get the text box element
-                            if (textBox.style.display === 'none') {
-                                textBox.style.display = 'block'; // Show the text box
-                            }
                         });
 
             }
@@ -44,7 +40,7 @@ $.getJSON("src/countries.geo.json", function(geoJsonData) {
 function displayCountryData(countryName) {
     var content = {
         "Germany":
-            "<h3 style='font-size: 30px;text-decoration: underline'>Munich</h3>" +
+            "<h3 style='font-size: 25px;text-decoration: underline'>Munich</h3>" +
             "<a i18n=\"landing_further\"></a>"+
         " <ol>" +
             "            <li> <h i18n=\"landing_Munich_report\"></h> <a href=\"https://syncandshare.lrz.de/getlink/fi7q2ukHDC8aV4LTwfBYeq/Mobility%20Injustice%20Atlas_Munich_TUM.pdf\" style=\"font-weight: bold; text-decoration: none;\" i18n=\"Click\"></a></li>\n" +
@@ -60,15 +56,17 @@ function displayCountryData(countryName) {
             "        </ol>"
 
     };
-    var container = document.getElementById('dynamicContentContainer');
-    container.innerHTML = content[countryName] || "<h3 i18n=\"landing_no_data\"></h3><p i18n=\"landing_no_data_desc\"></p>";
-    container.style.marginTop = "20px";
-    container.style.padding = "10px";
-    if(content[countryName]){displayCountrySource(countryName);
+    var container = document.getElementById('textbox-dynamical');
+    if (container) {
+        container.style.display = 'block';  // Show the container
+        document.getElementById('dynamicContentContainer').innerHTML = content[countryName] || "<h3 i18n=\"landing_no_data\"></h3><p i18n=\"landing_no_data_desc\"></p>";
+        if (content[countryName]) {
+            displayCountrySource(countryName);
+        } else {
+            document.getElementById('dynamicSource').innerHTML = "";
+            document.getElementById('Source').innerHTML = "";
+        }
     }
-    else{document.getElementById('dynamicSource').innerHTML = "";
-        document.getElementById('Source').innerHTML = ""}
-
     translatePage()
 }
 function displayCountrySource(countryName) {
@@ -76,6 +74,7 @@ function displayCountrySource(countryName) {
     var Source_container = document.getElementById('Source');
     document.getElementById('Source')
     Source_container.innerHTML = "<h3 i18n=\"Source\" style=\"font-size: 25px\"></h3>"
+
     fetch('src/Source.json')
         .then(response => response.json())
         .then(data => generateTable(data, countryName))
