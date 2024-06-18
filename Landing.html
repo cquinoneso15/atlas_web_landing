@@ -79,8 +79,8 @@
 <div class="main">
  <div class="grid_main">
 <div class="column" >
-    <div class="text-box" style="height: 100%">
-        <h3 i18n="landing_goal_title" style="font-size: 25px; padding-top:5px"></h3>
+    <div class="text-box" style="height: 93%">
+        <h3 i18n="landing_goal_title" ></h3>
         <p i18n="landing_goal2"></p>
         <div class="container2">
                 <div class="box">
@@ -95,9 +95,9 @@
         </div>
     </div>
 </div>
-<div class="column">
-    <div class="text-box" style="height: 100%">
-        <h3 i18n="landing_transportdisa_title" style="font-size: 25px; padding-top:5px"></h3>
+<div class="column" >
+    <div class="text-box" style="height: 93%">
+        <h3 i18n="landing_transportdisa_title" ></h3>
         <div class="container3">
             <div class="image-grid">
                 <div><img src="img/Exposure.png" alt="Image 1" onclick="updateText('external_desc')"><i i18n="exp"> </i> </div>
@@ -105,47 +105,55 @@
                 <div><img src="img/Behavior.png" alt="Image 3" onclick="updateText('behavior_desc')"><i i18n="beh"> </i> </div>
                  <div><img src="img/availability.png" alt="Image 4" onclick="updateText('infra_desc')"><i i18n="ava"></i> </div>
             </div>
-            <div class="text-box-dynamic2">
+            <div class="dynamic_explanation">
                 <p id="dynamicText" i18n="dynamic_box_click"></p>
             </div>
         </div>
     </div>
 </div>
      <div class="column">
-         <div class="text-box" style="height: 100%">
-             <h3 i18n="landing_implemented area" style="font-size: 25px; padding-top:5px"></h3>
-             <a href="Munich.html" class="button" i18n="Landing_Munich_atlas" style="left: 20%"></a>
-             <a href="https://cyrkafrde.github.io/Altas_MJ_TN/" class="button" i18n="Landing_Tunis_atlas" style="left: 24%"></a>
+         <div class="text-box" style="height: 96%">
+             <h3 i18n="landing_implemented area"></h3><br>
+             <div class="button-wrapper">
+             <a href="Munich.html" class="button" i18n="Landing_Munich_atlas"></a>
+             <a href="https://cyrkafrde.github.io/Altas_MJ_TN/" class="button" i18n="Landing_Tunis_atlas"></a>
+             </div>
              <p i18n="landing_map_desc"></p>
              <i i18n="landing_map_desc2" style="color:grey"></i>
              <div id="mapid" style="width: 100%; height: 400px; margin-top:15px"></div>
          </div>
      </div>
      <div class="column">
-         <div class="text-box" style="height: 100%">
-             <h3 i18n="landing_website_use" style="font-size: 25px; padding-top:5px"></h3>
+         <div class="text-box" style="height: 96%">
+             <h3 i18n="landing_website_use" ></h3>
              <p i18n="landing_website_desc"></p>
-             <ol>
-                 <li><strong i18n="landing_social_title"></strong><span i18n="landing_social_desc1"></span><i class="square" style="display:inline-block;float:none;margin:0;background: #d7301f" ></i> <span i18n="dot"></span><span class="select-title-info">&#x1F6C8;<span class="info-tooltip" i18n="landing_social_todo"></span></span></li>
-                 <li><strong i18n="landing_transport_title"></strong> <span i18n="landing_transport_desc1"></span><i class="square" style="display:inline-block;float:none;margin:0;background: #d7301f" ></i><span i18n="dot"></span><span class="select-title-info">&#x1F6C8;<span class="info-tooltip" i18n="landing_transport_todo"></span></span></li>
-                 <li><strong i18n="landing_bivar_title"></strong> <span i18n="landing_bivar_desc1"></span><i class="square" style="display:inline-block;float:none;margin:0;background: #574249" ></i><span i18n="dot"></span><span class="select-title-info">&#x1F6C8;<span class="info-tooltip" i18n="landing_bivar_todo"></span></span> </li>
-                 <li><strong i18n="landing_summmary_title"></strong> <span i18n="landing_summmary_desc"></span><span class="select-title-info">&#x1F6C8;<span class="info-tooltip" i18n="landing_summary_todo"></span></span></li>
+             <ol style="padding-right: 10px; text-align: justify">
+                 <li><strong i18n="landing_social_title"></strong><span i18n="landing_social_desc1"></span><i class="square" style="display:inline-block;float:none;margin:0;background: #d7301f" ></i> <span i18n="dot"></span><br><span class="select-title-info">&#x1F6C8;<span class="info-tooltip" i18n="landing_social_todo"></span></span></li>
+                 <li><strong i18n="landing_transport_title"></strong> <span i18n="landing_transport_desc1"></span><i class="square" style="display:inline-block;float:none;margin:0;background: #d7301f" ></i><span i18n="dot"></span><br><span class="select-title-info">&#x1F6C8;<span class="info-tooltip" i18n="landing_transport_todo"></span></span></li>
+                 <li><strong i18n="landing_bivar_title"></strong> <span i18n="landing_bivar_desc1"></span><i class="square" style="display:inline-block;float:none;margin:0;background: #574249" ></i><span i18n="dot"></span><br><span class="select-title-info">&#x1F6C8;<span class="info-tooltip" i18n="landing_bivar_todo"></span></span> </li>
+                 <li><strong i18n="landing_summmary_title"></strong> <span i18n="landing_summmary_desc"></span><br><span class="select-title-info">&#x1F6C8;<span class="info-tooltip" i18n="landing_summary_todo"></span></span></li>
              </ol>
          </div>
      </div>
-
  </div>
 
-    <div id="dynamicContentContainer"></div>
-    <div id="table-wrapper" >
-        <div id="Source" > </div>
-        <div id="dynamicSource" > </div> </div>
+    <div id="textbox-dynamical">
+        <div id="dynamicContentContainer"></div>
+        <div id="table-wrapper">
+            <div id="Source"></div>
+            <div id="dynamicSource"></div>
+        </div>
+    </div>
+
+
 
     <div class="text-box" id="acknowledgments">
-        <h2 i18n="Acknowledgments" style="padding-top:5px"></h2>
+        <h3 i18n="Acknowledgments" style="padding-top:5px"></h3>
         <p i18n="Acknowledgments_text"></p>
         <i i18n="Authors"></i>
-        <h2 i18n="Funding"></h2>
+    </div>
+    <div class="text-box" id="funding">
+        <h3 i18n="Funding"></h3>
         <p i18n="Fund_text"></p>
         <img style="height: 80px;" src="../img/Mcluster.jpeg" alt="MCube Cluster">
         <img style="height: 80px;" src="../img/Cluster4futur.jpeg" alt="Cluster4futur">
@@ -160,3 +168,4 @@
               <script src="src/i18n.js"></script>
               </body>
               </html>
+
