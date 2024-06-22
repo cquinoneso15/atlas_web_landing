@@ -40,7 +40,7 @@ $.getJSON("src/countries.geo.json", function(geoJsonData) {
 function displayCountryData(countryName) {
     var content = {
         "Germany":
-            "<h3 style='font-size: 25px;text-decoration: underline'>Munich</h3>" +
+            "<h3 style='font-size: 25px;text-decoration: underline'i18n='Munich'></h3>" +
             "<a i18n=\"landing_further\"></a>"+
         " <ol>" +
             "            <li> <h i18n=\"landing_Munich_report\"></h> <a href=\"https://syncandshare.lrz.de/getlink/fi7q2ukHDC8aV4LTwfBYeq/Mobility%20Injustice%20Atlas_Munich_TUM.pdf\" style=\"font-weight: bold; text-decoration: none;\" i18n=\"Click\"></a></li>\n" +
