@@ -19,7 +19,7 @@
     "environmental_justice": "Environmental Justice",
     "exp": "Neighborhood risks",
     "distribution_justice": "Distribution Justice",
-    "acc": "Access to amenities",
+    "acc": "Access to amenities by social group",
     "ava": "Infrastructure available",
     "interactional_justice": "Interactional Justice",
     "beh": "Transport mode use",
@@ -169,6 +169,7 @@
     "landing_no_data_desc": "No information is available for the selected location.",
     "Source": "Data source and calculation methods",
     "Landing-button":"Landing",
+    "acc_landing": "Access to amenities",
 
 
 
