@@ -69,7 +69,10 @@ function getQuants(data, column) {
 function percToHex(perc) {
     return (Math.round(255 * perc)).toString(16);
 }
-
+function getCheckboxValue(checkboxId) {
+    var checkbox = document.getElementById(checkboxId);
+    return checkbox.checked ? 1 : 0;
+}
 /*************
  * END UTILS *
  *************/
