@@ -150,12 +150,18 @@ body {
     transform-origin: 0% 100%;
     transition: transform 0.4s ease-in-out;
 }
-
-.navbar-container>input[type="checkbox"]:checked~.menu-items {
+.navbar-container>input[type="checkbox"]:checked~.menu-container {
+    transform: translateX(0);
+}
+.navbar-container>input[type="checkbox"]:checked~.menu-container .menu-items {
     transform: translateX(0);
     box-shadow: 5px 0px 10px 0px #aaa;
-}
 
+}
+.navbar-container>input[type="checkbox"]:checked~.menu-container .subitems-container {
+    display:flex;
+    transform: translateX(0);
+}
 .navbar-container>input[type="checkbox"]:checked~.hamburger-lines .line1 {
     transform: rotate(35deg);
     background: var(--tum-blue-dark);
@@ -171,28 +177,69 @@ body {
     background: var(--tum-blue-dark);
 }
 
-.navbar .menu-items {
-    padding-top: 50px;
-    background: var(--tum-blue-light-4);
-    height: 100vh;
-    max-width: 300px;
-    transform: translate(-310px);
-    /*overflow-y: scroll;*/
+.menu-container {
     display: flex;
-    flex-direction: column;
-    margin-left: -40px;
-    padding-left: 50px;
-    transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
-    /* If transition changes, change the document.querySelector('#navbar-left') part on map.js */
+    flex-direction: row;
+    position: absolute;
+    left: 0;
+    transform: translateX(-310px);
 }
 
-.navbar .menu-items>* {
+.menu-items {
+    padding-top: 50px;
+    width: 300px;
+    background-color: var(--tum-blue-light-4);
+    padding-top: 50px;
+    height: 100vh;
+    box-shadow: 5px 0px 10px 0px #aaa;
+    transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+}
+
+.subitems-container {
+    position: relative;
+    width: 300px;
+    background-color: var(--tum-blue-light-2);
+    top: 70px;
+    height: calc(30px);
+    margin-left: 20px;
+    transform: translateX(-310px);
+    padding-top:10px;
+    color: var(--tum-blue-dark);
+    margin-left: 10px
+}
+
+
+.menu-container .menu-items>* {
     margin-bottom: 0.5rem;
     margin-right: 10px;
     font-size: 1rem;
 }
 
-.menu-items>.select-main {
+.subitems-container>input[type="checkbox"] {
+    top: 10px;
+}
+.subitems-container>input[type="checkbox"], .legend>input[type="checkbox"] {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+}
+.subitems-container>input[type="checkbox"]~.subitems{
+    /* Display options when checked */
+    display: none;
+}
+.subitems-container>input[type="checkbox"]:checked~.subitems {
+    /* Display options when checked */
+    display: block;
+    position: relative;
+    width: 300px;
+    background-color: var(--tum-blue-light-2);
+    height: calc(95vh - 120px);
+    border-top: 1px solid var(--tum-blue-dark);
+}
+
+
+.select-main {
     border-bottom: 1px solid var(--tum-blue-dark);
     color: var(--tum-blue-dark);
     position: relative;
@@ -215,15 +262,15 @@ body {
     transition: transform .4s ease-in-out;
 }
 
-.menu-items>.select-main#sp-0>.arrow {
+.select-main#sp-0>.arrow {
     top: 12px;
 }
 
-.menu-items>.select-main>input[type="checkbox"] {
+.select-main>input[type="checkbox"] {
     top: 10px;
 }
 
-.menu-items>.select-main>input[type="checkbox"], .legend>input[type="checkbox"] {
+.select-main>input[type="checkbox"], .legend>input[type="checkbox"] {
     position: absolute;
     left: 0;
     width: 100%;
@@ -238,17 +285,17 @@ input[type="checkbox"]:checked~.arrow {
     right: 5px;
 }
 
-.menu-items>.select-main>input[type="checkbox"]~.select-options {
+.select-main>input[type="checkbox"]~.select-options {
     /* Don't display options when unchecked */
     display: none;
 }
 
-.menu-items>.select-main>input[type="checkbox"]:checked~.select-options {
+.select-main>input[type="checkbox"]:checked~.select-options {
     /* Display options when checked */
     display: block;
 }
 
-.menu-items>.select-main>input[type="checkbox"]:checked~.select-options>.select-option {
+.select-main>input[type="checkbox"]:checked~.select-options>.select-option {
     /* Display options when checked */
     display: flex;
 }
@@ -455,6 +502,12 @@ div.select-title-info:hover>span.info-tooltip {
     max-width: 90vw;
     width: 500px
 }
+.control{
+    position: relative;
+    color: black;
+}
+
+
 
 /***********
  * END MAP *
