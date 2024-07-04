@@ -155,9 +155,14 @@
     "landing_bivar_desc1": " This critical section maps out where poor mobility options overlap with social disadvantages, where areas with compounded challenges are indicated in a brown color ",
     "landing_bivar_desc2": " indicates areas with high social and mobility disadvantages.",
     "landing_bivar_todo": "Select one transport disadvantage and a social group",
+    "landing_overview_title": "Neighborhood overview",
+    "landing_overview_desc": "",
     "landing_summmary_title": "Neighborhood summary: ",
     "landing_summmary_desc": "Each neighborhood is assessed across multiple variables and scored from 0 (least challenges) to 1 (most challenges). This rating facilitates direct comparison of diverse social and mobility conditions across all neighborhoods.",
     "landing_summary_todo": "Select the neighborhood of interest.",
+    "landing_score_title": "Transport poverty score: ",
+    "landing_score_desc": "Transport disadvantages are aggregated into one score: the transport poverty score. Social disadvantages are aggregated into a social disadvantage score",
+    "landing_score_todo": "Choose a weight for each transport disadvantage and choose which vulnerable groups are included.",
     "landing_further": "Further documents: ",
     "landing_Munich_report": "Report of the Mobility Injustice Atlas",
     "landing_Munich_linkedin": "Policy recommendations for Munich",
@@ -168,13 +173,13 @@
     "landing_no_data": "No Data Available",
     "landing_no_data_desc": "No information is available for the selected location.",
     "Source": "Data source and calculation methods",
-    "Landing-button":"Landing",
-    "acc_landing": "Access to amenities",
+    "Munich": "Munich",
+    "Tunis": "Tunis",
 
 
 
     "Acknowledgments_text": "We would like to thank the following individuals for their contributions:",
-    "Authors": "David Duran Rodas, Sindi Haxhija, María Teresa Baquero Larriva, Héctor Ochoa Ortiz, Cyrine Kamoun, Lea Silvia Zuckriegl, Oliver May-Beckmann, Benjamin Büttner, Johanna Hopp, Alexander Wentland",
+    "Authors": "David Duran Rodas, Sindi Haxhija, María Teresa Baquero Larriva, Héctor Ochoa Ortiz, Cyrine Kamoun, Lea Silvia Zuckriegl, Oliver May-Beckmann, Benjamin Büttner, Johanna Hopp, Alexander Wentland, Julian Sandoval",
     "Fund_text": "This project is supported by:",
 
     "dynamic_box_click": "Click on any image to see the description here.",
