@@ -22,20 +22,22 @@
     "acc": "Erreichbarkeit von öffentlichen Einrichtungen (POI) für soziale Gruppen",
     "ava": "Vorhandene Infrastruktur",
     "interactional_justice": "Interaktionsgerechtigkeit",
-    "beh": "Nutzung nach Transportmodus",
+    "beh": "Nutzung nach Verkehrnmodus",
 
     "select": "----------",
     "select_map_type": "Kartentyp",
     "sg": "Soziale Benachteiligung",
     "desc_sg": "In welchen Gebieten leben welche sozial benachteiligten Bevölkerungsgruppen?",
-    "ji": "Transportnachteile",
-    "desc_ji": "Wo bestehen Transportnachteile?",
+    "ji": "Verkehrnachteile",
+    "desc_ji": "Wo bestehen Verkehrnnachteile?",
     "ji_v_sg": "Soziale & Verkehrsnachteile",
     "desc_ji_v_sg": "Wo überlagern sich soziale Nachteile und Verkehrsnachteilen?",
     "diff_sg": "Begünstigte vs. benachteiligte Gruppen",
     "desc_diff_sg": "Wie groß ist die Kluft zwischen begünstigten und benachteiligten Gruppen?",
     "summ": "Zusammenfassung der Stadtteile",
-    "desc_summ": "Wie gerecht ist die Mobilität in meinem Bezirksteil?",
+    "desc_summ_glob": "Wie gerecht ist die Mobilität in meinem Bezirksteil?",
+    "summ_glob": "Überblick der Stadtteile",
+    "score":"Verkehrsarmutsindex",
 
     "avg_munich": "Durchschnitt von München",
     "radar_norm": "Diese Grafik zeigt die unterschiedlichen Eigenschaften des Bezirksteils im Vergleich zu anderen Bezirksteilen in München, wobei 0 bedeutet, dass der Bezirksteil die schlechtesten Eigenschaften in der Stadt hat und 1 bedeutet, dass der Bezirksteil die besten Eigenschaften in der Stadt hat.",
@@ -58,7 +60,7 @@
     "age_young": "Kinder und Jugendliche",
     "adults": "Erwachsene",
     "age_old": "Senioren",
-    "divergent_explanation": "Diese Karte zeigt den prozentualen Unterschied in der Nutzung oder Verfügbarkeit verschiedener Transportmittel zwischen verschiedenen sozialen Gruppen. Positive Werte bedeuten, dass die privilegierten sozialen Gruppen einen größeren Zugang zu Ressourcen haben oder diese mehr nutzen. Negative Werte bedeuten, dass die benachteiligten sozialen Gruppen einen größeren Zugang zu Ressourcen haben oder diese mehr nutzen.",
+    "divergent_explanation": "Diese Karte zeigt den prozentualen Unterschied in der Nutzung oder Verfügbarkeit verschiedener Verkehrmittel zwischen verschiedenen sozialen Gruppen. Positive Werte bedeuten, dass die privilegierten sozialen Gruppen einen größeren Zugang zu Ressourcen haben oder diese mehr nutzen. Negative Werte bedeuten, dass die benachteiligten sozialen Gruppen einen größeren Zugang zu Ressourcen haben oder diese mehr nutzen.",
 
     "tp": "Gesamtbevölkerung",
     "o65": "Senioren",
@@ -83,7 +85,7 @@
     "cc": "Gemeindezentren",
     "radar_cc": "Err. von Gemeindezentren",
 
-    "select_mot": "Transportmittel",
+    "select_mot": "Verkehrmittel",
     "w_700": "Zu Fuß, 700m",
     "b_700": "Radfahren, 10min",
     "wpt_700": "Zu Fuß + ÖPNV, 20min",
@@ -107,7 +109,7 @@
     "% PT stations served in 700m": "% bediente ÖPNV-Stationen in 700m",
     "intersection number/ha": "Nummer/ha",
 
-    "select_beh": "Nutzung nach Transportmodus",
+    "select_beh": "Nutzung nach Verkehrmodus",
     "auto_usage": "Autonutzung",
     "bike_usage": "Fahrrad",
     "bicycle_usage": "Fahrradnutzung",
@@ -115,6 +117,14 @@
     "walk_usage": "Zu Fuß",
     "radar_walk_usage": "Zu Fuß",
     "car_sharing_usage": "Carsharing",
+
+    "social_score": "Punktzahl für soziale Benachteiligung",
+    "mob_leg": "Verkehrnachteile",
+    "social_leg": "Soziale Benachteiligung",
+    "instruction_score": "Wählen Sie eine Gewichtung für jeden Verkehrsnachteil in der Verkehrsarmutsindex",
+    "instruction_social_score": "Wählen Sie die soziale Gruppen aus, um den Sozialscore für jedes Stadtviertel zu berechnen.",
+    "explain_score": "Wenn man alle Gewichte gleich 0,1 oder 1 wählt, erhält man die gleichen Ergebnisse: Die Verkehrsarmutsindex wird zwischen 0 und 1 normalisiert.",
+
     
     "desc": "",
     "legend": "Legende",
