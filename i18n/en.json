@@ -38,6 +38,7 @@
     "summ_glob": "Neighborhoods overview",
     "desc_summ_glob": "How just is mobility in my neighborhood?",
     "score":"Transport poverty score",
+     "select_instru": "Select the variable to display",
 
     "avg_munich": "Average of Munich",
     "radar_norm": "This plot shows the different characteristics of the neighborhood in comparison with other neighborhoods in Munich, where 0 means that the neighborhood has the most disadvantaged characterisitcs in the city and 1 means that the neighborhood has the most advantaged characteristics in the city.",
