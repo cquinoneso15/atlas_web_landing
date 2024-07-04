@@ -413,3 +413,29 @@ i.square {
     text-decoration: none;
     cursor: pointer;
 }
+
+
+ .container_ref {
+     display: flex;
+     justify-content: space-between;
+     align-items: flex-start;
+ }
+.column_ref {
+    flex: 1;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.column_ref img {
+    height: 150px;
+    width: auto;
+}
+.item_ref {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.item_ref h, .item_ref a {
+    display: block;
+}
