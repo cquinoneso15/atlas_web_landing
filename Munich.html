@@ -4,9 +4,9 @@
 	<base target="_top">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
+
 	<title id="title", i18n="title"></title>
-	
+
 	<link rel="shortcut icon" type="image/x-icon" href="https://www.tum.de/typo3conf/ext/in2template/Resources/Public/Images/Icons/favicons/favicon.ico" />
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
@@ -36,81 +36,135 @@
 			<span class="line line2"></span>
 			<span class="line line3"></span>
 		</div>
-		<div class="menu-items">
-			<div class="select-main" id="sp-0">
-				<input type="checkbox" checked>
-				<div class="select-title-text" i18n="select_map_type"></div>
-				<div class="arrow"></div>
-				<div class="select-options" id="map_type">
-					<div class="select-option">
-						<input type="radio" name="map_type" id="sg" value="sg">
-						<label for="sg" i18n="sg"></label>
-						<div class="select-title-info">
-							&#x1F6C8;
-							<span class="info-tooltip" i18n="desc_sg"></span>
+		<div class="menu-container">
+			<div class="menu-items">
+				<div class="select-main" id="sp-0">
+					<input type="checkbox" checked>
+					<div class="select-title-text" i18n="select_map_type"></div>
+					<div class="arrow"></div>
+					<div class="select-options" id="map_type">
+						<div class="select-option">
+							<input type="radio" name="map_type" id="sg" value="sg">
+							<label for="sg" i18n="sg"></label>
+							<div class="select-title-info">
+								&#x1F6C8;
+								<span class="info-tooltip" i18n="desc_sg"></span>
+							</div>
 						</div>
-					</div>
-					<div class="select-option">
-						<input type="radio" name="map_type" id="ji" value="ji">
-						<label for="ji" i18n="ji"></label>
-						<div class="select-title-info">
-							&#x1F6C8;
-							<span class="info-tooltip" i18n="desc_ji"></span>
+						<div class="select-option">
+							<input type="radio" name="map_type" id="ji" value="ji">
+							<label for="ji" i18n="ji"></label>
+							<div class="select-title-info">
+								&#x1F6C8;
+								<span class="info-tooltip" i18n="desc_ji"></span>
+							</div>
 						</div>
-					</div>
-					<div class="select-option">
-						<input type="radio" name="map_type" id="ji_v_sg" value="ji_v_sg">
-						<label for="ji_v_sg" i18n="ji_v_sg"></label>
-						<div class="select-title-info">
-							&#x1F6C8;
-							<span class="info-tooltip" i18n="desc_ji_v_sg"></span>
+						<div class="select-option">
+							<input type="radio" name="map_type" id="ji_v_sg" value="ji_v_sg">
+							<label for="ji_v_sg" i18n="ji_v_sg"></label>
+							<div class="select-title-info">
+								&#x1F6C8;
+								<span class="info-tooltip" i18n="desc_ji_v_sg"></span>
+							</div>
 						</div>
-					</div>
-					<!--<div class="select-option">
-						<input type="radio" name="map_type" id="diff_sg" value="diff_sg">
-						<label for="diff_sg" i18n="diff_sg"></label>
-						<div class="select-title-info">
-							&#x1F6C8;
-							<span class="info-tooltip" i18n="desc_diff_sg"></span>
-						</div>
-					</div>-->
-					<div class="select-option">
-						<input type="radio" name="map_type" id="summ" value="summ">
-						<label for="summ" i18n="summ"></label>
-						<div class="select-title-info">
-							&#x1F6C8;
-							<span class="info-tooltip" i18n="desc_summ"></span>
+						<div class="select-option">
+							<input type="radio" name="map_type" id="summ_glob" value="summ_glob">
+							<label for="summ_glob" i18n="summ_glob"></label>
+							<div class="select-title-info">
+								&#x1F6C8;
+								<span class="info-tooltip" i18n="desc_summ_glob"></span>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="select-main" id="sp-1" style="display: none;">
-				<input type="checkbox">
-				<div class="select-title-text" i18n="select"></div>
-				<div class="arrow"></div>
-				<div class="select-options" id="justice">
+			<div class="subitems-container" id="subitems-container" style="display: none;">
+					<input type="checkbox">
+					<div class="select-title-text" i18n="select_instru"></div>
+				   <div class="arrow"></div>
+				<div class="subitems" id="subitems">
+				<div class="select-main" id="sp-1">
+					<input type="checkbox">
+					<div class="select-title-text" i18n="select"></div>
+					<div class="arrow"></div>
+					<div class="select-options" id="justice"></div>
 				</div>
-			</div>
-			<div class="select-main" id="sp-3" style="display: none;">
-				<input type="checkbox">
-				<div class="select-title-text" i18n="select"></div>
-				<div class="arrow"></div>
-				<div class="select-options" id="amenity">
+				<div class="select-main" id="sp-2">
+					<input type="checkbox">
+					<div class="select-title-text" i18n="select"></div>
+					<div class="arrow"></div>
+					<div class="select-options" id="v1"></div>
 				</div>
-			</div>
-			<div class="select-main" id="sp-4" style="display: none;">
-				<input type="checkbox">
-				<div class="select-title-text" i18n="select"></div>
-				<div class="arrow"></div>
-				<div class="select-options" id="mot">
+				<div class="select-main" id="sp-3">
+					<input type="checkbox">
+					<div class="select-title-text" i18n="select"></div>
+					<div class="arrow"></div>
+					<div class="select-options" id="amenity"></div>
 				</div>
-			</div>
-			<div class="select-main" id="sp-2" style="display: none;">
-				<input type="checkbox">
-				<div class="select-title-text" i18n="select"></div>
-				<div class="arrow"></div>
-				<div class="select-options" id="v1">
+				<div class="select-main" id="sp-4">
+					<input type="checkbox">
+					<div class="select-title-text" i18n="select"></div>
+					<div class="arrow"></div>
+					<div class="select-options" id="mot"></div>
 				</div>
+				<div id="controls" style="display: none">
+					<div class="select-title-info" style="color:black">
+						<br>
+						<h i18n="instruction_score" style="color:black; font-style: italic"></h>
+						&#x1F6C8;
+						<span class="info-tooltip" i18n="explain_score"></span>
+					</div><br>
+					<div class="control">
+						<label for="w1" i18n="w1" style="display: inline-block; width: 100px;"> </label> <label for="w1"><span id="w1-value">1</span></label>
+						<input type="range" id="w1" value="1" step="0.1" min="0" max="1">
+					</div>
+					<div class="control">
+						<label for="w2" i18n="w2"style="display: inline-block; width: 100px;">></label> <label for="w2"> <span id="w2-value">1</span></label>
+						<input type="range" id="w2" value="1" step="0.1" min="0" max="1">
+					</div>
+					<div class="control">
+						<label for="w3"i18n="w3"style="display: inline-block; width: 100px;">></label> <label for="w3"> <span id="w3-value">1</span></label>
+						<input type="range" id="w3" value="1" step="0.1" min="0" max="1">
+					</div>
+					<div class="control">
+						<label for="w4"i18n="w4"style="display: inline-block; width: 100px;">></label> <label for="w4"><span id="w4-value">1</span></label>
+						<input type="range" id="w4" value="1" step="0.1" min="0" max="1">
+					</div>
+					<br>
+					<h i18n="instruction_social_score" style="color:black; font-style: italic"></h>
+					<br>
+					<br>
+					<div class="control">
+						<label for="check_tp" i18n="tp"style="display: inline-block; width: 220px;"> </label>
+						<input type="checkbox" id="check_tp" checked>
+					</div>
+					<div class="control">
+						<label for="check_o65" i18n="o65"style="display: inline-block; width: 220px;"> </label>
+						<input type="checkbox" id="check_o65" checked>
+					</div>
+					<div class="control">
+						<label for="check_u18" i18n="u18"style="display: inline-block; width: 220px;"> </label>
+						<input type="checkbox" id="check_u18" checked>
+					</div>
+					<div class="control">
+						<label for="check_sp" i18n="sp"style="display: inline-block; width: 220px;"> </label>
+						<input type="checkbox" id="check_sp" checked>
+					</div>
+					<div class="control">
+						<label for="check_un" i18n="un"style="display: inline-block; width: 220px;"> </label>
+						<input type="checkbox" id="check_un" checked>
+					</div>
+					<div class="control">
+						<label for="check_ng" i18n="ng"style="display: inline-block; width: 220px;"> </label>
+						<input type="checkbox" id="check_ng" checked>
+					</div>
+					<div class="control">
+						<label for="check_income" i18n="income"style="display: inline-block; width: 220px;"> </label>
+						<input type="checkbox" id="check_income" checked>
+					</div>
+				</div>
+				</div>
+
 			</div>
 		</div>
 		<div class="navbar-top-elements">
@@ -129,6 +183,7 @@
 			<div class="title"><h1 i18n="title"></h1></div>
 		</div>
 	</div>
+
 </nav>
 
 <section class="map-area" id="map-area">
@@ -144,7 +199,6 @@
 </div>
 
 <footer>
-	<a href="index.html" id="Landing" i18n="Landing-button"></a>
 	<a href="#" id="download" i18n="download"></a>
 	<a href="#" id="share" i18n="share"></a>
 	<a href="#" id="about_us" i18n="about_us"></a>
@@ -165,6 +219,7 @@
 <script src="src/interactivity.js"></script>
 <script src="src/sequential.js"></script>
 <script src="src/bivariate.js"></script>
+<script src="src/Score.js"></script>
 <script src="src/divergent.js"></script>
 <script src="src/pois.js"></script>
 <script src="src/areas.js"></script>
@@ -172,3 +227,4 @@
 <script src="src/url.js"></script>
 </body>
 </html>
+
