@@ -72,10 +72,11 @@ var selector_values_before_sp_0 = [
         "desc": "desc_diff_sg"
     },*/
     {
-        "value": "summ",
-        "desc": "desc_summ"
+        "value": "summ_glob",
+        "desc": "desc_summ_glob"
     }
 ]
+
 
 // Selector values
 var selector_values_after_sp_0 = {
@@ -169,7 +170,19 @@ var selector_values_after_sp_0 = {
             }
         ]
     },
-    "summ": {}
+    "summ_glob": {"title": "select_justice",
+        "desc": "desc",
+        "values": [
+            {
+                "value": "summ",
+                "desc": "desc"
+            },
+            {
+                "value": "score",
+                "desc": "desc"
+            }
+        ]
+    }
 }
 var selector_values_after_sp_1 = {
     "sg": {},
@@ -614,13 +627,11 @@ var selector_values_after_sp_1 = {
             }
         }
     },
-    "summ": {}
-}
+    "summ_glob": {}}
 
 var selected_values;
 
 function updateSelectorAfterSP0(name, map_type_value) {
-    // Find the .select-main to change
     let curr_sp = document.querySelector('#sp-1');
     curr_sp.style.display = 'block';
 
@@ -693,6 +704,13 @@ function updateSelectorAfterSP0(name, map_type_value) {
 }
 
 function updateSelectorAfterSP1(name, justice_value) {
+    // Find the .select-main to change
+    const weightControls = document.querySelector('#controls');
+    if(justice_value === 'score') {
+        weightControls.style.display = 'block';
+    } else {
+        weightControls.style.display = 'none';
+    }
     let map_type_value = getValue("map_type");
 
     let sp = {
@@ -800,8 +818,8 @@ function listLength(list) {
 
 function correctValues(values) {
     if (values == undefined) {
-        // If value dict not passed, use selectors
-        if (getValue("map_type") == "summ") return true;
+
+
 
         if (getValue("justice") == undefined) return false;
         
@@ -809,8 +827,7 @@ function correctValues(values) {
         && ((!isDisabled("amenity") && getValue("amenity") != undefined) || isDisabled("amenity"))
         && ((!isDisabled("mot") && getValue("mot") != undefined) || isDisabled("mot"));
     } else {
-        // Otherwise check in values dict
-        if (values["map_type"] == "summ") return true;
+
 
         if (values["justice"] == undefined) return false;
 
@@ -841,3 +858,4 @@ function correctValues(values) {
         return c_v1 && c_amenity && c_mot;
     }
 }
+
