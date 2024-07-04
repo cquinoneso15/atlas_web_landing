@@ -45,6 +45,12 @@ function bindLocaleSwitcher(initialValue) {
         document.documentElement.setAttribute("lang", e.target.value); 
     };
 }
+function updateContent() {
+    const currentLang = i18next.language;
+    const diagramImage = document.getElementById('diagram');
+    diagramImage.src = `img/diagram_${currentLang}.png`;
+    console.log(currentLang)
+}
 
 // i18n set up
 i18next
@@ -64,4 +70,5 @@ i18next
 i18next.on('languageChanged initialized', () => {
     if (!i18next.isInitialized) return;
     translatePage();
+    updateContent();
 });
