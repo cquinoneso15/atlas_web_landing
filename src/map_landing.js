@@ -7,7 +7,7 @@ $.getJSON("src/countries.geo.json", function(geoJsonData) {
     }).addTo(map);
 
     L.geoJSON(geoJsonData, {
-            style: function(feature) {
+        style: function(feature) {
                 // Check the country name and apply different styles
                 if (feature.properties.name === "Tunisia" || feature.properties.name === "Germany") {
                     return {
@@ -35,30 +35,81 @@ $.getJSON("src/countries.geo.json", function(geoJsonData) {
 
             }
         }).addTo(map);
+    var Munich = {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [11.5750, 48.1375] // Longitude, Latitude
+        },
+        "properties": {
+            "name": "Germany"
+        }
+    };
+    L.geoJSON(Munich, {
+        onEachFeature: function (feature, layer) {
+            layer.on('click', function() {
+                displayCountryData(feature.properties.name);
+            });
+        }
+    }).addTo(map);
+
+    var Tunis = {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [10.1054, 36.4823] // Longitude, Latitude
+        },
+        "properties": {
+            "name": "Tunisia"
+        }
+    };
+    L.geoJSON(Tunis, {
+        onEachFeature: function (feature, layer) {
+            layer.on('click', function() {
+                displayCountryData(feature.properties.name);
+            });
+        }
+    }).addTo(map);
     });
 
+
 function displayCountryData(countryName) {
+
     var content = {
         "Germany":
-            "<h3 style='font-size: 25px;text-decoration: underline'i18n='Munich'></h3>" +
-            "<a i18n=\"landing_further\"></a>"+
-        " <ol>" +
-            "            <li> <h i18n=\"landing_Munich_report\"></h> <a href=\"https://syncandshare.lrz.de/getlink/fi7q2ukHDC8aV4LTwfBYeq/Mobility%20Injustice%20Atlas_Munich_TUM.pdf\" style=\"font-weight: bold; text-decoration: none;\" i18n=\"Click\"></a></li>\n" +
-            "            <li> <h i18n=\"landing_Munich_linkedin\"></h> <a href=\"https://www.linkedin.com/posts/m-cube-munich-cluster-for-the-future-of-mobility-in-metropolitan-regions_mcube-mcube-innovationsempfehlung-volume-activity-7166422313654075392-EhFj?utm_source=share&utm_medium=member_desktop\" style=\"font-weight: bold; text-decoration: none;\" i18n=\"Click\"></a>  </li>\n" +
-            "            <li> <h i18n=\"landing_github\"></h> <a href=\"https://github.com/Robot8A/atlas_web\" style=\"font-weight: bold; text-decoration: none;\" i18n=\"Click\"></a></li>\n" +
-            "        </ol>"
-            ,
-
-        "Tunisia": "<h3 style='font-size: 30px;text-decoration: underline'>Tunis</h3>" +
-             "<a i18n=\"landing_further\"></a>"+
-        " <ol>" +
-            "            <li> <strong i18n=\"landing_github\"></strong> <a href=\"https://github.com/CyrkaFRDE/Altas_MJ_TN\" style=\"font-weight: bold; text-decoration: none;\" i18n=\"Click\"></a></li>\n" +
-            "        </ol>"
-
+            "<h3 style='font-size: 25px;text-decoration: underline' i18n='Munich'></h3>" +
+            "<a i18n=\"landing_further\"></a>" +
+            "<div class='container_ref'>" +
+            "  <div class='column_ref'>" +
+            "    <img src='img/report Munich.png' alt='Image 1'>" +
+            "    <h i18n='landing_Munich_report'></h>" +
+            "    <a href='https://syncandshare.lrz.de/getlink/fi7q2ukHDC8aV4LTwfBYeq/Mobility%20Injustice%20Atlas_Munich_TUM.pdf' style='font-weight: bold; text-decoration: none;' i18n='Click'></a>" +
+            "  </div>" +
+            "  <div class='column_ref'>" +
+            "    <img src='img/political report.png' alt='Image 2'>" +
+            "    <h i18n='landing_Munich_linkedin'></h>" +
+            "    <a href='https://www.linkedin.com/posts/m-cube-munich-cluster-for-the-future-of-mobility-in-metropolitan-regions_mcube-mcube-innovationsempfehlung-volume-activity-7166422313654075392-EhFj?utm_source=share&utm_medium=member_desktop' style='font-weight: bold; text-decoration: none;' i18n='Click'></a>" +
+            "  </div>" +
+            "  <div class='column_ref'>" +
+            "    <img src='img/GitHub-logo.png' alt='Image 3'>" +
+            "    <h i18n='landing_github'></h>" +
+            "    <a href='https://github.com/Robot8A/atlas_web' style='font-weight: bold; text-decoration: none;' i18n='Click'></a>" +
+            "  </div>" +
+            "</div>",
+        "Tunisia":
+            "<h3 style='font-size: 30px;text-decoration: underline' i18n='Tunis'></h3>" +
+            "<a i18n=\"landing_further\"></a>" +
+            " <div class='column_ref'>" +
+                "    <img src='img/GitHub-logo.png' alt='Image 3'>" +
+                    "    <h i18n='landing_github'></h>" +
+                    "    <a href='https://github.com/CyrkaFRDE/Altas_MJ_TN' style='font-weight: bold; text-decoration: none;' i18n='Click'></a>" +
+                    "  </div>"
     };
+
     var container = document.getElementById('textbox-dynamical');
     if (container) {
-        container.style.display = 'block';  // Show the container
+        container.style.display = 'block';
+        container.scrollIntoView({ behavior: 'smooth' });
         document.getElementById('dynamicContentContainer').innerHTML = content[countryName] || "<h3 i18n=\"landing_no_data\"></h3><p i18n=\"landing_no_data_desc\"></p>";
         if (content[countryName]) {
             displayCountrySource(countryName);
