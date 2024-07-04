@@ -27,7 +27,7 @@
     <!-- Social buttons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="Landing.css" />
 </head>
 <body>
 
@@ -35,7 +35,7 @@
     <div class="navbar-container">
         <div class="navbar-top-elements">
             <a class="logo" title="Technische Universität München" href="/">
-                <svg width="80" height="42" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 73 38">
+                <svg width="80px" height="42" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 73 38">
                     <path d="M28 0v31h8V0h37v38h-7V7h-8v31h-7V7h-8v31H21V7h-7v31H7V7H0V0h28z" fill="currentColor"></path>
                 </svg>
 
@@ -90,7 +90,7 @@
                     </p>
                 </div>
             <div class="box">
-                <img src="img/diagrampng.png" style="max-height: 90%;width: 100%; object-fit: contain;">
+                <img id="diagram" src="img/diagram_en.png" style="max-height: 90%;width: 100%; object-fit: contain;">
             </div>
         </div>
     </div>
@@ -101,9 +101,9 @@
         <div class="container3">
             <div class="image-grid">
                 <div><img src="img/Exposure.png" alt="Image 1" onclick="updateText('external_desc')"><i i18n="exp"> </i> </div>
-                <div><img src="img/Proximity.png" alt="Image 2" onclick="updateText('Proximity_desc')"><i i18n="acc_landing"></i> </div>
+                <div><img src="img/Proximity.png" alt="Image 2" onclick="updateText('Proximity_desc')"><i i18n="acc"></i> </div>
                 <div><img src="img/Behavior.png" alt="Image 3" onclick="updateText('behavior_desc')"><i i18n="beh"> </i> </div>
-                 <div><img src="img/availability.png" alt="Image 4" onclick="updateText('infra_desc')"><i i18n="ava"></i> </div>
+                <div><img src="img/availability.png" alt="Image 4" onclick="updateText('infra_desc')"><i i18n="ava"></i> </div>
             </div>
             <div class="dynamic_explanation">
                 <p id="dynamicText" i18n="dynamic_box_click"></p>
@@ -128,10 +128,14 @@
              <h3 i18n="landing_website_use" ></h3>
              <p i18n="landing_website_desc"></p>
              <ol style="padding-right: 10px; text-align: justify">
-                 <li><strong i18n="landing_social_title"></strong><span i18n="landing_social_desc1"></span><i class="square" style="display:inline-block;float:none;margin:0;background: #d7301f" ></i><span i18n="dot"></span><br><span class="select-title-info">&#x1F6C8;<span class="info-tooltip" i18n="landing_social_todo"></span></span></li>
+                 <li><strong i18n="landing_social_title"></strong><span i18n="landing_social_desc1"></span><i class="square" style="display:inline-block;float:none;margin:0;background: #d7301f" ></i> <span i18n="dot"></span><br><span class="select-title-info">&#x1F6C8;<span class="info-tooltip" i18n="landing_social_todo"></span></span></li>
                  <li><strong i18n="landing_transport_title"></strong> <span i18n="landing_transport_desc1"></span><i class="square" style="display:inline-block;float:none;margin:0;background: #d7301f" ></i><span i18n="dot"></span><br><span class="select-title-info">&#x1F6C8;<span class="info-tooltip" i18n="landing_transport_todo"></span></span></li>
                  <li><strong i18n="landing_bivar_title"></strong> <span i18n="landing_bivar_desc1"></span><i class="square" style="display:inline-block;float:none;margin:0;background: #574249" ></i><span i18n="dot"></span><br><span class="select-title-info">&#x1F6C8;<span class="info-tooltip" i18n="landing_bivar_todo"></span></span> </li>
-                 <li><strong i18n="landing_summmary_title"></strong> <span i18n="landing_summmary_desc"></span><br><span class="select-title-info">&#x1F6C8;<span class="info-tooltip" i18n="landing_summary_todo"></span></span></li>
+                 <li><strong i18n="landing_overview_title"></strong> <span i18n="landing_overview_desc"></span>
+                 <ol type="a" style="padding-right: 20px; text-align: justify">
+                     <li><strong i18n="landing_summmary_title"></strong> <span i18n="landing_summmary_desc"></span><br><span class="select-title-info">&#x1F6C8;<span class="info-tooltip" i18n="landing_summary_todo"></span></span></li>
+                     <li><strong i18n="landing_score_title"></strong> <span i18n="landing_score_desc"></span><br><span class="select-title-info">&#x1F6C8;<span class="info-tooltip" i18n="landing_score_todo"></span></span></li>
+                 </ol>
              </ol>
          </div>
      </div>
@@ -168,4 +172,3 @@
               <script src="src/i18n.js"></script>
               </body>
               </html>
-
