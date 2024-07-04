@@ -57,15 +57,22 @@ info.update = function (props) {
     if (biv) {
         var X = selected_values["justice"];
         if (X == "income") X = "inc";
-
         this._div.innerHTML += (props
             ? '<b>' + props.name + '</b><br /><span i18n="' + selected_values["amenity"] + '"></span> ' + props['value_' + X].toFixed(2) + '&nbsp;<span i18n="' + props['value_desc_' + X] + '"></span> (<span i18n="' + props['hilo_' + X] + '"></span>)<br /><span i18n="' + selected_values["v1"] + '"></span> ' + props.value_pop.toFixed(2) + '&nbsp;<span i18n="' + props['value_desc_pop'] + '"></span> (<span i18n="' + props.hilo_pop + '"></span>)'
             : '');
-    } else {
+    }
+    else if (bivscore) {
+        this._div.innerHTML += (props
+            ? '<b>' + props.name + '</b><br /> <span i18n="mob_score"></span> ' +': '+ props['totalScore'].toFixed(2) + '&nbsp;<br /><span i18n="social_score"></span>'  +': ' + props.socialscore.toFixed(2) + '&nbsp;'
+            : '');
+    }
+    else {
         this._div.innerHTML += (props
             ? '<b>' + props.name + '</b><br />' + props.value.toFixed(2) + '&nbsp;<span i18n="' + props.value_desc + '"></span>'
             : '');
     }
+
+
 
 
     translatePage();
@@ -75,6 +82,7 @@ info.addTo(map);
 
 // Add scale
 var scale = L.control.scale({ metric: true, imperial: false }).addTo(map);
+
 
 /*************************
  * END MAP INTERACTIVITY *
