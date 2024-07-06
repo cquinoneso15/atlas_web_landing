@@ -49,7 +49,6 @@ function updateContent() {
     const currentLang = i18next.language;
     const diagramImage = document.getElementById('diagram');
     diagramImage.src = `img/diagram_${currentLang}.png`;
-    console.log(currentLang)
 }
 
 // i18n set up
@@ -65,10 +64,13 @@ i18next
         }
     }, function(err, t) {translatePage(); 
         bindLocaleSwitcher(i18next.language);});
+       translatePage();
+       updateContent();
 
 // When i18n initialization is finished or the language is changed, translate the page to reflect the changes
 i18next.on('languageChanged initialized', () => {
     if (!i18next.isInitialized) return;
     translatePage();
+    bindLocaleSwitcher(i18next.language)
     updateContent();
 });
