@@ -67,7 +67,7 @@
       "variable": "tempo",
       "type_of_data": [
         { "id": "5.1", "name": "Frequency", "source": "Transtu 2023/2024","url":"https://www.transtu.tn/fr/0113-marche-horaire-hiver-2023-2024.html", "desc": "PT_headway"},
-        { "id": "5.2", "name": "Duration", "source": "Census 2014","url":"https://www.ins.tn/enquetes/recensement-general-de-la-population-et-de-lhabitat-2014", "desc": "dur_comm_desc"}
+        { "id": "5.2", "name": "dur_comm", "source": "Census 2014","url":"https://www.ins.tn/enquetes/recensement-general-de-la-population-et-de-lhabitat-2014", "desc": "dur_comm_desc"}
       ]
     },
     {
