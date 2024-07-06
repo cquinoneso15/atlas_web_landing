@@ -63,7 +63,7 @@ info.update = function (props) {
     }
     else if (bivscore) {
         this._div.innerHTML += (props
-            ? '<b>' + props.name + '</b><br /> <span i18n="mob_score"></span> ' +': '+ props['totalScore'].toFixed(2) + '&nbsp;<br /><span i18n="social_score"></span>'  +': ' + props.socialscore.toFixed(2) + '&nbsp;'
+            ? '<b>' + props.name + '</b><br /> <span i18n="score"></span> ' +': '+ props['totalScore'].toFixed(2) + '&nbsp;<br /><span i18n="social_score"></span>'  +': ' + props.socialscore.toFixed(2) + '&nbsp;'
             : '');
     }
     else {
