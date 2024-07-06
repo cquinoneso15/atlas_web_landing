@@ -170,7 +170,7 @@ var selector_values_after_sp_0 = {
             }
         ]
     },
-    "summ_glob": {"title": "select_justice",
+    "summ_glob": {"title": "",
         "desc": "desc",
         "values": [
             {
