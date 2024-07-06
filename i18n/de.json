@@ -38,7 +38,7 @@
     "desc_summ_glob": "Wie gerecht ist die Mobilität in meinem Bezirksteil?",
     "summ_glob": "Überblick der Stadtteile",
     "score":"Verkehrsarmutsindex",
-     "select_instru": "Wählen Sie die anzuzeigende Variable aus",
+     "select_instru": "Wählen Sie die Variable aus",
 
     "avg_munich": "Durchschnitt von München",
     "radar_norm": "Diese Grafik zeigt die unterschiedlichen Eigenschaften des Bezirksteils im Vergleich zu anderen Bezirksteilen in München, wobei 0 bedeutet, dass der Bezirksteil die schlechtesten Eigenschaften in der Stadt hat und 1 bedeutet, dass der Bezirksteil die besten Eigenschaften in der Stadt hat.",
