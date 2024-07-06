@@ -46,9 +46,12 @@ function bindLocaleSwitcher(initialValue) {
     };
 }
 function updateContent() {
-    const currentLang = i18next.language;
+    if (!i18next.isInitialized) return;
+
     const diagramImage = document.getElementById('diagram');
-    diagramImage.src = `img/diagram_${currentLang}.png`;
+    if (diagramImage) {
+        diagramImage.src = `img/diagram_${i18next.language}.png`;
+    }
 }
 
 // i18n set up
