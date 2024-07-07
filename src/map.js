@@ -21,7 +21,6 @@ document.querySelectorAll('input[name="map_type"]').forEach(radio => {
     radio.addEventListener('change', () => {
         document.getElementById('subitems-container').style.display = 'block';
         document.getElementById('subitems-container').querySelector("input[type=checkbox]").checked = true;
-        document.getElementById('subitems-container').scrollIntoView({ behavior: 'smooth' });
     });
 });
 
