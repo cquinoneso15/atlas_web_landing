@@ -193,7 +193,7 @@ body {
     height: 100vh;
     box-shadow: 5px 0px 10px 0px #aaa;
     transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
-    z-index:3;
+    z-index:4;
 }
 
 .subitems-container {
@@ -207,7 +207,7 @@ body {
     padding-top:10px;
     color: var(--tum-blue-dark);
     margin-left: 10px;
-    z-index:4;
+    z-index:3;
 }
 
 
