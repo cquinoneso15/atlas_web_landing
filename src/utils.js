@@ -73,6 +73,14 @@ function getCheckboxValue(checkboxId) {
     var checkbox = document.getElementById(checkboxId);
     return checkbox.checked ? 1 : 0;
 }
+
+function uncheckCheckboxForPhoneView() {
+            const checkbox = document.querySelector('.navbar-container input[type="checkbox"]');
+            if (window.innerWidth <= 1000 && checkbox.checked) {
+                checkbox.checked = false;
+            }
+        }
+
 /*************
  * END UTILS *
  *************/
