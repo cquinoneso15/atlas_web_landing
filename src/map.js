@@ -229,11 +229,12 @@ function changeMap() {
                 break;
         }
     }
+    uncheckCheckboxForPhoneView()
 };
-uncheckCheckboxForPhoneView()
+
 // Update map size after menu transition
-document.getElementById('navbar-left').addEventListener('change', function() {
-    for (let i=0; i<500; i+=50) // 500 ms = 0.5s = transition time; 50 ms = 0.005s = invalidate size frame
-        setTimeout(function(){ map.invalidateSize()}, i);
-});
+//document.getElementById('navbar-left').addEventListener('change', function() {
+  //  for (let i=0; i<500; i+=50) // 500 ms = 0.5s = transition time; 50 ms = 0.005s = invalidate size frame
+    //    setTimeout(function(){ map.invalidateSize()}, i);
+//});
 
