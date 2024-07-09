@@ -170,7 +170,7 @@ var selector_values_after_sp_0 = {
             }
         ]
     },
-    "summ_glob": {"title": "",
+    "summ_glob": {"title": "space",
         "desc": "desc",
         "values": [
             {
