@@ -185,6 +185,7 @@ body {
     transform: translateX(-600px);
     max-width: 600px;
     max-height:98vh;
+    overflow-y:hidden;
 }
 
 .menu-items {
