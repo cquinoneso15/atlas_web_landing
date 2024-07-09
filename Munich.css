@@ -239,7 +239,8 @@ body {
     width: 300px;
     background-color: var(--tum-blue-light-2);
     height: calc(95vh - 120px);
-    border-top: 1px solid var(--tum-blue-dark)
+    border-top: 1px solid var(--tum-blue-dark);
+    overflow-y:auto
     
 }
 
