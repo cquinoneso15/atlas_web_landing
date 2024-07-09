@@ -185,7 +185,6 @@ body {
     transform: translateX(-600px);
     max-width: 600px;
     max-height:98vh;
-    overflow-y:visible;
 }
 
 .menu-items {
@@ -241,7 +240,7 @@ body {
     background-color: var(--tum-blue-light-2);
     height: calc(95vh - 120px);
     border-top: 1px solid var(--tum-blue-dark)
-    overflow-y: scroll;
+    
 }
 
 
@@ -511,6 +510,7 @@ div.select-title-info:hover>span.info-tooltip {
 .control{
     position: relative;
     color: black;
+    overflow-y: scroll;
 }
 
 
