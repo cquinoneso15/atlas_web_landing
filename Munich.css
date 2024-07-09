@@ -510,7 +510,6 @@ div.select-title-info:hover>span.info-tooltip {
 .control{
     position: relative;
     color: black;
-    overflow-y: scroll;
 }
 
 
