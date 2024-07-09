@@ -184,7 +184,7 @@ body {
     left: 0;
     transform: translateX(-600px);
     max-width: 600px;
-    max-height:100vh;
+    max-height:98vh;
     overflow-y:auto;
 }
 
@@ -193,11 +193,11 @@ body {
     width: 300px;
     background-color: var(--tum-blue-light-4);
     padding-top: 50px;
-    height: 100vh;
+    height: 98vh;
     box-shadow: 5px 0px 10px 0px #aaa;
     transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
     z-index:4;
-     overflow-y: auto;
+    overflow-y: auto;
 }
 
 .subitems-container {
