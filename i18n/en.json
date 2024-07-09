@@ -128,7 +128,7 @@
     "instruction_score": "Choose the weight for each transport disadvantage considered in the transport poverty score",
     "instruction_social_score": "Select the considered vulnerable groups to calculate the social score of each neighborhood.",
     "explain_score": "Choosing all weights equal to 0.1 or to 1 provides the same results: The final score is normalised between 0 and 1",
-    "space": " ",
+    "space": "\n",
     
 
     "atlas_authors": "Atlas Authors",
