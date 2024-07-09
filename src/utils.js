@@ -76,7 +76,7 @@ function getCheckboxValue(checkboxId) {
 
 function uncheckCheckboxForPhoneView() {
             const checkbox = document.querySelector('.navbar-container input[type="checkbox"]');
-            if (window.innerWidth <= 1000 && checkbox.checked) {
+            if (window.innerWidth <= 720 && checkbox.checked) {
                 checkbox.checked = false;
             }
         }
