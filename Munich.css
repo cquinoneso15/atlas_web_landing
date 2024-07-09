@@ -185,7 +185,6 @@ body {
     transform: translateX(-600px);
     max-width: 600px;
     max-height:98vh;
-    overflow-y:auto;
 }
 
 .menu-items {
@@ -526,6 +525,7 @@ footer {
     align-items: center;
     justify-content: space-around;
     transition: width 0.5s ease-in-out, padding-left 0.5s ease-in-out;
+    z-index: 5;
 }
 
 .navbar:has(.navbar-container>input[type="checkbox"]:checked)~footer {
