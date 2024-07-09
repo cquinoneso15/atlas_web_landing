@@ -182,7 +182,7 @@ body {
     flex-direction: row;
     position: absolute;
     left: 0;
-    transform: translateX(-310px);
+    transform: translateX(-600px);
 }
 
 .menu-items {
