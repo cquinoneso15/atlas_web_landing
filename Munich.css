@@ -209,7 +209,6 @@ body {
     color: var(--tum-blue-dark);
     margin-left: 10px;
     z-index:3;
-    overflow-y: auto;
 }
 
 
