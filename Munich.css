@@ -525,7 +525,7 @@ footer {
     align-items: center;
     justify-content: space-around;
     transition: width 0.5s ease-in-out, padding-left 0.5s ease-in-out;
-    z-index: 5;
+    z-index: 1;
 }
 
 .navbar:has(.navbar-container>input[type="checkbox"]:checked)~footer {
