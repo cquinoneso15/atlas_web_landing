@@ -185,7 +185,7 @@ body {
     left: 0;
     transform: translateX(-600px);
     max-width: 600px;
-    max-height:80%;
+    height:600px;
 }
 
 .menu-items {
