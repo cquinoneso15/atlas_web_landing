@@ -78,7 +78,7 @@ function uncheckCheckboxForPhoneView() {
             const checkbox = document.querySelector('.navbar-container input[type="checkbox"]');
             if (window.innerWidth <= 720 && checkbox.checked) {
                 checkbox.checked = false;
-                 map.setView([48.14, 11.57], 12);
+                 map.setView([48.14, 11.57], 11);
             }
         }
 
