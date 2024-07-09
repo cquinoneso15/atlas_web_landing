@@ -708,7 +708,6 @@ function updateSelectorAfterSP1(name, justice_value) {
     const weightControls = document.querySelector('#controls');
     if(justice_value === 'score') {
         weightControls.style.display = 'block';
-        weightControls.style.overflow-y: auto;
     } else {
         weightControls.style.display = 'none';
     }
