@@ -92,6 +92,7 @@ body {
     color: white;
     height: 64px;
     z-index: 12;
+    max-height: 100%;
 }
 
 .navbar-container {
