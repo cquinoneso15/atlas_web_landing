@@ -196,6 +196,7 @@ body {
     box-shadow: 5px 0px 10px 0px #aaa;
     transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
     z-index:4;
+     overflow-y: auto;
 }
 
 .subitems-container {
@@ -239,8 +240,7 @@ body {
     width: 300px;
     background-color: var(--tum-blue-light-2);
     height: calc(95vh - 120px);
-    border-top: 1px solid var(--tum-blue-dark);
-     overflow-x: auto;
+    border-top: 1px solid var(--tum-blue-dark)
 }
 
 
