@@ -215,5 +215,12 @@
 "dur_comm_desc": "% der Pendler, die in einem Reisezeitintervall pendeln",
 "tempo": "Zeitliche Verfügbarkeit",
 "Frequency": "Häufigkeit des ÖPNV",
-"dur_comm": "Dauer des Pendelns"
+"dur_comm": "Dauer des Pendelns",
+
+ "1km": "Schulen, Verwaltung, kulturelle Freizeit und UGS",
+"667m": "Gesundheitseinrichtungen, Apotheken, ÖPNV, Bike-Sharing",
+"acc_1km": "% der bebauten Fläche in einer Nähe von 1 km (15 Minuten zu Fuß)",
+"acc_667m": "% der bebauten Fläche in einer Nähe von 667 m (10 Minuten zu Fuß)",
+"infra_density": "Dichten von Straßen, Geh- und Radwegen"
+   
 }
