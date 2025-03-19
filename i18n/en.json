@@ -224,6 +224,13 @@
     "dur_comm_desc": "% of commuters commuting at a travel duration interval",
     "tempo": "Temporal availability",
     "Frequency": "Frequency of PT",
-    "dur_comm": "Duration of commuting"
+    "dur_comm": "Duration of commuting",
+
+    "1km": "Schools, Administration, Cultural Leisure and UGS",
+    "667m": "Health Institutions, Pharmacies, PT, Bike Sharing",
+    "acc_1km": "% of built-up area in a proximity of 1 km (15 minute walk)",
+    "acc_667m" : "% of built-up area in a proximity of 667 m (10 minute walk)",
+    "infra_density": "Street, sidewalk and cycleway densities"
+    
 
 }
