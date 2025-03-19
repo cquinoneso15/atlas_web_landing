@@ -182,17 +182,19 @@
     "Click": "Click here",
     "Landing_Munich_atlas": "Open Munich Atlas",
     "Landing_Tunis_atlas": "Open Tunis Atlas",
+    "Landing_Bogota_atlas": "Open Bogotá Atlas",
     "landing_no_data": "No Data Available",
     "landing_no_data_desc": "No information is available for the selected location.",
     "Source": "Data source and calculation methods",
     "Munich": "Munich",
     "Tunis": "Tunis",
+    "Bogota": "Bogotá",
     "Landing-button":"Landing",
 
 
 
     "Acknowledgments_text": "We would like to thank the following individuals for their contributions:",
-    "Authors": "David Duran Rodas, Sindi Haxhija, María Teresa Baquero Larriva, Héctor Ochoa Ortiz, Cyrine Kamoun, Lea Silvia Zuckriegl, Oliver May-Beckmann, Benjamin Büttner, Johanna Hopp, Alexander Wentland, Julian Sandoval and Ana Clara Caixeta Szymanski Nogueira",
+    "Authors": "David Duran Rodas, Sindi Haxhija, María Teresa Baquero Larriva, Héctor Ochoa Ortiz, Cyrine Kamoun, Carlos Quiñones Oeding, Lea Silvia Zuckriegl, Oliver May-Beckmann, Benjamin Büttner, Johanna Hopp, Alexander Wentland, Julian Sandoval and Ana Clara Caixeta Szymanski Nogueira",
     "Fund_text": "This project is supported by:",
 
     "dynamic_box_click": "Click on any image to see the description here.",
