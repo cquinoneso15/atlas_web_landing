@@ -9,9 +9,9 @@ $.getJSON("src/countries.geo.json", function(geoJsonData) {
     L.geoJSON(geoJsonData, {
         style: function(feature) {
                 // Check the country name and apply different styles
-                if (feature.properties.name === "Tunisia" || feature.properties.name === "Germany") {
+                if (feature.properties.name === "Tunisia" || feature.properties.name === "Germany" || feature.properties.name === "Colombia") {
                     return {
-                        fillColor: "#072140", // Different color for Tunisia and Germany
+                        fillColor: "#072140", // Different color for Tunisia, Germany and Colombia
                         weight: 2,
                         opacity: 0.5,
                         color: '#ABB5BE', // Border color
@@ -70,6 +70,24 @@ $.getJSON("src/countries.geo.json", function(geoJsonData) {
             });
         }
     }).addTo(map);
+
+    var Bogota = {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [-74.08175, 4.60971] //Longitude, Latitude
+        },
+        "properties":{
+            "name": "Colombia"
+        }
+    };
+    L.geoJSON(Bogota, {
+        onEachFeature: function(feature, layer){
+            layer.on('click', function(){
+                displayCountryData(feature.properties.name);
+            });
+        }
+    }).addTo(map);
     });
 
 
@@ -103,6 +121,14 @@ function displayCountryData(countryName) {
                 "    <img src='img/GitHub-logo.png' alt='Image 3'>" +
                     "    <h i18n='landing_github'></h>" +
                     "    <a href='https://github.com/CyrkaFRDE/Altas_MJ_TN' style='font-weight: bold; text-decoration: none;' i18n='Click'></a>" +
+                    "  </div>",
+        "Colombia":
+            "<h3 style='font-size: 30px;text-decoration: underline' i18n='Bogota'></h3>" +
+            "<a i18n=\"landing_further\"></a>" +
+            " <div class='column_ref'>" +
+                "    <img src='img/GitHub-logo.png' alt='Image 3'>" +
+                    "    <h i18n='landing_github'></h>" +
+                    "    <a href='https://github.com/cquinoneso15/MobInj_Atlas_Bogota' style='font-weight: bold; text-decoration: none;' i18n='Click'></a>" +
                     "  </div>"
     };
 
